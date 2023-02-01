@@ -1,7 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import dotenv from 'dotenv'
-dotenv.config()
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { defineConfig } from 'vite';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,4 +15,4 @@ export default defineConfig({
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
   plugins: [react()],
-})
+});
