@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import checker from 'vite-plugin-checker';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -13,7 +14,10 @@ export default defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    checker({ typescript: true }),
+  ],
   css: {
     modules: {
       localsConvention: 'camelCase',
