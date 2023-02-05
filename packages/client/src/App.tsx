@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
-import styles from './App.module.css';
+import { StrictMode, useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router';
 
 function App() {
   useEffect(() => {
@@ -12,7 +13,13 @@ function App() {
 
     fetchServerData();
   }, []);
-  return <div className={styles.startDiv}>Вот тут будет жить ваше приложение :)</div>;
+  return (
+    <StrictMode>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </StrictMode>
+  );
 }
 
 export default App;
