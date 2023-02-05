@@ -49,5 +49,5 @@ module.exports = {
       }
     ],
   },
-  ignorePatterns: ["**/*.js", "*/dist/*"],
+  ignorePatterns: ['**/*.js', "*/dist/*"],
 }

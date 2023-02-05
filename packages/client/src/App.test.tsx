@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
-
+// @ts-ignore
 const appContent = 'Вот тут будет жить ваше приложение :)';
 
 // @ts-ignore
