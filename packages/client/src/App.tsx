@@ -1,6 +1,6 @@
 import { StrictMode, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Router from './router';
+import Router from './router/router';
 
 function App() {
   useEffect(() => {
