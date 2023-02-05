@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Jura";
+  src:
+    local("Jura-Light"),
+    url("../../static/fonts/Jura/Jura-Light.woff2") format("woff2"),
+    url("../../static/fonts/Jura/Jura-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jura";
+  src:
+    local("Jura-Medium"),
+    url("../../static/fonts/Jura/Jura-Medium.woff2") format("woff2"),
+    url("../../static/fonts/Jura/Jura-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jura";
+  src:
+    local("Jura-Bold"),
+    url("../../static/fonts/Jura/Jura-Bold.woff2") format("woff2"),
+    url("../../static/fonts/Jura/Jura-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

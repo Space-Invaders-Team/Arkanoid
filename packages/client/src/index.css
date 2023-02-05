@@ -1,0 +1,15 @@
+@import "../static/vendor/normalize.css";
+@import "styles/fonts.css";
+@import "styles/colors.css";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Jura", Arial , sans-serif;
+  color: var(--font-primary-color);
+}
+
+body {
+  background: var(--page-bg-color);
+}
