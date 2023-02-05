@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import { Authorization } from '../pages/authorization/authorization';
-import { Forum } from '../pages/forum/forum';
-import { Game } from '../pages/game/game';
-import { Landing } from '../pages/landing/landing';
-import { Leaderboard } from '../pages/leaderboard/leaderboard';
-import { Profile } from '../pages/profile/profile';
-import { Registration } from '../pages/registration/registration';
+import Authorization from '../pages/authorization';
+import Forum from '../pages/forum';
+import Game from '../pages/game';
+import Landing from '../pages/landing';
+import Leaderboard from '../pages/leaderboard';
+import Profile from '../pages/profile';
+import Registration from '../pages/registration';
 
 function Router() {
   return (
