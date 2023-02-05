@@ -1,3 +1,6 @@
+.tr {
+	background: var(--table-bg);
+}
 .td {
   border-bottom: 1px solid var(--border-color);
   padding: 10px 15px;
@@ -49,12 +52,13 @@
 }
 
 .points {
-  background: var(--input-bg-color);
+  background: var(--btn-color);
   padding: 4px 8px;
   font-size: 0.8rem;
   border-radius: 4px;
   float: right;
   font-weight: 700;
+  color: var(--page-bg-color);
 }
 
 .tr:hover td {
@@ -81,4 +85,9 @@
 .currentRow .name {
   font-size: 1.3rem;
   color: var(--btn-hover-color);
+}
+
+.currentRow .medal {
+  font-size: 1.2rem;
+  font-weight: 700;
 }

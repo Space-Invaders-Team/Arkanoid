@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './style.module.css';
+import styles from './TableHead.module.css';
 
-export function TableHead() {
+export function Tablehead() {
   return (
     <thead className={styles.thead}>
       <tr className={styles.tr}>

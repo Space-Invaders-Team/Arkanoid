@@ -1,8 +1,8 @@
 import React from 'react';
 import { TLeaderBoardProps } from '../../../pages/Leaderboard/typings';
-import styles from './style.module.css';
+import styles from './TableRow.module.css';
 
-export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
+export function Tablerow({ row }: Record<string, TLeaderBoardProps>) {
   const { data, key, iam } = row;
 
   console.log(iam);
