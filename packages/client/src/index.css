@@ -1,3 +1,6 @@
+@import "../static/vendor/normalize.css";
+@import "styles/fonts.css";
+@import "styles/colors.css";
 
 html,
 body {
