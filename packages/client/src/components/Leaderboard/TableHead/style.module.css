@@ -1,0 +1,23 @@
+.th {
+  background: var(--accent-color);
+  padding: 14px 20px;
+  color: white;
+  text-align: left;
+}
+
+.points {
+  text-align: right;
+}
+
+.num {
+  width: 50px;
+}
+
+.th:first-child {
+  border-radius: 15px 0 0 0;
+}
+
+.th:last-child {
+  border-radius: 0 15px 0 0;
+}
+

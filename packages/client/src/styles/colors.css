@@ -1,14 +1,16 @@
 :root {
   --OFF: ;
   --ON: initial;
-  --page-bg-color: var(--light, #E8EBE4) var(--dark, #0D1B2A);
-  --input-bg-color: var(--light, #D2D5DD) var(--dark, #1B263B);
+  --page-bg-color: var(--light, #f0effb) var(--dark, #0D1B2A);
+  --input-bg-color: var(--light, #D2D5DD) var(--dark, #0D1B2A);
   --font-primary-color: var(--light, #1E201D) var(--dark, #E0E1DD);
   --font-secondary-color: var(--light, #2D2F45) var(--dark, #778DA9);
-  --border-color: var(--light, #B8BACF) var(--dark, #1B263B);
+  --border-color: var(--light, #e1e3f6) var(--dark, #304864);
   --accent-color: var(--light, #999AC6) var(--dark, #415A77);
   --btn-color: var(--light, #7475B6) var(--dark, #415A77);
   --btn-hover-color: var(--light, #8E8FC6) var(--dark, #304864);
+  --table-bg: var(--light, #fafaff) var(--dark, #1B263B);
+  --font-accent-color: var(--light, #505197) var(--dark, #9e9fd4);
 }
 
 .themeDefault,

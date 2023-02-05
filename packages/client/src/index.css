@@ -10,6 +10,10 @@ body {
   color: var(--font-primary-color);
 }
 
+body * {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--page-bg-color);
 }

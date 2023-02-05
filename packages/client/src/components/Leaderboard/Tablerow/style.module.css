@@ -1,0 +1,84 @@
+.td {
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+.td__first {
+  width: 50px
+}
+.medal {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--font-secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.gold {
+  background: #f6c844;
+  color: white;
+}
+.silver {
+  background: #c5d2dd;
+  color: white;
+}
+.bronze {
+  background: #e5a666;
+  color: white;
+}
+
+.avatar {
+    float: left;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+}
+
+.leader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.points {
+  background: var(--input-bg-color);
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  float: right;
+  font-weight: 700;
+}
+
+.tr:hover td {
+  background: var(--border-color);
+}
+
+.tr:hover .points {
+
+}
+
+.tr:hover .name {
+  color: var(--font-accent-color);
+}
+
+.currentRow {
+  transform: scale(1.03);
+  background: var(--table-bg);
+}
+
+.currentRow .td {
+  background: var(--border-color);
+}
+
+.currentRow .name {
+  font-size: 1.3rem;
+  color: var(--btn-hover-color);
+}

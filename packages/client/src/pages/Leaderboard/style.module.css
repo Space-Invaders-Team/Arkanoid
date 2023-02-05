@@ -1,0 +1,33 @@
+.leaderboard {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: var(--page-bg-color);
+	flex-direction: column;
+	padding: 20px;
+}
+
+.leaderboard * {
+	transition: .3s;
+}
+
+.wrapper {
+	width: 900px;
+	max-width: 100%;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 1rem;
+	background: var(--table-bg);
+}
+
+.title {
+	font-weight: 700;
+	color: var(--font-secondary-color);
+}
+
