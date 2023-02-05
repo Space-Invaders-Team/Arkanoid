@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tablehead } from '../../components/Leaderboard/Tablehead/Tablehead';
 import { Tablerow } from '../../components/Leaderboard/Tablerow/Tablerow';
-import styles from './style.module.css';
+import styles from './Leaderboard.module.css';
 import { TLeaderBoard } from './typings';
 
 export function Leaderboard() {
