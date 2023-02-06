@@ -5,10 +5,10 @@ export function Registration() {
   return (
     <div className={styles.container}>
       <Form
-        pageType={'signup'}
-        title='Регистрация'
-        button='Зарегистрироваться'
-        text='Уже зарегистрированы?'
+        pageType="signup"
+        title="Регистрация"
+        button="Зарегистрироваться"
+        text="Уже зарегистрированы?"
       />
     </div>
   );

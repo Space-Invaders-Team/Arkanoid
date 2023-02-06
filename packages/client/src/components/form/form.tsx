@@ -13,7 +13,7 @@ export function Form({
   title,
   button,
   text,
-  pageType
+  pageType,
 }: FormProps) {
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -33,50 +33,50 @@ export function Form({
         {pageType === 'signup' && (
           <>
             <Input
-              title='First Name'
-              inputName='first_name'
-              placeholder='Имя'
-              type='text'
+              title="First Name"
+              inputName="first_name"
+              placeholder="Имя"
+              type="text"
               pageType={pageType}
             />
             <Input
-              title='Second Name'
-              inputName='second_name'
-              placeholder='Фамилия'
-              type='text'
+              title="Second Name"
+              inputName="second_name"
+              placeholder="Фамилия"
+              type="text"
               pageType={pageType}
             />
           </>
         )}
         <Input
-          title='Login'
-          inputName='login'
-          placeholder='Логин'
-          type='text'
+          title="Login"
+          inputName="login"
+          placeholder="Логин"
+          type="text"
           pageType={pageType}
         />
         {pageType === 'signup' && (
           <Input
-            title='E-mail'
-            inputName='email'
-            placeholder='E-mail'
-            type='e-mail'
+            title="E-mail"
+            inputName="email"
+            placeholder="E-mail"
+            type="e-mail"
             pageType={pageType}
           />
         )}
         <Input
-          title='Password'
-          inputName='password'
-          placeholder='Пароль'
-          type='password'
+          title="Password"
+          inputName="password"
+          placeholder="Пароль"
+          type="password"
           pageType={pageType}
         />
         {pageType === 'signup' && (
           <Input
-            title='Phone'
-            inputName='phone'
-            placeholder='Телефон'
-            type='phone'
+            title="Phone"
+            inputName="phone"
+            placeholder="Телефон"
+            type="phone"
             pageType={pageType}
           />
         )}
@@ -87,9 +87,8 @@ export function Form({
       <p className={styles.linkWrapper}>
         {text}
         {pageType === 'signup'
-          ? <Link className={styles.link} to='/authorization'>Войти</Link>
-          : <Link className={styles.link} to="/registration">Регистрация</Link>
-        }
+          ? <Link className={styles.link} to="/authorization">Войти</Link>
+          : <Link className={styles.link} to="/registration">Регистрация</Link>}
       </p>
     </form>
   );

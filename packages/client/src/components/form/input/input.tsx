@@ -31,7 +31,7 @@ export function Input({ inputName, placeholder, type, title, pageType }: InputPr
         name={inputName}
         placeholder={placeholder}
         value={(values as any)[inputName] || ''}
-        autoComplete='off'
+        autoComplete="off"
         onChange={handleChange}
       />
     </div>
