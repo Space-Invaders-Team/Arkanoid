@@ -1,0 +1,39 @@
+/* Header */
+.header {
+	min-height: 695px;
+	display: flex;
+	justify-content: center;
+	background-color: var(--page-bg-color:);
+	background-image: url('../../assets/img/space-bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	color: var(--header-text);
+	text-align: center;
+}
+
+.headerWrapper {
+	padding: 0 15px;
+	margin-top: 60px;
+	max-width: 660px;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 6px;
+	height: fit-content;
+}
+
+.headerTitle {
+	margin-bottom: 20px;
+	font-size: 60px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.headerText {
+	margin-bottom: 40px;
+	font-size: 18px;
+	line-height: 1.333;
+}
+
+.headerText p + p {
+	margin-top: 0.5em;
+}

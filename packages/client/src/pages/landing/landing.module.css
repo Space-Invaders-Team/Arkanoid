@@ -1,6 +1,23 @@
-.container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    background: greenyellow;
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.title {
+  text-align: center;
+}
+
+.cardWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 40px;
+}
+
+.card {
+  max-width: 25%;
+
+  img {
+    max-width: 100%;
+  }
 }
