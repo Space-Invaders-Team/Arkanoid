@@ -6,9 +6,10 @@ type InputProps = {
   placeholder: string;
   type: string;
   title: string;
+  pageType: string;
 };
 
-export function Input({ inputName, placeholder, type, title }: InputProps) {
+export function Input({ inputName, placeholder, type, title, pageType }: InputProps) {
   const [values, setValues] = useState({});
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +20,9 @@ export function Input({ inputName, placeholder, type, title }: InputProps) {
   };
 
   return (
-    <div className={styles.field}>
+    <div
+      className={`${styles.field} ${pageType !== 'signin' && styles.fieldTwoColumns}`}
+    >
       <label htmlFor={inputName} className={styles.label}>{title}</label>
       <input
         className={styles.input}
@@ -28,7 +31,7 @@ export function Input({ inputName, placeholder, type, title }: InputProps) {
         name={inputName}
         placeholder={placeholder}
         value={(values as any)[inputName] || ''}
-        autoComplete="off"
+        autoComplete='off'
         onChange={handleChange}
       />
     </div>

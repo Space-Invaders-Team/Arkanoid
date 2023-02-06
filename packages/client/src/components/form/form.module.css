@@ -21,9 +21,16 @@
   border: none;
 }
 
+.fieldsetTwoColumns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  min-width: 960px;
+  column-gap: 40px;
+}
+
 .button {
   height: 80px;
-  width: 100%;
+  width: 460px;
   background-color: var(--btn-color);
   margin-top: 50px;
   border-radius: 10px;

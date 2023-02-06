@@ -11,6 +11,10 @@
   margin-top: 0;
 }
 
+.fieldTwoColumns:nth-child(2) {
+  margin-top: 0;
+}
+
 .label {
   font-weight: 700;
   font-size: 18px;
