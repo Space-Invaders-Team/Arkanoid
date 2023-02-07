@@ -1,0 +1,48 @@
+.field {
+  margin-top: 32px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.field:first-child {
+  margin-top: 0;
+}
+
+.fieldTwoColumns:nth-child(2) {
+  margin-top: 0;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--font-secondary-color);
+}
+
+.input {
+  padding: 26px 30px;
+  margin-top: 16px;
+  font-size: 20px;
+  line-height: 24px;
+  background: none;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--font-primary-color);
+}
+
+.input:focus {
+  outline: 2px solid var(--accent-color);
+}
+
+.input::placeholder {
+  color: var(--font-secondary-color);
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
