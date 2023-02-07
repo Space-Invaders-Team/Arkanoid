@@ -46,3 +46,9 @@
   opacity: 0;
   transition: opacity 0.25s ease;
 }
+
+@media (max-width: 1024px) {
+  .fieldTwoColumns:nth-child(2) {
+    margin-top: 32px;
+  }
+}

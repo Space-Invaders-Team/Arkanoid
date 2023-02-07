@@ -8,4 +8,7 @@
     min-height: 100vh;
     min-width: 100%;
     background: var(--page-bg-color);
+    position: absolute;
+    top: 0;
+    z-index: -1;
 }
