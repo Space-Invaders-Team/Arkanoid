@@ -2,8 +2,6 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 
 const appContent = 'Главная';
-=======
-// @ts-ignore
 
 // @ts-ignore
 global.fetch = jest.fn(() => Promise.resolve({ json: () => Promise.resolve('hey') }));
