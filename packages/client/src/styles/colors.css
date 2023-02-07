@@ -9,22 +9,16 @@
   --accent-color: var(--light, #999AC6) var(--dark, #415A77);
   --btn-color: var(--light, #7475B6) var(--dark, #415A77);
   --btn-hover-color: var(--light, #8E8FC6) var(--dark, #304864);
+  --nav-text: var(--light, #0D1B2A) var(--dark, #E8EBE4);
+  --header-text: var(--light, #B8BACF) var(--dark, #E8EBE4);
 }
 
-.themeDefault,
-.themeLight {
+html[data-theme='light'] { 
   --light: var(--ON);
   --dark: var(--OFF);
 }
 
-.themeDark {
+html[data-theme='dark'] {
   --light: var(--OFF);
   --dark: var(--ON);
-}
-
-@media (prefers-color-scheme: dark) {
-  .themeDefault {
-    --light: var(--OFF);
-    --dark: var(--ON);
-  }
 }

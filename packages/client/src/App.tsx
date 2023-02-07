@@ -1,5 +1,6 @@
 import { StrictMode, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Navbar } from './components/Navbar/navbar';
 import Router from './router/router';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   return (
     <StrictMode>
       <BrowserRouter>
+        <Navbar />
         <Router />
       </BrowserRouter>
     </StrictMode>
