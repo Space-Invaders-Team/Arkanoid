@@ -13,9 +13,7 @@ export function Input({ inputName, placeholder, type, title, pageType }: InputPr
   const [values, setValues] = useState({});
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = evt;
-    const { name } = target;
-    const { value } = target;
+    const { name, value } = evt.target;
     setValues({ ...values, [name]: value });
   };
 

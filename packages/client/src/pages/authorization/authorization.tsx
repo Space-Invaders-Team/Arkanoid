@@ -1,5 +1,5 @@
 import styles from './authorization.module.css';
-import Form from '../../components/form';
+import { Form } from '../../components/Form/form';
 
 export function Authorization() {
   return (
