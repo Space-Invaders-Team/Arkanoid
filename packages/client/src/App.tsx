@@ -13,6 +13,7 @@ function App() {
 
     fetchServerData();
   }, []);
+
   return (
     <StrictMode>
       <BrowserRouter>
