@@ -1,5 +1,4 @@
 import styles from './header.module.css';
-import stylesApp from '../../App.module.css';
 
 export function Header() {
   return (
@@ -11,7 +10,7 @@ export function Header() {
         <div className={styles.headerText}>
           <h2>Испытай себя в лучшей версии классической игры!</h2>
         </div>
-        <a href="#!" className={stylesApp.btn}>
+        <a href="#!">
           Вход
         </a>
       </div>

@@ -1,7 +1,7 @@
 import { StrictMode, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Navbar } from './components/Navbar/navbar';
-import Router from './router/router';
+import { Navbar } from '../Navbar/navbar';
+import Router from '../../router/router';
 
 function App() {
   useEffect(() => {

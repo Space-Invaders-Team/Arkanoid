@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import './matchMedia.mock'; // Must be imported before the tested file
 import App from './App';
 
 const appContent = 'Главная';
