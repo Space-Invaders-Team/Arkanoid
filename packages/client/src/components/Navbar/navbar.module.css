@@ -40,10 +40,10 @@
 	font-family: 'Poppins', sans-serif;
 	margin: 7px;
 
-	li {
+	& > li {
 		list-style-type: none;
 
-		a {
+		& > a {
 			text-decoration: none;
 		}
 	}

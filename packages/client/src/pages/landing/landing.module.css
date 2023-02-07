@@ -17,7 +17,7 @@
 .card {
   max-width: 25%;
 
-  img {
+  & > img {
     max-width: 100%;
   }
 }
