@@ -8,10 +8,8 @@ body {
   padding: 0;
   font-family: "Jura", Arial, sans-serif;
   color: var(--font-primary-color);
-}
-
-body {
   background: var(--page-bg-color);
+  min-width: 320px;
 }
 
 * {

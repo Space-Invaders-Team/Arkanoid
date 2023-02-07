@@ -52,3 +52,15 @@
     margin-top: 32px;
   }
 }
+
+@media (max-width: 460px) {
+  .input {
+    padding: 14px 18px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+}

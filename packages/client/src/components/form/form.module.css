@@ -10,7 +10,6 @@
   font-size: 24px;
   margin: 0;
   text-align: center;
-  max-width: 263px;
   line-height: 38px;
 }
 
@@ -77,5 +76,41 @@
     flex-direction: column;
     align-items: center;
     min-width: 460px;
+  }
+}
+
+@media (max-width: 525px) {
+
+  .form {
+    width: 95%;
+  }
+
+  .fieldset {
+    min-width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 460px) {
+
+  .form {
+    padding-top: 150px;
+    padding-bottom: 50px;
+  }
+
+  .button {
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .fieldset {
+    margin-top: 30px;
   }
 }
