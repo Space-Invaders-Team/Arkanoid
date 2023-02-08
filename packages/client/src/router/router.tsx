@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import Authorization from '../pages/authorization';
 import Forum from '../pages/forum';
-import Game from '../pages/game';
 import Landing from '../pages/landing';
 import Leaderboard from '../pages/leaderboard';
 import Profile from '../pages/profile';
 import Registration from '../pages/registration';
+import { Game } from '../pages/game';
 
 function Router() {
   return (

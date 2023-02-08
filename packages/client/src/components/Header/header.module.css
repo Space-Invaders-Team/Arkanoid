@@ -3,7 +3,7 @@
 	min-height: 695px;
 	display: flex;
 	justify-content: center;
-	background-color: var(--page-bg-color:);
+	background-color: var(--page-bg-color);
 	background-image: url('../../assets/img/space-bg.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
