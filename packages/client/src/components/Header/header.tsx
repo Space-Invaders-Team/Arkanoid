@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './header.module.css';
 
 export function Header() {
@@ -10,9 +11,7 @@ export function Header() {
         <div className={styles.headerText}>
           <h2>Испытай себя в лучшей версии классической игры!</h2>
         </div>
-        <a href="#!">
-          Вход
-        </a>
+        <Link className={styles.linkBtn} to="/authorization">Войти</Link>
       </div>
     </header>
   );

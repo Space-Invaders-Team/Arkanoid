@@ -2,6 +2,7 @@
   --OFF: ;
   --ON: initial;
   --page-bg-color: var(--light, #E8EBE4) var(--dark, #0D1B2A);
+  --nav-bg-color: var(--light, #d0d3cd) var(--dark, #25313f);
   --input-bg-color: var(--light, #D2D5DD) var(--dark, #1B263B);
   --font-primary-color: var(--light, #1E201D) var(--dark, #E0E1DD);
   --font-secondary-color: var(--light, #2D2F45) var(--dark, #778DA9);

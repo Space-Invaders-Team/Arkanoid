@@ -2,7 +2,7 @@
 
 .nav {
 	padding: 12px 20px;
-	background-color: var(--page-bg-color);
+	background-color: var(--nav-bg-color);
 	border-bottom: 1px solid var(--border-color);
 	color: var(--nav-text);
 	letter-spacing: normal;
@@ -22,7 +22,6 @@
 	margin-right: auto;
 	color: var(--nav-text);
 	font-size: 24px;
-	font-family: 'Poppins', sans-serif;
 }
 
 .logo strong {
@@ -37,7 +36,6 @@
 	column-gap: 40px;
 	font-size: 16px;
 	font-weight: 500;
-	font-family: 'Poppins', sans-serif;
 	margin: 7px;
 
 	& > li {
