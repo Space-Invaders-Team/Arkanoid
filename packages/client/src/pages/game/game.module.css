@@ -1,6 +1,13 @@
 .container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    background: greenyellow;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas {
+  height: 568px;
+  width: 1140px;
+  border: 1px solid;
 }
