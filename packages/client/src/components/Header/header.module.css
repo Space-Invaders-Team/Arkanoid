@@ -49,6 +49,7 @@
   color: var(--font-primary-color);
   font-size: 22px;
   letter-spacing: .02em;
+  transition: color .25s, background-color .25s;
 	text-decoration: none;
   border: none;
   cursor: pointer;
