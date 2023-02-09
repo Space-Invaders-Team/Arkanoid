@@ -49,14 +49,20 @@
   color: var(--font-primary-color);
   font-size: 22px;
   letter-spacing: .02em;
-  transition: color .25s, background-color .25s;
 	text-decoration: none;
   border: none;
   cursor: pointer;
 }
 
-.linkBtn:hover {
-  color: var(--font-secondary-color);
-  background-color: var(--btn-hover-color);
-  transition: color .25s, background-color .25s;
+@media (hover: hover) and (pointer: fine) {
+	.linkBtn:hover {
+		color: var(--font-secondary-color);
+		background-color: var(--btn-hover-color);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .linkBtn {
+    transition: color 0.25s, background-color .25s;
+  }
 }

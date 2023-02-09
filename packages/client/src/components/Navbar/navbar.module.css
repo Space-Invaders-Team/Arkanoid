@@ -6,7 +6,6 @@
 	border-bottom: 1px solid var(--border-color);
 	color: var(--nav-text);
 	letter-spacing: normal;
-	transition: background-color 200ms linear;
 }
 
 .navRow {
@@ -49,11 +48,6 @@
 
 .navListLink {
 	color: var(--nav-text);
-	transition: opacity 0.2s ease-in;
-}
-
-.navListLink:hover {
-	opacity: 0.8;
 }
 
 .linkActive {
@@ -72,3 +66,20 @@
 	width: 100%;
 	background-color: var(--accent-color);
 }
+
+@media (hover: hover) and (pointer: fine) {
+	.navListLink:hover {
+		opacity: 0.8;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav {
+    transition: background-color 200ms linear;
+  }
+
+	.navListLink {
+		transition: opacity 0.2s ease-in;
+	}
+}
+
