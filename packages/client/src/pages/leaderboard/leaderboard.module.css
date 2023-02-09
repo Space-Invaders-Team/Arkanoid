@@ -11,10 +11,6 @@
 	font-size: 16px;
 }
 
-.leaderboard * {
-	transition: .3s;
-}
-
 .wrapper {
 	width: 900px;
 	max-width: 100%;
@@ -30,6 +26,12 @@
 	font-weight: 700;
 	color: var(--font-secondary-color);
     font-size: 4em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.leaderboard * {
+		transition: .3s;
+	}
 }
 
 @media screen and (max-width: 767px) {

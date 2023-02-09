@@ -50,8 +50,11 @@
   position: absolute;
   opacity: 0.5;
 }
-.button:hover {
-  transform: scale(1.05);
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    transform: scale(1.05);
+  }
 }
 
 .button[data-active="true"]::after {

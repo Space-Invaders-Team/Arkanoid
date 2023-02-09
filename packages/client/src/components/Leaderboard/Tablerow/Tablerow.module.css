@@ -62,15 +62,16 @@
   color: var(--page-bg-color);
 }
 
-.tr:hover td {
-  background: var(--border-color);
-}
+@media (hover: hover) and (pointer: fine) {
 
-.tr:hover .points {
-}
+  .tr:hover td {
+    background: var(--border-color);
+  }
 
-.tr:hover .name {
-  color: var(--font-accent-color);
+  .tr:hover .name {
+    color: var(--font-accent-color);
+  }
+
 }
 
 .currentRow {
