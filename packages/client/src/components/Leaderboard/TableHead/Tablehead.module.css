@@ -7,10 +7,16 @@
 
 .points {
   text-align: right;
+  cursor: pointer;
+}
+
+.name {
+  cursor: pointer;
 }
 
 .num {
-  width: 50px;
+  width: 45px;
+  padding-right: 0;
 }
 
 .th:first-child {
@@ -19,5 +25,37 @@
 
 .th:last-child {
   border-radius: 0 10px 0 0;
+  padding-right: 30px;
 }
 
+.button {
+  -webkit-appearance: none !important;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed var(--table-bg);
+  color: white;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+.button[data-order="asc"]::after {
+  content: '↑';
+  margin-left: 5px;
+  position: absolute;
+  opacity: 0.5;
+}
+.button[data-order="desc"]::after {
+  content: '↓';
+  margin-left: 5px;
+  position: absolute;
+  opacity: 0.5;
+}
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button[data-active="true"]::after {
+  opacity: 1;
+  font-size: 1.4em;
+  top: -5px;
+}

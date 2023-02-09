@@ -7,7 +7,8 @@
   vertical-align: middle;
 }
 .td__first {
-  width: 50px
+  width: 45px;
+  padding-right: 0;
 }
 .medal {
   width: 26px;
@@ -17,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.9em;
 }
 .gold {
   background: #f6c844;
@@ -54,7 +55,7 @@
 .points {
   background: var(--btn-color);
   padding: 4px 8px;
-  font-size: 0.8rem;
+  font-size: 0.8em;
   border-radius: 4px;
   float: right;
   font-weight: 700;
@@ -66,7 +67,6 @@
 }
 
 .tr:hover .points {
-
 }
 
 .tr:hover .name {
@@ -83,11 +83,11 @@
 }
 
 .currentRow .name {
-  font-size: 1.3rem;
-  color: var(--btn-hover-color);
+  font-size: 1.3em;
+  color: var(--font-accent-color);
 }
 
 .currentRow .medal {
-  font-size: 1.2rem;
+  font-size: 1.2em;
   font-weight: 700;
 }

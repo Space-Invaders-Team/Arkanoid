@@ -1,83 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tablehead } from '../../components/Leaderboard/Tablehead/Tablehead';
 import { Tablerow } from '../../components/Leaderboard/Tablerow/Tablerow';
 import styles from './Leaderboard.module.css';
 import { TLeaderBoard } from './typings';
 
 export function Leaderboard() {
-  // const [count, setCount] = useState(0);
-
-  const currentPlayerId = 3; // id текущего игрока
-
-  const leaders: TLeaderBoard[] = [
+  const [leaders, setLeaders] = useState<TLeaderBoard[]>([
     {
-      num: 1,
+      id: 123,
       name: 'Безумный Майк',
       avatar: '/avatar.jpg',
       points: 999999,
+      place: 1,
     },
     {
-      num: 2,
+      id: 1234,
       name: 'Вася Петров',
       avatar: '/avatar.jpg',
       points: 44234,
+      place: 2,
     },
     {
-      num: 3,
+      id: 12345,
       name: 'Аня Иванов',
       avatar: '/avatar.jpg',
       points: 23322,
+      place: 3,
     },
     {
-      num: 4,
+      id: 123456,
       name: 'Владимир Ильич',
       avatar: '/avatar.jpg',
       points: 20000,
+      place: 4,
     },
     {
-      num: 5,
+      id: 3213,
       name: 'Кот',
       avatar: '/avatar.jpg',
       points: 12,
+      place: 5,
     },
     {
-      num: 6,
+      id: 12123,
       name: 'Кот',
       avatar: '/avatar.jpg',
       points: 12,
+      place: 6,
     },
     {
-      num: 7,
+      id: 32,
       name: 'Кот',
       avatar: '/avatar.jpg',
       points: 12,
+      place: 7,
     },
     {
-      num: 8,
+      id: 1233,
       name: 'Кот',
       avatar: '/avatar.jpg',
       points: 12,
+      place: 8,
     },
     {
-      num: 9,
+      id: 33,
       name: 'Кот',
       avatar: '/avatar.jpg',
       points: 12,
+      place: 9,
     },
-  ];
+  ]);
+
+  const sortLeaders = (sortField: keyof TLeaderBoard, orders: ('asc' | 'desc')) : void => {
+    if (sortField !== null) {
+      setLeaders([...leaders].sort((a, b) => {
+        if (a[sortField] < b[sortField]) {
+          return orders === 'desc' ? -1 : 1;
+        }
+        if (a[sortField] > b[sortField]) {
+          return orders === 'desc' ? 1 : -1;
+        }
+        return 0;
+      }));
+    }
+  };
+
+  const currentPlayerId = 3; // id текущего игрока, пока захардкодено
 
   return (
     <div className={styles.leaderboard}>
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Leaderboard</h1>
         <table className={styles.table}>
-          <Tablehead />
+          <Tablehead sorting={sortLeaders} />
           <tbody>
             {leaders.map((leader, index) => (
               <Tablerow row={{
                 data: leader,
-                key: index,
-                iam: (index === currentPlayerId) }}
+                key: leader.id,
+                iam: (index === currentPlayerId),
+              }}
               />
             ))}
           </tbody>

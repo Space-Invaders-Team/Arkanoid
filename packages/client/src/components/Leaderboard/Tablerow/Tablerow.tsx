@@ -3,20 +3,18 @@ import { TLeaderBoardProps } from '../../../pages/Leaderboard/typings';
 import styles from './TableRow.module.css';
 
 export function Tablerow({ row }: Record<string, TLeaderBoardProps>) {
-  const { data, key, iam } = row;
-
-  console.log(iam);
+  const { data, iam } = row;
 
   let medal = '';
 
-  switch (key) {
-    case 0:
+  switch (data.place) {
+    case 1:
       medal = 'gold';
       break;
-    case 1:
+    case 2:
       medal = 'silver';
       break;
-    case 2:
+    case 3:
       medal = 'bronze';
       break;
     default:
@@ -26,11 +24,14 @@ export function Tablerow({ row }: Record<string, TLeaderBoardProps>) {
 
   return (
     <tr className={`${styles.tr} ${iam ? styles.currentRow : ''}`}>
-      <td className={`${styles.td} ${styles.td__first}`}><span className={`${styles.medal} ${styles[medal]}`}>{key + 1}</span></td>
+      <td className={`${styles.td} ${styles.td__first}`}><span className={`${styles.medal} ${styles[medal]}`}>{data.place}</span></td>
       <td className={styles.td}>
         <div className={styles.leader}>
           <img className={styles.avatar} src={data.avatar} alt={data.name} />
-          <span className={styles.name}>{data.name}</span>
+          {iam ? 'Вы:' : ''}
+          <span className={styles.name}>
+            {data.name}
+          </span>
         </div>
       </td>
       <td className={styles.td}>

@@ -8,6 +8,7 @@
 	background: var(--page-bg-color);
 	flex-direction: column;
 	padding: 20px;
+	font-size: 16px;
 }
 
 .leaderboard * {
@@ -22,11 +23,17 @@
 .table {
 	width: 100%;
 	border-collapse: collapse;
-	font-size: 1rem;
+	font-size: 1em;
 }
 
 .title {
 	font-weight: 700;
 	color: var(--font-secondary-color);
-    font-size: 4rem;
+    font-size: 4em;
+}
+
+@media screen and (max-width: 767px) {
+	.leaderboard {
+		font-size: 12px;
+	}
 }
