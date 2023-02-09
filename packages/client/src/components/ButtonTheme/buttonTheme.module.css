@@ -24,7 +24,6 @@
 	height: 24px;
 	border-radius: 50%;
 	background-color: #fff;
-	transition: left 0.2s ease-in;
 }
 
 .darkModeBtnActive::before {
@@ -35,3 +34,10 @@
 	position: relative;
 	z-index: 9;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .darkModeBtn::before {
+    transition: left 0.2s ease-in;
+  }
+}
+
