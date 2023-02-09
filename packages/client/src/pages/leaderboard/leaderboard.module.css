@@ -1,6 +1,41 @@
-.container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    background: greenyellow;
+.leaderboard {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: var(--page-bg-color);
+	flex-direction: column;
+	padding: 20px;
+	font-size: 16px;
+}
+
+.wrapper {
+	width: 900px;
+	max-width: 100%;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 1em;
+}
+
+.title {
+	font-weight: 700;
+	color: var(--font-secondary-color);
+    font-size: 4em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.leaderboard * {
+		transition: .3s;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.leaderboard {
+		font-size: 12px;
+	}
 }
