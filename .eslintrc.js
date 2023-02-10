@@ -49,15 +49,17 @@ module.exports = {
       }
     ],
     "import/extensions": [
-      "error",
-      "ignorePackages",
+      "warn",
+      "always",
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
+        "pattern": {
+          "jsx": "never",
+          "tsx": "never",
+          "ts": "never",
+          "js": "never",
+        }
       }
-   ]
+    ]
   },
   ignorePatterns: ['**/*.js', "*/dist/*"],
 }
