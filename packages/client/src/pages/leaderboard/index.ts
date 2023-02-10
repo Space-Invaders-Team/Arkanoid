@@ -1,1 +1,3 @@
-export * from './Leaderboard';
+import { Leaderboard } from './Leaderboard';
+
+export { Leaderboard };
