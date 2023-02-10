@@ -1,3 +1,1 @@
-import { Leaderboard } from './leaderboard';
-
-export default Leaderboard;
+export { Leaderboard } from './Leaderboard';

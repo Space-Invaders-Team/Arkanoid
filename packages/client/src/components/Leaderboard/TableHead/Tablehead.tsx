@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { SortEventProps, Sorting } from '../../../pages/leaderboard/typings';
+import { Sorting, SortEventProps } from '../../../pages/Leaderboard/typings';
 import styles from './TableHead.module.css';
 
-export function Tablehead({ sorting } : SortEventProps) {
+export function TableHead({ sorting } : SortEventProps) {
   const [selectedSort, setSelectedSort] = useState<Sorting>({
     sort: 'points',
     order: 'desc',

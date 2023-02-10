@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Tablehead } from '../../components/Leaderboard/Tablehead/Tablehead';
-import { Tablerow } from '../../components/Leaderboard/Tablerow/Tablerow';
-import styles from './leaderboard.module.css';
+import { TableHead } from '../../components/Leaderboard/TableHead';
+import { TableRow } from '../../components/Leaderboard/TableRow';
+import styles from './Leaderboard.module.css';
 import { TLeaderBoard } from './typings';
 
 export function Leaderboard() {
@@ -92,10 +92,10 @@ export function Leaderboard() {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Leaderboard</h1>
         <table className={styles.table}>
-          <Tablehead sorting={sortLeaders} />
+          <TableHead sorting={sortLeaders} />
           <tbody>
             {leaders.map((leader, index) => (
-              <Tablerow row={{
+              <TableRow row={{
                 data: leader,
                 key: leader.id,
                 iam: (index === currentPlayerId),

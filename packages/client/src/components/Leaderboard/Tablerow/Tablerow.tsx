@@ -1,8 +1,8 @@
 import React from 'react';
-import { TLeaderBoardProps } from '../../../pages/leaderboard/typings';
+import { TLeaderBoardProps } from '../../../pages/Leaderboard/typings';
 import styles from './TableRow.module.css';
 
-export function Tablerow({ row }: Record<string, TLeaderBoardProps>) {
+export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
   const { data, iam } = row;
 
   let medal = '';
