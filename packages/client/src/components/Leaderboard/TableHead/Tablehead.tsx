@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SortEventProps, Sorting } from '../../../pages/Leaderboard/typings';
+import { SortEventProps, Sorting } from '../../../pages/leaderboard/typings';
 import styles from './TableHead.module.css';
 
 export function Tablehead({ sorting } : SortEventProps) {

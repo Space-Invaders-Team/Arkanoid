@@ -1,7 +1,7 @@
 :root {
   --OFF: ;
   --ON: initial;
-  --nav-bg-color: var(--light, #d0d3cd) var(--dark, #25313f);
+  --nav-bg-color: var(--light, #e1e3f6) var(--dark, #25313f);
   --page-bg-color: var(--light, #f0effb) var(--dark, #0D1B2A);
   --input-bg-color: var(--light, #D2D5DD) var(--dark, #0D1B2A);
   --font-primary-color: var(--light, #1E201D) var(--dark, #E0E1DD);

@@ -25,6 +25,11 @@ export function Navbar() {
             </li>
 
             <li className={styles.navListItem}>
+              <NavLink to="/leaderboard" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                Рейтинг игроков
+              </NavLink>
+            </li>
+            <li className={styles.navListItem}>
               <NavLink to="/authorization" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
                 Вход
               </NavLink>
