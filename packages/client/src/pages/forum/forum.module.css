@@ -1,18 +1,38 @@
 .container {
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
     width: 100%;
     min-height: 100vh;
+    padding: 50px;
     background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
 }
 
 .wrapItems {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 75%;
+  background-color: azure;
+}
+
+.flexRow {
+  display: flex;
+  text-decoration: none;
+  color: var(--font-primary-color);
+}
   
-  .item {
-    width: 32%;
-    padding-bottom: 18%; /* 32:18, i.e. 16:9 */
-    margin-bottom: 2%; /* (100-32*3)/2 */
+.item {
+  width: 110px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  background-color: var(--font-secondary-color);
+  color: var(--accent-color);
+  &:first-child {
+    flex-grow: 1;
   }
+}

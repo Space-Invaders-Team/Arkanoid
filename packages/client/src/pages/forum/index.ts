@@ -1,3 +1,3 @@
 import { Forum } from './forum';
 
-export default Forum;
+export { Forum };

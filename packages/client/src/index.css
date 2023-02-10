@@ -13,3 +13,7 @@ body {
 body {
   background: var(--page-bg-color);
 }
+
+* {
+  box-sizing: border-box;
+}

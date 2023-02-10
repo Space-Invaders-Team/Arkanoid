@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { ButtonTheme } from '../ButtonTheme/ButtonTheme';
-import styles from './navbar.module.css';
+import { ButtonTheme } from '../ButtonTheme';
+import styles from './navigation.module.css';
 
-export function Navbar() {
+export function Navigation() {
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
   const normalLink = `${styles.navListLink}`;
 

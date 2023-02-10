@@ -1,5 +1,34 @@
+.flexRow {
+  display: flex;
+  text-decoration: none;
+  color: var(--font-primary-color);
+}
+
 .item {
-  width: 32%;
-  padding-bottom: 18%; /* 32:18, i.e. 16:9 */
-  margin-bottom: 2%; /* (100-32*3)/2 */
+  width: 110px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  font-weight: 700;
+  &:first-child {
+    flex-grow: 1;
+  }
+}
+
+.flexRow:nth-child(2) {
+  background-color: var(--btn-color);
+}
+.flexRow:nth-child(3) {
+  background-color: var(--accent-color-2);
+}
+.flexRow:nth-child(4) {
+  background-color: var(--accent-color-3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .flexRow:hover {
+    opacity: 0.9;
+  }
 }

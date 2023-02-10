@@ -1,6 +1,6 @@
-import { ForumItem } from '../../components/ForumItem/ForumItem';
 import styles from './forum.module.css';
 import { IForum } from '../../types/forum';
+import { ForumItem } from '../../components/ForumItem';
 
 // mock-data
 const forums: IForum[] = [
@@ -30,9 +30,11 @@ export function Forum() {
   return (
     <div className={styles.container}>
       <div className={styles.wrapItems}>
-        <div className={styles.item}>Форумы</div>
-        <div className={styles.item}>Темы</div>
-        <div className={styles.item}>Сообщения</div>
+        <div className={styles.flexRow}>
+          <div className={styles.item}>Форумы</div>
+          <div className={styles.item}>Темы</div>
+          <div className={styles.item}>Сообщения</div>
+        </div>
         {forums.map(
           (forum) => <ForumItem forum={forum} key={`${forum.forumId}`} />,
         )}

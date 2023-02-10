@@ -1,11 +1,11 @@
 import styles from './landing.module.css';
 import image1 from '../../assets/img/spaceMM.png';
-import { Header } from '../../components/Header/header';
+import { LandingHeader } from '../../components/LandingHeader';
 
 export function Landing() {
   return (
     <div className={styles.container}>
-      <Header />
+      <LandingHeader />
 
       <section className={styles.section}>
         <h2 className={styles.title}>Очень интересный заголовок</h2>
