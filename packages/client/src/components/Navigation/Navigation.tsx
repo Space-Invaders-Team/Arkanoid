@@ -39,6 +39,11 @@ export function Navigation() {
                 Игра
               </NavLink>
             </li>
+            <li className={styles.navListItem}>
+              <NavLink to="/forum" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                Форум
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
