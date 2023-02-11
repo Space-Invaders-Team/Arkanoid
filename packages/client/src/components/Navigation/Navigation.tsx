@@ -5,6 +5,9 @@ import styles from './navigation.module.css';
 export function Navigation() {
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
   const normalLink = `${styles.navListLink}`;
+  const addClass = ({
+    isActive,
+  }: { isActive: boolean }): string => (isActive ? activeLink : normalLink);
 
   return (
     <nav className={styles.nav}>
@@ -17,7 +20,7 @@ export function Navigation() {
             <li className={styles.navListItem}>
               <NavLink
                 to="/"
-                className={({ isActive }) => (isActive ? activeLink : normalLink)}
+                className={addClass}
                 end
               >
                 Главная
@@ -25,12 +28,12 @@ export function Navigation() {
             </li>
 
             <li className={styles.navListItem}>
-              <NavLink to="/authorization" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+              <NavLink to="/authorization" className={addClass}>
                 Вход
               </NavLink>
             </li>
             <li className={styles.navListItem}>
-              <NavLink to="/registration" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+              <NavLink to="/registration" className={addClass}>
                 Регистрация
               </NavLink>
             </li>
@@ -40,7 +43,12 @@ export function Navigation() {
               </NavLink>
             </li>
             <li className={styles.navListItem}>
-              <NavLink to="/forum" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+              <NavLink to="/game" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                Игра
+              </NavLink>
+            </li>
+            <li className={styles.navListItem}>
+              <NavLink to="/forum" className={addClass}>
                 Форум
               </NavLink>
             </li>
