@@ -38,12 +38,7 @@ export function Navigation() {
               </NavLink>
             </li>
             <li className={styles.navListItem}>
-              <NavLink to="/game" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
-                Игра
-              </NavLink>
-            </li>
-            <li className={styles.navListItem}>
-              <NavLink to="/game" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+              <NavLink to="/game" className={addClass}>
                 Игра
               </NavLink>
             </li>
