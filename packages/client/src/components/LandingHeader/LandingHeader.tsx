@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './landingHeader.module.css';
+import styles from './LandingHeader.module.css';
 
 export function LandingHeader() {
   return (

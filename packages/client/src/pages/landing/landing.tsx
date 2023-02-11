@@ -1,4 +1,4 @@
-import styles from './landing.module.css';
+import styles from './Landing.module.css';
 import image1 from '../../assets/img/spaceMM.png';
 import { LandingHeader } from '../../components/LandingHeader';
 

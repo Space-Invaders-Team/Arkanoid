@@ -1,4 +1,4 @@
-import styles from './forum.module.css';
+import styles from './Forum.module.css';
 import { IForum } from '../../types/forum';
 import { ForumItem } from '../../components/ForumItem';
 

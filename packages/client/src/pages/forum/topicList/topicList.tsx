@@ -1,4 +1,4 @@
-import styles from './topicList.module.css';
+import styles from './TopicList.module.css';
 
 export function TopicList() {
   return (

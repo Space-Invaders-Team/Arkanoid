@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { ButtonTheme } from '../ButtonTheme';
-import styles from './navigation.module.css';
+import styles from './Navigation.module.css';
 
 export function Navigation() {
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
