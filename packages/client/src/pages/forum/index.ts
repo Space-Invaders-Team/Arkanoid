@@ -1,3 +1,1 @@
-import { Forum } from './forum';
-
-export { Forum };
+export { Forum } from './forum';

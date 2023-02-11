@@ -1,3 +1,1 @@
-import { ForumItem } from './ForumItem';
-
-export { ForumItem };
+export { ForumItem } from './ForumItem';

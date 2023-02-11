@@ -1,3 +1,1 @@
-import { ButtonTheme } from './ButtonTheme';
-
-export { ButtonTheme };
+export { ButtonTheme } from './ButtonTheme';

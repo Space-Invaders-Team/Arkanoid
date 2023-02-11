@@ -1,3 +1,1 @@
-import { TopicList } from './topicList';
-
-export { TopicList };
+export { TopicList } from './topicList';

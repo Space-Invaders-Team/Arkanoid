@@ -1,3 +1,1 @@
-import { LandingHeader } from './LandingHeader';
-
-export { LandingHeader };
+export { LandingHeader } from './LandingHeader';
