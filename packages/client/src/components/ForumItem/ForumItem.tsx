@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { IForum } from '../../types/forum';
-import styles from './forumItem.module.css';
+import styles from './ForumItem.module.css';
 
 interface ForumItemProps {
   forum: IForum
