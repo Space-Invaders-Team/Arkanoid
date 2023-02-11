@@ -1,0 +1,36 @@
+:root {
+  --OFF: ;
+  --ON: initial;
+  /* Цвета */
+  --page-bg-color: var(--light, #e8ebe4) var(--dark, #0d1b2a);
+  --nav-bg-color: var(--light, #d0d3cd) var(--dark, #25313f);
+  --input-bg-color: var(--light, #d2d5dd) var(--dark, #1b263b);
+  --font-primary-color: var(--light, #1e201d) var(--dark, #e0e1dd);
+  --font-secondary-color: var(--light, #2d2f45) var(--dark, #778da9);
+  --border-color: var(--light, #b8bacf) var(--dark, #1b263b);
+  --accent-color: var(--light, #999ac6) var(--dark, #415a77);
+  --btn-color: var(--light, #7475b6) var(--dark, #415a77);
+  --btn-hover-color: var(--light, #8e8fc6) var(--dark, #304864);
+  --nav-text: var(--light, #0d1b2a) var(--dark, #e8ebe4);
+  --header-text: var(--light, #b8bacf) var(--dark, #e8ebe4);
+  --game-bg-color: var(--light, #999ac6) var(--dark, #1b263b);
+  --game-descr-bg-color: var(--light, #7475b6) var(--dark, #415a77);
+  --game-descr-font-color: #e0e1dd;
+  --overlay-color: rgb(0 0 0 / 65%);
+  /* Свойства */
+  --arkanoid-title-blend-mode: var(--light, screen) var(--dark, saturation);
+  --button-transition-properties: color, background-color;
+  --button-transition-durations: 250ms, 250ms;
+  --button-transition-delays: 0ms, 0ms;
+  --button-transition-functions: ease-in, ease-in;
+}
+
+html[data-theme='light'] {
+  --light: var(--ON);
+  --dark: var(--OFF);
+}
+
+html[data-theme='dark'] {
+  --light: var(--OFF);
+  --dark: var(--ON);
+}

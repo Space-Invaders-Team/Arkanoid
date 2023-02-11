@@ -1,0 +1,27 @@
+.button {
+  width: 460px;
+  height: 80px;
+  border: none;
+  border-radius: 10px;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--font-primary-color);
+  background-color: var(--btn-color);
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    color: var(--font-secondary-color);
+    background-color: var(--btn-hover-color);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button {
+    transition-delay: var(--button-transition-delays);
+    transition-timing-function: var(--button-transition-functions);
+    transition-duration: var(--button-transition-durations);
+    transition-property: var(--button-transition-properties);
+  }
+}
