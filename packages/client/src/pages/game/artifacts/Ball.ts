@@ -79,11 +79,11 @@ export class Ball {
   public getEdgeCoord(direction: EdgeName) {
     switch (direction) {
       case 'top':
-        return this._y + this._radius;
+        return this._y - this._radius;
       case 'right':
         return this._x + this._radius;
       case 'bottom':
-        return this._y - this._radius;
+        return this._y + this._radius;
       case 'left':
         return this._x - this._radius;
       default:

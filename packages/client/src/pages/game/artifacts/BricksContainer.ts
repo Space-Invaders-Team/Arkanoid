@@ -27,16 +27,17 @@ export class BricksContainer {
   }
 
   draw() {
+    const {
+      canvasWidth,
+      _columnsAmount: columnsAmount,
+      _bricksGap: bricksGap,
+    } = this;
+    const bricksTotalWidth = columnsAmount * (Brick.width + bricksGap) - bricksGap;
+    const leftOffset = (canvasWidth - bricksTotalWidth) / 2;
+
     for (let i = 0; i < this._bricksMatrix.length; i++) {
       for (let j = 0; j < this._bricksMatrix[i].length; j++) {
         const brick = this._bricksMatrix[i][j];
-        const {
-          canvasWidth,
-          _columnsAmount: columnsAmount,
-          _bricksGap: bricksGap,
-        } = this;
-        const bricksTotalWidth = columnsAmount * (Brick.width + bricksGap) - bricksGap;
-        const leftOffset = (canvasWidth - bricksTotalWidth) / 2;
 
         brick.x = i * (Brick.width + this._bricksGap) + leftOffset;
         brick.y = j * (Brick.height + this._bricksGap);
