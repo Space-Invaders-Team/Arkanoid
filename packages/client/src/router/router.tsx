@@ -15,7 +15,7 @@ export function Router() {
       <Route path="/authorization" element={<Authorization />} />
       <Route path="/forum">
         <Route index element={<Forum />} />
-        <Route path="/forum/topicList/:forumId" element={<TopicList />} />
+        <Route path="/forum/topicList/:id" element={<TopicList />} />
       </Route>
       <Route path="/game" element={<GamePage />} />
       <Route path="/leaderboard" element={<Leaderboard />} />

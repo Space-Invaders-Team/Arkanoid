@@ -1,6 +1,6 @@
 export interface IForum {
-  forumId: number
-  forumName: string
+  id: number
+  name: string
   countTopic: number
   countAnswer: number
 }

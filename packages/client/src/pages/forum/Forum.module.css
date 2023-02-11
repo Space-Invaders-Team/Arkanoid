@@ -5,7 +5,7 @@
     width: 100%;
     min-height: 100vh;
     padding: 50px;
-    background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+    background-image: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
 }
 
 .wrapItems {
@@ -13,7 +13,6 @@
   flex-wrap: wrap;
   flex-direction: column;
   width: 75%;
-  background-color: azure;
 }
 
 .flexRow {
@@ -32,7 +31,8 @@
   border: 1px solid var(--border-color);
   background-color: var(--font-secondary-color);
   color: var(--accent-color);
-  &:first-child {
-    flex-grow: 1;
-  }
+}
+
+.item:first-child {
+  flex-grow: 1;
 }

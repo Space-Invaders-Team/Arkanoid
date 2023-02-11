@@ -1,5 +1,4 @@
 /* Nav */
-
 .nav {
 	padding: 12px 20px;
 	background-color: var(--nav-bg-color);
@@ -36,14 +35,14 @@
 	font-size: 16px;
 	font-weight: 500;
 	margin: 7px;
+}
 
-	& > li {
-		list-style-type: none;
+.navList > li {
+	list-style-type: none;
+}
 
-		& > a {
-			text-decoration: none;
-		}
-	}
+.navList > li > a {
+	text-decoration: none;
 }
 
 .navListLink {
@@ -56,11 +55,9 @@
 
 .linkActive::before {
 	content: '';
-
 	position: absolute;
 	left: 0;
 	top: 100%;
-
 	display: block;
 	height: 2px;
 	width: 100%;

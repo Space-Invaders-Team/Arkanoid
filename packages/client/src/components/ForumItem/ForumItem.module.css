@@ -12,9 +12,10 @@
   align-items: center;
   border: 1px solid var(--border-color);
   font-weight: 700;
-  &:first-child {
-    flex-grow: 1;
-  }
+}
+
+.item:first-child {
+  flex-grow: 1;
 }
 
 .flexRow:nth-child(2) {

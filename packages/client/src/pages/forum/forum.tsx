@@ -5,22 +5,22 @@ import { ForumItem } from '../../components/ForumItem';
 // mock-data
 const forums: IForum[] = [
   {
-    forumId: 1,
-    forumName: 'Первый форум',
+    id: 1,
+    name: 'Первый форум',
     countTopic: 15,
     countAnswer: 20,
   },
 
   {
-    forumId: 2,
-    forumName: 'Второй форум',
+    id: 2,
+    name: 'Второй форум',
     countTopic: 5,
     countAnswer: 12,
   },
 
   {
-    forumId: 3,
-    forumName: 'Третий форум',
+    id: 3,
+    name: 'Третий форум',
     countTopic: 11,
     countAnswer: 23,
   },
@@ -36,7 +36,7 @@ export function Forum() {
           <div className={styles.item}>Сообщения</div>
         </div>
         {forums.map(
-          (forum) => <ForumItem forum={forum} key={`${forum.forumId}`} />,
+          (forum) => <ForumItem forum={forum} key={`${forum.id}`} />,
         )}
       </div>
     </div>
