@@ -25,10 +25,12 @@ module.exports = {
   rules: {
     '@typescript-eslint/ban-ts-comment': 1,
     "import/prefer-default-export": 0,
+    "import/no-default-export": 1,
     "object-curly-newline": 0,
     "no-plusplus": 0,
     "class-methods-use-this": 0,
     "react/react-in-jsx-scope": 0,
+    "no-underscore-dangle": 0,
     "max-len": [
       "error",
       100,

@@ -34,6 +34,11 @@ export function Navbar() {
                 Регистрация
               </NavLink>
             </li>
+            <li className={styles.navListItem}>
+              <NavLink to="/game" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                Игра
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
