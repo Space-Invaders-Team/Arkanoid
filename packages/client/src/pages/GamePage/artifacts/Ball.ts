@@ -3,7 +3,7 @@ type EdgeName = 'top' | 'right' | 'bottom' | 'left';
 export class Ball {
   private readonly _radius = 10;
 
-  private readonly _color = '#0095DD';
+  private readonly _color = '#0095dd';
 
   private readonly _speed = 6;
 
@@ -60,11 +60,23 @@ export class Ball {
     this.ctx.closePath();
   }
 
-  public moveByX() {
+  public moveByX(paddleX?: number) {
+    if (paddleX) {
+      this._x = paddleX;
+
+      return;
+    }
+
     this._x += this._dx;
   }
 
-  public moveByY() {
+  public moveByY(paddleY?: number) {
+    if (paddleY) {
+      this._y = paddleY;
+
+      return;
+    }
+
     this._y += this._dy;
   }
 
@@ -95,7 +107,9 @@ export class Ball {
     const xEdgeMultiplier = this._dx > 0 ? 1 : -1;
     const yEdgeMultiplier = this._dy > 0 ? -1 : 1;
 
-    return (this._y + (yEdgeMultiplier * this._radius) - brickCenter.y)
-      / (this._x + (xEdgeMultiplier * this._radius) - brickCenter.x);
+    return (
+      (this._y + yEdgeMultiplier * this._radius - brickCenter.y)
+      / (this._x + xEdgeMultiplier * this._radius - brickCenter.x)
+    );
   }
 }

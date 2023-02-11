@@ -1,0 +1,109 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 58px); /* - высота навбара */
+  background-color: var(--page-bg-color);
+  background-image: url("../../assets/img/space-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  --descr-duration: 1000ms;
+  --descr-delay: 400ms;
+}
+
+.field {
+  position: relative;
+  overflow: hidden;
+  width: 992px;
+  min-width: 992px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--page-bg-color);
+  background-image: url("../../assets/img/arkanoid-title.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-blend-mode: var(--arkanoid-title-blend-mode);
+  aspect-ratio: 16/11;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.startScreen {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 32px;
+  background-color: var(--overlay-color);
+}
+
+.startScreenHidden {
+  display: none;
+}
+
+.descrWrapper {
+  padding: 32px;
+  border: 4px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--game-descr-font-color);
+  background-color: var(--game-descr-bg-color);
+}
+
+.descrTitle {
+  margin-top: 0;
+  font-size: 32px;
+}
+
+.descrText {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-align: start;
+}
+
+.startButton {
+  margin-top: auto;
+  color: var(--game-descr-font-color);
+}
+
+.startButtonVisible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .descrWrapper {
+    transition-delay: var(--descr-delay);
+    transition-timing-function: cubic-bezier(0.47, 1.64, 0.41, 0.8);
+    transition-duration: var(--descr-duration);
+    transition-property: transform;
+    transform: translateY(-100vh);
+  }
+
+  .descrWrapperVisible {
+    transform: translateY(0);
+  }
+
+  .startButton {
+    transition-delay: var(--button-transition-delays), var(--descr-delay);
+    transition-timing-function: var(--button-transition-functions), ease-in;
+    transition-duration: var(--button-transition-durations), var(--descr-duration);
+    transition-property: var(--button-transition-properties), transform;
+    transform: translateY(200px);
+  }
+
+  .startButtonVisible {
+    transform: translateY(0);
+  }
+}
