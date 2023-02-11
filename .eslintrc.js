@@ -48,6 +48,18 @@ module.exports = {
         "props": false
       }
     ],
+    "import/extensions": [
+      "warn",
+      "always",
+      {
+        "pattern": {
+          "jsx": "never",
+          "tsx": "never",
+          "ts": "never",
+          "js": "never",
+        }
+      }
+    ]
   },
   ignorePatterns: ['**/*.js', "*/dist/*"],
 }
