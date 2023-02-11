@@ -4,7 +4,7 @@
 	padding: 12px 20px;
 	background-color: var(--nav-bg-color);
 	border-bottom: 1px solid var(--border-color);
-	color: var(--nav-text);
+	color: var(--nav-text-color);
 	letter-spacing: normal;
 }
 
@@ -19,7 +19,7 @@
 
 .logo {
 	margin-right: auto;
-	color: var(--nav-text);
+	color: var(--nav-text-color);
 	font-size: 24px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .navListLink {
-	color: var(--nav-text);
+	color: var(--nav-text-color);
 }
 
 .linkActive {
