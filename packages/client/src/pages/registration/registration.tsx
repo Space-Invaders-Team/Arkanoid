@@ -1,5 +1,5 @@
 import styles from './registration.module.css';
-import { Form } from '../../components/Form/form';
+import { Form } from '../../components/Form/Form';
 
 export function Registration() {
   return (

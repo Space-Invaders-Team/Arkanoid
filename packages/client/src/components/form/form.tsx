@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Input } from './Input/input';
+import { Input } from './Input/Input';
 import styles from './form.module.css';
 
 type FormProps = {
