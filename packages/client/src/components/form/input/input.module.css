@@ -47,6 +47,37 @@
   transition: opacity 0.25s ease;
 }
 
+
+
+.inputError, .inputError:focus {
+  outline: 2px solid var(--error-bg-color);
+}
+
+.errorMessage {
+  text-align: center;
+  position: absolute;
+  background-color: var(--error-bg-color);
+  color: var(--error-text-color);
+  left: 20px;
+  right: 20px;
+  top: 96px;
+  min-height: 48px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  max-height: 48px;
+}
+
+.active {
+  display: flex;
+}
+
 @media (max-width: 1024px) {
   .fieldTwoColumns:nth-child(2) {
     margin-top: 32px;

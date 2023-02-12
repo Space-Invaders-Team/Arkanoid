@@ -1,4 +1,4 @@
-import styles from './authorization.module.css';
+import styles from './Authorization.module.css';
 import { Form } from '../../components/Form/Form';
 
 export function Authorization() {

@@ -1,4 +1,4 @@
-import styles from './registration.module.css';
+import styles from './Registration.module.css';
 import { Form } from '../../components/Form/Form';
 
 export function Registration() {

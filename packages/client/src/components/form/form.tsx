@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Input } from './Input/Input';
-import styles from './form.module.css';
+import styles from './Form.module.css';
 
 type FormProps = {
   title: string;
@@ -17,7 +17,7 @@ export function Form({
 }: FormProps) {
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log('Форма отправлена');
+    // console.log('Форма отправлена');
   };
 
   return (
@@ -38,6 +38,9 @@ export function Form({
               placeholder="Имя"
               type="text"
               pageType={pageType}
+              required
+              pattern="^[А-ЯЁA-Z]{1,}[а-яёa-z-]+$"
+              errorMessage="Латиница или кириллица, первая буква заглавня, без пробелов, цифр и спецсимволов (допустим только дефис)"
             />
             <Input
               title="Second Name"
@@ -45,6 +48,9 @@ export function Form({
               placeholder="Фамилия"
               type="text"
               pageType={pageType}
+              required
+              pattern="^[А-ЯЁA-Z]{1,}[а-яёa-z-]+$"
+              errorMessage="Латиница или кириллица, первая буква заглавня, без пробелов, цифр и спецсимволов (допустим только дефис)"
             />
           </>
         )}
@@ -54,6 +60,11 @@ export function Form({
           placeholder="Логин"
           type="text"
           pageType={pageType}
+          required
+          minLength={3}
+          maxlength={20}
+          pattern="^(?=.*[a-zA-Z])[a-zA-Z0-9_-]+$"
+          errorMessage="Латиница, может содержать цифры, но не состоять из них, (допустимы дефис и нижнее подчёркивание)"
         />
         {pageType === 'signup' && (
           <Input
@@ -62,6 +73,9 @@ export function Form({
             placeholder="E-mail"
             type="e-mail"
             pageType={pageType}
+            required
+            pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$"
+            errorMessage="Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака»"
           />
         )}
         <Input
@@ -70,6 +84,11 @@ export function Form({
           placeholder="Пароль"
           type="password"
           pageType={pageType}
+          required
+          minLength={8}
+          maxlength={40}
+          pattern="^(?=.*[0-9])(?=.*[А-ЯЁA-Z])[а-яА-ЯёЁa-zA-Z0-9]+$"
+          errorMessage="Обязательно хотя бы одна заглавная буква и цифра"
         />
         {pageType === 'signup' && (
           <Input
@@ -78,6 +97,9 @@ export function Form({
             placeholder="Телефон"
             type="phone"
             pageType={pageType}
+            required
+            pattern="^\+?[0-9]{10,15}$"
+            errorMessage="От 10 до 15 символов, состоит из цифр, может начинаться с символа плюс."
           />
         )}
       </fieldset>

@@ -15,6 +15,7 @@ export function App() {
   //   fetchServerData();
   // }, []);
 
+export function App() {
   return (
     <StrictMode>
       <BrowserRouter>
