@@ -1,15 +1,15 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.css';
 
 type Props = {
-  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
-  text: string,
-  onClick: () => void,
+  onClick(): void,
   extraClassName?: string,
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
+  children?: ReactNode,
 };
 
-export function Button({ type = 'button', text, onClick, extraClassName }: Props) {
+export function Button({ type = 'button', onClick, extraClassName, children }: Props) {
   const className = classNames(styles.button, extraClassName);
 
   return (
@@ -18,7 +18,7 @@ export function Button({ type = 'button', text, onClick, extraClassName }: Props
       className={className}
       onClick={onClick}
     >
-      {text}
+      {children}
     </button>
   );
 }

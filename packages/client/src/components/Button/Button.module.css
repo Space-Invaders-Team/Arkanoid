@@ -1,6 +1,6 @@
 .button {
-  width: 460px;
-  height: 80px;
+  width: 100%;
+  padding: 24px 32px;
   border: none;
   border-radius: 10px;
   font-size: 22px;

@@ -42,15 +42,15 @@ export function GamePage() {
 
   const startScreenClassName = classNames(
     styles.startScreen,
-    { [`${styles.startScreenHidden}`]: !isVisibleDescrScreen },
+    { [styles.startScreenHidden]: !isVisibleDescrScreen },
   );
   const descrWrapperClassName = classNames(
     styles.descrWrapper,
-    { [`${styles.descrWrapperVisible}`]: isVisibleRules },
+    { [styles.descrWrapperVisible]: isVisibleRules },
   );
   const startButtonClassName = classNames(
     styles.startButton,
-    { [`${styles.startButtonVisible}`]: isVisibleRules },
+    { [styles.startButtonVisible]: isVisibleRules },
   );
 
   return (
@@ -75,11 +75,9 @@ export function GamePage() {
               мыши или пробел.
             </p>
           </article>
-          <Button
-            text="Начать игру"
-            extraClassName={startButtonClassName}
-            onClick={handleClickStart}
-          />
+          <Button extraClassName={startButtonClassName} onClick={handleClickStart}>
+            Начать игру
+          </Button>
         </div>
         <canvas
           id="game"

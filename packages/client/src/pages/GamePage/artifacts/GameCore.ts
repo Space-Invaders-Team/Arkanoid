@@ -2,6 +2,8 @@ import { Ball } from './Ball';
 import { Paddle } from './Paddle';
 import { BricksContainer } from './BricksContainer';
 
+const SPACEBAR_KEY = ' ';
+
 export class GameCore {
   private readonly _ball: Ball;
 
@@ -31,7 +33,7 @@ export class GameCore {
   }
 
   private startGame = (event: KeyboardEvent | MouseEvent) => {
-    const isSpacebarPressed = event instanceof KeyboardEvent && event.key === ' ';
+    const isSpacebarPressed = event instanceof KeyboardEvent && event.key === SPACEBAR_KEY;
 
     if (event instanceof MouseEvent || isSpacebarPressed) {
       this._status = 'active';

@@ -76,6 +76,7 @@
 .startButton {
   margin-top: auto;
   color: var(--game-descr-font-color);
+  max-width: 400px;
 }
 
 .startButtonVisible {
