@@ -68,7 +68,7 @@
   justify-content: center;
   align-items: center;
   display: none;
-  max-height: 48px;
+  z-index: 1;
 }
 
 .active {
@@ -100,5 +100,16 @@
 
   .label {
     font-size: 14px;
+  }
+
+  .errorMessage {
+    left: 10px;
+    right: 10px;
+    top: 70px;
+    min-height: 36px;
+    border-radius: 8px;
+    padding: 3px 8px;
+    font-size: 10px;
+    line-height: 15px;
   }
 }
