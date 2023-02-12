@@ -3,6 +3,14 @@ import { ButtonTheme } from '../ButtonTheme';
 import styles from './Navigation.module.css';
 
 export function Navigation() {
+  const links = [
+    { url: '/', title: 'Главная' },
+    { url: '/authorization', title: 'Вход' },
+    { url: '/registration', title: 'Регистрация' },
+    { url: '/game', title: 'Игра' },
+    { url: '/forum', title: 'Форум' },
+  ];
+
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
   const normalLink = `${styles.navListLink}`;
   const addClass = ({
@@ -17,36 +25,13 @@ export function Navigation() {
           <ButtonTheme />
 
           <ul className={styles.navList}>
-            <li className={styles.navListItem}>
-              <NavLink
-                to="/"
-                className={addClass}
-                end
-              >
-                Главная
-              </NavLink>
-            </li>
-
-            <li className={styles.navListItem}>
-              <NavLink to="/authorization" className={addClass}>
-                Вход
-              </NavLink>
-            </li>
-            <li className={styles.navListItem}>
-              <NavLink to="/registration" className={addClass}>
-                Регистрация
-              </NavLink>
-            </li>
-            <li className={styles.navListItem}>
-              <NavLink to="/game" className={addClass}>
-                Игра
-              </NavLink>
-            </li>
-            <li className={styles.navListItem}>
-              <NavLink to="/forum" className={addClass}>
-                Форум
-              </NavLink>
-            </li>
+            {
+              links.map(({ url, title }) => (
+                <li className={styles.navListItem}>
+                  <NavLink to={url} className={addClass}>{title}</NavLink>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
