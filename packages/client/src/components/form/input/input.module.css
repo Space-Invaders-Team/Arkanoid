@@ -40,15 +40,11 @@
 .input::placeholder {
   color: var(--font-secondary-color);
   opacity: 1;
-  transition: opacity 0.25s ease;
 }
 
 .input:focus::placeholder {
   opacity: 0;
-  transition: opacity 0.25s ease;
 }
-
-
 
 .inputError, .inputError:focus {
   border: 2px solid var(--error-bg-color);
@@ -77,6 +73,16 @@
 
 .active {
   display: flex;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .input::placeholder {
+    transition: opacity 0.25s ease;
+  }
+
+  .input:focus::placeholder {
+    transition: opacity 0.25s ease;
+  }
 }
 
 @media (max-width: 1024px) {

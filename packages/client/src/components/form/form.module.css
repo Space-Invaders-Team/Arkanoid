@@ -36,15 +36,8 @@
   color: var(--font-primary-color);
   font-size: 22px;
   letter-spacing: .02em;
-  transition: color .25s, background-color .25s;
   border: none;
   cursor: pointer;
-}
-
-.button:hover {
-  color: var(--font-secondary-color);
-  background-color: var(--btn-hover-color);
-  transition: color .25s, background-color .25s;
 }
 
 .linkWrapper {
@@ -63,11 +56,31 @@
   font-weight: 700;
   text-decoration: none;
   color: var(--accent-color);
-  transition: transform .25s;
 }
 
-.link:hover {
-  transform: scale(1.3);
+@media (prefers-reduced-motion: no-preference) {
+  .button {
+    transition: color .25s, background-color .25s;
+  }
+
+  .button:hover {
+    transition: color .25s, background-color .25s;
+  }
+
+  .link {
+    transition: transform .25s;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    color: var(--font-secondary-color);
+    background-color: var(--btn-hover-color);
+  }
+
+  .link:hover {
+    transform: scale(1.3);
+  }
 }
 
 @media (max-width: 1024px) {
