@@ -1,9 +1,9 @@
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Navbar } from '../Navbar/navbar';
-import Router from '../../router/router';
+import { Router } from '../../router/router';
 
-function App() {
+export function App() {
   // useEffect(() => {
   //   const fetchServerData = async () => {
   //     const url = `http://localhost:${__SERVER_PORT__}`;
@@ -24,5 +24,3 @@ function App() {
     </StrictMode>
   );
 }
-
-export default App;
