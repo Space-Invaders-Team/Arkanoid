@@ -5,22 +5,13 @@ import styles from './TableRow.module.css';
 export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
   const { data, iam } = row;
 
-  let medal = '';
+  const medalMap = new Map([
+    [1, 'gold'],
+    [2, 'silver'],
+    [3, 'bronze'],
+  ]);
 
-  switch (data.place) {
-    case 1:
-      medal = 'gold';
-      break;
-    case 2:
-      medal = 'silver';
-      break;
-    case 3:
-      medal = 'bronze';
-      break;
-    default:
-      medal = '';
-      break;
-  }
+  const medal = medalMap.get(data.place) || '';
 
   return (
     <tr className={`${styles.tr} ${iam ? styles.currentRow : ''}`}>

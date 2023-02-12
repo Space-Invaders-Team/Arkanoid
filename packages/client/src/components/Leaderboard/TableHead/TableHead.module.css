@@ -25,7 +25,7 @@
 
 .th:last-child {
   border-radius: 0 10px 0 0;
-  padding-right: 30px;
+  padding-right: 35px;
 }
 
 .button {
@@ -39,13 +39,13 @@
   position: relative;
 }
 .button[data-order="asc"]::after {
-  content: '↑';
+  content: '↓';
   margin-left: 5px;
   position: absolute;
   opacity: 0.5;
 }
 .button[data-order="desc"]::after {
-  content: '↓';
+  content: '↑';
   margin-left: 5px;
   position: absolute;
   opacity: 0.5;
@@ -55,6 +55,11 @@
   .button:hover {
     transform: scale(1.05);
   }
+}
+
+.button[data-active="true"] {
+  font-weight: 600;
+  transform: scale(1.1);
 }
 
 .button[data-active="true"]::after {

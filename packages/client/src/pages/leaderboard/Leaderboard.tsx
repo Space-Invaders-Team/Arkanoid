@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TableHead } from '../../components/Leaderboard/TableHead';
 import { TableRow } from '../../components/Leaderboard/TableRow';
 import styles from './Leaderboard.module.css';
-import { TLeaderBoard } from './typings';
+import { Order, TLeaderBoard } from './typings';
 
 export function Leaderboard() {
   const [leaders, setLeaders] = useState<TLeaderBoard[]>([
@@ -71,7 +71,7 @@ export function Leaderboard() {
     },
   ]);
 
-  const sortLeaders = (sortField: keyof TLeaderBoard, orders: ('asc' | 'desc')) : void => {
+  const sortLeaders = (sortField: keyof TLeaderBoard, orders: (Order.ASC | Order.DESC)) : void => {
     if (sortField !== null) {
       setLeaders([...leaders].sort((a, b) => {
         if (a[sortField] < b[sortField]) {

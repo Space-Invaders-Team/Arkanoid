@@ -1,3 +1,8 @@
+export enum Order {
+  ASC = 'asc',
+  DESC = 'desc',
+}
+
 export type TLeaderBoard = {
   id: number;
   name: string;
@@ -13,10 +18,10 @@ export type TLeaderBoardProps = {
 };
 
 export type SortEventProps = {
-  sorting: (sortField: keyof TLeaderBoard, order: ('asc' | 'desc')) => void;
+  sorting: (sortField: keyof TLeaderBoard, order: (Order.ASC | Order.DESC)) => void;
 };
 
 export type Sorting = {
-  sort: string;
-  order: string;
+  sort: keyof TLeaderBoard;
+  order: Order.ASC | Order.DESC;
 };

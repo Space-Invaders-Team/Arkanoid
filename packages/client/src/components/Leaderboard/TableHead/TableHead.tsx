@@ -1,35 +1,56 @@
 import React, { useState } from 'react';
-import { Sorting, SortEventProps } from '../../../pages/leaderboard/typings';
+import { Sorting, SortEventProps, Order, TLeaderBoard } from '../../../pages/leaderboard/typings';
 import styles from './TableHead.module.css';
 
 export function TableHead({ sorting } : SortEventProps) {
   const [selectedSort, setSelectedSort] = useState<Sorting>({
     sort: 'points',
-    order: 'desc',
+    order: Order.DESC,
   });
 
-  const changeSort = (e: React.SyntheticEvent<HTMLButtonElement>) : void => {
-    const { sort } = e.currentTarget.dataset;
-    const { order } = e.currentTarget.dataset;
+  const changeSort = (sort: keyof TLeaderBoard, order: Order.ASC | Order.DESC) => {
     if (sort && order) {
-      // @ts-ignore
       sorting(sort, order);
-      const newOrder = order === 'asc' ? 'desc' : 'asc';
+      const newOrder = order === Order.ASC ? Order.DESC : Order.ASC;
       setSelectedSort({ sort, order: newOrder });
     }
   };
+
+  const nameSort: keyof TLeaderBoard = 'name';
+  const nameOrder: Order.ASC | Order.DESC = (selectedSort.sort === nameSort)
+    ? selectedSort.order
+    : Order.DESC;
+
+  const pointsSort: keyof TLeaderBoard = 'points';
+  const pointsOrder: Order.ASC | Order.DESC = selectedSort.sort === pointsSort
+    ? selectedSort.order
+    : Order.ASC;
 
   return (
     <thead className={styles.thead}>
       <tr className={styles.tr}>
         <th className={`${styles.th} ${styles.num}`}>#</th>
         <th className={`${styles.th} ${styles.name}`}>
-          <button className={styles.button} type="button" onClick={changeSort} data-active={selectedSort.sort === 'name' ? 'true' : 'false'} data-sort="name" data-order={selectedSort.sort === 'name' ? selectedSort.order : 'desc'}>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => changeSort(nameSort, nameOrder)}
+            data-active={selectedSort.sort === nameSort ? 'true' : 'false'}
+            data-sort={nameSort}
+            data-order={nameOrder}
+          >
             Name
           </button>
         </th>
         <th className={`${styles.th} ${styles.points}`}>
-          <button className={styles.button} type="button" onClick={changeSort} data-active={selectedSort.sort === 'points' ? 'true' : 'false'} data-sort="points" data-order={selectedSort.sort === 'points' ? selectedSort.order : 'asc'}>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => changeSort(pointsSort, pointsOrder)}
+            data-active={selectedSort.sort === pointsSort ? 'true' : 'false'}
+            data-sort={pointsSort}
+            data-order={pointsOrder}
+          >
             Points
           </button>
         </th>
