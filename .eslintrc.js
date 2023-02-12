@@ -31,6 +31,8 @@ module.exports = {
     "class-methods-use-this": 0,
     "react/react-in-jsx-scope": 0,
     "no-underscore-dangle": 0,
+    "react/button-has-type": 0,
+    "react/require-default-props": 0,
     "max-len": [
       "error",
       100,

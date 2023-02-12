@@ -36,10 +36,12 @@ export class Brick {
   }
 
   private isBallInBrick() {
-    return this.ball.getEdgeCoord('right') > this._x
+    return (
+      this.ball.getEdgeCoord('right') > this._x
       && this.ball.getEdgeCoord('left') < this._x + Brick.width
       && this.ball.getEdgeCoord('bottom') > this._y
-      && this.ball.getEdgeCoord('top') < this._y + Brick.height;
+      && this.ball.getEdgeCoord('top') < this._y + Brick.height
+    );
   }
 
   public draw() {
