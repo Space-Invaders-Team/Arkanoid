@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import classNames from 'classnames';
 import styles from './Input.module.css';
 
 type InputProps = {
@@ -14,9 +15,9 @@ type InputProps = {
   pattern: string;
 };
 
-interface StringObject {
+type StringObject = {
   [key:string]: string
-}
+};
 
 export function Input({
   inputName,
@@ -46,11 +47,11 @@ export function Input({
 
   return (
     <div
-      className={`${styles.field} ${pageType !== 'signin' && styles.fieldTwoColumns}`}
+      className={classNames(styles.field, { [styles.fieldTwoColumns]: pageType !== 'signin' })}
     >
       <label htmlFor={inputName} className={styles.label}>{title}</label>
       <input
-        className={`${styles.input} ${errors[inputName] && styles.inputError}`}
+        className={classNames(styles.input, { [styles.inputError]: errors[inputName] })}
         type={type}
         id={inputName}
         name={inputName}
@@ -63,7 +64,7 @@ export function Input({
         pattern={pattern}
         onChange={handleChange}
       />
-      <span className={`${styles.errorMessage} ${errors[inputName] && styles.active}`}>
+      <span className={classNames(styles.errorMessage, { [styles.active]: errors[inputName] })}>
         {errors[inputName]}
       </span>
     </div>

@@ -5,7 +5,7 @@ import { TopicList } from '../pages/forum/topicList';
 import { Landing } from '../pages/landing';
 import { Leaderboard } from '../pages/leaderboard';
 import Profile from '../pages/profile';
-import Registration from '../pages/registration';
+import { Registration } from '../pages/Registration';
 import { GamePage } from '../pages/GamePage';
 
 export function Router() {

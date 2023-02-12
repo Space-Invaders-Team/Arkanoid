@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import { Input } from './Input/Input';
 import styles from './Form.module.css';
 
@@ -28,7 +29,7 @@ export function Form({
     >
       <h1 className={styles.title}>{title}</h1>
       <fieldset
-        className={`${styles.fieldset} ${pageType === 'signup' && styles.fieldsetTwoColumns}`}
+        className={classNames(styles.fieldset, { [styles.fieldsetTwoColumns]: pageType === 'signup' })}
       >
         {pageType === 'signup' && (
           <>
