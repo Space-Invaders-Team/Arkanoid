@@ -1,9 +1,9 @@
+import { LinkRow } from '../../components/LinkRow';
 import styles from './Forum.module.css';
-import { IForum } from '../../types/forum';
-import { ForumItem } from '../../components/ForumItem';
+import { TForum } from './typings';
 
 // mock-data
-const forums: IForum[] = [
+const rowsData: TForum[] = [
   {
     id: 1,
     name: 'Первый форум',
@@ -29,16 +29,26 @@ const forums: IForum[] = [
 export function Forum() {
   return (
     <div className={styles.container}>
-      <div className={styles.wrapItems}>
-        <div className={styles.flexRow}>
-          <div className={styles.item}>Форумы</div>
-          <div className={styles.item}>Темы</div>
-          <div className={styles.item}>Сообщения</div>
-        </div>
-        {forums.map(
-          (forum) => <ForumItem forum={forum} key={`${forum.id}`} />,
-        )}
-      </div>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>Форумы</th>
+            <th>Темы</th>
+            <th>Сообщения</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rowsData.map(
+            (data) => (
+              <LinkRow
+                rowData={{ cell1: data.name, cell2: data.countTopic, cell3: data.countAnswer }}
+                key={`${data.id}`}
+                path={`./topicList/${data.name}`}
+              />
+            ),
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }

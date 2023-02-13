@@ -8,31 +8,45 @@
     background-image: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
 }
 
-.wrapItems {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+.table {
   width: 75%;
+  border-collapse: collapse;
 }
 
-.flexRow {
-  display: flex;
-  text-decoration: none;
-  color: var(--font-primary-color);
+.table tr:nth-child(1) {
+  background-color: var(--btn-color);
 }
-  
-.item {
-  width: 110px;
+
+.table tr:nth-child(2) {
+  background-color: var(--accent-darken-color);
+}
+
+.table tr:nth-child(3) {
+  background-color: var(--secondary-color);
+}
+
+.table, .table th, .table td {
+  border: 2px solid var(--border-color);
+}
+
+.table th, .table td {
+  padding: 12px;
+}
+
+.table th {
   height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 1px solid var(--border-color);
   background-color: var(--font-secondary-color);
   color: var(--accent-color);
 }
 
-.item:first-child {
-  flex-grow: 1;
+.table td {
+  height: 70px;
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .table tbody tr:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
 }
