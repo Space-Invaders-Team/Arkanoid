@@ -14,7 +14,6 @@ body {
   background: var(--page-bg-color);
 }
 
-body * {
+* {
   box-sizing: border-box;
 }
-

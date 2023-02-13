@@ -15,7 +15,6 @@
 
 .darkModeBtn::before {
 	content: '';
-
 	position: absolute;
 	top: 0px;
 	left: 0px;

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import styles from './header.module.css';
+import styles from './LandingHeader.module.css';
 
-export function Header() {
+export function LandingHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.headerWrapper}>
