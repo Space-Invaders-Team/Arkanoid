@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Navbar } from '../Navbar/navbar';
 import { Router } from '../../router/router';
+import { Navigation } from '../Navigation';
 
 export function App() {
   // useEffect(() => {
@@ -18,7 +18,7 @@ export function App() {
   return (
     <StrictMode>
       <BrowserRouter>
-        <Navbar />
+        <Navigation />
         <Router />
       </BrowserRouter>
     </StrictMode>

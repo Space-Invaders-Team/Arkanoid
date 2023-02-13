@@ -1,6 +1,6 @@
 import sun from '../../assets/icons/sun.svg';
 import moon from '../../assets/icons/moon.svg';
-import styles from './buttonTheme.module.css';
+import styles from './ButtonTheme.module.css';
 import { useTheme } from '../../hooks/useTheme';
 
 export function ButtonTheme() {
