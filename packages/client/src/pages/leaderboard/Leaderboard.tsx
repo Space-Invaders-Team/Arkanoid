@@ -71,7 +71,7 @@ export function Leaderboard() {
     },
   ]);
 
-  const sortLeaders = (sortField: keyof TLeaderBoard, orders: (Order.ASC | Order.DESC)) : void => {
+  const sortLeaders = (sortField: keyof TLeaderBoard, orders: Order) : void => {
     if (sortField !== null) {
       setLeaders([...leaders].sort((a, b) => {
         if (a[sortField] < b[sortField]) {

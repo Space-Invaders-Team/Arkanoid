@@ -18,10 +18,10 @@ export type TLeaderBoardProps = {
 };
 
 export type SortEventProps = {
-  sorting: (sortField: keyof TLeaderBoard, order: (Order.ASC | Order.DESC)) => void;
+  sorting: (sortField: keyof TLeaderBoard, order: Order) => void;
 };
 
 export type Sorting = {
   sort: keyof TLeaderBoard;
-  order: Order.ASC | Order.DESC;
+  order: Order;
 };

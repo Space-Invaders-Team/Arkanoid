@@ -8,7 +8,7 @@ export function TableHead({ sorting } : SortEventProps) {
     order: Order.DESC,
   });
 
-  const changeSort = (sort: keyof TLeaderBoard, order: Order.ASC | Order.DESC) => {
+  const changeSort = (sort: keyof TLeaderBoard, order: Order) => {
     if (sort && order) {
       sorting(sort, order);
       const newOrder = order === Order.ASC ? Order.DESC : Order.ASC;
@@ -17,12 +17,12 @@ export function TableHead({ sorting } : SortEventProps) {
   };
 
   const nameSort: keyof TLeaderBoard = 'name';
-  const nameOrder: Order.ASC | Order.DESC = (selectedSort.sort === nameSort)
+  const nameOrder: Order = (selectedSort.sort === nameSort)
     ? selectedSort.order
     : Order.DESC;
 
   const pointsSort: keyof TLeaderBoard = 'points';
-  const pointsOrder: Order.ASC | Order.DESC = selectedSort.sort === pointsSort
+  const pointsOrder: Order = selectedSort.sort === pointsSort
     ? selectedSort.order
     : Order.ASC;
 

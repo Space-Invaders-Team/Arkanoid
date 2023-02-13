@@ -11,7 +11,7 @@ export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
     [3, 'bronze'],
   ]);
 
-  const medal = medalMap.get(data.place) || '';
+  const medal = medalMap.get(data.place) ?? '';
 
   return (
     <tr className={`${styles.tr} ${iam ? styles.currentRow : ''}`}>

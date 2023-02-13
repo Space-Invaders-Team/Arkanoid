@@ -29,7 +29,7 @@
 }
 
 .button {
-  -webkit-appearance: none !important;
+  -webkit-appearance: none;
   background: transparent;
   border: 0;
   border-bottom: 1px dashed var(--table-bg);
