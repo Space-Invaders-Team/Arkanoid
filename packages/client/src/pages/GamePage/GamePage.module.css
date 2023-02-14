@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 58px); /* - высота навбара */
   background-color: var(--page-bg-color);
   background-image: url("../../assets/img/space-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  box-sizing: border-box;
   --descr-duration: 1000ms;
   --descr-delay: 400ms;
 }
@@ -16,8 +16,8 @@
 .field {
   position: relative;
   overflow: hidden;
-  width: 992px;
-  min-width: 992px;
+  width: 1024px;
+  min-width: 1024px;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   background-color: var(--page-bg-color);
@@ -34,22 +34,23 @@
   height: 100%;
 }
 
-.startScreen {
+.dummyScreen {
   position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
   gap: 32px;
   align-items: center;
-  justify-content: space-between;
   overflow: hidden;
   box-sizing: border-box;
+  width: 100%;
   height: 100%;
   padding: 32px;
   background-color: var(--overlay-color);
 }
 
-.startScreenHidden {
-  display: none;
+.startScreen {
+  justify-content: space-between;
 }
 
 .descrWrapper {
@@ -73,14 +74,29 @@
   text-align: start;
 }
 
+.button {
+  max-width: 400px;
+  color: var(--game-descr-font-color);
+}
+
 .startButton {
   margin-top: auto;
-  color: var(--game-descr-font-color);
-  max-width: 400px;
 }
 
 .startButtonVisible {
   opacity: 1;
+}
+
+.endScreen {
+  justify-content: center;
+}
+
+.endText {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: 700;
+  font-size: 4em;
+  color: var(--game-descr-font-color);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -96,11 +112,14 @@
     transform: translateY(0);
   }
 
-  .startButton {
+  .button {
     transition-delay: var(--button-transition-delays), var(--descr-delay);
     transition-timing-function: var(--button-transition-functions), ease-in;
     transition-duration: var(--button-transition-durations), var(--descr-duration);
     transition-property: var(--button-transition-properties), transform;
+  }
+
+  .startButton {
     transform: translateY(200px);
   }
 

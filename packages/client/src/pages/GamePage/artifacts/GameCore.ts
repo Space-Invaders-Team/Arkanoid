@@ -1,6 +1,7 @@
 import { Ball } from './Ball';
 import { Paddle } from './Paddle';
 import { BricksContainer } from './BricksContainer';
+import { GameStatus } from '../typings';
 
 const SPACEBAR_KEY = ' ';
 
@@ -11,7 +12,7 @@ export class GameCore {
 
   private readonly _bricks: BricksContainer;
 
-  private _status: 'prepare' | 'active';
+  private _status: GameStatus;
 
   constructor(
     private readonly canvas: HTMLCanvasElement,
@@ -20,7 +21,7 @@ export class GameCore {
     this._ball = new Ball(ctx, canvas.width / 2, canvas.height - 30);
     this._paddle = new Paddle(ctx, canvas.width, canvas.height);
     this._bricks = new BricksContainer(ctx, canvas.width, this._ball);
-    this._status = 'prepare';
+    this._status = GameStatus.ONBOARDING;
 
     document.addEventListener('keydown', this.startGame);
     document.addEventListener('keydown', this._paddle.keyHandler, false);
@@ -36,7 +37,7 @@ export class GameCore {
     const isSpacebarPressed = event instanceof KeyboardEvent && event.key === SPACEBAR_KEY;
 
     if (event instanceof MouseEvent || isSpacebarPressed) {
-      this._status = 'active';
+      this._status = GameStatus.RUNNING;
       document.removeEventListener('keydown', this.startGame);
       document.removeEventListener('click', this.startGame);
     }
@@ -55,7 +56,7 @@ export class GameCore {
   private movePaddleByMouse = (event: MouseEvent) => {
     this._paddle.moveByMouse(event.offsetX);
 
-    if (this._status === 'prepare') {
+    if (this._status === 'preparing') {
       this.followBallToPaddle(event.offsetX);
     }
   };
@@ -69,6 +70,14 @@ export class GameCore {
 
     this._ball.moveByX(paddleMiddle);
     this._ball.moveByY(paddleTop - this._ball.radius);
+  }
+
+  public get status(): GameStatus {
+    return this._status;
+  }
+
+  public set status(value: GameStatus) {
+    this._status = value;
   }
 
   public draw = () => {
@@ -109,11 +118,11 @@ export class GameCore {
 
     paddle.moveByKeyboard();
 
-    if (this._status === 'prepare') {
+    if (this._status === 'preparing') {
       this.followBallToPaddle(this._paddle.x);
     }
 
-    if (this._status === 'active') {
+    if (this._status === 'running') {
       ball.moveByX();
       ball.moveByY();
     }
