@@ -42,7 +42,7 @@ export function Forum() {
             (data) => (
               <LinkRow
                 rowData={{ cell1: data.name, cell2: data.countTopic, cell3: data.countAnswer }}
-                key={`${data.id}`}
+                id={`${data.id}`}
                 path={`./topicList/${data.name}`}
               />
             ),
