@@ -27,7 +27,7 @@ export function Navigation() {
           <ul className={styles.navList}>
             {
               links.map(({ url, title }) => (
-                <li className={styles.navListItem}>
+                <li className={styles.navListItem} key={url}>
                   <NavLink to={url} className={addClass}>{title}</NavLink>
                 </li>
               ))

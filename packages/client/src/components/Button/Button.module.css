@@ -1,19 +1,31 @@
 .button {
+  box-sizing: border-box;
   width: 100%;
   padding: 24px 32px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 10px;
   font-size: 22px;
   letter-spacing: 0.02em;
   color: var(--font-primary-color);
-  background-color: var(--btn-color);
   cursor: pointer;
 }
 
+.buttonPrimary {
+  background-color: var(--btn-color);
+}
+
+.buttonSecondary {
+  background-color: transparent;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .button:hover {
+  .buttonPrimary:hover {
     color: var(--font-secondary-color);
     background-color: var(--btn-hover-color);
+  }
+
+  .buttonSecondary:hover {
+    border-color: var(--font-secondary-color);
   }
 }
 

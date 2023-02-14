@@ -1,16 +1,20 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.css';
+import { Props } from './typings';
 
-type Props = {
-  onClick(): void,
-  extraClassName?: string,
-  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
-  children?: ReactNode,
-};
-
-export function Button({ type = 'button', onClick, extraClassName, children }: Props) {
-  const className = classNames(styles.button, extraClassName);
+export function Button({
+  type = 'button',
+  mode = 'primary',
+  onClick,
+  extraClassName,
+  children,
+}: Props) {
+  const className = classNames(
+    styles.button,
+    { [styles.buttonPrimary]: mode === 'primary' },
+    { [styles.buttonSecondary]: mode === 'secondary' },
+    extraClassName,
+  );
 
   return (
     <button
