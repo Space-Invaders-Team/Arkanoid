@@ -1,0 +1,69 @@
+.th {
+  background: var(--accent-color);
+  padding: 16px 20px;
+  color: white;
+  text-align: left;
+}
+
+.points {
+  text-align: right;
+  cursor: pointer;
+}
+
+.name {
+  cursor: pointer;
+}
+
+.num {
+  width: 45px;
+  padding-right: 0;
+}
+
+.th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+.th:last-child {
+  border-radius: 0 10px 0 0;
+  padding-right: 35px;
+}
+
+.button {
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed var(--table-bg);
+  color: white;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+.button[data-order="asc"]::after {
+  content: '↓';
+  margin-left: 5px;
+  position: absolute;
+  opacity: 0.5;
+}
+.button[data-order="desc"]::after {
+  content: '↑';
+  margin-left: 5px;
+  position: absolute;
+  opacity: 0.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    transform: scale(1.05);
+  }
+}
+
+.button[data-active="true"] {
+  font-weight: 600;
+  transform: scale(1.1);
+}
+
+.button[data-active="true"]::after {
+  opacity: 1;
+  font-size: 1.4em;
+  top: -5px;
+}

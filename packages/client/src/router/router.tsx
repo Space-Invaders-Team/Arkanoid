@@ -3,7 +3,7 @@ import Authorization from '../pages/authorization';
 import { Forum } from '../pages/forum';
 import { TopicList } from '../pages/forum/topicList';
 import { Landing } from '../pages/landing';
-import Leaderboard from '../pages/leaderboard';
+import { Leaderboard } from '../pages/leaderboard';
 import Profile from '../pages/profile';
 import Registration from '../pages/registration';
 import { GamePage } from '../pages/GamePage';
