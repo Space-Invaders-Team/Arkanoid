@@ -4,6 +4,5 @@ export type TLinkRowProps = {
     cell2: string | number,
     cell3: string | number,
   },
-  id?: string,
   path: string
 };
