@@ -25,7 +25,8 @@
 .title {
 	font-weight: 700;
 	color: var(--font-secondary-color);
-    font-size: 4em;
+	font-size: 4em;
+	text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
