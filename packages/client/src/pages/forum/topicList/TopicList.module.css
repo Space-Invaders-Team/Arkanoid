@@ -36,6 +36,7 @@
 
 .table tr {
   background: var(--table-bg);
+  cursor: pointer;
 }
 
 .table td {
@@ -126,6 +127,12 @@
 .disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  tr:hover td {
+      background: var(--border-color);
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
