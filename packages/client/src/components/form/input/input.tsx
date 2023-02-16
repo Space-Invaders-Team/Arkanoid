@@ -2,6 +2,10 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import styles from './Input.module.css';
 
+type StringObject = {
+  [key:string]: string
+};
+
 type InputProps = {
   inputName: string;
   placeholder: string;
@@ -13,10 +17,7 @@ type InputProps = {
   minLength?: number;
   maxlength?: number;
   pattern: string;
-};
-
-type StringObject = {
-  [key:string]: string
+  handleValidate: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export function Input({
@@ -30,11 +31,12 @@ export function Input({
   minLength,
   maxlength,
   pattern,
+  handleValidate,
 }: InputProps) {
   const [values, setValues] = useState<StringObject>({});
   const [errors, setErrors] = useState<StringObject>({});
 
-  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
     const { target } = evt;
     const { name, value } = target;
     setValues({ ...values, [name]: value });
@@ -43,7 +45,8 @@ export function Input({
     } else {
       setErrors({ ...errors, [name]: target.validationMessage });
     }
-  };
+    handleValidate(evt);
+  }
 
   return (
     <div
@@ -62,9 +65,11 @@ export function Input({
         minLength={minLength}
         maxLength={maxlength}
         pattern={pattern}
-        onChange={handleChange}
+        onChange={(evt) => handleChange(evt)}
       />
-      <span className={classNames(styles.errorMessage, { [styles.active]: errors[inputName] })}>
+      <span
+        className={classNames(styles.errorMessage, { [styles.active]: errors[inputName] })}
+      >
         {errors[inputName]}
       </span>
     </div>

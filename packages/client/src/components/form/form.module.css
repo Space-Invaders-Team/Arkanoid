@@ -40,6 +40,12 @@
   cursor: pointer;
 }
 
+.buttonDisabled {
+  cursor: default;
+  background-color: var(--nav-bg-color);
+  color: var(--page-bg-color);
+}
+
 .linkWrapper {
   margin: 40px 0 0;
   text-align: center;
@@ -76,6 +82,11 @@
   .button:hover {
     color: var(--font-secondary-color);
     background-color: var(--btn-hover-color);
+  }
+
+  .buttonDisabled:hover {
+    background-color: var(--nav-bg-color);
+    color: var(--page-bg-color);
   }
 
   .link:hover {

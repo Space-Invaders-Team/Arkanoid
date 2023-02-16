@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import classNames from 'classnames';
 import { Input } from './Input/Input';
 import styles from './Form.module.css';
@@ -16,9 +17,15 @@ export function Form({
   text,
   pageType,
 }: FormProps) {
+  const [isValid, setIsValid] = useState(false);
+
+  const handleValidate = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setIsValid(evt.target.closest('form')!.checkValidity());
+  };
+
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    // console.log('Форма отправлена');
+    console.log('Форма отправлена');
   };
 
   return (
@@ -42,6 +49,7 @@ export function Form({
               required
               pattern="^[А-ЯЁA-Z]{1,}[а-яёa-z-]+$"
               errorMessage="Латиница или кириллица, первая буква заглавня, без пробелов, цифр и спецсимволов (допустим только дефис)"
+              handleValidate={handleValidate}
             />
             <Input
               title="Second Name"
@@ -52,6 +60,7 @@ export function Form({
               required
               pattern="^[А-ЯЁA-Z]{1,}[а-яёa-z-]+$"
               errorMessage="Латиница или кириллица, первая буква заглавня, без пробелов, цифр и спецсимволов (допустим только дефис)"
+              handleValidate={handleValidate}
             />
           </>
         )}
@@ -66,6 +75,7 @@ export function Form({
           maxlength={20}
           pattern="^(?=.*[a-zA-Z])[a-zA-Z0-9_-]+$"
           errorMessage="Латиница, может содержать цифры, но не состоять из них, (допустимы дефис и нижнее подчёркивание)"
+          handleValidate={handleValidate}
         />
         {pageType === 'signup' && (
           <Input
@@ -77,6 +87,7 @@ export function Form({
             required
             pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$"
             errorMessage="Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака»"
+            handleValidate={handleValidate}
           />
         )}
         <Input
@@ -90,6 +101,7 @@ export function Form({
           maxlength={40}
           pattern="^(?=.*[0-9])(?=.*[А-ЯЁA-Z])[а-яА-ЯёЁa-zA-Z0-9]+$"
           errorMessage="Обязательно хотя бы одна заглавная буква и цифра"
+          handleValidate={handleValidate}
         />
         {pageType === 'signup' && (
           <Input
@@ -101,10 +113,15 @@ export function Form({
             required
             pattern="^\+?[0-9]{10,15}$"
             errorMessage="От 10 до 15 символов, состоит из цифр, может начинаться с символа плюс."
+            handleValidate={handleValidate}
           />
         )}
       </fieldset>
-      <button type="submit" className={styles.button}>
+      <button
+        type="submit"
+        className={classNames(styles.button, { [styles.buttonDisabled]: !isValid })}
+        disabled={!isValid}
+      >
         {button}
       </button>
       <p className={styles.linkWrapper}>
