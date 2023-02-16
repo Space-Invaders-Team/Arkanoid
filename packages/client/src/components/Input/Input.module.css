@@ -1,0 +1,25 @@
+.input {
+  padding: 26px 30px;
+  margin-top: 16px;
+  font-size: 20px;
+  line-height: 24px;
+  background: none;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--font-primary-color);
+}
+
+.input:focus {
+  outline: 2px solid var(--accent-color);
+}
+
+.input::placeholder {
+  color: var(--font-secondary-color);
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
