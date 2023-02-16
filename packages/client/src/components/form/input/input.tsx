@@ -36,7 +36,7 @@ export function Input({
   const [values, setValues] = useState<StringObject>({});
   const [errors, setErrors] = useState<StringObject>({});
 
-  function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = evt;
     const { name, value } = target;
     setValues({ ...values, [name]: value });
@@ -46,7 +46,7 @@ export function Input({
       setErrors({ ...errors, [name]: target.validationMessage });
     }
     handleValidate(evt);
-  }
+  };
 
   return (
     <div

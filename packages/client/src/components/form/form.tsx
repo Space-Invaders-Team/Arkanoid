@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { Input } from './Input/Input';
+import { Button } from '../Button';
 import styles from './Form.module.css';
 
 type FormProps = {
@@ -117,13 +118,13 @@ export function Form({
           />
         )}
       </fieldset>
-      <button
+      <Button
         type="submit"
-        className={classNames(styles.button, { [styles.buttonDisabled]: !isValid })}
+        extraClassName={classNames(styles.button, { [styles.buttonDisabled]: !isValid })}
         disabled={!isValid}
       >
         {button}
-      </button>
+      </Button>
       <p className={styles.linkWrapper}>
         {text}
         {pageType === 'signup'
