@@ -1,9 +1,214 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    min-height: 100vh;
-    padding: 50px;
-    background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 58px);
+  padding: 50px;
+  background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+}
+
+/* Лента сообщений */
+.section {
+  flex-grow: 1; 
+  height: 360px;
+  max-width: 100%;
+  overflow: auto;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--page-bg-color);
+}
+
+.messageWrap {
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.rowItem1 {
+  flex-grow: 1;
+  padding-top: 8px;
+}
+
+.subtext {
+  font-size: 12px;
+  color: var(--accent-color);
+}
+/* END Лента сообщений */
+
+/* Лента сообщений - блок сообщения */
+.messAuthor {
+  color: var(--secondary-color);
+  font-weight: 700;
+  margin-right: 16px;
+}
+
+.avatar {
+  float: left;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+}
+
+.messText {
+  padding-left: 60px;
+}
+
+/* END Лента сообщений - блок сообщения */
+
+/* Лента сообщений - Цитата чужого сообщения */
+.quoteRow {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 6px;
+  padding-left: 12px;
+  border-left: 3px solid var(--font-accent-color);
+}
+
+.quotePerson {
+  font-size: 12px;
+  color: var(--alert-text-color);
+}
+
+.quoteRow .subtext {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
+}
+/* END Лента сообщений - Цитата чужого сообщения */
+
+/* Блок для ввода нового сообщения */
+footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.footerWrap {
+  width: 60%;
+}
+
+.replyWrap,
+.chatTextarea {
+  width: 95%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  background-color: var(--input-bg-color);
+  font-size: 16px;
+  color: var(--font-primary-color);
+}
+
+.replyWrap {
+  border-radius: 4px 4px 0 0;
+}
+
+.sender {
+  color: var(--font-accent-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.replyText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--font-secondary-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.chatTextarea {
+  border-radius: 4px;
+}
+/* END Блок для ввода нового сообщения */
+
+/* Кнопки */
+.sendBtn {
+  width: 25%;
+  padding: 12px 16px;
+}
+
+.linkBtn {
+  width: 52px;
+  padding: 0;
+  font-size: 0.75em;
+  background-color: transparent;
+  color: var(--accent-color);
+} 
+
+.closeBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.closeBtn img {
+  opacity: 0.5;
+}
+
+/* END Кнопки */
+
+/* Скролл */
+/* W3C standard
+сейчас только для Firefox */
+.section {
+scrollbar-width: thin;
+scrollbar-color: var(--accent-color) var(--header-text-color);
+}
+
+/* для Chrome/Edge/Safari */
+.section::-webkit-scrollbar {
+height: 12px;
+width: 12px;
+}
+.section::-webkit-scrollbar-track {
+background-color: var(--accent-color);
+}
+.section::-webkit-scrollbar-thumb {
+background-color: var(--header-text-color);
+border-radius: 5px;
+border: 3px solid var(--accent-color);
+}
+/* END Скролл */
+
+@media (hover: hover) and (pointer: fine) {
+	.linkBtn:hover {
+		color: var(--font-accent-color);
+		background-color: transparent;
+	}
+
+  .closeBtn:hover img {
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 998px) {
+  section,
+  footer {
+    max-width: 70%;
+  }
 }
