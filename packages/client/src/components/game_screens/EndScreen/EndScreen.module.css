@@ -1,0 +1,11 @@
+.container {
+  justify-content: center;
+}
+
+.text {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: 700;
+  font-size: 4em;
+  color: var(--game-descr-font-color);
+}

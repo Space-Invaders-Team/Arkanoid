@@ -56,7 +56,7 @@ export class GameCore {
   private movePaddleByMouse = (event: MouseEvent) => {
     this._paddle.moveByMouse(event.offsetX);
 
-    if (this._status === 'preparing') {
+    if (this._status === GameStatus.PREPARING) {
       this.followBallToPaddle(event.offsetX);
     }
   };
@@ -118,11 +118,11 @@ export class GameCore {
 
     paddle.moveByKeyboard();
 
-    if (this._status === 'preparing') {
+    if (this._status === GameStatus.PREPARING) {
       this.followBallToPaddle(this._paddle.x);
     }
 
-    if (this._status === 'running') {
+    if (this._status === GameStatus.RUNNING) {
       ball.moveByX();
       ball.moveByY();
     }

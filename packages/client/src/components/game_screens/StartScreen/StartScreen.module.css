@@ -1,0 +1,54 @@
+.container {
+  justify-content: space-between;
+}
+
+.descrWrapper {
+  padding: 32px;
+  border: 4px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--game-descr-font-color);
+  background-color: var(--game-descr-bg-color);
+}
+
+.descrTitle {
+  margin-top: 0;
+  font-size: 32px;
+}
+
+.descrText {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-align: start;
+}
+
+.button {
+  margin-top: auto;
+}
+
+.buttonVisible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .descrWrapper {
+    transition-delay: var(--descr-delay);
+    transition-timing-function: cubic-bezier(0.47, 1.64, 0.41, 0.8);
+    transition-duration: var(--descr-duration);
+    transition-property: transform;
+    transform: translateY(-100vh);
+  }
+
+  .descrWrapperVisible {
+    transform: translateY(0);
+  }
+
+  .button {
+    transform: translateY(200px);
+  }
+
+  .buttonVisible {
+    transform: translateY(0);
+  }
+}
