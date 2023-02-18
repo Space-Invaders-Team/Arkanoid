@@ -11,16 +11,26 @@ export function Form({
   button,
   text,
   pageType,
+  onSubmitForm,
 }: FormProps) {
   const [isValid, setIsValid] = useState(false);
 
   const handleValidate = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setIsValid(evt.target.closest('form')!.checkValidity());
+    const form = evt.target.closest('form');
+    if (form !== null) {
+      setIsValid(form.checkValidity());
+    }
   };
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log('Форма отправлена');
+    const fields = Array.from(document.querySelectorAll('input'));
+    const formData = fields.reduce((acc: Record<string, string>, field: HTMLInputElement) => {
+      acc[field.name] = field.value;
+      return acc;
+    }, {});
+    onSubmitForm(formData);
+    setIsValid(false);
   };
 
   return (

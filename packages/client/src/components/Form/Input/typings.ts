@@ -1,7 +1,3 @@
-export type StringObject = {
-  [key:string]: string
-};
-
 export type InputProps = {
   inputName: string;
   placeholder: string;

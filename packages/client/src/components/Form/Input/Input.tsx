@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import classNames from 'classnames';
-import { StringObject, InputProps } from './typings';
+import { InputProps } from './typings';
 import styles from './Input.module.css';
 
 export function Input({
@@ -16,17 +16,17 @@ export function Input({
   pattern,
   handleValidate,
 }: InputProps) {
-  const [values, setValues] = useState<StringObject>({});
-  const [errors, setErrors] = useState<StringObject>({});
+  const [inputValues, setInputValue] = useState('');
+  const [inputError, setInputError] = useState('');
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = evt;
-    const { name, value } = target;
-    setValues({ ...values, [name]: value });
+    const { value } = evt.target;
+    setInputValue(value);
     if (target.validationMessage.indexOf('формат') !== -1) {
-      setErrors({ ...errors, [name]: errorMessage });
+      setInputError(errorMessage);
     } else {
-      setErrors({ ...errors, [name]: target.validationMessage });
+      setInputError(target.validationMessage);
     }
     handleValidate(evt);
   };
@@ -37,12 +37,12 @@ export function Input({
     >
       <label htmlFor={inputName} className={styles.label}>{title}</label>
       <input
-        className={classNames(styles.input, { [styles.inputError]: errors[inputName] })}
+        className={classNames(styles.input, { [styles.inputError]: inputError })}
         type={type}
         id={inputName}
         name={inputName}
         placeholder={placeholder}
-        value={values[inputName] || ''}
+        value={inputValues || ''}
         autoComplete="off"
         required={required}
         minLength={minLength}
@@ -51,9 +51,9 @@ export function Input({
         onChange={(evt) => handleChange(evt)}
       />
       <span
-        className={classNames(styles.errorMessage, { [styles.active]: errors[inputName] })}
+        className={classNames(styles.errorMessage, { [styles.active]: inputError })}
       >
-        {errors[inputName]}
+        {inputError}
       </span>
     </div>
   );
