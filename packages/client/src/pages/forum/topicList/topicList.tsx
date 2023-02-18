@@ -14,24 +14,24 @@ export function TopicList() {
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target: EventTarget & HTMLInputElement = e.currentTarget;
-    if (target.value.length > 80) {
+    const isDisabledButton = target.value.length > 80;
+    if (isDisabledButton) {
       target.classList.add(styles.error);
-      setDisabledBtn(true);
     } else {
       target.classList.remove(styles.error);
-      setDisabledBtn(false);
     }
+    setDisabledBtn(isDisabledButton);
     setTopicTitle(e.currentTarget.value);
   };
 
   const addTopic = () => {
-    const newTopic :TTopic = {
+    const newTopic: TTopic = {
       id: `${topicTitle + new Date()}`,
       name: topicTitle,
       countAnswer: 0,
       lastMessageTime: `${new Date().toLocaleString()}`,
     };
-    setTopics([newTopic, ...topics]);
+    setTopics((prevValue) => [newTopic, ...prevValue]);
     setTopicTitle('');
   };
 
@@ -46,10 +46,10 @@ export function TopicList() {
         <h1 className={styles.title}>Название форума</h1>
         <table className={styles.table}>
           <thead>
-            <tr className={styles.tr}>
-              <th className={styles.th}>Темы</th>
-              <th className={styles.th}>Ответы</th>
-              <th className={styles.th}>Последний ответ</th>
+            <tr>
+              <th>Темы</th>
+              <th>Ответы</th>
+              <th>Последний ответ</th>
             </tr>
           </thead>
           <tbody>

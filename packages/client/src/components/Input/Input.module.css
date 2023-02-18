@@ -21,5 +21,10 @@
 
 .input:focus::placeholder {
   opacity: 0;
-  transition: opacity 0.25s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .input:focus::placeholder {
+    transition: opacity 0.25s ease;
+  }
 }

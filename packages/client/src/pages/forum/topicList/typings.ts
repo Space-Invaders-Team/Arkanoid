@@ -1,5 +1,5 @@
 export type TTopic = {
-  id: number | string;
+  id: string;
   name: string;
   countAnswer: number;
   lastMessageTime: string;
