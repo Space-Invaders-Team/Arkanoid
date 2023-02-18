@@ -3,14 +3,8 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import { Input } from './Input/Input';
 import { Button } from '../Button';
+import { FormProps } from './typings';
 import styles from './Form.module.css';
-
-type FormProps = {
-  title: string;
-  button: string;
-  text: string;
-  pageType: string;
-};
 
 export function Form({
   title,

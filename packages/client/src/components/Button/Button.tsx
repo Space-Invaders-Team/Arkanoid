@@ -5,6 +5,7 @@ import { Props } from './typings';
 export function Button({
   type = 'button',
   mode = 'primary',
+  disabled,
   onClick,
   extraClassName,
   children,
