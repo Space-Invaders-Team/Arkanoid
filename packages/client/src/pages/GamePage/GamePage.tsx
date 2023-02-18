@@ -1,84 +1,76 @@
-import { useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
-import { GameCore } from './artifacts';
-import { Button } from '../../components/Button';
+import { ReactNode, useEffect, useRef, useState } from 'react';
+import { drawGame } from './utils/drawGame';
+import { StartScreen } from '../../components/game_screens/StartScreen';
+import { EndScreen } from '../../components/game_screens/EndScreen';
 import styles from './GamePage.module.css';
+import { GameStatus } from './typings';
+import type { GameCore } from './artifacts';
 
 export function GamePage() {
-  const [isVisibleDescrScreen, setIsVisibleDescrScreen] = useState<boolean>(true);
-  const [isVisibleRules, setIsVisibleRules] = useState<boolean>(false);
+  const gameRef = useRef<GameCore | null>(null);
+  const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.ONBOARDING);
 
   const handleClickStart = () => {
-    setIsVisibleDescrScreen(false);
+    setGameStatus(GameStatus.PREPARING);
+
+    if (gameRef.current) {
+      gameRef.current.status = GameStatus.PREPARING;
+    }
   };
 
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-  const drawGame = () => {
-    const canvas = canvasRef.current;
-
-    if (!canvas) {
-      return;
-    }
-
-    const ctx = canvas.getContext('2d');
-
-    if (!ctx) {
-      return;
-    }
-
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-
-    const game = new GameCore(canvas, ctx);
-
-    requestAnimationFrame(game.draw);
+  const handleClickNextLevel = () => {
+    console.log('Перейти на следующий уровень');
   };
+
+  const handleClickStartAgain = () => {
+    console.log('Переиграть уровень!');
+  };
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isRunStartAnimation, setIsRunStartAnimation] = useState<boolean>(false);
+  const screenMap = new Map<GameStatus, ReactNode>([
+    [
+      GameStatus.ONBOARDING,
+      <StartScreen
+        isRunStartAnimation={isRunStartAnimation}
+        onClick={handleClickStart}
+      />,
+    ],
+    [
+      GameStatus.WIN,
+      <EndScreen
+        status={gameStatus}
+        onClickPrimaryBtn={handleClickNextLevel}
+        onClickSecondaryBtn={handleClickStartAgain}
+      />,
+    ],
+    [
+      GameStatus.LOSE,
+      <EndScreen
+        status={gameStatus}
+        onClickPrimaryBtn={handleClickStartAgain}
+      />,
+    ],
+  ]);
 
   useEffect(() => {
-    setIsVisibleRules(true);
-    drawGame();
+    setIsRunStartAnimation(true);
+    drawGame(canvasRef, gameRef);
   }, []);
-
-  const startScreenClassName = classNames(
-    styles.startScreen,
-    { [styles.startScreenHidden]: !isVisibleDescrScreen },
-  );
-  const descrWrapperClassName = classNames(
-    styles.descrWrapper,
-    { [styles.descrWrapperVisible]: isVisibleRules },
-  );
-  const startButtonClassName = classNames(
-    styles.startButton,
-    { [styles.startButtonVisible]: isVisibleRules },
-  );
 
   return (
     <main className={styles.container}>
+      {/* TODO: Убрать кнопки, когда сделаю подсчёт очков и завершение игры */}
+      <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', gap: 16, top: '50vh', left: 100 }}>
+        <button onClick={() => setGameStatus(GameStatus.WIN)}>Победа</button>
+        <button onClick={() => setGameStatus(GameStatus.LOSE)}>Поражение</button>
+        <button onClick={() => setGameStatus(GameStatus.ONBOARDING)}>Онбординг</button>
+      </div>
+      {/*  */}
       <section className={styles.field}>
-        <div className={startScreenClassName}>
-          <article className={descrWrapperClassName}>
-            <h2 className={styles.descrTitle}>Об игре:</h2>
-            <p className={styles.descrText}>
-              Игра арканоид являет собой классику жанра среди игровой серии аркады. В вашем
-              распоряжении шарик и платформа, которая запускает или отбивает шарик. Цель игры
-              уничтожить все блоки и сохранить все доступные жизни. За прохождение уровней игрок
-              будет получать очки награды, которые фиксируются в таблице рекордов.
-            </p>
-          </article>
-          <article className={descrWrapperClassName}>
-            <h2 className={styles.descrTitle}>Как играть:</h2>
-            <p className={styles.descrText}>
-              Двигайте мышью вправо или влево либо нажимайте стрелки ⬅️ ➡️ на клавиатуре︎, чтобы
-              управлять подвижной платформой и отбивать шарик. Для запуска шара нажмите левую
-              клавишу
-              мыши или пробел.
-            </p>
-          </article>
-          <Button extraClassName={startButtonClassName} onClick={handleClickStart}>
-            Начать игру
-          </Button>
-        </div>
+        {
+          screenMap.get(gameStatus)
+        }
         <canvas
           id="game"
           className={styles.canvas}

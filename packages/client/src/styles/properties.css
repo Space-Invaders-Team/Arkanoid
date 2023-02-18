@@ -13,24 +13,26 @@
   --secondary-color: var(--light, #b6b574) var(--dark, #417577);
   --btn-color: var(--light, #7475B6) var(--dark, #415A77);
   --btn-hover-color: var(--light, #8E8FC6) var(--dark, #304864);
+  --btn-secondary-color: transparent;
+  --btn-secondary-hover-color: var(--light, #999ac6) var(--dark, #1b263b);
   --nav-text-color: var(--light, #0d1b2a) var(--dark, #e8ebe4);
   --header-text-color: var(--light, #b8bacf) var(--dark, #e8ebe4);
   --game-bg-color: var(--light, #999ac6) var(--dark, #1b263b);
   --game-descr-bg-color: var(--light, #7475b6) var(--dark, #415a77);
   --game-descr-font-color: #e0e1dd;
-  --overlay-color: rgb(0 0 0 / 65%);
+  --overlay-color: rgb(0 0 0 / 85%);
   --table-bg: var(--light, #fafaff) var(--dark, #1B263B);
   --font-accent-color: var(--light, #505197) var(--dark, #9e9fd4);
   --alert-text-color: var(--light, #005500) var(--dark, #c7ffdb);
-  --alert-bg-color: var(--light, #c7ffdb) var(--dark, #007c00); 
+  --alert-bg-color: var(--light, #c7ffdb) var(--dark, #007c00);
   --error-text-color: var(--light, #b10000) var(--dark, #ffefef);
-  --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000); 
+  --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000);
   /* Свойства */
   --arkanoid-title-blend-mode: var(--light, screen) var(--dark, saturation);
-  --button-transition-properties: color, background-color;
-  --button-transition-durations: 250ms, 250ms;
-  --button-transition-delays: 0ms, 0ms;
-  --button-transition-functions: ease-in, ease-in;
+  --button-transition-properties: color, background-color, border-color;
+  --button-transition-durations: 250ms, 250ms, 250ms;
+  --button-transition-delays: 0ms, 0ms, 0ms;
+  --button-transition-functions: ease-in, ease-in, ease-in;
 }
 
 html[data-theme='light'] {

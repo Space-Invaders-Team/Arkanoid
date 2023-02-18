@@ -1,0 +1,28 @@
+.dummyScreen {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 32px;
+  background-color: var(--overlay-color);
+}
+
+.button {
+  max-width: 400px;
+  color: var(--game-descr-font-color);
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .button {
+    transition-delay: var(--button-transition-delays), var(--descr-delay);
+    transition-timing-function: var(--button-transition-functions), ease-in;
+    transition-duration: var(--button-transition-durations), var(--descr-duration);
+    transition-property: var(--button-transition-properties), transform;
+  }
+}
