@@ -5,16 +5,11 @@ import styles from './Input.module.css';
 
 export function Input({
   inputName,
-  placeholder,
-  type,
   title,
   pageType,
   errorMessage,
-  required,
-  minLength,
-  maxlength,
-  pattern,
   handleValidate,
+  ...inputProps
 }: InputProps) {
   const [inputValues, setInputValue] = useState('');
   const [inputError, setInputError] = useState('');
@@ -38,17 +33,12 @@ export function Input({
       <label htmlFor={inputName} className={styles.label}>{title}</label>
       <input
         className={classNames(styles.input, { [styles.inputError]: inputError })}
-        type={type}
         id={inputName}
         name={inputName}
-        placeholder={placeholder}
         value={inputValues || ''}
         autoComplete="off"
-        required={required}
-        minLength={minLength}
-        maxLength={maxlength}
-        pattern={pattern}
         onChange={(evt) => handleChange(evt)}
+        {...inputProps}
       />
       <span
         className={classNames(styles.errorMessage, { [styles.active]: inputError })}
