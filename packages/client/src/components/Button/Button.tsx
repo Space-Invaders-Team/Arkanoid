@@ -5,6 +5,7 @@ import { Props } from './typings';
 export function Button({
   type = 'button',
   mode = 'primary',
+  disabled,
   onClick,
   extraClassName,
   children,
@@ -21,6 +22,7 @@ export function Button({
       type={type}
       className={className}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import Authorization from '../pages/authorization';
+import { Authorization } from '../pages/Authorization';
 import { Forum } from '../pages/forum';
 import { TopicList } from '../pages/forum/topicList';
 import { Landing } from '../pages/landing';
 import { Leaderboard } from '../pages/leaderboard';
 import Profile from '../pages/profile';
-import Registration from '../pages/registration';
+import { Registration } from '../pages/Registration';
 import { GamePage } from '../pages/GamePage';
 
 export function Router() {
