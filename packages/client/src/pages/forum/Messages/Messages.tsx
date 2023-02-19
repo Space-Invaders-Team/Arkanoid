@@ -96,7 +96,7 @@ export function Messages() {
           )}
         </div>
       </section>
-      <footer>
+      <footer className={styles.footer}>
         <div className={styles.footerWrap}>
           {isReply && (
           <div className={styles.replyWrap}>

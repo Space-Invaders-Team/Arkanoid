@@ -102,7 +102,7 @@ h1 {
 /* END Лента сообщений - Цитата чужого сообщения */
 
 /* Блок для ввода нового сообщения */
-footer {
+.footer {
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -207,8 +207,8 @@ footer {
 }
 
 @media only screen and (min-width: 998px) {
-  section,
-  footer {
+  .section,
+  .footer {
     max-width: 70%;
   }
 }
