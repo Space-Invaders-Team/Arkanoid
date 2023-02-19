@@ -1,29 +1,10 @@
 import styles from './Authorization.module.css';
 import { Form } from '../../components/Form/Form';
-import { PageType } from '../../components/Form/typings';
-import { authApi } from '../../api/AuthAPI';
-import { StringObject } from './typings';
+import { PageType, StringObject } from '../../components/Form/typings';
 
-export function Authorization() {
-  const onLogin = (userData: StringObject) => {
-    authApi.loginUser(userData)
-      .then(() => {
-        alert('Авторизация прошла успешно');
-      })
-      .catch((error) => {
-        switch (error) {
-          case 400:
-            alert('Пользователь уже в системе');
-            break;
-          case 401:
-            alert('Неверная почта или пароль');
-            break;
-          default:
-            alert('Что-то пошло не так! Попробуйте ещё раз');
-        }
-      });
-  };
-
+export function Authorization(
+  { onLogin }: { onLogin: (userData: StringObject) => void },
+) {
   return (
     <div className={styles.container}>
       <Form

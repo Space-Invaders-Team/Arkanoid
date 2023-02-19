@@ -80,7 +80,7 @@ export function Form({
           pageType={pageType}
           required
           minLength={3}
-          maxlength={20}
+          maxLength={20}
           pattern={formConstants.loginPattern}
           errorMessage={formConstants.loginInputError}
           handleValidate={handleValidate}
@@ -106,7 +106,7 @@ export function Form({
           pageType={pageType}
           required
           minLength={8}
-          maxlength={40}
+          maxLength={40}
           pattern={formConstants.passwordPattern}
           errorMessage={formConstants.passwordInputError}
           handleValidate={handleValidate}

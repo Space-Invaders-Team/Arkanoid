@@ -7,7 +7,7 @@ export type InputProps = {
   errorMessage: string;
   required: boolean;
   minLength?: number;
-  maxlength?: number;
+  maxLength?: number;
   pattern: string;
   handleValidate: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 };

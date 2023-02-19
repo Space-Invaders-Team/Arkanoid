@@ -7,12 +7,18 @@ import { Leaderboard } from '../pages/leaderboard';
 import Profile from '../pages/profile';
 import { Registration } from '../pages/Registration';
 import { GamePage } from '../pages/GamePage';
+import { StringObject } from '../api/typings';
 
-export function Router() {
+export function Router(
+  { onLogin }: { onLogin: (userData: StringObject) => void },
+) {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route path="/authorization" element={<Authorization />} />
+      <Route
+        path="/authorization"
+        element={<Authorization onLogin={onLogin} />}
+      />
       <Route path="/forum">
         <Route index element={<Forum />} />
         <Route path="/forum/topicList/:id" element={<TopicList />} />

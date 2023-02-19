@@ -1,15 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { ButtonTheme } from '../ButtonTheme';
-import { authApi } from '../../api/AuthAPI';
 import styles from './Navigation.module.css';
 
-export function Navigation() {
+export function Navigation(
+  { isLogged, onLogout }: { isLogged: boolean, onLogout: () => void },
+) {
   const links = [
-    { url: '/', title: 'Главная' },
-    { url: '/authorization', title: 'Вход' },
-    { url: '/registration', title: 'Регистрация' },
-    { url: '/game', title: 'Игра' },
-    { url: '/forum', title: 'Форум' },
+    { url: '/', title: 'Главная', protect: 'always' },
+    { url: '/authorization', title: 'Вход', protect: false },
+    { url: '/registration', title: 'Регистрация', protect: false },
+    { url: '/game', title: 'Игра', protect: true },
+    { url: '/forum', title: 'Форум', protect: true },
   ];
 
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
@@ -17,14 +18,6 @@ export function Navigation() {
   const addClass = ({
     isActive,
   }: { isActive: boolean }): string => (isActive ? activeLink : normalLink);
-
-  function onLogout() {
-    authApi.logoutUser()
-      .then(() => {
-        alert('Пользователь вышел из аккаунта');
-      })
-      .catch(() => alert('Что-то пошло не так!'));
-  }
 
   return (
     <nav className={styles.nav}>
@@ -34,22 +27,34 @@ export function Navigation() {
           <ButtonTheme />
 
           <ul className={styles.navList}>
-            {
-              links.map(({ url, title }) => (
-                <li className={styles.navListItem} key={url}>
-                  <NavLink to={url} className={addClass}>{title}</NavLink>
-                </li>
-              ))
-            }
-            <li className={styles.navListItem}>
-              <NavLink
-                to="/"
-                className={addClass}
-                onClick={() => onLogout()}
-              >
-                Выход
-              </NavLink>
-            </li>
+            {isLogged
+              ? (links.map(({ url, title, protect }) => (
+                (protect || protect === 'always')
+                && (
+                  <li className={styles.navListItem} key={url}>
+                    <NavLink to={url} className={addClass}>{title}</NavLink>
+                  </li>
+                )
+              )))
+              : (links.map(({ url, title, protect }) => (
+                (!protect || protect === 'always')
+                && (
+                  <li className={styles.navListItem} key={url}>
+                    <NavLink to={url} className={addClass}>{title}</NavLink>
+                  </li>
+                )
+              )))}
+            {isLogged && (
+              <li className={styles.navListItem}>
+                <Link
+                  to="/"
+                  className={normalLink}
+                  onClick={() => onLogout()}
+                >
+                  Выход
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
