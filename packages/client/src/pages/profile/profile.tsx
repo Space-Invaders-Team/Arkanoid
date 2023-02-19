@@ -1,9 +1,9 @@
-import styles from './profile.module.css';
+import styles from './Profile.module.css';
 
 export function Profile() {
   return (
     <div className={styles.container}>
-      profile
+      Здесь будет профиль игрока
     </div>
   );
 }
