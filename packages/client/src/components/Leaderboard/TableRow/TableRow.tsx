@@ -1,6 +1,7 @@
 import React from 'react';
 import { TLeaderBoardProps } from '../../../pages/leaderboard/typings';
 import styles from './TableRow.module.css';
+import { Avatar } from '../../Avatar';
 
 export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
   const { data, iam } = row;
@@ -18,7 +19,7 @@ export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
       <td className={`${styles.td} ${styles.td__first}`}><span className={`${styles.medal} ${styles[medal]}`}>{data.place}</span></td>
       <td className={styles.td}>
         <div className={styles.leader}>
-          <img className={styles.avatar} src={data.avatar} alt={data.name} />
+          <Avatar path={data.avatar} userId={data.id} userName={data.name} />
           {iam ? 'Вы:' : ''}
           <span className={styles.name}>
             {data.name}
