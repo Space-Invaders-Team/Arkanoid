@@ -14,28 +14,38 @@ class AuthApi {
   }
 
   // Вход пользователя
-  loginUser(userData: StringObject) {
-    return fetch(`${this._baseUrl}/signin`, {
+  async loginUser(userData: StringObject) {
+    const res = await fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(userData),
-    })
-      .then((res) => this._handlingResponse(res));
+    });
+    return this._handlingResponse(res);
+  }
+
+  // Выход пользователя
+  async logoutUser() {
+    const res = await fetch(`${this._baseUrl}/logout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return this._handlingResponse(res);
   }
 
   // Регистрация пользователя
-  registerUser(userData: StringObject) {
-    return fetch(`${this._baseUrl}/signup`, {
+  async registerUser(userData: StringObject) {
+    const res = await fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(userData),
-    })
-      .then((res) => this._handlingResponse(res));
+    });
+    return this._handlingResponse(res);
   }
 }
 

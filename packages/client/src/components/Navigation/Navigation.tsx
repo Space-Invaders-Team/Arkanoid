@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { ButtonTheme } from '../ButtonTheme';
+import { authApi } from '../../api/AuthAPI';
 import styles from './Navigation.module.css';
 
 export function Navigation() {
@@ -17,6 +18,14 @@ export function Navigation() {
     isActive,
   }: { isActive: boolean }): string => (isActive ? activeLink : normalLink);
 
+  function onLogout() {
+    authApi.logoutUser()
+      .then(() => {
+        alert('Пользователь вышел из аккаунта');
+      })
+      .catch(() => alert('Что-то пошло не так!'));
+  }
+
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
@@ -32,6 +41,15 @@ export function Navigation() {
                 </li>
               ))
             }
+            <li className={styles.navListItem}>
+              <NavLink
+                to="/"
+                className={addClass}
+                onClick={() => onLogout()}
+              >
+                Выход
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
