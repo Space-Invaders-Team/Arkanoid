@@ -176,22 +176,22 @@ footer {
 /* W3C standard
 сейчас только для Firefox */
 .section {
-scrollbar-width: thin;
-scrollbar-color: var(--accent-color) var(--header-text-color);
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) var(--header-text-color);
 }
 
 /* для Chrome/Edge/Safari */
 .section::-webkit-scrollbar {
-height: 12px;
-width: 12px;
+  height: 12px;
+  width: 12px;
 }
 .section::-webkit-scrollbar-track {
-background-color: var(--accent-color);
+  background-color: var(--accent-color);
 }
 .section::-webkit-scrollbar-thumb {
-background-color: var(--header-text-color);
-border-radius: 5px;
-border: 3px solid var(--accent-color);
+  background-color: var(--header-text-color);
+  border-radius: 5px;
+  border: 3px solid var(--accent-color);
 }
 /* END Скролл */
 
