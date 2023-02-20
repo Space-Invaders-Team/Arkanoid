@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import styles from './ButtonBack.module.css';
-import { IconBack } from './IconBack';
+import { Button } from '../../../components/Button';
+import { IconBack } from '../../../components/Icons/IconBack';
 
 export function ButtonBack() {
   const navigate = useNavigate();
@@ -9,8 +9,8 @@ export function ButtonBack() {
   };
 
   return (
-    <button type="button" onClick={handleClickBack} className={styles.backBtn}>
+    <Button onClick={handleClickBack} mode="icon">
       <IconBack />
-    </button>
+    </Button>
   );
 }
