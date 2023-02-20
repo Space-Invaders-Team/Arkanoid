@@ -9,6 +9,7 @@ export function Navigation() {
     { url: '/registration', title: 'Регистрация' },
     { url: '/game', title: 'Игра' },
     { url: '/forum', title: 'Форум' },
+    { url: '/profile', title: 'Профиль' },
   ];
 
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
