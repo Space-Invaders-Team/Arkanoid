@@ -90,7 +90,7 @@ export function Leaderboard() {
   return (
     <div className={styles.leaderboard}>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Leaderboard</h1>
+        <h1 className={styles.title}>Рейтинг игроков</h1>
         <table className={styles.table}>
           <TableHead sorting={sortLeaders} />
           <tbody>

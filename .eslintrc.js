@@ -24,6 +24,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     '@typescript-eslint/ban-ts-comment': 1,
+    "@typescript-eslint/type-annotation-spacing": "warn",
     "import/prefer-default-export": 0,
     "import/no-default-export": 1,
     "object-curly-newline": 0,

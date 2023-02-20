@@ -8,6 +8,7 @@ export function Navigation() {
     { url: '/authorization', title: 'Вход' },
     { url: '/registration', title: 'Регистрация' },
     { url: '/game', title: 'Игра' },
+    { url: '/leaderboard', title: 'Рейтинг игроков' },
     { url: '/forum', title: 'Форум' },
     { url: '/profile', title: 'Профиль' },
   ];

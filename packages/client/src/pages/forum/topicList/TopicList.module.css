@@ -1,9 +1,148 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    min-height: 100vh;
-    padding: 50px;
-    background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+.topicList {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: var(--page-bg-color);
+	flex-direction: column;
+	padding: 20px;
+	font-size: 16px;
+}
+
+.wrapper {
+  width: calc(100% - 30px);
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1500px;
+  gap: 40px 0;
+}
+
+.title {
+	font-weight: 700;
+	color: var(--font-secondary-color);
+  font-size: 4em;
+  flex-basis: 100%;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 1em;
+  flex-basis: calc(100% - 430px);
+  flex-grow: 1;
+}
+
+.table tr {
+  background: var(--table-bg);
+  cursor: pointer;
+}
+
+.table td {
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 20px;
+  vertical-align: middle;
+}
+
+.table td:first-child {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.table td:last-child {
+  text-align: right;
+}
+
+.table th {
+  background: var(--accent-color);
+  padding: 16px 20px;
+  color: white;
+  text-align: left;
+  font-size: 1.2em;
+}
+
+.table th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+.table th:last-child {
+  border-radius: 0 10px 0 0;
+  text-align: right;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.add {
+  font-size: 1.5em;
+}
+
+.sidebar {
+  flex-basis: 430px;
+  max-width: 100%;
+  padding-left: 45px;
+  flex-grow: 1;
+}
+
+.topicList input {
+  background-color: var(--border-color);
+  width: 100%;
+}
+
+.topicList label {
+  font-size: 1.3em;
+  color: var(--font-accent-color);
+}
+
+.topicList label::before {
+  content: '>';
+  transform: rotateY(60deg);
+  display: inline-block;
+  font-size: 1.8em;
+  height: 20px;
+  line-height: 0;
+  position: relative;
+  top: 7px;
+}
+
+.addTopic {
+  position: sticky;
+  top: 20px;
+}
+
+.error,
+.error:focus {
+  outline: 2px solid var(--error-bg-color);
+  color: var(--error-text-color);
+  border-color: var(--error-bg-color);
+  background-color: var(--error-bg-color);
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .table tr:hover td {
+      background: var(--border-color);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.topicList * {
+		transition: .3s;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.topicList {
+		font-size: 14px;
+	}
 }
