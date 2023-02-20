@@ -1,5 +1,5 @@
 export type TAvatar = {
-  path: string;
+  path?: string;
   userId: number;
   userName: string;
 };

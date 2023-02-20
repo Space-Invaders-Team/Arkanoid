@@ -8,7 +8,7 @@ export function TableHead({ sorting } : SortEventProps) {
     order: Order.DESC,
   });
 
-  const changeSort = (sort: keyof TLeaderBoard, order: Order) => {
+  const changeSort = (sort: keyof Omit<TLeaderBoard, 'avatar'>, order: Order) => {
     if (sort && order) {
       sorting(sort, order);
       const newOrder = order === Order.ASC ? Order.DESC : Order.ASC;
