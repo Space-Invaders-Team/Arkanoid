@@ -19,9 +19,9 @@
 
 .buttonIcon {
   padding: 0;
+  cursor: pointer;
   background-color: transparent;
   border: none;
-  cursor: pointer;
 }
 
 @media (hover: hover) and (pointer: fine) {

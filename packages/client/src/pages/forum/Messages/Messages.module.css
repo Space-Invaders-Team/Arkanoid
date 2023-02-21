@@ -1,8 +1,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: calc(100vh - 58px);
   padding: 50px;
@@ -22,26 +22,26 @@ h1 {
 
 /* Лента сообщений */
 .section {
-  flex-grow: 1; 
-  height: 360px;
+  flex-grow: 1;
   max-width: 100%;
-  overflow: auto;
-  margin-bottom: 16px;
+  height: 360px;
   padding: 12px 16px;
+  margin-bottom: 16px;
+  overflow: auto;
+  background-color: var(--page-bg-color);
   border: 2px solid var(--border-color);
   border-radius: 4px;
-  background-color: var(--page-bg-color);
 }
 
 .messageWrap {
-  border-bottom: 1px solid var(--border-color);
   padding: 12px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .row {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
 .rowItem1 {
@@ -53,22 +53,23 @@ h1 {
   font-size: 12px;
   color: var(--accent-color);
 }
+
 /* END Лента сообщений */
 
 /* Лента сообщений - блок сообщения */
 .messAuthor {
-  color: var(--secondary-color);
-  font-weight: 700;
   margin-right: 16px;
+  font-weight: 700;
+  color: var(--secondary-color);
 }
 
 .avatar {
   float: left;
-  border-radius: 50%;
-  overflow: hidden;
   width: 45px;
-  height: 45px;
   min-width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .messText {
@@ -79,12 +80,12 @@ h1 {
 
 /* Лента сообщений - Цитата чужого сообщения */
 .quoteRow {
-  max-width: 80%;
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin-top: 6px;
+  max-width: 80%;
   padding-left: 12px;
+  margin-top: 6px;
   border-left: 3px solid var(--font-accent-color);
 }
 
@@ -94,19 +95,20 @@ h1 {
 }
 
 .quoteRow .subtext {
-  white-space: nowrap;
+  max-width: 80%;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 80%;
+  white-space: nowrap;
 }
+
 /* END Лента сообщений - Цитата чужого сообщения */
 
 /* Блок для ввода нового сообщения */
 .footer {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
   align-items: flex-end;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .footerWrap {
@@ -117,10 +119,10 @@ h1 {
 .chatTextarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--border-color);
-  background-color: var(--input-bg-color);
   font-size: 16px;
   color: var(--font-primary-color);
+  background-color: var(--input-bg-color);
+  border: 2px solid var(--border-color);
 }
 
 .replyWrap {
@@ -128,22 +130,23 @@ h1 {
 }
 
 .sender {
-  color: var(--font-accent-color);
   display: flex;
   justify-content: space-between;
+  color: var(--font-accent-color);
 }
 
 .replyText {
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   color: var(--font-secondary-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
   border-top: 1px solid var(--border-color);
 }
 
 .chatTextarea {
   border-radius: 4px;
 }
+
 /* END Блок для ввода нового сообщения */
 
 /* Кнопки */
@@ -156,16 +159,16 @@ h1 {
   width: 52px;
   padding: 0;
   font-size: 0.75em;
-  background-color: transparent;
   color: var(--accent-color);
-} 
+  background-color: transparent;
+}
 
 .closeBtn {
-  background-color: transparent;
   padding: 0;
   line-height: 16px;
-  border: none;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .closeBtn img {
@@ -179,26 +182,30 @@ h1 {
 /* END Кнопки */
 
 /* Скролл */
+
 /* W3C standard
 сейчас только для Firefox */
-.section {
+.section { /* stylelint-disable-line no-duplicate-selectors */
   scrollbar-width: thin;
   scrollbar-color: var(--accent-color) var(--header-text-color);
 }
 
 /* для Chrome/Edge/Safari */
 .section::-webkit-scrollbar {
-  height: 12px;
   width: 12px;
+  height: 12px;
 }
+
 .section::-webkit-scrollbar-track {
   background-color: var(--accent-color);
 }
+
 .section::-webkit-scrollbar-thumb {
   background-color: var(--header-text-color);
-  border-radius: 5px;
   border: 3px solid var(--accent-color);
+  border-radius: 5px;
 }
+
 /* END Скролл */
 
 @media (hover: hover) and (pointer: fine) {
