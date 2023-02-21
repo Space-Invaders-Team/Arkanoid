@@ -4,10 +4,14 @@ import '../static/vendor/normalize.css';
 import './styles/fonts.css';
 import './styles/properties.css';
 import './index.css';
+import { Provider } from 'react-redux';
 import { App } from './components/App/App';
+import { store } from './store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
 );
