@@ -17,6 +17,13 @@
   background-color: transparent;
 }
 
+.buttonIcon {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .buttonPrimary:hover {
     color: var(--font-secondary-color);
@@ -25,6 +32,10 @@
 
   .buttonSecondary:hover {
     border-color: var(--font-secondary-color);
+  }
+
+  .buttonIcon:hover {
+    transform: scale(1.05);
   }
 }
 

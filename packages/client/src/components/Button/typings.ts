@@ -7,4 +7,5 @@ export type Props = {
   children?: ReactNode,
   disabled?: boolean,
   mode?: 'primary' | 'secondary';
+  shape?: 'button' | 'icon';
 };

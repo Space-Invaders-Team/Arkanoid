@@ -7,6 +7,7 @@ import { Profile } from '../pages/Profile';
 import { Leaderboard } from '../pages/leaderboard';
 import { Registration } from '../pages/Registration';
 import { GamePage } from '../pages/GamePage';
+import { Messages } from '../pages/forum/Messages';
 
 export function Router() {
   return (
@@ -16,6 +17,7 @@ export function Router() {
       <Route path="/forum">
         <Route index element={<Forum />} />
         <Route path="/forum/topicList/:id" element={<TopicList />} />
+        <Route path="/forum/topicList/:id/topic/:id" element={<Messages />} />
       </Route>
       <Route path="/game" element={<GamePage />} />
       <Route path="/profile" element={<Profile />} />
