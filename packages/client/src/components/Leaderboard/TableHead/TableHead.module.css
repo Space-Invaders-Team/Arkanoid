@@ -1,8 +1,8 @@
 .th {
-  background: var(--accent-color);
   padding: 16px 20px;
   color: white;
   text-align: left;
+  background: var(--accent-color);
 }
 
 .points {
@@ -20,34 +20,36 @@
 }
 
 .th:first-child {
-  border-radius: 10px 0 0 0;
+  border-radius: 10px 0 0;
 }
 
 .th:last-child {
-  border-radius: 0 10px 0 0;
   padding-right: 35px;
+  border-radius: 0 10px 0 0;
 }
 
 .button {
-  -webkit-appearance: none;
+  position: relative;
+  padding: 0;
+  color: white;
+  cursor: pointer;
   background: transparent;
   border: 0;
   border-bottom: 1px dashed var(--table-bg);
-  color: white;
-  padding: 0;
-  cursor: pointer;
-  position: relative;
+  appearance: none;
 }
+
 .button[data-order="asc"]::after {
-  content: '↓';
-  margin-left: 5px;
   position: absolute;
+  margin-left: 5px;
+  content: '↓';
   opacity: 0.5;
 }
+
 .button[data-order="desc"]::after {
-  content: '↑';
-  margin-left: 5px;
   position: absolute;
+  margin-left: 5px;
+  content: '↑';
   opacity: 0.5;
 }
 
@@ -63,7 +65,7 @@
 }
 
 .button[data-active="true"]::after {
-  opacity: 1;
-  font-size: 1.4em;
   top: -5px;
+  font-size: 1.4em;
+  opacity: 1;
 }

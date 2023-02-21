@@ -6,6 +6,7 @@
     "build": "rimraf dist && tsc --p ./tsconfig.prod.json",
     "preview": "node ./dist/index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.ts",
+    "lint:scripts": "eslint . --fix",
     "lint": "eslint . --fix",
     "format": "prettier --write .",
     "test": "jest ."
@@ -36,6 +37,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "jest": "28",
     "nodemon": "2.0.19",
+    "npm-run-all": "4.1.5",
     "prettier": "2.7.1",
     "ts-jest": "28.0.8",
     "ts-node": "10.9.1",

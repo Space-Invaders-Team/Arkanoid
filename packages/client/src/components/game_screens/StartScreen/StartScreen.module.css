@@ -4,11 +4,11 @@
 
 .descrWrapper {
   padding: 32px;
+  color: var(--game-descr-font-color);
+  text-align: center;
+  background-color: var(--game-descr-bg-color);
   border: 4px solid var(--border-color);
   border-radius: 8px;
-  text-align: center;
-  color: var(--game-descr-font-color);
-  background-color: var(--game-descr-bg-color);
 }
 
 .descrTitle {
@@ -19,8 +19,8 @@
 .descrText {
   font-size: 18px;
   line-height: 1.5;
-  letter-spacing: 0.5px;
   text-align: start;
+  letter-spacing: 0.5px;
 }
 
 .button {
@@ -33,10 +33,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .descrWrapper {
-    transition-delay: var(--descr-delay);
-    transition-timing-function: cubic-bezier(0.47, 1.64, 0.41, 0.8);
-    transition-duration: var(--descr-duration);
-    transition-property: transform;
+    transition: transform var(--descr-duration) cubic-bezier(0.47, 1.64, 0.41, 0.8) var(--descr-delay);
     transform: translateY(-100vh);
   }
 

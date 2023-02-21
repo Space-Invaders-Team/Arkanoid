@@ -3,10 +3,10 @@
   margin-top: 16px;
   font-size: 20px;
   line-height: 24px;
+  color: var(--font-primary-color);
   background: none;
   border: 2px solid var(--border-color);
   border-radius: 8px;
-  color: var(--font-primary-color);
 }
 
 .input:focus {

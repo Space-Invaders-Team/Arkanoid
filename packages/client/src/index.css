@@ -1,15 +1,11 @@
-@import "../static/vendor/normalize.css";
-@import "styles/fonts.css";
-@import "styles/properties.css";
-
 html,
 body {
-  margin: 0;
+  min-width: 320px;
   padding: 0;
-  font-family: "Jura", Arial, sans-serif;
+  margin: 0;
+  font-family: Jura, Arial, sans-serif;
   color: var(--font-primary-color);
   background: var(--page-bg-color);
-  min-width: 320px;
 }
 
 * {
