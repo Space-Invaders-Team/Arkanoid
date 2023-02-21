@@ -6,5 +6,6 @@ export type Props = {
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],
   children?: ReactNode,
   disabled?: boolean,
-  mode?: 'primary' | 'secondary' | 'icon';
+  mode?: 'primary' | 'secondary';
+  shape?: 'button' | 'icon';
 };

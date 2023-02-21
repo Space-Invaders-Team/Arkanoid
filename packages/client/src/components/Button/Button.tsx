@@ -5,16 +5,17 @@ import { Props } from './typings';
 export function Button({
   type = 'button',
   mode = 'primary',
+  shape = 'button',
   disabled,
   onClick,
   extraClassName,
   children,
 }: Props) {
   const className = classNames(
-    { [styles.button]: !(mode === 'icon') },
+    { [styles.button]: shape === 'button' },
+    { [styles.buttonIcon]: shape === 'icon' },
     { [styles.buttonPrimary]: mode === 'primary' },
     { [styles.buttonSecondary]: mode === 'secondary' },
-    { [styles.buttonIcon]: mode === 'icon' },
     extraClassName,
   );
 

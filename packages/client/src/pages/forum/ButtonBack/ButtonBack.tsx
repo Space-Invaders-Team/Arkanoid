@@ -4,12 +4,12 @@ import { IconBack } from '../../../components/Icons/IconBack';
 
 export function ButtonBack() {
   const navigate = useNavigate();
-  const handleClickBack = ():void => {
+  const handleClickBack = (): void => {
     navigate(-1);
   };
 
   return (
-    <Button onClick={handleClickBack} mode="icon">
+    <Button onClick={handleClickBack} shape="icon" mode="secondary">
       <IconBack />
     </Button>
   );

@@ -8,17 +8,19 @@ import avatar from '../../../assets/img/logo.webp';
 import { messData } from './data';
 
 export function Messages() {
-  const [replyMessage, setReplyMessage] = useState<TMessage | undefined>(undefined);
-  const handleClickReply = (id: number):void => {
+  const [replyMessage, setReplyMessage] = useState<TMessage | null>(null);
+  // eslint-disable-next-line no-lone-blocks
+  { /* TODO изменить при подключении API */ }
+  const handleClickReply = (id: number): void => {
     console.log('Reply-button clicked', id);
-    const mess :TMessage | undefined = messData.find((obj) => obj.id === id);
+    const mess: TMessage | null = messData.find((obj) => obj.id === id) || null;
     setReplyMessage(mess);
   };
-  const handleClickSend = ():void => {
+  const handleClickSend = (): void => {
     console.log('Send-button clicked');
   };
-  const handleClickHide = ():void => {
-    setReplyMessage(undefined);
+  const handleClickHide = (): void => {
+    setReplyMessage(null);
   };
 
   return (
@@ -66,7 +68,7 @@ export function Messages() {
       </section>
       <footer className={styles.footer}>
         <div className={styles.footerWrap}>
-          {replyMessage !== undefined && (
+          {replyMessage !== null && (
           <div className={styles.replyWrap}>
             <div className={styles.sender}>
               <span>
