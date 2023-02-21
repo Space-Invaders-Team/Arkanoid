@@ -18,9 +18,7 @@ export function Form({
 
   const handleValidate = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const form = evt.target.closest('form');
-    if (form !== null) {
-      setIsValid(form.checkValidity());
-    }
+    if (form !== null) setIsValid(form.checkValidity());
   };
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {

@@ -1,4 +1,4 @@
-import { StringObject } from './typings';
+import { StringObject } from '../typings';
 
 class AuthApi {
   constructor(baseUrl: string) {

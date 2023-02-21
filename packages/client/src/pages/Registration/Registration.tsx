@@ -1,11 +1,9 @@
 import styles from './Registration.module.css';
 import { Form } from '../../components/Form/Form';
 import { PageType } from '../../components/Form/typings';
-import { StringObject } from './typings';
+import { RegisterProps } from './typings';
 
-export function Registration(
-  { onRegister }: { onRegister: (userData: StringObject) => void },
-) {
+export function Registration({ onRegister }: RegisterProps) {
   return (
     <div className={styles.container}>
       <Form

@@ -1,10 +1,9 @@
 import { NavLink, Link } from 'react-router-dom';
 import { ButtonTheme } from '../ButtonTheme';
+import { NavigationProps } from './typings';
 import styles from './Navigation.module.css';
 
-export function Navigation(
-  { isLogged, onLogout }: { isLogged: boolean, onLogout: () => void },
-) {
+export function Navigation({ isLogged, onLogout }: NavigationProps) {
   const links = [
     { url: '/', title: 'Главная', protect: 'always' },
     { url: '/authorization', title: 'Вход', protect: false },

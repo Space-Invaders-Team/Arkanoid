@@ -1,10 +1,9 @@
 import styles from './Authorization.module.css';
 import { Form } from '../../components/Form/Form';
-import { PageType, StringObject } from '../../components/Form/typings';
+import { PageType } from '../../components/Form/typings';
+import { LoginProps } from './typings';
 
-export function Authorization(
-  { onLogin }: { onLogin: (userData: StringObject) => void },
-) {
+export function Authorization({ onLogin }: LoginProps) {
   return (
     <div className={styles.container}>
       <Form

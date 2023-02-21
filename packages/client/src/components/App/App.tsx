@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Router } from '../../router/router';
 import { Navigation } from '../Navigation';
 import { authApi } from '../../api/AuthAPI';
-import { StringObject } from './typings';
+import { StringObject } from '../../typings';
 import * as errorConstants from '../../utils/errorConstants';
 
 // useEffect(() => {
@@ -24,7 +24,9 @@ export function App() {
     if (localStorage.getItem('isLogged')) {
       authApi.checkToken()
         .then((data) => {
-          if (data) { setIsLogged(true); }
+          if (data) {
+            setIsLogged(true);
+          } else localStorage.removeItem('isLogged');
         })
         .catch(() => alert(errorConstants.SERVER_ERROR_MESSAGE));
     }

@@ -1,3 +1,5 @@
+import { StringObject } from '../../typings';
+
 export type FormProps = {
   title: string;
   button: string;
@@ -10,7 +12,3 @@ export enum PageType {
   Signin = 'signin',
   Signup = 'signup',
 }
-
-export type StringObject = {
-  [key:string]: string
-};

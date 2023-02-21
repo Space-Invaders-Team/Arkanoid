@@ -8,16 +8,13 @@ import Profile from '../pages/profile';
 import { Registration } from '../pages/Registration';
 import { GamePage } from '../pages/GamePage';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
-import { StringObject } from '../api/typings';
+import { RouterProps } from './typings';
 
 export function Router(
   { isLogged,
     onLogin,
     onRegister,
-  }: { isLogged: boolean,
-    onLogin: (userData: StringObject) => void,
-    onRegister: (userData: StringObject) => void,
-  },
+  }: RouterProps,
 ) {
   return (
     <Routes>
@@ -25,21 +22,17 @@ export function Router(
       <Route
         path="/authorization"
         element={
-          isLogged ? (
-            <Navigate to="/" />
-          ) : (
-            <Authorization onLogin={onLogin} />
-          )
+          isLogged
+            ? (<Navigate to="/game" />)
+            : (<Authorization onLogin={onLogin} />)
         }
       />
       <Route
         path="/registration"
         element={
-          isLogged ? (
-            <Navigate to="/" />
-          ) : (
-            <Registration onRegister={onRegister} />
-          )
+          isLogged
+            ? (<Navigate to="/game" />)
+            : (<Registration onRegister={onRegister} />)
         }
       />
       <Route element={<ProtectedRoute />}>
