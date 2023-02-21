@@ -5,10 +5,10 @@
   flex-direction: column;
   gap: 32px;
   align-items: center;
-  overflow: hidden;
   width: 100%;
   height: 100%;
   padding: 32px;
+  overflow: hidden;
   background-color: var(--overlay-color);
 }
 
@@ -20,9 +20,6 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .button {
-    transition-delay: var(--button-transition-delays), var(--descr-delay);
-    transition-timing-function: var(--button-transition-functions), ease-in;
-    transition-duration: var(--button-transition-durations), var(--descr-duration);
-    transition-property: var(--button-transition-properties), transform;
+    transition: var(--button-transition-properties), transform var(--button-transition-durations), var(--descr-duration) var(--button-transition-functions), ease-in var(--button-transition-delays), var(--descr-delay);
   }
 }

@@ -1,24 +1,24 @@
 /* Header */
 .header {
-	min-height: 695px;
 	display: flex;
 	justify-content: center;
+	min-height: 695px;
+	color: var(--header-text-color);
+	text-align: center;
 	background-color: var(--page-bg-color);
 	background-image: url('../../assets/img/space-bg.jpg');
 	background-repeat: no-repeat;
-	background-size: cover;
 	background-position: center center;
-	color: var(--header-text-color);
-	text-align: center;
+	background-size: cover;
 }
 
 .headerWrapper {
-	padding: 0 15px 40px 15px;
-	margin-top: 60px;
 	max-width: 660px;
-	background-color: rgba(0, 0, 0, 0.6);
-	border-radius: 6px;
 	height: fit-content;
+	padding: 0 15px 40px;
+	margin-top: 60px;
+	background-color: rgb(0 0 0 / 60%);
+	border-radius: 6px;
 }
 
 .headerTitle {
@@ -40,19 +40,19 @@
 
 .linkBtn {
 	display: inline-block;
-  height: 60px;
   width: 190px;
-	line-height: 54px;
-  background-color: var(--btn-color);
+  height: 60px;
   margin-top: 50px;
-  border-radius: 10px;
-  color: var(--font-primary-color);
   font-size: 22px;
-  letter-spacing: .02em;
-  transition: color .25s, background-color .25s;
+	line-height: 54px;
+  color: var(--font-primary-color);
 	text-decoration: none;
-  border: none;
+  letter-spacing: .02em;
   cursor: pointer;
+  background-color: var(--btn-color);
+  border: none;
+  border-radius: 10px;
+  transition: color .25s, background-color .25s;
 }
 
 @media (hover: hover) and (pointer: fine) {

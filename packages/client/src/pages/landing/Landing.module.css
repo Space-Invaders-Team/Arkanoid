@@ -9,15 +9,15 @@
 
 .cardWrap {
   display: flex;
-  justify-content: center;
-  align-items: center;
   column-gap: 40px;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
   max-width: 25%;
+}
 
-  & > img {
-    max-width: 100%;
-  }
+.card > img {
+  max-width: 100%;
 }

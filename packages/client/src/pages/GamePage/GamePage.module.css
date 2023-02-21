@@ -6,26 +6,27 @@
   height: calc(100vh - 58px); /* - высота навбара */
   background-color: var(--page-bg-color);
   background-image: url("../../assets/img/space-bg.jpg");
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
+
   --descr-duration: 1000ms;
   --descr-delay: 400ms;
 }
 
 .field {
   position: relative;
-  overflow: hidden;
   width: 1024px;
   min-width: 1024px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  aspect-ratio: 16/11;
+  overflow: hidden;
   background-color: var(--page-bg-color);
   background-image: url("../../assets/img/arkanoid-title.png");
+  background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  background-repeat: no-repeat;
   background-blend-mode: var(--arkanoid-title-blend-mode);
-  aspect-ratio: 16/11;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
 }
 
 .canvas {
