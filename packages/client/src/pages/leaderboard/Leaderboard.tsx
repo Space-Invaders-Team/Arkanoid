@@ -9,28 +9,24 @@ export function Leaderboard() {
     {
       id: 123,
       name: 'Безумный Майк',
-      avatar: '/avatar.jpg',
       points: 999999,
       place: 1,
     },
     {
       id: 1234,
       name: 'Вася Петров',
-      avatar: '/avatar.jpg',
       points: 44234,
       place: 2,
     },
     {
       id: 12345,
       name: 'Аня Иванов',
-      avatar: '/avatar.jpg',
       points: 23322,
       place: 3,
     },
     {
       id: 123456,
       name: 'Владимир Ильич',
-      avatar: '/avatar.jpg',
       points: 20000,
       place: 4,
     },
@@ -71,7 +67,7 @@ export function Leaderboard() {
     },
   ]);
 
-  const sortLeaders = (sortField: keyof TLeaderBoard, orders: Order) : void => {
+  const sortLeaders = (sortField: keyof Omit<TLeaderBoard, 'avatar'>, orders: Order) : void => {
     if (sortField !== null) {
       setLeaders([...leaders].sort((a, b) => {
         if (a[sortField] < b[sortField]) {
@@ -90,7 +86,7 @@ export function Leaderboard() {
   return (
     <div className={styles.leaderboard}>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Leaderboard</h1>
+        <h1 className={styles.title}>Рейтинг игроков</h1>
         <table className={styles.table}>
           <TableHead sorting={sortLeaders} />
           <tbody>

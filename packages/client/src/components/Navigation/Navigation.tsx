@@ -9,7 +9,9 @@ export function Navigation({ isLogged, onLogout }: NavigationProps) {
     { url: '/authorization', title: 'Вход', protect: false },
     { url: '/registration', title: 'Регистрация', protect: false },
     { url: '/game', title: 'Игра', protect: true },
+    { url: '/leaderboard', title: 'Рейтинг игроков', protect: true },
     { url: '/forum', title: 'Форум', protect: true },
+    { url: '/profile', title: 'Профиль', protect: true },
   ];
 
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;

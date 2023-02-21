@@ -1,7 +1,7 @@
 .container {
     display: flex;
-    justify-content: center;
     align-items: flex-start;
+    justify-content: center;
     width: 100%;
     min-height: 100vh;
     padding: 50px;
@@ -35,8 +35,8 @@
 
 .table th {
   height: 50px;
-  background-color: var(--font-secondary-color);
   color: var(--accent-color);
+  background-color: var(--font-secondary-color);
 }
 
 .table td {
@@ -46,7 +46,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .table tbody tr:hover {
-    opacity: 0.9;
     cursor: pointer;
+    opacity: 0.9;
   }
 }

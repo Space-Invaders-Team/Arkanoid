@@ -5,7 +5,7 @@
 .text {
   margin-top: auto;
   margin-bottom: auto;
-  font-weight: 700;
   font-size: 4em;
+  font-weight: 700;
   color: var(--game-descr-font-color);
 }

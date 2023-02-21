@@ -1,12 +1,12 @@
 .button {
   width: 100%;
   padding: 24px 32px;
+  font-size: 22px;
+  color: var(--font-primary-color);
+  letter-spacing: 0.02em;
+  cursor: pointer;
   border: 1px solid transparent;
   border-radius: 10px;
-  font-size: 22px;
-  letter-spacing: 0.02em;
-  color: var(--font-primary-color);
-  cursor: pointer;
 }
 
 .buttonPrimary {
@@ -15,6 +15,13 @@
 
 .buttonSecondary {
   background-color: transparent;
+}
+
+.buttonIcon {
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -26,13 +33,14 @@
   .buttonSecondary:hover {
     border-color: var(--font-secondary-color);
   }
+
+  .buttonIcon:hover {
+    transform: scale(1.05);
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .button {
-    transition-delay: var(--button-transition-delays);
-    transition-timing-function: var(--button-transition-functions);
-    transition-duration: var(--button-transition-durations);
-    transition-property: var(--button-transition-properties);
+    transition: var(--button-transition-properties) var(--button-transition-durations) var(--button-transition-functions) var(--button-transition-delays);
   }
 }

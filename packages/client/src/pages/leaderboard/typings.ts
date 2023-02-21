@@ -6,7 +6,7 @@ export enum Order {
 export type TLeaderBoard = {
   id: number;
   name: string;
-  avatar: string;
+  avatar?: string;
   points: number;
   place: number;
 };
@@ -18,7 +18,7 @@ export type TLeaderBoardProps = {
 };
 
 export type SortEventProps = {
-  sorting: (sortField: keyof TLeaderBoard, order: Order) => void;
+  sorting: (sortField: keyof Omit<TLeaderBoard, 'avatar'>, order: Order) => void;
 };
 
 export type Sorting = {

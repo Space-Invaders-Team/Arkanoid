@@ -1,6 +1,7 @@
 :root {
-  --OFF: ;
-  --ON: initial;
+  --OFF: ; /* stylelint-disable-line custom-property-pattern */
+  --ON: initial; /* stylelint-disable-line custom-property-pattern */
+
   /* Цвета */
   --page-bg-color: var(--light, #f0effb) var(--dark, #0D1B2A);
   --nav-bg-color: var(--light, #e1e3f6) var(--dark, #25313f);
@@ -23,10 +24,11 @@
   --overlay-color: rgb(0 0 0 / 85%);
   --table-bg: var(--light, #fafaff) var(--dark, #1B263B);
   --font-accent-color: var(--light, #505197) var(--dark, #9e9fd4);
-  --alert-text-color: var(--light, #005500) var(--dark, #c7ffdb);
+  --alert-text-color: var(--light, #050) var(--dark, #c7ffdb);
   --alert-bg-color: var(--light, #c7ffdb) var(--dark, #007c00);
   --error-text-color: var(--light, #b10000) var(--dark, #ffefef);
   --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000);
+
   /* Свойства */
   --arkanoid-title-blend-mode: var(--light, screen) var(--dark, saturation);
   --button-transition-properties: color, background-color, border-color;
@@ -36,11 +38,11 @@
 }
 
 html[data-theme='light'] {
-  --light: var(--ON);
-  --dark: var(--OFF);
+  --light: var(--ON); /* stylelint-disable-line custom-property-pattern */
+  --dark: var(--OFF); /* stylelint-disable-line custom-property-pattern */
 }
 
 html[data-theme='dark'] {
-  --light: var(--OFF);
-  --dark: var(--ON);
+  --light: var(--OFF); /* stylelint-disable-line custom-property-pattern */
+  --dark: var(--ON); /* stylelint-disable-line custom-property-pattern */
 }

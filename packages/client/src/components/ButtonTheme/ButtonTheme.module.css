@@ -2,27 +2,27 @@
 /* Dark mode btn */
 
 .darkModeBtn {
-	order: 9;
 	position: relative;
 	display: flex;
 	justify-content: space-between;
+	order: 9;
 	width: 51px;
 	height: 26px;
 	padding: 4px;
-	border-radius: 50px;
 	background-color: #272727;
+	border-radius: 50px;
 }
 
 .darkModeBtn::before {
-	content: '';
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	display: block;
 	width: 24px;
 	height: 24px;
-	border-radius: 50%;
+	content: '';
 	background-color: #fff;
+	border-radius: 50%;
 }
 
 .darkModeBtnActive::before {
