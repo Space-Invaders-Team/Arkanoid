@@ -3,7 +3,8 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import { Input } from './Input/Input';
 import { Button } from '../Button';
-import { FormProps } from './typings';
+import { FormProps, PageType } from './typings';
+import * as formConstants from '../../utils/formConstants';
 import styles from './Form.module.css';
 
 export function Form({
@@ -11,16 +12,24 @@ export function Form({
   button,
   text,
   pageType,
+  onSubmitForm,
 }: FormProps) {
   const [isValid, setIsValid] = useState(false);
 
   const handleValidate = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setIsValid(evt.target.closest('form')!.checkValidity());
+    const form = evt.target.closest('form');
+    if (form !== null) setIsValid(form.checkValidity());
   };
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log('Форма отправлена');
+    const fields = Array.from(document.querySelectorAll('input'));
+    const formData = fields.reduce((acc: Record<string, string>, field: HTMLInputElement) => {
+      acc[field.name] = field.value;
+      return acc;
+    }, {});
+    onSubmitForm(formData);
+    setIsValid(false);
   };
 
   return (
@@ -31,9 +40,11 @@ export function Form({
     >
       <h1 className={styles.title}>{title}</h1>
       <fieldset
-        className={classNames(styles.fieldset, { [styles.fieldsetTwoColumns]: pageType === 'signup' })}
+        className={
+          classNames(styles.fieldset, { [styles.fieldsetTwoColumns]: pageType === PageType.Signup })
+        }
       >
-        {pageType === 'signup' && (
+        {pageType === PageType.Signup && (
           <>
             <Input
               title="First Name"
@@ -42,8 +53,8 @@ export function Form({
               type="text"
               pageType={pageType}
               required
-              pattern="^[А-ЯЁA-Z]{1,}[а-яёa-z-]+$"
-              errorMessage="Латиница или кириллица, первая буква заглавня, без пробелов, цифр и спецсимволов (допустим только дефис)"
+              pattern={formConstants.namePattern}
+              errorMessage={formConstants.nameInputError}
               handleValidate={handleValidate}
             />
             <Input
@@ -53,8 +64,8 @@ export function Form({
               type="text"
               pageType={pageType}
               required
-              pattern="^[А-ЯЁA-Z]{1,}[а-яёa-z-]+$"
-              errorMessage="Латиница или кириллица, первая буква заглавня, без пробелов, цифр и спецсимволов (допустим только дефис)"
+              pattern={formConstants.namePattern}
+              errorMessage={formConstants.nameInputError}
               handleValidate={handleValidate}
             />
           </>
@@ -67,12 +78,12 @@ export function Form({
           pageType={pageType}
           required
           minLength={3}
-          maxlength={20}
-          pattern="^(?=.*[a-zA-Z])[a-zA-Z0-9_-]+$"
-          errorMessage="Латиница, может содержать цифры, но не состоять из них, (допустимы дефис и нижнее подчёркивание)"
+          maxLength={20}
+          pattern={formConstants.loginPattern}
+          errorMessage={formConstants.loginInputError}
           handleValidate={handleValidate}
         />
-        {pageType === 'signup' && (
+        {pageType === PageType.Signup && (
           <Input
             title="E-mail"
             inputName="email"
@@ -80,8 +91,8 @@ export function Form({
             type="e-mail"
             pageType={pageType}
             required
-            pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$"
-            errorMessage="Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака»"
+            pattern={formConstants.emailPattern}
+            errorMessage={formConstants.emailInputError}
             handleValidate={handleValidate}
           />
         )}
@@ -93,12 +104,12 @@ export function Form({
           pageType={pageType}
           required
           minLength={8}
-          maxlength={40}
-          pattern="^(?=.*[0-9])(?=.*[А-ЯЁA-Z])[а-яА-ЯёЁa-zA-Z0-9]+$"
-          errorMessage="Обязательно хотя бы одна заглавная буква и цифра"
+          maxLength={40}
+          pattern={formConstants.passwordPattern}
+          errorMessage={formConstants.passwordInputError}
           handleValidate={handleValidate}
         />
-        {pageType === 'signup' && (
+        {pageType === PageType.Signup && (
           <Input
             title="Phone"
             inputName="phone"
@@ -106,8 +117,8 @@ export function Form({
             type="phone"
             pageType={pageType}
             required
-            pattern="^\+?[0-9]{10,15}$"
-            errorMessage="От 10 до 15 символов, состоит из цифр, может начинаться с символа плюс."
+            pattern={formConstants.phonePattern}
+            errorMessage={formConstants.phoneInputError}
             handleValidate={handleValidate}
           />
         )}
@@ -121,7 +132,7 @@ export function Form({
       </Button>
       <p className={styles.linkWrapper}>
         {text}
-        {pageType === 'signup'
+        {pageType === PageType.Signup
           ? <Link className={styles.link} to="/authorization">Войти</Link>
           : <Link className={styles.link} to="/registration">Регистрация</Link>}
       </p>

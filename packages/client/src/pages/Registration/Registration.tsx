@@ -1,8 +1,9 @@
 import styles from './Registration.module.css';
 import { Form } from '../../components/Form/Form';
 import { PageType } from '../../components/Form/typings';
+import { RegisterProps } from './typings';
 
-export function Registration() {
+export function Registration({ onRegister }: RegisterProps) {
   return (
     <div className={styles.container}>
       <Form
@@ -10,6 +11,7 @@ export function Registration() {
         title="Регистрация"
         button="Зарегистрироваться"
         text="Уже зарегистрированы?"
+        onSubmitForm={onRegister}
       />
     </div>
   );

@@ -1,7 +1,3 @@
-export type StringObject = {
-  [key:string]: string
-};
-
 export type InputProps = {
   inputName: string;
   placeholder: string;
@@ -11,7 +7,7 @@ export type InputProps = {
   errorMessage: string;
   required: boolean;
   minLength?: number;
-  maxlength?: number;
+  maxLength?: number;
   pattern: string;
   handleValidate: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 };
