@@ -6,11 +6,11 @@ import './styles/properties.css';
 import './index.css';
 import { Provider } from 'react-redux';
 import { App } from './components/App/App';
-import { store } from './store';
+import { setupStore } from './store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={setupStore}>
       <App />
     </Provider>
   </React.StrictMode>,
