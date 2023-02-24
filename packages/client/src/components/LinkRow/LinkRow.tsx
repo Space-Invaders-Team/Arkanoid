@@ -3,7 +3,7 @@ import { TLinkRowProps } from './typings';
 
 export function LinkRow({ rowData, path }: TLinkRowProps) {
   const navigate = useNavigate();
-  const handleRowClick = ():void => {
+  const handleRowClick = (): void => {
     navigate(`./${path}`);
   };
 

@@ -27,7 +27,7 @@ export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
         </div>
       </td>
       <td className={styles.td}>
-        <span className={styles.points}>{data.points}</span>
+        <span className={styles.points}>{data.score}</span>
       </td>
     </tr>
   );
