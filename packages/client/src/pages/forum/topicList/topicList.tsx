@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Input';
 import { LinkRow } from '../../../components/LinkRow';
+import { ButtonBack } from '../ButtonBack';
 import { topicData } from './data';
 import styles from './TopicList.module.css';
 import { TTopic } from './typings';
@@ -43,7 +44,12 @@ export function TopicList() {
   return (
     <div className={styles.topicList}>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Название форума</h1>
+        <header className={styles.header}>
+          <span className={styles.backBtn}>
+            <ButtonBack />
+          </span>
+          <h1>Название форума</h1>
+        </header>
         <table className={styles.table}>
           <thead>
             <tr>
