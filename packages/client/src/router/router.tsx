@@ -10,6 +10,7 @@ import { GamePage } from '../pages/GamePage';
 import { Messages } from '../pages/forum/Messages';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
 import { RouterProps } from './typings';
+import { Paths } from '../utils/routeConstants';
 
 export function Router(
   { isLogged,
@@ -19,32 +20,32 @@ export function Router(
 ) {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path={Paths.HOME} element={<Landing />} />
       <Route
-        path="/authorization"
+        path={Paths.AUTH}
         element={
           isLogged
-            ? (<Navigate to="/game" />)
+            ? (<Navigate to={Paths.GAME} />)
             : (<Authorization onLogin={onLogin} />)
         }
       />
       <Route
-        path="/registration"
+        path={Paths.REGISTER}
         element={
           isLogged
-            ? (<Navigate to="/game" />)
+            ? (<Navigate to={Paths.GAME} />)
             : (<Registration onRegister={onRegister} />)
         }
       />
       <Route element={<ProtectedRoute />}>
-        <Route path="/forum">
+        <Route path={Paths.FORUM}>
           <Route index element={<Forum />} />
-          <Route path="/forum/topicList/:id" element={<TopicList />} />
-          <Route path="/forum/topicList/:id/topic/:id" element={<Messages />} />
+          <Route path={Paths.TOPICLIST} element={<TopicList />} />
+          <Route path={Paths.TOPIC} element={<Messages />} />
         </Route>
-        <Route path="/game" element={<GamePage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />        
+        <Route path={Paths.GAME} element={<GamePage />} />
+        <Route path={Paths.PROFILE} element={<Profile />} />
+        <Route path={Paths.LEADERBOARD} element={<Leaderboard />} />
       </Route>
     </Routes>
   );

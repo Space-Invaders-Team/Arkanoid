@@ -2,16 +2,17 @@ import { NavLink, Link } from 'react-router-dom';
 import { ButtonTheme } from '../ButtonTheme';
 import { NavigationProps } from './typings';
 import styles from './Navigation.module.css';
+import { Paths } from '../../utils/routeConstants';
 
 export function Navigation({ isLogged, onLogout }: NavigationProps) {
   const links = [
-    { url: '/', title: 'Главная', protect: 'always' },
-    { url: '/authorization', title: 'Вход', protect: false },
-    { url: '/registration', title: 'Регистрация', protect: false },
-    { url: '/game', title: 'Игра', protect: true },
-    { url: '/leaderboard', title: 'Рейтинг игроков', protect: true },
-    { url: '/forum', title: 'Форум', protect: true },
-    { url: '/profile', title: 'Профиль', protect: true },
+    { url: Paths.HOME, title: 'Главная', protect: 'always' },
+    { url: Paths.AUTH, title: 'Вход', protect: false },
+    { url: Paths.REGISTER, title: 'Регистрация', protect: false },
+    { url: Paths.GAME, title: 'Игра', protect: true },
+    { url: Paths.LEADERBOARD, title: 'Рейтинг игроков', protect: true },
+    { url: Paths.FORUM, title: 'Форум', protect: true },
+    { url: Paths.PROFILE, title: 'Профиль', protect: true },
   ];
 
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
@@ -48,7 +49,7 @@ export function Navigation({ isLogged, onLogout }: NavigationProps) {
             {isLogged && (
               <li className={styles.navListItem}>
                 <Link
-                  to="/"
+                  to={Paths.HOME}
                   className={normalLink}
                   onClick={() => onLogout()}
                 >
