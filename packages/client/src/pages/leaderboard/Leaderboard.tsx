@@ -70,16 +70,15 @@ export function Leaderboard() {
   ]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchLeaders() {
+  function fetchLeaders() {
     const promise = leaderboardAPI.getAllLiders({
       ratingFieldName: 'score',
       cursor: 0,
       limit: 15,
     });
 
-    promise.then(
-      (result) => {
-        setLoading(false);
+    promise
+      .then((result) => {
         setLeaders(result.map((item: Record<string, TLeaderBoard>, index: number) => {
           item.data.place = index + 1;
           if (!item.data.name) {
@@ -87,11 +86,13 @@ export function Leaderboard() {
           }
           return item.data;
         }));
-      },
-      (error) => {
+      })
+      .catch((error) => {
         throw Error(`Something wrong with Leaderboard - ${error}`);
-      },
-    );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
@@ -119,8 +120,8 @@ export function Leaderboard() {
   const currentPlayerId = 3;
 
   return (
-    <div className={styles.leaderboard}>
-      <div className={styles.wrapper}>
+    <main className={styles.leaderboard}>
+      <section className={styles.wrapper}>
         <h1 className={styles.title}>Рейтинг игроков</h1>
 
         {loading
@@ -141,7 +142,7 @@ export function Leaderboard() {
             </table>
           )}
 
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

@@ -1,14 +1,11 @@
+import { BASE_URL_YANDEX, LEADERBOARD } from '../../utils/apiConstans';
 import { TLeaderboard, TLider } from './typings';
 
 class LeaderboardAPI {
-  constructor(baseUrl: string) {
-    this._baseUrl = baseUrl;
-  }
-
-  private _baseUrl: string;
+  constructor(private _baseUrl: string) {}
 
   async getAllLiders(data: TLeaderboard) {
-    const response = await fetch(`${this._baseUrl}/all`, {
+    const response: Response = await fetch(`${this._baseUrl}/all`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -26,7 +23,7 @@ class LeaderboardAPI {
   }
 
   async addLider(data: TLider) {
-    const response = await fetch(`${this._baseUrl}`, {
+    const response: Response = await fetch(`${this._baseUrl}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -41,4 +38,4 @@ class LeaderboardAPI {
   }
 }
 
-export const leaderboardAPI = new LeaderboardAPI('https://ya-praktikum.tech/api/v2/leaderboard');
+export const leaderboardAPI = new LeaderboardAPI(`${BASE_URL_YANDEX}${LEADERBOARD}`);
