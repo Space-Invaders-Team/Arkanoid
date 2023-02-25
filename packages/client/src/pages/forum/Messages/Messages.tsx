@@ -24,13 +24,13 @@ export function Messages() {
   };
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <header className={styles.header}>
         <span className={styles.backBtn}>
           <ButtonBack />
         </span>
 
-        <h1>Название темы</h1>
+        <h1 className={styles.title}>Название темы</h1>
       </header>
       <section className={styles.section}>
         {messData.map(
@@ -98,6 +98,6 @@ export function Messages() {
           Отправить
         </Button>
       </footer>
-    </div>
+    </main>
   );
 }

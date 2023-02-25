@@ -20,21 +20,17 @@
 }
 
 .title {
-  flex-basis: 100%;
-  font-size: 4em;
-	font-weight: 700;
+  margin: 0;
+  line-height: 46px;
 	color: var(--font-secondary-color);
+  text-align: center;
 }
 
 .header {
   position: relative;
   width: 100%;
   padding-top: 30px;
-}
-
-h1 {
-  margin: 0;
-  text-align: center;
+  padding-bottom: 24px;
 }
 
 .backBtn {

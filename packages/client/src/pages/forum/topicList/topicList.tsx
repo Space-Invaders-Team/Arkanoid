@@ -42,14 +42,14 @@ export function TopicList() {
   );
 
   return (
-    <div className={styles.topicList}>
-      <div className={styles.wrapper}>
-        <header className={styles.header}>
-          <span className={styles.backBtn}>
-            <ButtonBack />
-          </span>
-          <h1>Название форума</h1>
-        </header>
+    <main className={styles.topicList}>
+      <header className={styles.header}>
+        <span className={styles.backBtn}>
+          <ButtonBack />
+        </span>
+        <h1 className={styles.title}>Название форума</h1>
+      </header>
+      <section className={styles.wrapper}>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -90,8 +90,7 @@ export function TopicList() {
             </Button>
           </div>
         </div>
-
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
