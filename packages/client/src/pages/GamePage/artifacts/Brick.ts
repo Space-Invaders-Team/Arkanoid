@@ -5,26 +5,24 @@ export class Brick {
 
   public static readonly height = 25;
 
-  private readonly _color = '#0095DD';
+  private readonly _color = '#0095dd';
 
   private _isActive = true;
-
-  private _x: number;
-
-  private _y: number;
 
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
     private readonly ball: Ball,
-    x: number,
-    y: number,
+    private _x: number,
+    private _y: number,
   ) {
-    this._x = x;
-    this._y = y;
   }
 
   public get isActive(): boolean {
     return this._isActive;
+  }
+
+  public set isActive(value: boolean) {
+    this._isActive = value;
   }
 
   public set x(value: number) {
@@ -52,7 +50,7 @@ export class Brick {
     this.ctx.closePath();
   }
 
-  public detectCollision() {
+  public isDetectedCollision() {
     if (this._isActive) {
       if (this.isBallInBrick()) {
         const brickCenterCoords = {
@@ -73,7 +71,11 @@ export class Brick {
         }
 
         this._isActive = false;
+
+        return true;
       }
     }
+
+    return false;
   }
 }

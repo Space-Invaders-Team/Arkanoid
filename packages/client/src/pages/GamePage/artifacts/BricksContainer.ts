@@ -14,6 +14,7 @@ export class BricksContainer {
     private readonly ctx: CanvasRenderingContext2D,
     private readonly canvasWidth: number,
     private readonly ball: Ball,
+    private readonly increaseScore: () => void,
   ) {
     this._columnsAmount = Math.trunc(canvasWidth / (Brick.width + this._bricksGap));
 
@@ -26,7 +27,15 @@ export class BricksContainer {
     }
   }
 
-  draw() {
+  public resetBricks() {
+    this._bricksMatrix.forEach((column) => {
+      column.forEach((row) => {
+        row.isActive = true;
+      });
+    });
+  }
+
+  public draw() {
     const {
       canvasWidth,
       _columnsAmount: columnsAmount,
@@ -34,7 +43,7 @@ export class BricksContainer {
     } = this;
     const bricksTotalWidth = columnsAmount * (Brick.width + bricksGap) - bricksGap;
     const leftOffset = (canvasWidth - bricksTotalWidth) / 2;
-    const topOffset = 5;
+    const topOffset = 55;
 
     for (let i = 0; i < this._bricksMatrix.length; i++) {
       for (let j = 0; j < this._bricksMatrix[i].length; j++) {
@@ -45,7 +54,10 @@ export class BricksContainer {
 
         if (brick.isActive) {
           brick.draw();
-          brick.detectCollision();
+          const hasCollision = brick.isDetectedCollision();
+          if (hasCollision) {
+            this.increaseScore();
+          }
         }
       }
     }

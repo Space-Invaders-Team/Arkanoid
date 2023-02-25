@@ -7,21 +7,22 @@ export class Ball {
 
   private readonly _speed = 6;
 
-  private _x: number;
+  private readonly _initialY: number;
 
   private _y: number;
 
   private _dx = this._speed;
 
-  private _dy = this._speed;
+  private _dy = -this._speed;
 
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
-    x: number,
-    y: number,
+    private _x: number,
+    canvasHeight: number,
+    paddleOffset: number,
   ) {
-    this._x = x;
-    this._y = y;
+    this._y = canvasHeight - this._radius - paddleOffset;
+    this._initialY = this._y;
   }
 
   public get radius(): number {
@@ -111,5 +112,10 @@ export class Ball {
       (this._y + yEdgeMultiplier * this._radius - brickCenter.y)
       / (this._x + xEdgeMultiplier * this._radius - brickCenter.x)
     );
+  }
+
+  public resetY() {
+    this._y = this._initialY;
+    this._dy = -this._speed;
   }
 }
