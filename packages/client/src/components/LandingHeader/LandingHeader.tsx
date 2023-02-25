@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Paths } from '../../utils/routeConstants';
 import styles from './LandingHeader.module.css';
 
 export function LandingHeader() {
@@ -11,7 +12,7 @@ export function LandingHeader() {
         <div className={styles.headerText}>
           <h2>Испытай себя в лучшей версии классической игры!</h2>
         </div>
-        <Link className={styles.linkBtn} to="/authorization">Войти</Link>
+        <Link className={styles.linkBtn} to={Paths.AUTH}>Войти</Link>
       </div>
     </header>
   );

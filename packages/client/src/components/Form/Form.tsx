@@ -6,6 +6,7 @@ import { Button } from '../Button';
 import { FormProps, PageType } from './typings';
 import * as formConstants from '../../utils/formConstants';
 import styles from './Form.module.css';
+import { Paths } from '../../utils/routeConstants';
 
 export function Form({
   title,
@@ -133,8 +134,8 @@ export function Form({
       <p className={styles.linkWrapper}>
         {text}
         {pageType === PageType.Signup
-          ? <Link className={styles.link} to="/authorization">Войти</Link>
-          : <Link className={styles.link} to="/registration">Регистрация</Link>}
+          ? <Link className={styles.link} to={Paths.AUTH}>Войти</Link>
+          : <Link className={styles.link} to={Paths.REGISTER}>Регистрация</Link>}
       </p>
     </form>
   );
