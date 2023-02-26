@@ -1,38 +1,14 @@
 import { useEffect, useState } from 'react';
-import { leaderboardAPI } from '../../api/LeaderboardAPI/LeaderboardAPI';
 import { TableHead } from '../../components/Leaderboard/TableHead';
 import { TableRow } from '../../components/Leaderboard/TableRow';
 import { Loader } from '../../components/Loader';
+import { useLeaders } from '../../hooks/useLeaders';
 import styles from './Leaderboard.module.css';
 import { Order, TLeaderBoard } from './typings';
 
 export function Leaderboard() {
   const [leaders, setLeaders] = useState<TLeaderBoard[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  function fetchLeaders() {
-    leaderboardAPI.getAllLiders({
-      ratingFieldName: 'score',
-      cursor: 0,
-      limit: 15,
-    })
-
-      .then((result) => {
-        setLeaders(result.map((item: Record<string, TLeaderBoard>, index: number) => {
-          item.data.place = index + 1;
-          if (!item.data.name) {
-            item.data.name = 'No name';
-          }
-          return item.data;
-        }));
-      })
-      .catch((error) => {
-        throw Error(`Something wrong with Leaderboard - ${error}`);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
+  const [fetchLeaders, isLoading, leadersError] = useLeaders(setLeaders);
 
   useEffect(() => {
     fetchLeaders();
@@ -63,24 +39,27 @@ export function Leaderboard() {
       <section className={styles.wrapper}>
         <h1 className={styles.title}>Рейтинг игроков</h1>
 
-        {loading
+        {isLoading
           ? <Loader />
           : (
             <table className={styles.table}>
               <TableHead sorting={sortLeaders} />
               <tbody>
-                {leaders.map((leader, index) => (
-                  <TableRow row={{
-                    data: leader,
-                    key: leader.id,
-                    iam: (index === currentPlayerId),
-                  }}
-                  />
-                ))}
+
+                {leaders.length !== 0
+                  ? leaders.map((leader, index) => (
+                    <TableRow row={{
+                      data: leader,
+                      key: leader.id + leader.name,
+                      iam: (index === currentPlayerId),
+                    }}
+                    />
+                  ))
+                  : <tr><td colSpan={3} align="center">Вы можете быть первым!</td></tr>}
               </tbody>
             </table>
           )}
-
+        {leadersError && <div>Произошла ошибка при загрузке данных</div>}
       </section>
     </main>
   );

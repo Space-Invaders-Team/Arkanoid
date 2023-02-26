@@ -13,7 +13,7 @@ export type TLeaderBoard = {
 
 export type TLeaderBoardProps = {
   data: TLeaderBoard;
-  key: number;
+  key: number | string;
   iam: boolean;
 };
 
