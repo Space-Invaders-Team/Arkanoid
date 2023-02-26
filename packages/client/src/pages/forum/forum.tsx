@@ -6,21 +6,21 @@ import { TForum } from './typings';
 const rowsData: TForum[] = [
   {
     id: 1,
-    name: 'Первый форум',
+    name: 'Арканоид',
     countTopic: 15,
     countAnswer: 20,
   },
 
   {
     id: 2,
-    name: 'Второй форум',
+    name: 'Другие игры',
     countTopic: 5,
     countAnswer: 12,
   },
 
   {
     id: 3,
-    name: 'Третий форум',
+    name: 'Флудилка',
     countTopic: 11,
     countAnswer: 23,
   },
