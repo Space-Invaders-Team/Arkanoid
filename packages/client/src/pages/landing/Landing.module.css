@@ -5,10 +5,7 @@
 
 .article {
   max-width: 70%;
-  padding-right: 30px;
-  padding-left: 30px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: auto;
   font-size: 18px;
   line-height: 1.4;
   text-align: center;
