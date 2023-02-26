@@ -1,5 +1,5 @@
 import styles from './Registration.module.css';
-import { Form } from '../../components/Form/Form';
+import { Form } from '../../components/Form';
 import { PageType } from '../../components/Form/typings';
 import { RegisterProps } from './typings';
 

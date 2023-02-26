@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import classNames from 'classnames';
-import { Input } from './Input/Input';
+import { Input } from './Input';
 import { Button } from '../Button';
 import { FormProps, PageType } from './typings';
 import * as formConstants from '../../utils/formConstants';
