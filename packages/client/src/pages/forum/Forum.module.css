@@ -25,10 +25,6 @@
   background-color: var(--secondary-color);
 }
 
-.table, .table th, .table td {
-  border: 2px solid var(--border-color);
-}
-
 .table th, .table td {
   padding: 12px;
 }
@@ -37,6 +33,14 @@
   height: 50px;
   color: var(--accent-color);
   background-color: var(--font-secondary-color);
+}
+
+.table th:first-child {
+  border-radius: 10px 0 0;
+}
+
+.table th:last-child {
+  border-radius: 0 10px 0 0;
 }
 
 .table td {

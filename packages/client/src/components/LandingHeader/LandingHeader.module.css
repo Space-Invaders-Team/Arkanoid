@@ -1,6 +1,8 @@
 /* Header */
 .header {
 	display: flex;
+  flex-direction: column;
+  align-items: center;
 	justify-content: center;
 	min-height: 695px;
 	color: var(--header-text-color);
@@ -53,6 +55,11 @@
   border: none;
   border-radius: 10px;
   transition: color .25s, background-color .25s;
+}
+
+.downDouble {
+  width: 90px;
+  padding-top: 20px;
 }
 
 @media (hover: hover) and (pointer: fine) {

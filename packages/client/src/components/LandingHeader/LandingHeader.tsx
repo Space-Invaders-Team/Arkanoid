@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Paths } from '../../utils/routeConstants';
 import styles from './LandingHeader.module.css';
+import downDouble from '../../assets/icons/downDouble.svg';
 
 export function LandingHeader() {
   return (
@@ -14,6 +15,8 @@ export function LandingHeader() {
         </div>
         <Link className={styles.linkBtn} to={Paths.AUTH}>Войти</Link>
       </div>
+
+      <img src={downDouble} alt="Scroll down" className={styles.downDouble} />
     </header>
   );
 }

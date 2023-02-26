@@ -5,7 +5,7 @@
   justify-content: center;
   width: 100%;
   min-height: calc(100vh - 58px);
-  padding: 50px;
+  padding: 50px 20px;
   background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
 }
 
@@ -15,8 +15,10 @@
   margin-bottom: 24px;
 }
 
-h1 {
+.title {
   margin: 0;
+  line-height: 46px;
+	color: var(--font-secondary-color);
   text-align: center;
 }
 
