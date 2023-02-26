@@ -3,7 +3,6 @@
     "stylelint-config-standard"
   ],
   "rules": {
-    "selector-class-pattern": null,
-    "selector-pseudo-element-colon-notation": null
+    "selector-class-pattern": null
   }
 }
