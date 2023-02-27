@@ -30,6 +30,7 @@
   --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000);
 
   /* Свойства */
+  --font-family: "Jura", "Arial", sans-serif;
   --arkanoid-title-blend-mode: var(--light, screen) var(--dark, saturation);
   --button-transition-properties: color, background-color, border-color;
   --button-transition-durations: 250ms, 250ms, 250ms;

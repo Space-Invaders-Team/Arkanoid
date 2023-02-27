@@ -1,9 +1,9 @@
 import { Ball } from './Ball';
 
 export class Brick {
-  public static readonly width = 60;
+  public static readonly width = 80;
 
-  public static readonly height = 25;
+  public static readonly height = 30;
 
   private readonly _color = '#0095dd';
 
@@ -33,13 +33,37 @@ export class Brick {
     this._y = value;
   }
 
+  private getClosestSides() {
+    const { x: ballX, y: ballY } = this.ball;
+    const { _x: brickX, _y: brickY } = this;
+    const { width: brickWidth, height: brickHeight } = Brick;
+
+    let closestBrickX = ballX;
+    let closestBrickY = ballY;
+
+    if (ballX < brickX) {
+      closestBrickX = brickX;
+    } else if (ballX > brickX + brickWidth) {
+      closestBrickX = brickX + brickWidth;
+    }
+
+    if (ballY < brickY) {
+      closestBrickY = brickY;
+    } else if (ballY > brickY + brickHeight) {
+      closestBrickY = brickY + brickHeight;
+    }
+
+    return { closestBrickX, closestBrickY };
+  }
+
   private isBallInBrick() {
-    return (
-      this.ball.getEdgeCoord('right') > this._x
-      && this.ball.getEdgeCoord('left') < this._x + Brick.width
-      && this.ball.getEdgeCoord('bottom') > this._y
-      && this.ball.getEdgeCoord('top') < this._y + Brick.height
-    );
+    const { x: ballX, y: ballY, radius: ballRadius } = this.ball;
+    const { closestBrickX, closestBrickY } = this.getClosestSides();
+    const legX = ballX - closestBrickX;
+    const legY = ballY - closestBrickY;
+    const distance = Math.sqrt((legX ** 2) + (legY ** 2));
+
+    return distance <= ballRadius;
   }
 
   public draw() {
@@ -53,24 +77,18 @@ export class Brick {
   public isDetectedCollision() {
     if (this._isActive) {
       if (this.isBallInBrick()) {
-        const brickCenterCoords = {
-          x: this._x + (Brick.width / 2),
-          y: this._y + (Brick.height / 2),
-        };
+        this._isActive = false;
 
-        const brickTangent = Brick.height / Brick.width;
-        const ballTangent = Math.abs(this.ball.getTangent(brickCenterCoords));
+        const isBallBetweenTopAndBottom = (
+          this._y <= this.ball.y
+          && this.ball.y <= this._y + Brick.height
+        );
 
-        if (ballTangent < brickTangent) {
+        if (isBallBetweenTopAndBottom) {
           this.ball.flipX();
-        } else if (ballTangent > brickTangent) {
-          this.ball.flipY();
         } else {
-          this.ball.flipX();
           this.ball.flipY();
         }
-
-        this._isActive = false;
 
         return true;
       }
