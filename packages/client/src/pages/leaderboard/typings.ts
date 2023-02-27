@@ -7,13 +7,13 @@ export type TLeaderBoard = {
   id: number;
   name: string;
   avatar?: string;
-  points: number;
+  score: number;
   place: number;
 };
 
 export type TLeaderBoardProps = {
   data: TLeaderBoard;
-  key: number;
+  key: number | string;
   iam: boolean;
 };
 
