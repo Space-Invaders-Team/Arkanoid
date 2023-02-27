@@ -6,7 +6,7 @@ export class BricksContainer {
 
   private readonly _columnsAmount: number;
 
-  private readonly _bricksGap = 10;
+  private readonly _bricksGap = 5;
 
   private readonly _bricksMatrix: Brick[][] = [];
 

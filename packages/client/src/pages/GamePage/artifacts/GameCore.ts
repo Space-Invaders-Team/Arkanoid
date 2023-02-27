@@ -94,16 +94,13 @@ export class GameCore {
     this.onChangeStatus(status);
   }
 
-  private drawScore() {
-    this.ctx.font = '32px Jura';
-    this.ctx.fillStyle = '#0095dd';
-    this.ctx.fillText(`Очки: ${this._score}`, 8, 32);
-  }
+  private drawText(text: string, x: number, y: number) {
+    const fontFamily = getComputedStyle(document.body)
+      .getPropertyValue('--font-family') ?? 'Aria, sans-serif';
 
-  private drawLives() {
-    this.ctx.font = '32px Jura';
+    this.ctx.font = `32px ${fontFamily}`;
     this.ctx.fillStyle = '#0095dd';
-    this.ctx.fillText(`Жизни: ${this._lives}`, this.canvas.width - 150, 32);
+    this.ctx.fillText(text, x, y);
   }
 
   public setInitialState = () => {
@@ -144,32 +141,39 @@ export class GameCore {
     paddle.draw();
     ball.draw();
     bricks.draw();
-    this.drawScore();
-    this.drawLives();
+    this.drawText(`Очки: ${this._score}`, 8, 32);
+    this.drawText(`Жизни: ${this._lives}`, this.canvas.width - 150, 32);
 
     const canvasRightEdgeX = canvas.width - ball.radius;
 
-    if (ball.nextX > canvasRightEdgeX || ball.nextX < ball.radius) {
+    if (ball.x > canvasRightEdgeX || ball.x < ball.radius) {
       ball.flipX();
     }
 
     const canvasBottomEdgeY = canvas.height - ball.radius - paddle.heightWithOffset;
 
-    if (ball.nextY < ball.radius) {
+    if (ball.y < ball.radius) {
       ball.flipY();
-    } else if (ball.nextY > canvasBottomEdgeY) {
+    } else if (ball.y > canvasBottomEdgeY) {
       const isBallIntoPaddle = (
         ball.x > paddle.x
         && ball.x < paddle.x + paddle.width
       );
 
       if (isBallIntoPaddle) {
-        ball.flipY();
+        const shift = (
+          (paddle.x + paddle.width / 2 - ball.x)
+          / (paddle.width / 2)
+        );
+        const shiftCoef = shift / 2 + 0.5;
+
+        ball.angle = -(shiftCoef * (Math.PI / 2) + Math.PI / 4);
       } else {
         this._lives--;
         this._status = GameStatus.PREPARING;
+        ball.flipY();
 
-        if (this._lives < 0) {
+        if (this._lives <= 0) {
           this.changeUIStatus(GameStatus.LOSE);
         }
       }
