@@ -4,6 +4,7 @@ import { BricksContainer } from './BricksContainer';
 import { GameStatus } from '../typings';
 
 const SPACEBAR_KEY = ' ';
+const LIVES_AMOUNT = 2;
 
 export class GameCore {
   private readonly _ball: Ball;
@@ -12,16 +13,20 @@ export class GameCore {
 
   private readonly _bricks: BricksContainer;
 
-  private _status: GameStatus;
+  private _status = GameStatus.ONBOARDING;
+
+  private _lives = LIVES_AMOUNT;
+
+  private _score = 0;
 
   constructor(
     private readonly canvas: HTMLCanvasElement,
     private readonly ctx: CanvasRenderingContext2D,
+    private readonly onChangeStatus: (status: GameStatus) => void,
   ) {
-    this._ball = new Ball(ctx, canvas.width / 2, canvas.height - 30);
     this._paddle = new Paddle(ctx, canvas.width, canvas.height);
-    this._bricks = new BricksContainer(ctx, canvas.width, this._ball);
-    this._status = GameStatus.ONBOARDING;
+    this._ball = new Ball(ctx, canvas.width / 2, canvas.height, this._paddle.heightWithOffset);
+    this._bricks = new BricksContainer(ctx, canvas.width, this._ball, this.increaseScore);
 
     document.addEventListener('keydown', this.startGame);
     document.addEventListener('keydown', this._paddle.keyHandler, false);
@@ -33,6 +38,18 @@ export class GameCore {
     canvas.addEventListener('mouseout', this.toggleCursor);
   }
 
+  public get status(): GameStatus {
+    return this._status;
+  }
+
+  public set status(value: GameStatus) {
+    this._status = value;
+  }
+
+  private increaseScore = () => {
+    this._score += 10;
+  };
+
   private startGame = (event: KeyboardEvent | MouseEvent) => {
     const isSpacebarPressed = event instanceof KeyboardEvent && event.key === SPACEBAR_KEY;
 
@@ -43,7 +60,7 @@ export class GameCore {
     }
   };
 
-  private toggleCursor = (event: MouseEvent) => {
+  private toggleCursor(event: MouseEvent) {
     if (event.type === 'mouseover') {
       document.body.style.cursor = 'none';
 
@@ -51,7 +68,7 @@ export class GameCore {
     }
 
     document.body.style.cursor = 'initial';
-  };
+  }
 
   private movePaddleByMouse = (event: MouseEvent) => {
     this._paddle.moveByMouse(event.offsetX);
@@ -61,7 +78,7 @@ export class GameCore {
     }
   };
 
-  private followBallToPaddle(paddleXCoord: number) {
+  private followBallToPaddle = (paddleXCoord: number) => {
     const paddleTop = this.canvas.height - this._paddle.heightWithOffset;
     const paddleMiddle = Math.min(
       paddleXCoord + this._paddle.width / 2,
@@ -70,15 +87,49 @@ export class GameCore {
 
     this._ball.moveByX(paddleMiddle);
     this._ball.moveByY(paddleTop - this._ball.radius);
+  };
+
+  private changeUIStatus(status: GameStatus) {
+    this._status = status;
+    this.onChangeStatus(status);
   }
 
-  public get status(): GameStatus {
-    return this._status;
+  private drawScore() {
+    this.ctx.font = '32px Jura';
+    this.ctx.fillStyle = '#0095dd';
+    this.ctx.fillText(`Очки: ${this._score}`, 8, 32);
   }
 
-  public set status(value: GameStatus) {
-    this._status = value;
+  private drawLives() {
+    this.ctx.font = '32px Jura';
+    this.ctx.fillStyle = '#0095dd';
+    this.ctx.fillText(`Жизни: ${this._lives}`, this.canvas.width - 150, 32);
   }
+
+  public setInitialState = () => {
+    const {
+      canvas,
+      ctx,
+      _paddle: paddle,
+      _ball: ball,
+      _bricks: bricks,
+    } = this;
+
+    this._score = 0;
+    this._lives = LIVES_AMOUNT;
+    this._status = GameStatus.PREPARING;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    paddle.draw();
+    ball.resetY();
+    ball.draw();
+    bricks.resetBricks();
+    bricks.draw();
+  };
+
+  public startNewGame = () => {
+    this.setInitialState();
+  };
 
   public draw = () => {
     const {
@@ -93,6 +144,8 @@ export class GameCore {
     paddle.draw();
     ball.draw();
     bricks.draw();
+    this.drawScore();
+    this.drawLives();
 
     const canvasRightEdgeX = canvas.width - ball.radius;
 
@@ -105,14 +158,20 @@ export class GameCore {
     if (ball.nextY < ball.radius) {
       ball.flipY();
     } else if (ball.nextY > canvasBottomEdgeY) {
-      const isBallIntoPaddle = ball.x > paddle.x
-        && ball.x < paddle.x + paddle.width;
+      const isBallIntoPaddle = (
+        ball.x > paddle.x
+        && ball.x < paddle.x + paddle.width
+      );
 
       if (isBallIntoPaddle) {
         ball.flipY();
       } else {
-        // console.log('game over');
-        // document.location.reload();
+        this._lives--;
+        this._status = GameStatus.PREPARING;
+
+        if (this._lives < 0) {
+          this.changeUIStatus(GameStatus.LOSE);
+        }
       }
     }
 
@@ -127,6 +186,8 @@ export class GameCore {
       ball.moveByY();
     }
 
-    requestAnimationFrame(this.draw);
+    if (![GameStatus.WIN, GameStatus.LOSE].includes(this._status)) {
+      requestAnimationFrame(this.draw);
+    }
   };
 }

@@ -7,7 +7,7 @@ import type { Props } from './typings';
 
 const titleMap = new Map<GameStatus, string>([
   [GameStatus.WIN, 'Уровень пройден!'],
-  [GameStatus.LOSE, 'Поражение!'],
+  [GameStatus.LOSE, 'Потрачено!'],
 ]);
 
 const primaryButtonMap = new Map<GameStatus, string>([
