@@ -96,7 +96,7 @@ export class GameCore {
 
   private drawText(text: string, x: number, y: number) {
     const fontFamily = getComputedStyle(document.body)
-      .getPropertyValue('--font-family') ?? 'Aria, sans-serif';
+      .getPropertyValue('--font-family') ?? 'Arial, sans-serif';
 
     this.ctx.font = `32px ${fontFamily}`;
     this.ctx.fillStyle = '#0095dd';
