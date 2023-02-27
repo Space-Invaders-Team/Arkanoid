@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint:scripts": "eslint . --fix",
-    "lint:styles": "stylelint 'src/**/*.css' --fix",
+    "lint:styles": "stylelint src/**/*.css --fix",
     "lint": "npm-run-all -c -p lint:scripts lint:styles",
     "format": "prettier --write .",
     "test": "jest ./"

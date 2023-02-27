@@ -1,73 +1,20 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TableHead } from '../../components/Leaderboard/TableHead';
 import { TableRow } from '../../components/Leaderboard/TableRow';
+import { Loader } from '../../components/Loader';
+import { useLeaders } from '../../hooks/useLeaders';
 import styles from './Leaderboard.module.css';
 import { Order, TLeaderBoard } from './typings';
 
 export function Leaderboard() {
-  const [leaders, setLeaders] = useState<TLeaderBoard[]>([
-    {
-      id: 123,
-      name: 'Безумный Майк',
-      points: 999999,
-      place: 1,
-    },
-    {
-      id: 1234,
-      name: 'Вася Петров',
-      points: 44234,
-      place: 2,
-    },
-    {
-      id: 12345,
-      name: 'Аня Иванов',
-      points: 23322,
-      place: 3,
-    },
-    {
-      id: 123456,
-      name: 'Владимир Ильич',
-      points: 20000,
-      place: 4,
-    },
-    {
-      id: 3213,
-      name: 'Кот',
-      avatar: '/avatar.jpg',
-      points: 12,
-      place: 5,
-    },
-    {
-      id: 12123,
-      name: 'Кот',
-      avatar: '/avatar.jpg',
-      points: 12,
-      place: 6,
-    },
-    {
-      id: 32,
-      name: 'Кот',
-      avatar: '/avatar.jpg',
-      points: 12,
-      place: 7,
-    },
-    {
-      id: 1233,
-      name: 'Кот',
-      avatar: '/avatar.jpg',
-      points: 12,
-      place: 8,
-    },
-    {
-      id: 33,
-      name: 'Кот',
-      avatar: '/avatar.jpg',
-      points: 12,
-      place: 9,
-    },
-  ]);
+  const [leaders, setLeaders] = useState<TLeaderBoard[]>([]);
+  const [fetchLeaders, isLoading, leadersError] = useLeaders(setLeaders);
 
-  const sortLeaders = (sortField: keyof Omit<TLeaderBoard, 'avatar'>, orders: Order) : void => {
+  useEffect(() => {
+    fetchLeaders();
+  }, []);
+
+  const sortLeaders = (sortField: keyof Omit<TLeaderBoard, 'avatar'>, orders: Order): void => {
     if (sortField !== null) {
       setLeaders([...leaders].sort((a, b) => {
         if (a[sortField] < b[sortField]) {
@@ -81,26 +28,39 @@ export function Leaderboard() {
     }
   };
 
-  const currentPlayerId = 3; // id текущего игрока, пока захардкодено
+  /**
+   * id текущего игрока - пока захардкодено
+   * TODO: вытащить id текущего пользователя
+   */
+  const currentPlayerId = 3;
 
   return (
-    <div className={styles.leaderboard}>
-      <div className={styles.wrapper}>
+    <main className={styles.leaderboard}>
+      <section className={styles.wrapper}>
         <h1 className={styles.title}>Рейтинг игроков</h1>
-        <table className={styles.table}>
-          <TableHead sorting={sortLeaders} />
-          <tbody>
-            {leaders.map((leader, index) => (
-              <TableRow row={{
-                data: leader,
-                key: leader.id,
-                iam: (index === currentPlayerId),
-              }}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+
+        {isLoading
+          ? <Loader />
+          : (
+            <table className={styles.table}>
+              <TableHead sorting={sortLeaders} />
+              <tbody>
+
+                {leaders.length !== 0
+                  ? leaders.map((leader, index) => (
+                    <TableRow row={{
+                      data: leader,
+                      key: leader.id + leader.name,
+                      iam: (index === currentPlayerId),
+                    }}
+                    />
+                  ))
+                  : <tr><td colSpan={3} align="center">Вы можете быть первым!</td></tr>}
+              </tbody>
+            </table>
+          )}
+        {leadersError && <div>Произошла ошибка при загрузке данных</div>}
+      </section>
+    </main>
   );
 }

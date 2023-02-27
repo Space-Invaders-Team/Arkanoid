@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Sorting, SortEventProps, Order, TLeaderBoard } from '../../../pages/leaderboard/typings';
 import styles from './TableHead.module.css';
 
-export function TableHead({ sorting } : SortEventProps) {
+export function TableHead({ sorting }: SortEventProps) {
   const [selectedSort, setSelectedSort] = useState<Sorting>({
-    sort: 'points',
+    sort: 'score',
     order: Order.DESC,
   });
 
@@ -21,8 +21,8 @@ export function TableHead({ sorting } : SortEventProps) {
     ? selectedSort.order
     : Order.DESC;
 
-  const pointsSort: keyof TLeaderBoard = 'points';
-  const pointsOrder: Order = selectedSort.sort === pointsSort
+  const scoreSort: keyof TLeaderBoard = 'score';
+  const scoreOrder: Order = selectedSort.sort === scoreSort
     ? selectedSort.order
     : Order.ASC;
 
@@ -39,19 +39,19 @@ export function TableHead({ sorting } : SortEventProps) {
             data-sort={nameSort}
             data-order={nameOrder}
           >
-            Name
+            Имя
           </button>
         </th>
         <th className={`${styles.th} ${styles.points}`}>
           <button
             className={styles.button}
             type="button"
-            onClick={() => changeSort(pointsSort, pointsOrder)}
-            data-active={selectedSort.sort === pointsSort ? 'true' : 'false'}
-            data-sort={pointsSort}
-            data-order={pointsOrder}
+            onClick={() => changeSort(scoreSort, scoreOrder)}
+            data-active={selectedSort.sort === scoreSort ? 'true' : 'false'}
+            data-sort={scoreSort}
+            data-order={scoreOrder}
           >
-            Points
+            Очки
           </button>
         </th>
       </tr>
