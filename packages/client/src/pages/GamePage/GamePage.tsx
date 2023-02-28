@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { drawGame } from './utils/drawGame';
-import { StartScreen } from '../../components/game_screens/StartScreen';
-import { EndScreen } from '../../components/game_screens/EndScreen';
+import { EndScreen, StartScreen } from '../../components/GameScreens';
 import styles from './GamePage.module.css';
 import { GameStatus } from './typings';
 import type { GameCore } from './artifacts';
@@ -16,10 +15,6 @@ export function GamePage() {
     if (gameRef.current) {
       gameRef.current.status = GameStatus.PREPARING;
     }
-  };
-
-  const handleClickNextLevel = () => {
-    console.log('Перейти на следующий уровень');
   };
 
   const handleClickStartAgain = () => {
@@ -51,8 +46,7 @@ export function GamePage() {
       GameStatus.WIN,
       <EndScreen
         status={gameStatus}
-        onClickPrimaryBtn={handleClickNextLevel}
-        onClickSecondaryBtn={handleClickStartAgain}
+        onClickPrimaryBtn={handleClickStartAgain}
       />,
     ],
     [
@@ -66,7 +60,10 @@ export function GamePage() {
 
   useEffect(() => {
     setIsRunStartAnimation(true);
-    drawGame(canvasRef, gameRef, setGameStatus);
+
+    if (!gameRef.current) {
+      drawGame(canvasRef, gameRef, setGameStatus);
+    }
   }, []);
 
   useEffect(() => {

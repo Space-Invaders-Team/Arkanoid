@@ -3,12 +3,13 @@
 }
 
 .descrWrapper {
-  padding: 32px;
+  padding: 64px 32px;
   color: var(--game-descr-font-color);
   text-align: center;
   background-color: var(--game-descr-bg-color);
   border: 4px solid var(--border-color);
   border-radius: 8px;
+  margin-top: auto;
 }
 
 .descrTitle {

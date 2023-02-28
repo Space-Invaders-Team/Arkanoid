@@ -7,11 +7,10 @@ export class Brick {
 
   private readonly _color = '#0095dd';
 
-  private _isActive = true;
-
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
     private readonly ball: Ball,
+    private _isActive: boolean,
     private _x: number,
     private _y: number,
   ) {

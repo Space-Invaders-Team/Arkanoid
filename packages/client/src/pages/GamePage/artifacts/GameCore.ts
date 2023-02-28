@@ -2,6 +2,7 @@ import { Ball } from './Ball';
 import { Paddle } from './Paddle';
 import { BricksContainer } from './BricksContainer';
 import { GameStatus } from '../typings';
+import { LEVELS } from '../utils/levels';
 
 const SPACEBAR_KEY = ' ';
 const LIVES_AMOUNT = 2;
@@ -11,13 +12,17 @@ export class GameCore {
 
   private readonly _paddle: Paddle;
 
-  private readonly _bricks: BricksContainer;
+  private _bricks: BricksContainer;
 
   private _status = GameStatus.ONBOARDING;
 
   private _lives = LIVES_AMOUNT;
 
   private _score = 0;
+
+  private _level = 0;
+
+  private _raf: number | null = null;
 
   constructor(
     private readonly canvas: HTMLCanvasElement,
@@ -26,7 +31,7 @@ export class GameCore {
   ) {
     this._paddle = new Paddle(ctx, canvas.width, canvas.height);
     this._ball = new Ball(ctx, canvas.width / 2, canvas.height, this._paddle.heightWithOffset);
-    this._bricks = new BricksContainer(ctx, canvas.width, this._ball, this.increaseScore);
+    this._bricks = this.generateBricks();
 
     document.addEventListener('keydown', this.startGame);
     document.addEventListener('keydown', this._paddle.keyHandler, false);
@@ -46,8 +51,36 @@ export class GameCore {
     this._status = value;
   }
 
+  private generateBricks() {
+    return new BricksContainer(
+      this.ctx,
+      this.canvas.width,
+      this._level,
+      this._ball,
+      this.increaseScore,
+      this.increaseLevel,
+    );
+  }
+
   private increaseScore = () => {
     this._score += 10;
+  };
+
+  private increaseLevel = () => {
+    if (this._raf) {
+      cancelAnimationFrame(this._raf);
+      this._raf = null;
+    }
+
+    if (this._level === LEVELS.length) {
+      this.onChangeStatus(GameStatus.WIN);
+
+      return;
+    }
+
+    this._level++;
+    this._bricks = this.generateBricks();
+    this._status = GameStatus.PREPARING;
   };
 
   private startGame = (event: KeyboardEvent | MouseEvent) => {
@@ -113,6 +146,7 @@ export class GameCore {
     } = this;
 
     this._score = 0;
+    this._level = 0;
     this._lives = LIVES_AMOUNT;
     this._status = GameStatus.PREPARING;
 
@@ -120,7 +154,7 @@ export class GameCore {
     paddle.draw();
     ball.resetY();
     ball.draw();
-    bricks.resetBricks();
+    this._bricks = this.generateBricks();
     bricks.draw();
   };
 
@@ -159,14 +193,12 @@ export class GameCore {
         ball.x > paddle.x
         && ball.x < paddle.x + paddle.width
       );
-
       if (isBallIntoPaddle) {
         const shift = (
           (paddle.x + paddle.width / 2 - ball.x)
           / (paddle.width / 2)
         );
         const shiftCoef = shift / 2 + 0.5;
-
         ball.angle = -(shiftCoef * (Math.PI / 2) + Math.PI / 4);
       } else {
         this._lives--;
@@ -191,7 +223,7 @@ export class GameCore {
     }
 
     if (![GameStatus.WIN, GameStatus.LOSE].includes(this._status)) {
-      requestAnimationFrame(this.draw);
+      this._raf = requestAnimationFrame(this.draw);
     }
   };
 }
