@@ -14,35 +14,27 @@ export class BricksContainer {
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
     private readonly canvasWidth: number,
-    private readonly level: number,
+    private readonly levelNumber: number,
     private readonly ball: Ball,
     private readonly increaseScore: () => void,
     private readonly increaseLevel: () => void,
   ) {
-    const currentLevel = LEVELS[level];
+    const level = LEVELS[levelNumber];
 
-    if (Array.isArray(currentLevel) && Array.isArray(currentLevel[0])) {
-      this._rowsAmount = currentLevel.length;
-      this._columnsAmount = currentLevel[0].length;
+    if (Array.isArray(level) && Array.isArray(level[0])) {
+      this._rowsAmount = level.length;
+      this._columnsAmount = level[0].length;
 
       for (let i = 0; i < this._columnsAmount; i++) {
         this._bricksMatrix[i] = [];
 
         for (let j = 0; j < this._rowsAmount; j++) {
-          const isActiveBrick = Array.isArray(currentLevel[j]) ? currentLevel[j][i] : true;
+          const isActiveBrick = Array.isArray(level[j]) ? level[j][i] : true;
 
           this._bricksMatrix[i][j] = new Brick(this.ctx, ball, isActiveBrick, 0, 0);
         }
       }
     }
-  }
-
-  public resetBricks() {
-    this._bricksMatrix.forEach((column) => {
-      column.forEach((row) => {
-        row.isActive = true;
-      });
-    });
   }
 
   public draw() {

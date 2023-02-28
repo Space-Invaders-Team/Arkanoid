@@ -17,14 +17,13 @@ const videoMap = new Map<GameStatus, string>([
 
 export function EndScreen({ status, onClickPrimaryBtn }: Props) {
   const endScreenClassName = classNames(commonStyles.dummyScreen, styles.container);
-  const endButtonClassName = classNames(commonStyles.button);
 
   return (
     <div className={endScreenClassName}>
       <span className={styles.text}>{titleMap.get(status)}</span>
       <video className={styles.video} autoPlay loop muted src={videoMap.get(status)} />
       <Button
-        extraClassName={endButtonClassName}
+        extraClassName={commonStyles.button}
         onClick={onClickPrimaryBtn}
       >
         Начать заново
