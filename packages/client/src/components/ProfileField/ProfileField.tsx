@@ -18,26 +18,15 @@ export function FormField<T extends Record<string, string>>({
 
   return (
     <>
-      {fieldList.map((field) => {
-        if ('heading' in field) {
-          return (
-            <h3 key={field.heading}>
-              {field.heading}
-            </h3>
-          );
-        }
-
-        return (
-          <Field
-            key={field.id}
-            {...field}
-            disabled={disabled}
-            onChange={inputChangeHandler}
-            value={formData[field.id]}
-          />
-        );
-      })}
-
+      {fieldList.map((field) => (
+        <Field
+          key={field.id}
+          {...field}
+          disabled={disabled}
+          onChange={inputChangeHandler}
+          value={formData[field.id]}
+        />
+      ))}
     </>
   );
 }

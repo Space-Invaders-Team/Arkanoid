@@ -2,4 +2,138 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    padding: 0 0 75px;
+  }
+  
+  .title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 38px;
+    text-align: center;
+  }
+  
+  .fieldset {
+    min-width: 460px;
+    padding: 0;
+    margin: 50px 0 0;
+    border: none;
+  }
+  
+  .fieldsetTwoColumns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+    min-width: 960px;
+  }
+  
+  .button {
+    width: 460px;
+    height: 80px;
+    margin-top: 50px;
+    font-size: 22px;
+    color: var(--font-primary-color);
+    letter-spacing: .02em;
+    cursor: pointer;
+    background-color: var(--btn-color);
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .buttonDisabled {
+    color: var(--page-bg-color);
+    cursor: default;
+    background-color: var(--nav-bg-color);
+  }
+  
+  .linkWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 40px 0 0;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--font-primary-color);
+    text-align: center;
+  }
+  
+  .link {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .button {
+      transition: color .25s, background-color .25s;
+    }
+  
+    .button:hover {
+      transition: color .25s, background-color .25s;
+    }
+  
+    .link {
+      transition: transform .25s;
+    }
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    .button:hover {
+      color: var(--font-secondary-color);
+      background-color: var(--btn-hover-color);
+    }
+  
+    .buttonDisabled:hover {
+      color: var(--page-bg-color);
+      background-color: var(--nav-bg-color);
+    }
+  
+    .link:hover {
+      transform: scale(1.3);
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .fieldsetTwoColumns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 460px;
+    }
+  }
+  
+  @media (max-width: 525px) {
+    .form {
+      width: 95%;
+    }
+  
+    .fieldset {
+      min-width: 100%;
+    }
+  
+    .button {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 460px) {
+    .form {
+      padding-top: 150px;
+      padding-bottom: 50px;
+    }
+  
+    .button {
+      height: 52px;
+      font-size: 18px;
+    }
+  
+    .title {
+      font-size: 20px;
+    }
+  
+    .fieldset {
+      margin-top: 30px;
+    }
+  }
+  

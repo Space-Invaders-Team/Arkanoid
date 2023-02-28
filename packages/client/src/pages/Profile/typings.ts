@@ -1,20 +1,23 @@
 export type UserProfile = {
   id?: number | null;
+  title?: string;
   firstName?: string;
-  second_name?: string;
+  secondName?: string;
   login?: string;
-  display_name?: string;
+  displayName?: string;
   email?: string;
   phone?: string;
   avatar?: string;
 };
 
 export type UserProfileForm = {
+  title?: string;
   email: string;
   login: string;
+  label?: string;
   firstName: string;
-  second_name: string;
-  display_name: string;
+  secondName: string;
+  displayName: string;
   phone: string;
   oldPassword: string;
   newPassword: string;

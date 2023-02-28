@@ -1,5 +1,116 @@
 .field {
+    position: relative;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    margin-top: 32px;
+    border: none;
+  }
+  
+  .field:first-child {
+    margin-top: 0;
+  }
+  
+  .fieldTwoColumns:nth-child(2) {
+    margin-top: 0;
+  }
+  
+  .label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--font-secondary-color);
+  }
+  
+  .input {
+    padding: 26px 30px;
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--font-primary-color);
+    background: none;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  .input:focus {
+    border: 2px solid var(--accent-color);
+  }
+  
+  .input::placeholder {
+    color: var(--font-secondary-color);
+    opacity: 1;
+  }
+  
+  .input:focus::placeholder {
+    opacity: 0;
+  }
+  
+  .inputError, .inputError:focus {
+    border: 2px solid var(--error-bg-color);
+  }
+  
+  .errorMessage {
+    position: absolute;
+    top: 96px;
+    right: 20px;
+    left: 20px;
+    z-index: 1;
+    box-sizing: border-box;
+    display: none;
     align-items: center;
-}
+    justify-content: center;
+    min-height: 48px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    color: var(--error-text-color);
+    text-align: center;
+    background-color: var(--error-bg-color);
+    border-radius: 8px;
+  }
+  
+  .active {
+    display: flex;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .input::placeholder {
+      transition: opacity 0.25s ease;
+    }
+  
+    .input:focus::placeholder {
+      transition: opacity 0.25s ease;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .fieldTwoColumns:nth-child(2) {
+      margin-top: 32px;
+    }
+  }
+  
+  @media (max-width: 460px) {
+    .input {
+      padding: 14px 18px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  
+    .label {
+      font-size: 14px;
+    }
+  
+    .errorMessage {
+      top: 70px;
+      right: 10px;
+      left: 10px;
+      min-height: 36px;
+      padding: 3px 8px;
+      font-size: 10px;
+      line-height: 15px;
+      border-radius: 8px;
+    }
+  }
+  

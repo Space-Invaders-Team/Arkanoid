@@ -10,6 +10,7 @@ export function Button({
   onClick,
   extraClassName,
   children,
+  text = '',
 }: Props) {
   const className = classNames(
     { [styles.button]: shape === 'button' },
@@ -27,6 +28,7 @@ export function Button({
       disabled={disabled}
     >
       {children}
+      {text}
     </button>
   );
 }

@@ -4,25 +4,28 @@ import { UserProfile as UserProfileType, UserProfileForm } from './typings';
 import { Button } from '../../components/Button';
 import { ProfileForm } from '../../components/ProfileForm';
 import { Field } from '../../components/ProfileField/Field';
+import { Avatar } from '../../components/Avatar';
 import { userProfileInputFields } from './data';
 
 export function Profile() {
   const userProfile: UserProfileType = {
     id: 13441,
+    title: 'fdhdz',
     firstName: 'Masha',
-    second_name: 'TestTest',
+    secondName: 'TestTest',
     login: 'login_test',
-    display_name: 'test',
+    displayName: 'test',
     email: 'test@test.com',
     phone: '89012003040',
-    avatar: 'https://ya-praktikum.tech/api/v2/resources',
+    avatar: '',
   };
 
   const formData: UserProfileForm = {
+    title: userProfile.firstName ?? '',
     firstName: userProfile.firstName ?? '',
-    second_name: userProfile.second_name ?? '',
+    secondName: userProfile.secondName ?? '',
     login: userProfile.login ?? '',
-    display_name: userProfile.display_name ?? '',
+    displayName: userProfile.displayName ?? '',
     email: userProfile.email ?? '',
     phone: userProfile.phone ?? '',
     oldPassword: '',
@@ -33,6 +36,7 @@ export function Profile() {
   const inputChangeHandler: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       const { name, value } = event.target;
+
       setRequestBody({ ...requestBody, [name]: value });
     },
     [requestBody],
@@ -45,26 +49,23 @@ export function Profile() {
     [requestBody],
   );
 
-  const avatarPath = userProfile.avatar;
   const { firstName } = userProfile;
 
   return (
     <div className={styles.container}>
+      <Avatar userId={0} userName={`Аватар ${firstName}`} />
 
-      <img src={avatarPath} alt={`Аватар ${firstName}`} />
-
-      <ProfileForm handlerSubmit={submitHandler} firstName={firstName}>
+      <ProfileForm handlerSubmit={submitHandler} title={firstName}>
         <>
           {userProfileInputFields.map((field) => {
             const fieldKey = field.id as keyof UserProfileForm;
-
             return (
               <Field key={field.id} {...field} onChange={inputChangeHandler} value={requestBody[fieldKey] || ''} />
             );
           })}
         </>
-        <Button type="submit" extraClassName={styles.button} />
       </ProfileForm>
+      <Button type="submit" extraClassName={styles.button} text="Сохранить изменения" />
     </div>
   );
 }
