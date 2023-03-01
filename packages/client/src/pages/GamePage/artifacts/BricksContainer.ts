@@ -7,6 +7,10 @@ export class BricksContainer {
 
   private readonly _columnsAmount: number = 0;
 
+  private readonly _brickWidth: number = 0;
+
+  private readonly _brickHeight: number = 0;
+
   private readonly _bricksGap = 5;
 
   private readonly _bricksMatrix: Brick[][] = [];
@@ -25,13 +29,24 @@ export class BricksContainer {
       this._rowsAmount = level.length;
       this._columnsAmount = level[0].length;
 
+      this._brickWidth = Math.trunc(canvasWidth / (this._columnsAmount)) - this._bricksGap;
+      this._brickHeight = (this._brickWidth * 3) / 8;
+
       for (let i = 0; i < this._columnsAmount; i++) {
         this._bricksMatrix[i] = [];
 
         for (let j = 0; j < this._rowsAmount; j++) {
           const isActiveBrick = Array.isArray(level[j]) ? level[j][i] : true;
 
-          this._bricksMatrix[i][j] = new Brick(this.ctx, ball, isActiveBrick, 0, 0);
+          this._bricksMatrix[i][j] = new Brick(
+            this.ctx,
+            ball,
+            this._brickWidth,
+            this._brickHeight,
+            isActiveBrick,
+            0,
+            0,
+          );
         }
       }
     }
@@ -43,7 +58,7 @@ export class BricksContainer {
       _columnsAmount: columnsAmount,
       _bricksGap: bricksGap,
     } = this;
-    const bricksTotalWidth = columnsAmount * (Brick.width + bricksGap) - bricksGap;
+    const bricksTotalWidth = columnsAmount * (this._brickWidth + bricksGap) - bricksGap;
     const leftOffset = (canvasWidth - bricksTotalWidth) / 2;
     const topOffset = 55;
     let activeBricksCounter = 0;
@@ -52,8 +67,8 @@ export class BricksContainer {
       for (let j = 0; j < this._bricksMatrix[i].length; j++) {
         const brick = this._bricksMatrix[i][j];
 
-        brick.x = i * (Brick.width + this._bricksGap) + leftOffset;
-        brick.y = j * (Brick.height + this._bricksGap) + topOffset;
+        brick.x = i * (this._brickWidth + this._bricksGap) + leftOffset;
+        brick.y = j * (this._brickHeight + this._bricksGap) + topOffset;
 
         if (brick.isActive) {
           brick.draw();
