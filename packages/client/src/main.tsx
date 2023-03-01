@@ -7,6 +7,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { App } from './components/App/App';
 import { setupStore } from './store';
+import { startServiceWorker } from './utils/serviceWorkers';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -15,3 +16,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </Provider>
   </React.StrictMode>,
 );
+
+startServiceWorker();
