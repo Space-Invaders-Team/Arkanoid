@@ -9,3 +9,7 @@
   font-weight: 700;
   color: var(--game-descr-font-color);
 }
+
+.video {
+  max-width: 50%;
+}

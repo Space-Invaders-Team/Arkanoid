@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Button } from '../../Button';
-import commonStyles from '../gameScreen.module.css';
+import commonStyles from '../GameScreens.module.css';
 import styles from './StartScreen.module.css';
 import type { Props } from './typings';
 
