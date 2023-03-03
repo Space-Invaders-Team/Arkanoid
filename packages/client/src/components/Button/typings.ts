@@ -8,4 +8,5 @@ export type Props = {
   disabled?: boolean,
   mode?: 'primary' | 'secondary';
   shape?: 'button' | 'icon';
+  text?: string;
 };
