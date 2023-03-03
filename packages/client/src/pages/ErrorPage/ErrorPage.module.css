@@ -1,0 +1,35 @@
+.container {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.logo {
+  width: 130px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+}
+
+.linkButton {
+  color: var(--accent-darken-color);
+  font-weight: bold;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.linkButton:hover {
+    color: var(--font-accent-color);
+		background-color: transparent;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .linkButton:hover {
+    transition: all .15s;
+  }
+}
