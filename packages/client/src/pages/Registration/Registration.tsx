@@ -1,9 +1,11 @@
 import styles from './Registration.module.css';
 import { Form } from '../../components/Form';
 import { PageType } from '../../components/Form/typings';
-import { RegisterProps } from './typings';
+import { useAuth } from '../../hooks/useAuth';
 
-export function Registration({ onRegister }: RegisterProps) {
+export function Registration() {
+  const { onRegister } = useAuth();
+
   return (
     <div className={styles.container}>
       <Form

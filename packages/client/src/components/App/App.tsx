@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Router } from '../../router/router';
 import { Navigation } from '../Navigation';
 import { ErrorBoundary } from '../ErrorBoundary';
-import { useAuth } from '../../hooks/useAuth';
 
 // useEffect(() => {
 //   const fetchServerData = async () => {
@@ -17,26 +16,12 @@ import { useAuth } from '../../hooks/useAuth';
 // }, []);
 
 export function App() {
-  const {
-    isLogged,
-    onLogin,
-    onRegister,
-    onLogout,
-  } = useAuth();
-
   return (
     <StrictMode>
       <BrowserRouter>
         <ErrorBoundary>
-          <Navigation
-            isLogged={isLogged}
-            onLogout={onLogout}
-          />
-          <Router
-            isLogged={isLogged}
-            onLogin={onLogin}
-            onRegister={onRegister}
-          />
+          <Navigation />
+          <Router />
         </ErrorBoundary>
       </BrowserRouter>
     </StrictMode>

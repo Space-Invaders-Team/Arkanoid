@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../store/hooks';
 import { authApi } from '../api/AuthAPI';
 import { StringObject } from '../typings';
 import * as errorConstants from '../utils/errorConstants';
+import { setIsLogged } from '../store/authSlice';
 
 export const useAuth = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (localStorage.getItem('isLogged')) {
       authApi.checkToken()
         .then((data) => {
           if (data) {
-            setIsLogged(true);
+            dispatch(setIsLogged(true));
           } else localStorage.removeItem('isLogged');
         })
         .catch(() => alert(errorConstants.SERVER_ERROR_MESSAGE));
@@ -22,7 +24,7 @@ export const useAuth = () => {
     try {
       await authApi.loginUser(userData);
       localStorage.setItem('isLogged', 'true');
-      setIsLogged(true);
+      dispatch(setIsLogged(true));
     } catch (error) {
       if (error === errorConstants.AUTH_ERROR_CODE) {
         alert(errorConstants.AUTH_ERROR_MESSAGE);
@@ -36,7 +38,7 @@ export const useAuth = () => {
     try {
       await authApi.registerUser(userData);
       localStorage.setItem('isLogged', 'true');
-      setIsLogged(true);
+      dispatch(setIsLogged(true));
       alert(errorConstants.SUCCESSFUL_REGISTRATION_MESSAGE);
     } catch (error) {
       if (error === errorConstants.CONFLICT_ERROR_CODE) {
@@ -51,11 +53,11 @@ export const useAuth = () => {
     try {
       await authApi.logoutUser();
       localStorage.removeItem('isLogged');
-      setIsLogged(false);
+      dispatch(setIsLogged(false));
     } catch {
       alert(errorConstants.SERVER_ERROR_MESSAGE);
     }
   };
 
-  return { isLogged, onLogin, onRegister, onLogout };
+  return { onLogin, onRegister, onLogout };
 };

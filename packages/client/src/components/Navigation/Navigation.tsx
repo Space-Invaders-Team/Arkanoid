@@ -1,10 +1,11 @@
 import { NavLink, Link } from 'react-router-dom';
 import { ButtonTheme } from '../ButtonTheme';
-import { NavigationProps } from './typings';
 import styles from './Navigation.module.css';
 import { Paths } from '../../utils/routeConstants';
+import { useAppSelector } from '../../store/hooks';
+import { useAuth } from '../../hooks/useAuth';
 
-export function Navigation({ isLogged, onLogout }: NavigationProps) {
+export function Navigation() {
   const links = [
     { url: Paths.HOME, title: 'Главная', protect: 'always' },
     { url: Paths.AUTH, title: 'Вход', protect: false },
@@ -20,6 +21,9 @@ export function Navigation({ isLogged, onLogout }: NavigationProps) {
   const addClass = ({
     isActive,
   }: { isActive: boolean }): string => (isActive ? activeLink : normalLink);
+
+  const isLogged = useAppSelector((state) => state.auth.isLogged);
+  const { onLogout } = useAuth();
 
   return (
     <nav className={styles.nav}>
