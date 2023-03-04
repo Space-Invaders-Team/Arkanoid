@@ -4,5 +4,5 @@ export type TInput = {
   placeholder: string;
   name: string;
   type: string;
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 };
