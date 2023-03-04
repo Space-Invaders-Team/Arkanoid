@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { drawGame } from './utils/drawGame';
-import { StartScreen } from '../../components/game_screens/StartScreen';
-import { EndScreen } from '../../components/game_screens/EndScreen';
+import { EndScreen, StartScreen } from '../../components/GameScreens';
 import styles from './GamePage.module.css';
 import { GameStatus } from './typings';
 import type { GameCore } from './artifacts';
@@ -18,15 +17,22 @@ export function GamePage() {
     }
   };
 
-  const handleClickNextLevel = () => {
-    console.log('Перейти на следующий уровень');
-  };
-
   const handleClickStartAgain = () => {
-    console.log('Переиграть уровень!');
+    const gameCore = gameRef.current;
+
+    if (gameCore) {
+      gameCore.startNewGame();
+      setGameStatus(GameStatus.PREPARING);
+      requestAnimationFrame(gameCore.draw);
+    }
   };
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const sentResults = () => {
+    console.log('Здесь должна быть отправка результата в API Leaderboard');
+  };
+
   const [isRunStartAnimation, setIsRunStartAnimation] = useState<boolean>(false);
   const screenMap = new Map<GameStatus, ReactNode>([
     [
@@ -40,8 +46,7 @@ export function GamePage() {
       GameStatus.WIN,
       <EndScreen
         status={gameStatus}
-        onClickPrimaryBtn={handleClickNextLevel}
-        onClickSecondaryBtn={handleClickStartAgain}
+        onClickPrimaryBtn={handleClickStartAgain}
       />,
     ],
     [
@@ -55,18 +60,20 @@ export function GamePage() {
 
   useEffect(() => {
     setIsRunStartAnimation(true);
-    drawGame(canvasRef, gameRef);
+
+    if (!gameRef.current) {
+      drawGame(canvasRef, gameRef, setGameStatus);
+    }
   }, []);
+
+  useEffect(() => {
+    if (gameStatus === GameStatus.LOSE) {
+      sentResults();
+    }
+  }, [gameStatus]);
 
   return (
     <main className={styles.container}>
-      {/* TODO: Убрать кнопки, когда сделаю подсчёт очков и завершение игры */}
-      <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', gap: 16, top: '50vh', left: 100 }}>
-        <button onClick={() => setGameStatus(GameStatus.WIN)}>Победа</button>
-        <button onClick={() => setGameStatus(GameStatus.LOSE)}>Поражение</button>
-        <button onClick={() => setGameStatus(GameStatus.ONBOARDING)}>Онбординг</button>
-      </div>
-      {/*  */}
       <section className={styles.field}>
         {
           screenMap.get(gameStatus)

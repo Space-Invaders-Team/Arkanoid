@@ -1,5 +1,3 @@
-type EdgeName = 'top' | 'right' | 'bottom' | 'left';
-
 export class Ball {
   private readonly _radius = 10;
 
@@ -7,21 +5,24 @@ export class Ball {
 
   private readonly _speed = 6;
 
-  private _x: number;
+  private readonly _initialY: number;
 
   private _y: number;
 
-  private _dx = this._speed;
-
-  private _dy = this._speed;
+  private _angle = -(Math.random() * (Math.PI / 2) + Math.PI / 4);
 
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
-    x: number,
-    y: number,
+    private _x: number,
+    canvasHeight: number,
+    paddleOffset: number,
   ) {
-    this._x = x;
-    this._y = y;
+    this._y = canvasHeight - this._radius - paddleOffset;
+    this._initialY = this._y;
+  }
+
+  public set angle(value: number) {
+    this._angle = value;
   }
 
   public get radius(): number {
@@ -34,22 +35,6 @@ export class Ball {
 
   public get x(): number {
     return this._x;
-  }
-
-  public get dy(): number {
-    return this._dy;
-  }
-
-  public get dx(): number {
-    return this._dx;
-  }
-
-  public get nextX() {
-    return this._x + this._dx;
-  }
-
-  public get nextY() {
-    return this._y + this._dy;
   }
 
   public draw() {
@@ -67,7 +52,7 @@ export class Ball {
       return;
     }
 
-    this._x += this._dx;
+    this._x += this._speed * Math.cos(this._angle);
   }
 
   public moveByY(paddleY?: number) {
@@ -77,39 +62,18 @@ export class Ball {
       return;
     }
 
-    this._y += this._dy;
+    this._y += this._speed * Math.sin(this._angle);
   }
 
   public flipX() {
-    this._dx *= -1;
+    this._angle = Math.PI - this._angle;
   }
 
   public flipY() {
-    this._dy *= -1;
+    this._angle *= -1;
   }
 
-  public getEdgeCoord(direction: EdgeName) {
-    switch (direction) {
-      case 'top':
-        return this._y - this._radius;
-      case 'right':
-        return this._x + this._radius;
-      case 'bottom':
-        return this._y + this._radius;
-      case 'left':
-        return this._x - this._radius;
-      default:
-        throw new Error('Нет такой стороны!');
-    }
-  }
-
-  public getTangent(brickCenter: { x: number, y: number }) {
-    const xEdgeMultiplier = this._dx > 0 ? 1 : -1;
-    const yEdgeMultiplier = this._dy > 0 ? -1 : 1;
-
-    return (
-      (this._y + yEdgeMultiplier * this._radius - brickCenter.y)
-      / (this._x + xEdgeMultiplier * this._radius - brickCenter.x)
-    );
+  public resetY() {
+    this._y = this._initialY;
   }
 }

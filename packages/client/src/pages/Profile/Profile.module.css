@@ -1,12 +1,25 @@
 .container {
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 100%;
-    min-height: 100vh;
-    padding: 0;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin-top: 10vh;
+}
+
+.button {
+  width: 460px;
+  height: 80px;
+  font-size: 22px;
+  color: var(--font-primary-color);
+  letter-spacing: .02em;
+  cursor: pointer;
+  background-color: var(--btn-color);
+  border: none;
+  border-radius: 10px;
 }

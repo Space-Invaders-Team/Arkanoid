@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Button } from '../../Button';
-import commonStyles from '../gameScreen.module.css';
+import commonStyles from '../GameScreens.module.css';
 import styles from './StartScreen.module.css';
 import type { Props } from './typings';
 
@@ -18,15 +18,6 @@ export function StartScreen({ isRunStartAnimation, onClick }: Props) {
 
   return (
     <div className={startScreenClassName}>
-      <article className={descrWrapperClassName}>
-        <h2 className={styles.descrTitle}>Об игре:</h2>
-        <p className={styles.descrText}>
-          Игра арканоид являет собой классику жанра среди игровой серии аркады. В вашем
-          распоряжении шарик и платформа, которая запускает или отбивает шарик. Цель игры
-          уничтожить все блоки и сохранить все доступные жизни. За прохождение уровней игрок
-          будет получать очки награды, которые фиксируются в таблице рекордов.
-        </p>
-      </article>
       <article className={descrWrapperClassName}>
         <h2 className={styles.descrTitle}>Как играть:</h2>
         <p className={styles.descrText}>

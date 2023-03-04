@@ -5,6 +5,7 @@ import { Navigation } from '../Navigation';
 import { authApi } from '../../api/AuthAPI';
 import { StringObject } from '../../typings';
 import * as errorConstants from '../../utils/errorConstants';
+import { ErrorBoundary } from '../ErrorBoundary';
 
 // useEffect(() => {
 //   const fetchServerData = async () => {
@@ -74,15 +75,17 @@ export function App() {
   return (
     <StrictMode>
       <BrowserRouter>
-        <Navigation
-          isLogged={isLogged}
-          onLogout={onLogout}
-        />
-        <Router
-          isLogged={isLogged}
-          onLogin={onLogin}
-          onRegister={onRegister}
-        />
+        <ErrorBoundary>
+          <Navigation
+            isLogged={isLogged}
+            onLogout={onLogout}
+          />
+          <Router
+            isLogged={isLogged}
+            onLogin={onLogin}
+            onRegister={onRegister}
+          />
+        </ErrorBoundary>
       </BrowserRouter>
     </StrictMode>
   );
