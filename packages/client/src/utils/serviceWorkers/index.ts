@@ -1,0 +1,1 @@
+export { startServiceWorker } from './startServiceWorkers';

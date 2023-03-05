@@ -11,6 +11,7 @@ import { Messages } from '../pages/forum/Messages';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
 import { RouterProps } from './typings';
 import { Paths } from '../utils/routeConstants';
+import { ErrorPage } from '../pages/ErrorPage';
 
 export function Router(
   { isLogged,
@@ -47,6 +48,7 @@ export function Router(
         <Route path={Paths.PROFILE} element={<Profile />} />
         <Route path={Paths.LEADERBOARD} element={<Leaderboard />} />
       </Route>
+      <Route element={<ErrorPage />} />
     </Routes>
   );
 }
