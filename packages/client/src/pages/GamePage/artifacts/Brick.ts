@@ -10,6 +10,8 @@ export class Brick {
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
     private readonly ball: Ball,
+    private readonly _width: number,
+    private readonly _height: number,
     private _isActive: boolean,
     private _x: number,
     private _y: number,
@@ -18,10 +20,6 @@ export class Brick {
 
   public get isActive(): boolean {
     return this._isActive;
-  }
-
-  public set isActive(value: boolean) {
-    this._isActive = value;
   }
 
   public set x(value: number) {
@@ -34,8 +32,7 @@ export class Brick {
 
   private getClosestSides() {
     const { x: ballX, y: ballY } = this.ball;
-    const { _x: brickX, _y: brickY } = this;
-    const { width: brickWidth, height: brickHeight } = Brick;
+    const { _x: brickX, _y: brickY, _width: brickWidth, _height: brickHeight } = this;
 
     let closestBrickX = ballX;
     let closestBrickY = ballY;
@@ -67,7 +64,7 @@ export class Brick {
 
   public draw() {
     this.ctx.beginPath();
-    this.ctx.rect(this._x, this._y, Brick.width, Brick.height);
+    this.ctx.rect(this._x, this._y, this._width, this._height);
     this.ctx.fillStyle = this._color;
     this.ctx.fill();
     this.ctx.closePath();
@@ -80,7 +77,7 @@ export class Brick {
 
         const isBallBetweenTopAndBottom = (
           this._y <= this.ball.y
-          && this.ball.y <= this._y + Brick.height
+          && this.ball.y <= this._y + this._height
         );
 
         if (isBallBetweenTopAndBottom) {
