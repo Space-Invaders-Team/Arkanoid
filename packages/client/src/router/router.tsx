@@ -45,7 +45,7 @@ export function Router() {
         <Route path={Paths.PROFILE} element={<Profile />} />
         <Route path={Paths.LEADERBOARD} element={<Leaderboard />} />
       </Route>
-      <Route element={<ErrorPage />} />
+      <Route path={Paths.NOT_FOUND} element={<ErrorPage />} />
     </Routes>
   );
 }

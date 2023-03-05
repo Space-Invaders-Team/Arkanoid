@@ -8,4 +8,5 @@ export enum Paths {
   TOPICLIST = '/forum/topicList/:id',
   TOPIC = '/forum/topicList/:id/topic/:id',
   PROFILE = '/profile',
+  NOT_FOUND = '/*',
 }

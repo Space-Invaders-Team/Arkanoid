@@ -1,4 +1,5 @@
 import { StringObject } from '../typings';
+import { BASE_URL_YANDEX } from '../utils/apiConstans';
 
 class AuthApi {
   constructor(baseUrl: string) {
@@ -7,9 +8,10 @@ class AuthApi {
 
   private _baseUrl: string;
 
-  _handlingResponse(result: Response) {
+  async _handlingResponse(result: Response) {
     if (result.ok) return result;
-    return Promise.reject(result.status);
+    const data = await result.json();
+    return Promise.reject(data.reason);
   }
 
   async loginUser(userData: StringObject) {
@@ -45,7 +47,7 @@ class AuthApi {
     return this._handlingResponse(res);
   }
 
-  async checkToken() {
+  async getUser() {
     const res = await fetch(`${this._baseUrl}/user`, {
       credentials: 'include',
       method: 'GET',
@@ -57,4 +59,4 @@ class AuthApi {
   }
 }
 
-export const authApi = new AuthApi('https://ya-praktikum.tech/api/v2/auth');
+export const authApi = new AuthApi(`${BASE_URL_YANDEX}/auth`);
