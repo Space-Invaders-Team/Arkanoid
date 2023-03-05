@@ -12,9 +12,10 @@ import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
 import { Paths } from '../utils/routeConstants';
 import { ErrorPage } from '../pages/ErrorPage';
 import { useAppSelector } from '../store/hooks';
+import { selectIsLogged } from '../store/selectors';
 
 export function Router() {
-  const isLogged = useAppSelector((state) => state.auth.isLogged);
+  const isLogged = useAppSelector(selectIsLogged);
 
   return (
     <Routes>

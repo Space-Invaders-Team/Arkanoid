@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { authApi } from '../api/AuthAPI';
+import { navLinksData } from '../utils/routeConstants';
 
 export const getUserData = createAsyncThunk(
   'auth/getUserData',
@@ -20,6 +21,7 @@ const authSlice = createSlice({
     isLogged: false,
     status: 'loading',
     error: null,
+    navLinks: navLinksData,
   },
   reducers: {
     setIsLogged(state, action) {
@@ -61,4 +63,4 @@ const authSlice = createSlice({
 });
 
 export const { setIsLogged, clearAuthStore } = authSlice.actions;
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

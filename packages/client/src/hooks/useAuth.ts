@@ -1,6 +1,5 @@
 import { useAppDispatch } from '../store/hooks';
 import { authApi } from '../api/AuthAPI';
-import { StringObject } from '../typings';
 import * as errorConstants from '../utils/errorConstants';
 import { setIsLogged, getUserData, clearAuthStore } from '../store/authSlice';
 
