@@ -34,5 +34,9 @@
   height: 100%;
 }
 
-
-
+.btnWrap {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}

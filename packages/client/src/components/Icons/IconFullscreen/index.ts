@@ -1,0 +1,1 @@
+export { IconFullscreen } from './IconFullscreen';
