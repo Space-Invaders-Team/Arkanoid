@@ -8,7 +8,7 @@ export function LinkRow({ rowData, path }: TLinkRowProps) {
   };
 
   return (
-    <tr onClick={handleRowClick}>
+    <tr onClick={handleRowClick} data-testid="linkRow">
       <td>{rowData.cell1}</td>
       <td>{rowData.cell2}</td>
       <td>{rowData.cell3}</td>
