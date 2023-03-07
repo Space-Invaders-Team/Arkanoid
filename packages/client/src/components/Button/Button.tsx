@@ -11,6 +11,7 @@ export function Button({
   extraClassName,
   children,
   text = '',
+  id = '',
 }: Props) {
   const className = classNames(
     { [styles.button]: shape === 'button' },
@@ -22,6 +23,7 @@ export function Button({
 
   return (
     <button
+      id={id}
       type={type}
       className={className}
       onClick={onClick}

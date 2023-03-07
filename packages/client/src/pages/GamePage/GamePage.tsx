@@ -4,6 +4,10 @@ import { EndScreen, StartScreen } from '../../components/GameScreens';
 import styles from './GamePage.module.css';
 import { GameStatus } from './typings';
 import type { GameCore } from './artifacts';
+import { Button } from '../../components/Button';
+import { toggleFullScreen } from './utils/toggleFullScreen';
+import { IconFullscreen } from '../../components/Icons/IconFullscreen';
+import { IconFullscreenExit } from '../../components/Icons/IconFullscreenExit';
 
 export function GamePage() {
   const gameRef = useRef<GameCore | null>(null);
@@ -72,9 +76,22 @@ export function GamePage() {
     }
   }, [gameStatus]);
 
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+
+  const fullscreenchanged = () => {
+    // document.fullscreenElement will point to the element that
+    // is in fullscreen mode if there is one. If there isn't one,
+    // the value of the property is null.
+    if (document.fullscreenElement) {
+      setIsFullScreen(true);
+    } else {
+      setIsFullScreen(false);
+    }
+  };
+
   return (
     <main className={styles.container}>
-      <section className={styles.field}>
+      <section className={styles.field} id="gameWrap">
         {
           screenMap.get(gameStatus)
         }
@@ -83,6 +100,17 @@ export function GamePage() {
           className={styles.canvas}
           ref={canvasRef}
         />
+        <div className={styles.btnWrap}>
+          <Button
+            id="fullscreenBtn"
+            onClick={() => toggleFullScreen(fullscreenchanged)}
+            shape="icon"
+            mode="secondary"
+          >
+            {isFullScreen ? <IconFullscreenExit /> : <IconFullscreen />}
+          </Button>
+        </div>
+
       </section>
     </main>
   );

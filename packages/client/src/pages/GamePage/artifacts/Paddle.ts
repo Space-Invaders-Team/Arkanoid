@@ -1,7 +1,7 @@
 export class Paddle {
-  private readonly _width = 200;
+  private readonly _width: number;
 
-  private readonly _height = 15;
+  private readonly _height: number;
 
   private readonly _color = '#0095DD';
 
@@ -22,6 +22,8 @@ export class Paddle {
     private readonly canvasWidth: number,
     private readonly canvasHeight: number,
   ) {
+    this._width = Math.min(200, canvasWidth * 0.1);
+    this._height = Math.min(15, canvasHeight * 0.02);
     this._x = (canvasWidth - this._width) / 2;
     this._y = canvasHeight - this._height - this._bottomOffset;
   }

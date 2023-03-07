@@ -1,5 +1,5 @@
 export class Ball {
-  private readonly _radius = 10;
+  private readonly _radius: number;
 
   private readonly _color = '#0095dd';
 
@@ -17,6 +17,7 @@ export class Ball {
     canvasHeight: number,
     paddleOffset: number,
   ) {
+    this._radius = Math.min(10, canvasHeight * 0.01);
     this._y = canvasHeight - this._radius - paddleOffset;
     this._initialY = this._y;
   }
