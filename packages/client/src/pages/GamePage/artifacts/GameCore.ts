@@ -5,7 +5,7 @@ import { GameStatus } from '../typings';
 import { LEVELS } from '../utils/levels';
 
 const SPACEBAR_KEY = ' ';
-const LIVES_AMOUNT = 2;
+const LIVES_AMOUNT = 3;
 
 export class GameCore {
   private readonly _ball: Ball;
@@ -86,10 +86,11 @@ export class GameCore {
   private startGame = (event: KeyboardEvent | MouseEvent) => {
     const isSpacebarPressed = event instanceof KeyboardEvent && event.key === SPACEBAR_KEY;
 
-    if (event instanceof MouseEvent || isSpacebarPressed) {
+    if (
+      (event instanceof MouseEvent || isSpacebarPressed)
+      && this._status !== GameStatus.RUNNING
+    ) {
       this._status = GameStatus.RUNNING;
-      document.removeEventListener('keydown', this.startGame);
-      document.removeEventListener('click', this.startGame);
     }
   };
 

@@ -9,4 +9,5 @@ export type Props = {
   mode?: 'primary' | 'secondary';
   shape?: 'button' | 'icon';
   text?: string;
+  id?: string;
 };
