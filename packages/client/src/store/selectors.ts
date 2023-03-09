@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { StateObject } from './typings';
+import { NavLinkStatus } from '../utils/routeConstants';
 
 export const selectUserData = (state: StateObject) => state.auth.userData;
 export const selectAuthStatus = (state: StateObject) => state.auth.status;
@@ -13,16 +14,13 @@ export const selectNavLinksByIsLogged = createSelector(
   (allNavLinks, isLogged) => {
     if (isLogged) {
       return allNavLinks.filter((elem) => {
-        if (elem.protect) return elem;
+        if (elem.protect === NavLinkStatus.YES || elem.protect === NavLinkStatus.ALL) return elem;
         return false;
       });
     }
-    if (!isLogged) {
-      return allNavLinks.filter((elem) => {
-        if (!elem.protect || (typeof elem.protect) === 'string') return elem;
-        return false;
-      });
-    }
-    return false;
+    return allNavLinks.filter((elem) => {
+      if (elem.protect === NavLinkStatus.NO || elem.protect === NavLinkStatus.ALL) return elem;
+      return false;
+    });
   },
 );

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { authApi } from '../api/AuthAPI';
-import { navLinksData } from '../utils/routeConstants';
+import { authApi } from '../../api/AuthAPI';
+import { navLinksData } from '../../utils/routeConstants';
 
 export const getUserData = createAsyncThunk(
   'auth/getUserData',

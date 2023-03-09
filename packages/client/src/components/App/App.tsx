@@ -4,7 +4,7 @@ import { Router } from '../../router/router';
 import { Navigation } from '../Navigation';
 import { ErrorBoundary } from '../ErrorBoundary';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getUserData } from '../../store/authSlice';
+import { getUserData } from '../../store/features/authSlice';
 import { Loader } from '../Loader';
 import { selectAuthStatus } from '../../store/selectors';
 
