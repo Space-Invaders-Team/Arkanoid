@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { TableHead } from '../../components/Leaderboard/TableHead';
-import { TableRow } from '../../components/Leaderboard/TableRow';
+import { TableHead } from './TableHead';
+import { TableRow } from './TableRow';
 import { Loader } from '../../components/Loader';
 import { useLeaders } from '../../hooks/useLeaders';
 import styles from './Leaderboard.module.css';
