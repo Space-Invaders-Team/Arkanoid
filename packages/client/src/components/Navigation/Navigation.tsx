@@ -1,25 +1,21 @@
 import { NavLink, Link } from 'react-router-dom';
 import { ButtonTheme } from '../ButtonTheme';
-import { NavigationProps } from './typings';
 import styles from './Navigation.module.css';
-import { Paths } from '../../utils/routeConstants';
+import { Paths, Titles } from '../../utils/routeConstants';
+import { useAppSelector } from '../../store/hooks';
+import { useAuth } from '../../hooks/useAuth';
+import { selectIsLogged, selectNavLinksByIsLogged } from '../../store/selectors';
 
-export function Navigation({ isLogged, onLogout }: NavigationProps) {
-  const links = [
-    { url: Paths.HOME, title: 'Главная', protect: 'always' },
-    { url: Paths.AUTH, title: 'Вход', protect: false },
-    { url: Paths.REGISTER, title: 'Регистрация', protect: false },
-    { url: Paths.GAME, title: 'Игра', protect: true },
-    { url: Paths.LEADERBOARD, title: 'Рейтинг игроков', protect: true },
-    { url: Paths.FORUM, title: 'Форум', protect: true },
-    { url: Paths.PROFILE, title: 'Профиль', protect: true },
-  ];
-
+export function Navigation() {
+  const links = useAppSelector(selectNavLinksByIsLogged);
   const activeLink = `${styles.navListLink} ${styles.linkActive}`;
   const normalLink = `${styles.navListLink}`;
   const addClass = ({
     isActive,
   }: { isActive: boolean }): string => (isActive ? activeLink : normalLink);
+
+  const isLogged = useAppSelector(selectIsLogged);
+  const { onLogout } = useAuth();
 
   return (
     <nav className={styles.nav}>
@@ -29,23 +25,12 @@ export function Navigation({ isLogged, onLogout }: NavigationProps) {
           <ButtonTheme />
 
           <ul className={styles.navList}>
-            {isLogged
-              ? (links.map(({ url, title, protect }) => (
-                (protect || protect === 'always')
-                && (
-                  <li className={styles.navListItem} key={url}>
-                    <NavLink to={url} className={addClass}>{title}</NavLink>
-                  </li>
-                )
-              )))
-              : (links.map(({ url, title, protect }) => (
-                (!protect || protect === 'always')
-                && (
-                  <li className={styles.navListItem} key={url}>
-                    <NavLink to={url} className={addClass}>{title}</NavLink>
-                  </li>
-                )
-              )))}
+            {links
+              && links.map(({ url, title }) => (
+                <li className={styles.navListItem} key={`id + ${Math.random().toString(16).slice(2)}`}>
+                  <NavLink to={url} className={addClass}>{title}</NavLink>
+                </li>
+              ))}
             {isLogged && (
               <li className={styles.navListItem}>
                 <Link
@@ -53,7 +38,7 @@ export function Navigation({ isLogged, onLogout }: NavigationProps) {
                   className={normalLink}
                   onClick={() => onLogout()}
                 >
-                  Выход
+                  {Titles.LOGOUT}
                 </Link>
               </li>
             )}

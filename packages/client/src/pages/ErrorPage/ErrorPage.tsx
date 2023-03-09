@@ -1,6 +1,6 @@
 import styles from './ErrorPage.module.css';
 import logo from '../../assets/img/logo.webp';
-import { SERVER_ERROR_CODE, SERVER_ERROR_MESSAGE } from '../../utils/errorConstants';
+import { SERVER_ERROR_CODE, SERVER_ERROR_MESSAGE } from '../../utils/messageConstants';
 import { Button } from '../../components/Button';
 import { ErrorPageProps } from './typings';
 

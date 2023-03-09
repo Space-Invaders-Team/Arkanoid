@@ -1,3 +1,3 @@
-export type StringObject = {
-  [key: string]: string
+type StringObject = {
+  [key: string]: string;
 };

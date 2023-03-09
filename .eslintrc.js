@@ -78,6 +78,15 @@ module.exports = {
           "js": "never",
         }
       }
+    ],
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
     ]
   },
   ignorePatterns: ['**/*.js', "*/dist/*"],

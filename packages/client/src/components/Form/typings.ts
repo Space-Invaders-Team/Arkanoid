@@ -1,5 +1,3 @@
-import { StringObject } from '../../typings';
-
 export type FormProps = {
   title: string;
   button: string;

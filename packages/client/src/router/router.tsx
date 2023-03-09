@@ -9,16 +9,14 @@ import { Registration } from '../pages/Registration';
 import { GamePage } from '../pages/GamePage';
 import { Messages } from '../pages/forum/Messages';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
-import { RouterProps } from './typings';
 import { Paths } from '../utils/routeConstants';
 import { ErrorPage } from '../pages/ErrorPage';
+import { useAppSelector } from '../store/hooks';
+import { selectIsLogged } from '../store/selectors';
 
-export function Router(
-  { isLogged,
-    onLogin,
-    onRegister,
-  }: RouterProps,
-) {
+export function Router() {
+  const isLogged = useAppSelector(selectIsLogged);
+
   return (
     <Routes>
       <Route path={Paths.HOME} element={<Landing />} />
@@ -27,7 +25,7 @@ export function Router(
         element={
           isLogged
             ? (<Navigate to={Paths.GAME} />)
-            : (<Authorization onLogin={onLogin} />)
+            : (<Authorization />)
         }
       />
       <Route
@@ -35,7 +33,7 @@ export function Router(
         element={
           isLogged
             ? (<Navigate to={Paths.GAME} />)
-            : (<Registration onRegister={onRegister} />)
+            : (<Registration />)
         }
       />
       <Route element={<ProtectedRoute />}>
@@ -48,7 +46,7 @@ export function Router(
         <Route path={Paths.PROFILE} element={<Profile />} />
         <Route path={Paths.LEADERBOARD} element={<Leaderboard />} />
       </Route>
-      <Route element={<ErrorPage />} />
+      <Route path={Paths.NOT_FOUND} element={<ErrorPage />} />
     </Routes>
   );
 }
