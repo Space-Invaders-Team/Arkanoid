@@ -1,7 +1,7 @@
 import React from 'react';
-import { TLeaderBoardProps } from '../../../pages/leaderboard/typings';
+import { TLeaderBoardProps } from '../typings';
 import styles from './TableRow.module.css';
-import { Avatar } from '../../Avatar';
+import { Avatar } from '../../../components/Avatar';
 
 export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
   const { data, iam } = row;

@@ -4,7 +4,7 @@ import { Forum } from '../pages/forum';
 import { TopicList } from '../pages/forum/topicList';
 import { Landing } from '../pages/landing';
 import { Profile } from '../pages/Profile';
-import { Leaderboard } from '../pages/leaderboard';
+import { Leaderboard } from '../pages/Leaderboard';
 import { Registration } from '../pages/Registration';
 import { GamePage } from '../pages/GamePage';
 import { Messages } from '../pages/forum/Messages';
