@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { leaderboardAPI } from '../api/LeaderboardAPI/LeaderboardAPI';
-import { TLeaderBoard } from '../pages/LeaderboardPage/typings';
+import { TLeaderBoard } from '../pages/Leaderboard/typings';
 
 export function useLeaders(callback: (a: TLeaderBoard[]) => void): [() => void, boolean, string] {
   const [loading, setLoading] = useState(true);
