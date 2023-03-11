@@ -1,14 +1,12 @@
 export type UserData = {
-  userData: {
-    id: number;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    login: string;
-    avatar: string;
-    email: string;
-    phone: string;
-  }
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  avatar: string;
+  email: string;
+  phone: string;
 };
 
 export type StateObject = {
@@ -19,4 +17,10 @@ export type StateObject = {
     userData: UserData | null;
     navLinks: StringObject[];
   },
+  game: TGameState
+};
+
+export type TGameState = {
+  score: number;
+  tryCount: number;
 };

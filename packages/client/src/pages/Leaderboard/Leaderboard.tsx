@@ -5,10 +5,18 @@ import { Loader } from '../../components/Loader';
 import { useLeaders } from '../../hooks/useLeaders';
 import styles from './Leaderboard.module.css';
 import { Order, TLeaderBoard } from './typings';
+import { UserData } from '../../store/typings';
+import { selectUserData } from '../../store/selectors';
+import { useAppSelector } from '../../store/hooks';
 
 export function Leaderboard() {
   const [leaders, setLeaders] = useState<TLeaderBoard[]>([]);
   const [fetchLeaders, isLoading, leadersError] = useLeaders(setLeaders);
+  const userData: UserData | null = useAppSelector(selectUserData);
+  let currentPlayerId: number;
+  if (userData) {
+    currentPlayerId = userData.id;
+  }
 
   useEffect(() => {
     fetchLeaders();
@@ -28,12 +36,6 @@ export function Leaderboard() {
     }
   };
 
-  /**
-   * id текущего игрока - пока захардкодено
-   * TODO: вытащить id текущего пользователя
-   */
-  const currentPlayerId = 3;
-
   return (
     <main className={styles.leaderboard}>
       <section className={styles.wrapper}>
@@ -47,11 +49,11 @@ export function Leaderboard() {
               <tbody>
 
                 {leaders.length !== 0
-                  ? leaders.map((leader, index) => (
+                  ? leaders.map((leader) => (
                     <TableRow row={{
                       data: leader,
                       key: leader.id + leader.name,
-                      iam: (index === currentPlayerId),
+                      iam: (leader.id === currentPlayerId),
                     }}
                     />
                   ))
