@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './features/authSlice';
+import { gameReducer } from './features/gameSlice';
 
 const rootReducer = combineReducers({
   // here we will be adding reducers
   // counter: counterReducer,
   auth: authReducer,
+  game: gameReducer,
 });
 
 export const setupStore = configureStore({

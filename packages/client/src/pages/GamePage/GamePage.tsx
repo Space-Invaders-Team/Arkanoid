@@ -8,10 +8,18 @@ import { Button } from '../../components/Button';
 import { toggleFullScreen } from './utils/toggleFullScreen';
 import { IconFullscreen } from '../../components/Icons/IconFullscreen';
 import { IconFullscreenExit } from '../../components/Icons/IconFullscreenExit';
+import { leaderboardAPI } from '../../api/LeaderboardAPI/LeaderboardAPI';
+import { TEAM_NAME } from '../../utils/apiConstans';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { selectUserData } from '../../store/selectors';
+import { UserData } from '../../store/typings';
+import { increaseTryCount, setScore } from '../../store/features/gameSlice';
 
 export function GamePage() {
   const gameRef = useRef<GameCore | null>(null);
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.ONBOARDING);
+  const userData: UserData | null = useAppSelector(selectUserData);
+  const dispatch = useAppDispatch();
 
   const handleClickStart = () => {
     setGameStatus(GameStatus.PREPARING);
@@ -34,7 +42,27 @@ export function GamePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const sentResults = () => {
-    console.log('Здесь должна быть отправка результата в API Leaderboard');
+    if (gameRef.current) {
+      const score: number = gameRef.current.getScore();
+
+      if (userData) {
+        const userId: number = userData.id;
+        const userName: string = userData.login;
+
+        dispatch(setScore(score));
+        dispatch(increaseTryCount());
+
+        leaderboardAPI.addLider({
+          data: {
+            id: userId,
+            name: userName,
+            score,
+          },
+          ratingFieldName: 'score',
+          teamName: TEAM_NAME,
+        });
+      }
+    }
   };
 
   const [isRunStartAnimation, setIsRunStartAnimation] = useState<boolean>(false);

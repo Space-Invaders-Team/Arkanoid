@@ -7,7 +7,7 @@ export function useLeaders(callback: (a: TLeaderBoard[]) => void): [() => void, 
   const [error, setError] = useState('');
 
   const fetchLeaders = () => {
-    leaderboardAPI.getAllLiders({
+    leaderboardAPI.getTeamLiders({
       ratingFieldName: 'score',
       cursor: 0,
       limit: 15,

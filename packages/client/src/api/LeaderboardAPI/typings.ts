@@ -3,6 +3,7 @@ export type TLider = {
     id: number;
     name: string;
     score: number;
+    level?: number;
     avatar?: string;
   };
   ratingFieldName: string;

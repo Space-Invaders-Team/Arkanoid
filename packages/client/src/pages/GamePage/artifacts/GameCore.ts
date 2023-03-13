@@ -137,6 +137,8 @@ export class GameCore {
     this.ctx.fillText(text, x, y);
   }
 
+  public getScore = () => this._score;
+
   public setInitialState = () => {
     const {
       canvas,

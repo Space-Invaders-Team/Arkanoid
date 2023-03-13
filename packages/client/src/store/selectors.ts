@@ -7,6 +7,7 @@ export const selectAuthStatus = (state: StateObject) => state.auth.status;
 export const selectIsLogged = (state: StateObject) => state.auth.isLogged;
 export const selectAuthError = (state: StateObject) => state.auth.error;
 export const selectNavlinks = (state: StateObject) => state.auth.navLinks;
+export const selectGameData = (state: StateObject) => state.game;
 
 export const selectNavLinksByIsLogged = createSelector(
   selectNavlinks,
