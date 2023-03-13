@@ -13,10 +13,7 @@ export function Leaderboard() {
   const [leaders, setLeaders] = useState<TLeaderBoard[]>([]);
   const [fetchLeaders, isLoading, leadersError] = useLeaders(setLeaders);
   const userData: UserData | null = useAppSelector(selectUserData);
-  let currentPlayerId: number;
-  if (userData) {
-    currentPlayerId = userData.id;
-  }
+  const currentPlayerId = userData?.id;
 
   useEffect(() => {
     fetchLeaders();

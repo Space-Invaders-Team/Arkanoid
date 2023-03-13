@@ -13,11 +13,11 @@ const gameSlice = createSlice({
     setScore(state, action) {
       state.score = action.payload;
     },
-    increaseCount(state) {
+    increaseTryCount(state) {
       state.tryCount += 1;
     },
   },
 });
 
-export const { setScore, increaseCount } = gameSlice.actions;
+export const { setScore, increaseTryCount } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

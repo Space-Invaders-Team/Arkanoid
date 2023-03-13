@@ -13,7 +13,7 @@ import { TEAM_NAME } from '../../utils/apiConstans';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectUserData } from '../../store/selectors';
 import { UserData } from '../../store/typings';
-import { increaseCount, setScore } from '../../store/features/gameSlice';
+import { increaseTryCount, setScore } from '../../store/features/gameSlice';
 
 export function GamePage() {
   const gameRef = useRef<GameCore | null>(null);
@@ -50,7 +50,7 @@ export function GamePage() {
         const userName: string = userData.login;
 
         dispatch(setScore(score));
-        dispatch(increaseCount());
+        dispatch(increaseTryCount());
 
         leaderboardAPI.addLider({
           data: {
