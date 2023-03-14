@@ -5,10 +5,10 @@ import styles from './Avatar.module.css';
 export function Avatar(props: TAvatar) {
   const { path, userId, userName } = props;
 
-  const avatar = path ? <img src={path} alt={userName} /> : <BigHead />;
+  const avatar = path ? <img src={path} alt={userName} data-testid="AvatarImg" /> : <BigHead data-testid="BigHead" />;
 
   return (
-    <div className={styles.avatar} data-id={userId}>
+    <div className={styles.avatar} data-id={userId} data-testid="Avatar">
       {avatar}
     </div>
   );

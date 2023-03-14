@@ -22,7 +22,7 @@ export function Navigation({ isLogged, onLogout }: NavigationProps) {
   }: { isActive: boolean }): string => (isActive ? activeLink : normalLink);
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} data-testid="navigation">
       <div className={styles.container}>
         <div className={styles.navRow}>
 

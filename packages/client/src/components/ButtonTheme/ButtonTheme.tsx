@@ -19,7 +19,12 @@ export function ButtonTheme() {
 
   return (
 
-    <button type="button" className={theme === 'dark' ? btnActive : btnNormal} onClick={handleThemeClick}>
+    <button
+      type="button"
+      className={theme === 'dark' ? btnActive : btnNormal}
+      onClick={handleThemeClick}
+      data-testid="toggleThemeBtn"
+    >
 
       <img src={sun} alt="Light mode" className={styles.darkModeBtnIcon} />
 
