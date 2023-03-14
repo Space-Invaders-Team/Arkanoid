@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonTheme component tests Correct render 1`] = `
+<button
+  class="darkModeBtn"
+  data-testid="toggleThemeBtn"
+  type="button"
+>
+  <img
+    alt="Light mode"
+    class="darkModeBtnIcon"
+    src="default"
+  />
+  <img
+    alt="Dark mode"
+    class="darkModeBtnIcon"
+    src="default"
+  />
+</button>
+`;
