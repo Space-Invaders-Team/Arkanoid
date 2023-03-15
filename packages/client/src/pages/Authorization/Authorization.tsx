@@ -1,5 +1,6 @@
 import styles from './Authorization.module.css';
 import { Form } from '../../components/Form';
+import { AuthMessage } from '../../components/AuthMessage';
 import { PageType } from '../../components/Form/typings';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -15,6 +16,7 @@ export function Authorization() {
         text="Еще не зарегистрированы?"
         onSubmitForm={onLogin}
       />
+      <AuthMessage />
     </div>
   );
 }
