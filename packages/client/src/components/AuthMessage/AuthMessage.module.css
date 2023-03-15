@@ -1,0 +1,32 @@
+.authMessage {
+  color: var(--error-text-color);
+  padding: 20px 5px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: max-content;
+  width: 100%;
+  animation: auth-message 5s;
+  animation-fill-mode: forwards;
+  z-index: 99;
+  background-color: var(--error-bg-color);
+  text-align: center;
+}
+
+@keyframes auth-message {
+  0% {
+    transform: translateY(100%);
+  }
+
+  10% {
+    transform: translateY(0);
+  }
+
+  90% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}

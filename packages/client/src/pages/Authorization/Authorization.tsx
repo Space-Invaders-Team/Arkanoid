@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Authorization.module.css';
 import { Form } from '../../components/Form';
+import { AuthMessage } from '../../components/AuthMessage';
 import { PageType } from '../../components/Form/typings';
 import { useAuth } from '../../hooks/useAuth';
 import { Paths } from '../../utils/routeConstants';
@@ -23,6 +24,7 @@ export function Authorization() {
         text="Еще не зарегистрированы?"
         onSubmitForm={handleLogin}
       />
+      <AuthMessage />
     </div>
   );
 }
