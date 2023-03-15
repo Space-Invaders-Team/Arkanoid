@@ -2,15 +2,24 @@ import { render, screen } from '@testing-library/react';
 // defineProperty for jest-test
 // https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
 import './matchMedia.mock'; // Must be imported before the tested file
-// import { App } from './App';
+import '@testing-library/jest-dom/extend-expect';
 
-const appContent = 'Главная';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+
+import { App } from './App';
+import { rootReducer } from '../../store/store';
 
 // @ts-ignore
 global.fetch = jest.fn(() => Promise.resolve({ json: () => Promise.resolve('hey') }));
 
-test('Example test', async () => {
-  // render(<App />);
-  render(<h1>Главная</h1>);
-  expect(screen.getByText(appContent)).toBeDefined();
+describe('App component tests', () => {
+  test('Test the loading state', () => {
+    const store = configureStore({ reducer: rootReducer });
+    render(<Provider store={store}><App /></Provider>);
+
+    const component = screen.getByTestId('loader');
+
+    expect(component).toBeInTheDocument();
+  });
 });
