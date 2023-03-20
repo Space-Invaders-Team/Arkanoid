@@ -17,7 +17,7 @@ export function Leaderboard() {
 
   useEffect(() => {
     fetchLeaders();
-  }, []);
+  }, [fetchLeaders]);
 
   const sortLeaders = (sortField: keyof Omit<TLeaderBoard, 'avatar'>, orders: Order): void => {
     if (sortField !== null) {

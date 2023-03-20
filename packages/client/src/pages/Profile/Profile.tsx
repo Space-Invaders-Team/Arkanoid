@@ -46,7 +46,7 @@ export function Profile() {
     (event) => {
       event.preventDefault();
     },
-    [requestBody],
+    [],
   );
 
   const { firstName } = userProfile;

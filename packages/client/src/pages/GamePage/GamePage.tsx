@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { drawGame } from './utils/drawGame';
 import { EndScreen, StartScreen } from '../../components/GameScreens';
 import styles from './GamePage.module.css';
@@ -41,29 +41,32 @@ export function GamePage() {
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const sentResults = () => {
-    if (gameRef.current) {
-      const score: number = gameRef.current.getScore();
+  const sentResults = useCallback(
+    () => {
+      if (gameRef.current) {
+        const score: number = gameRef.current.getScore();
 
-      if (userData) {
-        const userId: number = userData.id;
-        const userName: string = userData.login;
+        if (userData) {
+          const userId: number = userData.id;
+          const userName: string = userData.login;
 
-        dispatch(setScore(score));
-        dispatch(increaseTryCount());
+          dispatch(setScore(score));
+          dispatch(increaseTryCount());
 
-        leaderboardAPI.addLider({
-          data: {
-            id: userId,
-            name: userName,
-            score,
-          },
-          ratingFieldName: 'score',
-          teamName: TEAM_NAME,
-        });
+          leaderboardAPI.addLider({
+            data: {
+              id: userId,
+              name: userName,
+              score,
+            },
+            ratingFieldName: 'score',
+            teamName: TEAM_NAME,
+          });
+        }
       }
-    }
-  };
+    },
+    [dispatch, userData],
+  );
 
   const [isRunStartAnimation, setIsRunStartAnimation] = useState<boolean>(false);
   const screenMap = new Map<GameStatus, ReactNode>([
@@ -102,7 +105,7 @@ export function GamePage() {
     if (gameStatus === GameStatus.LOSE) {
       sentResults();
     }
-  }, [gameStatus]);
+  }, [gameStatus, sentResults]);
 
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
