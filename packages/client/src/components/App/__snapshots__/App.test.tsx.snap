@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component tests Test the navigation is shown 1`] = `
+<nav
+  class="nav"
+  data-testid="navigation"
+>
+  <div
+    class="container"
+  >
+    <div
+      class="navRow"
+    >
+      <button
+        class="darkModeBtn"
+        data-testid="toggleThemeBtn"
+        type="button"
+      >
+        <img
+          alt="Light mode"
+          class="darkModeBtnIcon"
+          src="default"
+        />
+        <img
+          alt="Dark mode"
+          class="darkModeBtnIcon"
+          src="default"
+        />
+      </button>
+      <ul
+        class="navList"
+      >
+        <li
+          class="navListItem"
+        >
+          <a
+            aria-current="page"
+            class="navListLink linkActive"
+            href="/"
+          >
+            Главная
+          </a>
+        </li>
+        <li
+          class="navListItem"
+        >
+          <a
+            class="navListLink"
+            href="/authorization"
+          >
+            Вход
+          </a>
+        </li>
+        <li
+          class="navListItem"
+        >
+          <a
+            class="navListLink"
+            href="/registration"
+          >
+            Регистрация
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+`;

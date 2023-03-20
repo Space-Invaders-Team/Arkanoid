@@ -18,7 +18,7 @@ export function Navigation() {
   const { onLogout } = useAuth();
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} data-testid="navigation">
       <div className={styles.container}>
         <div className={styles.navRow}>
 
