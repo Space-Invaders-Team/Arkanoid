@@ -1,10 +1,18 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Authorization.module.css';
 import { Form } from '../../components/Form';
 import { PageType } from '../../components/Form/typings';
 import { useAuth } from '../../hooks/useAuth';
+import { Paths } from '../../utils/routeConstants';
 
 export function Authorization() {
   const { onLogin } = useAuth();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const handleLogin = (userData: StringObject) => {
+    onLogin(userData).then(() => navigate(state?.path || Paths.HOME));
+  };
 
   return (
     <div className={styles.container}>
@@ -13,7 +21,7 @@ export function Authorization() {
         title="Авторизация"
         button="Войти"
         text="Еще не зарегистрированы?"
-        onSubmitForm={onLogin}
+        onSubmitForm={handleLogin}
       />
     </div>
   );

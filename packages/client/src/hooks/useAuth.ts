@@ -9,7 +9,6 @@ export const useAuth = () => {
   const onLogin = async (userData: StringObject) => {
     try {
       await authApi.loginUser(userData);
-      localStorage.setItem('isLogged', 'true');
       dispatch(setIsLogged(true));
       dispatch(getUserData());
     } catch (errorMessage) {
@@ -20,7 +19,6 @@ export const useAuth = () => {
   const onRegister = async (userData: StringObject) => {
     try {
       await authApi.registerUser(userData);
-      localStorage.setItem('isLogged', 'true');
       dispatch(setIsLogged(true));
       dispatch(getUserData());
       alert(errorConstants.SUCCESSFUL_REGISTRATION_MESSAGE);
@@ -32,7 +30,6 @@ export const useAuth = () => {
   const onLogout = async () => {
     try {
       await authApi.logoutUser();
-      localStorage.removeItem('isLogged');
       dispatch(clearAuthStore());
     } catch (errorMessage) {
       alert(errorMessage);

@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "clean": "rimraf dist ssr-dist",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:ssr": "tsc && vite build --config ssr.config.ts",
+    "build:client": "tsc && vite build --config vite.config.ts",
+    "build": "npm-run-all clean build:*",
     "preview": "vite preview",
     "lint:scripts": "eslint . --fix",
     "lint:styles": "stylelint src/**/*.css --fix",
-    "lint": "npm-run-all -c -p lint:scripts lint:styles",
+    "lint": "npm-run-all -c -p lint:*",
     "format": "prettier --write .",
     "test": "jest ./",
     "test:watch": "jest ./ --watch"

@@ -1,52 +1,67 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { Authorization } from '../pages/Authorization';
-import { Forum } from '../pages/forum';
-import { TopicList } from '../pages/forum/topicList';
-import { Landing } from '../pages/landing';
-import { Profile } from '../pages/Profile';
-import { Leaderboard } from '../pages/Leaderboard';
-import { Registration } from '../pages/Registration';
-import { GamePage } from '../pages/GamePage';
-import { Messages } from '../pages/forum/Messages';
-import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
+import { createRoutesFromElements, Route, Routes } from 'react-router-dom';
+import { RootLayout } from '../components/RootLayout/RootLayout';
 import { Paths } from '../utils/routeConstants';
-import { ErrorPage } from '../pages/ErrorPage';
-import { useAppSelector } from '../store/hooks';
-import { selectIsLogged } from '../store/selectors';
+import {
+  Authorization,
+  Forum,
+  GamePage,
+  Landing,
+  Leaderboard,
+  Profile,
+  Registration,
+} from '../pages';
+import { ProtectedRoute } from '../components/ProtectedRoute';
+import { TopicList } from '../pages/forum/topicList';
+import { Messages } from '../pages/forum/Messages';
 
-export function Router() {
-  const isLogged = useAppSelector(selectIsLogged);
+const routes = (
+  <Route element={<RootLayout />}>
+    <Route path={Paths.HOME} element={<Landing />} />
+    <Route path={Paths.AUTH} element={<Authorization />} />
+    <Route path={Paths.REGISTER} element={<Registration />} />
+    <Route
+      path={Paths.FORUM}
+      element={(
+        <ProtectedRoute>
+          <Forum />
+        </ProtectedRoute>
+      )}
+    >
+      <Route path={Paths.TOPICLIST} element={<TopicList />} />
+      <Route path={Paths.TOPIC} element={<Messages />} />
+    </Route>
+    <Route
+      path={Paths.GAME}
+      element={(
+        <ProtectedRoute>
+          <GamePage />
+        </ProtectedRoute>
+      )}
+    />
+    <Route
+      path={Paths.PROFILE}
+      element={(
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+      )}
+    />
+    <Route
+      path={Paths.LEADERBOARD}
+      element={(
+        <ProtectedRoute>
+          <Leaderboard />
+        </ProtectedRoute>
+      )}
+    />
+  </Route>
+);
 
-  return (
-    <Routes>
-      <Route path={Paths.HOME} element={<Landing />} />
-      <Route
-        path={Paths.AUTH}
-        element={
-          isLogged
-            ? (<Navigate to={Paths.GAME} />)
-            : (<Authorization />)
-        }
-      />
-      <Route
-        path={Paths.REGISTER}
-        element={
-          isLogged
-            ? (<Navigate to={Paths.GAME} />)
-            : (<Registration />)
-        }
-      />
-      <Route element={<ProtectedRoute />}>
-        <Route path={Paths.FORUM}>
-          <Route index element={<Forum />} />
-          <Route path={Paths.TOPICLIST} element={<TopicList />} />
-          <Route path={Paths.TOPIC} element={<Messages />} />
-        </Route>
-        <Route path={Paths.GAME} element={<GamePage />} />
-        <Route path={Paths.PROFILE} element={<Profile />} />
-        <Route path={Paths.LEADERBOARD} element={<Leaderboard />} />
-      </Route>
-      <Route path={Paths.NOT_FOUND} element={<ErrorPage />} />
-    </Routes>
-  );
-}
+export const browserRoutes = createRoutesFromElements(routes);
+export const serverRoutes = (
+  <Routes>
+    {
+      routes
+    }
+  </Routes>
+);
