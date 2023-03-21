@@ -3,9 +3,16 @@ import { Paddle } from './Paddle';
 import { BricksContainer } from './BricksContainer';
 import { GameStatus } from '../typings';
 import { LEVELS } from '../utils/levels';
+import wall from '../../../assets/sounds/walls-jump.mp3';
+import fall from '../../../assets/sounds/fall.mp3';
+import gameOver from '../../../assets/sounds/game-over.mp3';
 
 const SPACEBAR_KEY = ' ';
 const LIVES_AMOUNT = 3;
+
+const wallAudio = new Audio(wall);
+const fallAudio = new Audio(fall);
+const gameOverAudio = new Audio(gameOver);
 
 export class GameCore {
   private readonly _ball: Ball;
@@ -91,6 +98,7 @@ export class GameCore {
       && this._status !== GameStatus.RUNNING
     ) {
       this._status = GameStatus.RUNNING;
+      wallAudio.play();
     }
   };
 
@@ -185,11 +193,13 @@ export class GameCore {
 
     if (ball.x > canvasRightEdgeX || ball.x < ball.radius) {
       ball.flipX();
+      wallAudio.play();
     }
 
     const canvasBottomEdgeY = canvas.height - ball.radius - paddle.heightWithOffset;
 
     if (ball.y < ball.radius) {
+      wallAudio.play();
       ball.flipY();
     } else if (ball.y > canvasBottomEdgeY) {
       const isBallIntoPaddle = (
@@ -203,13 +213,16 @@ export class GameCore {
         );
         const shiftCoef = shift / 2 + 0.5;
         ball.angle = -(shiftCoef * (Math.PI / 2) + Math.PI / 4);
+        wallAudio.play();
       } else {
         this._lives--;
         this._status = GameStatus.PREPARING;
         ball.flipY();
+        if (this._lives !== 0) { fallAudio.play(); }
 
         if (this._lives <= 0) {
           this.changeUIStatus(GameStatus.LOSE);
+          gameOverAudio.play();
         }
       }
     }

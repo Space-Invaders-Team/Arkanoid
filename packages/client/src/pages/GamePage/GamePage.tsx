@@ -14,6 +14,10 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectUserData } from '../../store/selectors';
 import { UserData } from '../../store/typings';
 import { increaseTryCount, setScore } from '../../store/features/gameSlice';
+import startAudio from '../../assets/sounds/start.mp3';
+import { createAudioContext } from './utils/audio';
+
+const { audio, audioContext } = createAudioContext(startAudio);
 
 export function GamePage() {
   const gameRef = useRef<GameCore | null>(null);
@@ -23,6 +27,7 @@ export function GamePage() {
 
   const handleClickStart = () => {
     setGameStatus(GameStatus.PREPARING);
+    audio.pause();
 
     if (gameRef.current) {
       gameRef.current.status = GameStatus.PREPARING;
@@ -99,6 +104,15 @@ export function GamePage() {
     if (!gameRef.current) {
       drawGame(canvasRef, gameRef, setGameStatus);
     }
+
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();
+    }
+
+    audio.play();
+    return () => {
+      audio.pause();
+    };
   }, []);
 
   useEffect(() => {
