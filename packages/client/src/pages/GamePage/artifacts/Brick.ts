@@ -1,4 +1,8 @@
 import { Ball } from './Ball';
+import brick from '../../../assets/sounds/toBlock.mp3';
+import { createAudioContext } from '../utils/audio';
+
+const { audio, audioContext } = createAudioContext(brick);
 
 export class Brick {
   public static readonly width = 80;
@@ -86,6 +90,11 @@ export class Brick {
           this.ball.flipY();
         }
 
+        if (audioContext.state === 'suspended') {
+          audioContext.resume();
+        }
+
+        audio.play();
         return true;
       }
     }
