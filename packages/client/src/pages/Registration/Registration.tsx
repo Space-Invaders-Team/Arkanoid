@@ -1,10 +1,11 @@
 import styles from './Registration.module.css';
 import { Form } from '../../components/Form';
+import { AuthMessage } from '../../components/AuthMessage';
 import { PageType } from '../../components/Form/typings';
 import { useAuth } from '../../hooks/useAuth';
 
 export function Registration() {
-  const { onRegister } = useAuth();
+  const { onRegister, isErrorMessage } = useAuth();
 
   return (
     <div className={styles.container}>
@@ -15,6 +16,7 @@ export function Registration() {
         text="Уже зарегистрированы?"
         onSubmitForm={onRegister}
       />
+      {isErrorMessage && <AuthMessage message={isErrorMessage} />}
     </div>
   );
 }

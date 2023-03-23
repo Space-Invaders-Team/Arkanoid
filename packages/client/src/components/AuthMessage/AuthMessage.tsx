@@ -1,9 +1,9 @@
 import styles from './AuthMessage.module.css';
 
-export function AuthMessage() {
+export function AuthMessage({ message }: { message: string }) {
   return (
     <div className={styles.authMessage}>
-      Не верная почта или пароль
+      {message}
     </div>
   );
 }

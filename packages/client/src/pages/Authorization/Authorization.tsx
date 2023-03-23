@@ -7,7 +7,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { Paths } from '../../utils/routeConstants';
 
 export function Authorization() {
-  const { onLogin } = useAuth();
+  const { onLogin, isErrorMessage } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -24,7 +24,7 @@ export function Authorization() {
         text="Еще не зарегистрированы?"
         onSubmitForm={handleLogin}
       />
-      <AuthMessage />
+      {isErrorMessage && <AuthMessage message={isErrorMessage} />}
     </div>
   );
 }
