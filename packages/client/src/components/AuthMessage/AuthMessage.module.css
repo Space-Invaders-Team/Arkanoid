@@ -6,23 +6,23 @@
   bottom: 0;
   height: max-content;
   width: 100%;
-  animation: auth-message 5s;
+  animation: message 2.5s;
   animation-fill-mode: forwards;
   z-index: 99;
   background-color: var(--error-bg-color);
   text-align: center;
 }
 
-@keyframes auth-message {
+@keyframes message {
   0% {
     transform: translateY(100%);
   }
 
-  10% {
+  20% {
     transform: translateY(0);
   }
 
-  90% {
+  80% {
     transform: translateY(0);
   }
 

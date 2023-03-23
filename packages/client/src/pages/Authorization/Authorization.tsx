@@ -5,7 +5,7 @@ import { PageType } from '../../components/Form/typings';
 import { useAuth } from '../../hooks/useAuth';
 
 export function Authorization() {
-  const { onLogin } = useAuth();
+  const { onLogin, isErrorMessage } = useAuth();
 
   return (
     <div className={styles.container}>
@@ -16,7 +16,7 @@ export function Authorization() {
         text="Еще не зарегистрированы?"
         onSubmitForm={onLogin}
       />
-      <AuthMessage />
+      {isErrorMessage && <AuthMessage message={isErrorMessage} />}
     </div>
   );
 }
