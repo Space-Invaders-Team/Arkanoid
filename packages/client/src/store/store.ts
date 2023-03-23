@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './features/authSlice';
+import { oauthReducer } from './features/oauthSlice';
 import { gameReducer } from './features/gameSlice';
 
 export const rootReducer = combineReducers({
   // here we will be adding reducers
   // counter: counterReducer,
   auth: authReducer,
+  oauth: oauthReducer,
   game: gameReducer,
 });
 

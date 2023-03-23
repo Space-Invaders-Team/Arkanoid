@@ -7,6 +7,8 @@ import { FormProps, PageType } from './typings';
 import * as formConstants from '../../utils/formConstants';
 import styles from './Form.module.css';
 import { Paths } from '../../utils/routeConstants';
+import { useAppSelector } from '../../store/hooks';
+import { selectServiceId } from '../../store/selectors';
 
 export function Form({
   title,
@@ -16,6 +18,7 @@ export function Form({
   onSubmitForm,
 }: FormProps) {
   const [isValid, setIsValid] = useState(false);
+  const serviceId = useAppSelector(selectServiceId);
 
   const handleValidate = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const form = evt.target.closest('form');
@@ -31,6 +34,10 @@ export function Form({
     }, {});
     onSubmitForm(formData);
     setIsValid(false);
+  };
+
+  const handleLoginWithYandexId = () => {
+    window.location.assign(Paths.OAUTH_BASE + serviceId + Paths.REDIRECT_URI);
   };
 
   return (
@@ -125,6 +132,7 @@ export function Form({
         )}
       </fieldset>
       <Button
+        id="btn-login"
         type="submit"
         extraClassName={classNames(styles.button, { [styles.buttonDisabled]: !isValid })}
         disabled={!isValid}
@@ -137,6 +145,17 @@ export function Form({
           ? <Link className={styles.link} to={Paths.AUTH}>Войти</Link>
           : <Link className={styles.link} to={Paths.REGISTER}>Регистрация</Link>}
       </p>
+      {pageType === PageType.Signin
+        && (
+          <Button
+            id="btn-yandex-id"
+            type="button"
+            extraClassName={styles.button}
+            onClick={handleLoginWithYandexId}
+          >
+            Вход c Яндекс ID
+          </Button>
+        )}
     </form>
   );
 }

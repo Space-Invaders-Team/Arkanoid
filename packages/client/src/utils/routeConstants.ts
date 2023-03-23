@@ -9,6 +9,8 @@ export enum Paths {
   TOPIC = '/forum/topicList/:id/topic/:id',
   PROFILE = '/profile',
   NOT_FOUND = '/*',
+  OAUTH_BASE = 'https://oauth.yandex.ru/authorize?response_type=code&client_id=',
+  REDIRECT_URI = '&redirect_uri=http://localhost:3000',
 }
 
 export enum Titles {

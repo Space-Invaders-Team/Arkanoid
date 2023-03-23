@@ -10,6 +10,7 @@ export type UserData = {
 };
 
 export type StateObject = {
+  oauth: { serviceId: string | null };
   auth: {
     status: string;
     isLogged: boolean;
@@ -17,7 +18,7 @@ export type StateObject = {
     userData: UserData | null;
     navLinks: StringObject[];
   },
-  game: TGameState
+  game: TGameState,
 };
 
 export type TGameState = {

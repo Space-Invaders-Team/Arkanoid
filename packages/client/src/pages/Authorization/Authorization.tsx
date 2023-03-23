@@ -12,7 +12,7 @@ export function Authorization() {
       <Form
         pageType={PageType.Signin}
         title="Авторизация"
-        button="Войти"
+        button="Вход по логину и паролю"
         text="Еще не зарегистрированы?"
         onSubmitForm={onLogin}
       />

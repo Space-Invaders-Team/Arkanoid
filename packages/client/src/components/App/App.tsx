@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getUserData } from '../../store/features/authSlice';
 import { Loader } from '../Loader';
 import { selectAuthStatus } from '../../store/selectors';
+import { useOauth } from '../../hooks/useOauth';
 
 // useEffect(() => {
 //   const fetchServerData = async () => {
@@ -22,9 +23,14 @@ import { selectAuthStatus } from '../../store/selectors';
 export function App() {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectAuthStatus);
+  const { loginWithYandexId, getServiceId } = useOauth();
 
   useEffect(() => {
     dispatch(getUserData());
+    getServiceId();
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    if (code) loginWithYandexId(code);
   }, []);
 
   return (
