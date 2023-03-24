@@ -24,7 +24,7 @@ export function Router() {
         path={Paths.AUTH}
         element={
           isLogged
-            ? (<Navigate to={Paths.GAME} />)
+            ? (<Navigate to={Paths.HOME} />)
             : (<Authorization />)
         }
       />
@@ -32,7 +32,7 @@ export function Router() {
         path={Paths.REGISTER}
         element={
           isLogged
-            ? (<Navigate to={Paths.GAME} />)
+            ? (<Navigate to={Paths.HOME} />)
             : (<Registration />)
         }
       />

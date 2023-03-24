@@ -19,6 +19,9 @@ export function Form({
 }: FormProps) {
   const [isValid, setIsValid] = useState(false);
   const serviceId = useAppSelector(selectServiceId);
+  const redirectUri = process.env.NODE_ENV === 'development'
+    ? Paths.REDIRECT_URI_DEV
+    : Paths.REDIRECT_URI_PROD;
 
   const handleValidate = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const form = evt.target.closest('form');
@@ -37,7 +40,7 @@ export function Form({
   };
 
   const handleLoginWithYandexId = () => {
-    window.location.assign(Paths.OAUTH_BASE + serviceId + Paths.REDIRECT_URI);
+    window.location.assign(Paths.OAUTH_BASE_URL + serviceId + Paths.OAUTH_ADD_URL + redirectUri);
   };
 
   return (

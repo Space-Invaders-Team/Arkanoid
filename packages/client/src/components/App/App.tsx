@@ -23,14 +23,18 @@ import { useOauth } from '../../hooks/useOauth';
 export function App() {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectAuthStatus);
-  const { loginWithYandexId, getServiceId } = useOauth();
+  const { loginWithYandexId, getServiceId, getOauthCode } = useOauth();
 
   useEffect(() => {
-    dispatch(getUserData());
-    getServiceId();
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    if (code) loginWithYandexId(code);
+    const fetch = async () => {
+      await getServiceId();
+      const code = getOauthCode();
+      if (code) {
+        await loginWithYandexId(code);
+      }
+      await dispatch(getUserData());
+    };
+    fetch();
   }, []);
 
   return (
