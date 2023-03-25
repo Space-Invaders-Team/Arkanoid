@@ -13,7 +13,7 @@ export function FormField<T extends Record<string, string>>({
       const { name, value } = event.target;
       setFormData({ ...formData, [name]: value });
     },
-    [formData],
+    [formData, setFormData],
   );
 
   return (

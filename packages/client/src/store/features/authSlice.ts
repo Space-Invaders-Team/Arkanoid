@@ -56,7 +56,6 @@ const authSlice = createSlice({
           state.status = 'rejected';
           state.userData = null;
           state.error = action.payload;
-          localStorage.removeItem('isLogged');
         },
       );
   },
