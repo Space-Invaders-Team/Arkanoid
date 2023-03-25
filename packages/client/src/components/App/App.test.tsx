@@ -21,7 +21,7 @@ describe.skip('App component tests', () => {
 
   test('Test the loader is shown', async () => {
     // TODO пока вставил спаны, чтобы не было ошибки
-    // Как только закончу с SSR обещаю пересмотреть тест этого компонента))
+    // Как только закончу с SSR обещаю пересмотреть тест этого компонента)) (https://linear.app/22-ya-praktikum/issue/223-77/testy-na-komponent-app)
     render(<Provider store={store}><App><span>test</span></App></Provider>);
 
     const component = await screen.findByTestId('loader');
@@ -31,7 +31,7 @@ describe.skip('App component tests', () => {
 
   test('Test the navigation is shown', async () => {
     // TODO пока вставил спаны, чтобы не было ошибки
-    // Как только закончу с SSR обещаю пересмотреть тест этого компонента))
+    // Как только закончу с SSR обещаю пересмотреть тест этого компонента)) (https://linear.app/22-ya-praktikum/issue/223-77/testy-na-komponent-app)
     render(<Provider store={store}><App><span>test</span></App></Provider>);
     const component = await screen.findByTestId('navigation');
     expect(component).toBeInTheDocument();
