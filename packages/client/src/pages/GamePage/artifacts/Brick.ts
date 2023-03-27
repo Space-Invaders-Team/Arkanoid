@@ -94,7 +94,8 @@ export class Brick {
           audioContext.resume();
         }
 
-        audio.play();
+        const isMute = localStorage.getItem('isMute') === 'true';
+        if (!isMute) { audio.play(); }
         return true;
       }
     }
