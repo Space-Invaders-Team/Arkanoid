@@ -1,8 +1,4 @@
 import { Ball } from './Ball';
-import brick from '../../../assets/sounds/toBlock.mp3';
-import { createAudioContext } from '../utils/audio';
-
-const { audio, audioContext } = createAudioContext(brick);
 
 export class Brick {
   public static readonly width = 80;
@@ -19,6 +15,8 @@ export class Brick {
     private _isActive: boolean,
     private _x: number,
     private _y: number,
+    private _audio: HTMLAudioElement,
+    private _audioContext: AudioContext,
   ) {
   }
 
@@ -90,12 +88,14 @@ export class Brick {
           this.ball.flipY();
         }
 
-        if (audioContext.state === 'suspended') {
-          audioContext.resume();
+        if (this._audioContext.state === 'suspended') {
+          this._audioContext.resume();
         }
 
         const isMute = localStorage.getItem('isMute') === 'true';
-        if (!isMute) { audio.play(); }
+        if (!isMute) {
+          this._audio.play();
+        }
         return true;
       }
     }
