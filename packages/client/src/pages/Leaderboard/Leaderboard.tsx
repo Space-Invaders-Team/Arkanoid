@@ -34,14 +34,14 @@ export function Leaderboard() {
   };
 
   return (
-    <main className={styles.leaderboard}>
+    <main className={styles.leaderboard} data-testid="leaderboard">
       <section className={styles.wrapper}>
         <h1 className={styles.title}>Рейтинг игроков</h1>
 
         {isLoading
           ? <Loader />
           : (
-            <table className={styles.table}>
+            <table data-testid="leaderboard-table" className={styles.table}>
               <TableHead sorting={sortLeaders} />
               <tbody>
 
