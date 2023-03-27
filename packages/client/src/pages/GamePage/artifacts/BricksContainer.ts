@@ -1,6 +1,8 @@
 import { Brick } from './Brick';
 import { Ball } from './Ball';
 import { LEVELS } from '../utils/levels';
+import brickSound from '../../../assets/sounds/toBlock.mp3';
+import { createAudioContext } from '../utils/audio';
 
 export class BricksContainer {
   private readonly _rowsAmount: number = 0;
@@ -24,6 +26,7 @@ export class BricksContainer {
     private readonly increaseLevel: () => void,
   ) {
     const level = LEVELS[levelNumber];
+    const { audio, audioContext } = createAudioContext(brickSound);
 
     if (Array.isArray(level) && Array.isArray(level[0])) {
       this._rowsAmount = level.length;
@@ -46,6 +49,8 @@ export class BricksContainer {
             isActiveBrick,
             0,
             0,
+            audio,
+            audioContext,
           );
         }
       }
