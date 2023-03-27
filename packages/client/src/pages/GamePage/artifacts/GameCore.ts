@@ -5,14 +5,12 @@ import { GameStatus } from '../typings';
 import { LEVELS } from '../utils/levels';
 import wall from '../../../assets/sounds/walls-jump.mp3';
 import fall from '../../../assets/sounds/fall.mp3';
-import gameOver from '../../../assets/sounds/game-over.mp3';
 
 const SPACEBAR_KEY = ' ';
 const LIVES_AMOUNT = 3;
 
 const wallAudio = new Audio(wall);
 const fallAudio = new Audio(fall);
-const gameOverAudio = new Audio(gameOver);
 
 export class GameCore {
   private readonly _ball: Ball;
@@ -31,6 +29,8 @@ export class GameCore {
 
   private _raf: number | null = null;
 
+  private _isMute: boolean;
+
   constructor(
     private readonly canvas: HTMLCanvasElement,
     private readonly ctx: CanvasRenderingContext2D,
@@ -39,6 +39,7 @@ export class GameCore {
     this._paddle = new Paddle(ctx, canvas.width, canvas.height);
     this._ball = new Ball(ctx, canvas.width / 2, canvas.height, this._paddle.heightWithOffset);
     this._bricks = this.generateBricks();
+    this._isMute = true;
 
     document.addEventListener('keydown', this.startGame);
     document.addEventListener('keydown', this._paddle.keyHandler, false);
@@ -92,13 +93,14 @@ export class GameCore {
 
   private startGame = (event: KeyboardEvent | MouseEvent) => {
     const isSpacebarPressed = event instanceof KeyboardEvent && event.key === SPACEBAR_KEY;
+    this._isMute = localStorage.getItem('isMute') === 'true';
 
     if (
       (event instanceof MouseEvent || isSpacebarPressed)
       && this._status !== GameStatus.RUNNING
     ) {
       this._status = GameStatus.RUNNING;
-      wallAudio.play();
+      if (!this._isMute) { wallAudio.play(); }
     }
   };
 
@@ -193,13 +195,13 @@ export class GameCore {
 
     if (ball.x > canvasRightEdgeX || ball.x < ball.radius) {
       ball.flipX();
-      wallAudio.play();
+      if (!this._isMute) { wallAudio.play(); }
     }
 
     const canvasBottomEdgeY = canvas.height - ball.radius - paddle.heightWithOffset;
 
     if (ball.y < ball.radius) {
-      wallAudio.play();
+      if (!this._isMute) { wallAudio.play(); }
       ball.flipY();
     } else if (ball.y > canvasBottomEdgeY) {
       const isBallIntoPaddle = (
@@ -213,16 +215,15 @@ export class GameCore {
         );
         const shiftCoef = shift / 2 + 0.5;
         ball.angle = -(shiftCoef * (Math.PI / 2) + Math.PI / 4);
-        wallAudio.play();
+        if (!this._isMute) { wallAudio.play(); }
       } else {
         this._lives--;
         this._status = GameStatus.PREPARING;
         ball.flipY();
-        if (this._lives !== 0) { fallAudio.play(); }
+        if (this._lives !== 0 && !this._isMute) { fallAudio.play(); }
 
         if (this._lives <= 0) {
           this.changeUIStatus(GameStatus.LOSE);
-          gameOverAudio.play();
         }
       }
     }

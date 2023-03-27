@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Button } from '../../Button';
 import { GameStatus } from '../../../pages/GamePage/typings';
 import commonStyles from '../GameScreens.module.css';
@@ -9,6 +10,10 @@ import { Paths } from '../../../utils/routeConstants';
 import { useAppSelector } from '../../../store/hooks';
 import { selectGameData } from '../../../store/selectors';
 import { TGameState } from '../../../store/typings';
+import gameOver from '../../../assets/sounds/game-over.mp3';
+import { createAudioContext } from '../../../pages/GamePage/utils/audio';
+
+let audioCtx: { audioContext: AudioContext; audio: HTMLAudioElement; };
 
 const titleMap = new Map<GameStatus, string>([
   [GameStatus.WIN, 'FLAWLESS VICTORY'],
@@ -25,6 +30,17 @@ export function EndScreen({ status, onClickPrimaryBtn }: Props) {
   const endScreenClassName = classNames(commonStyles.dummyScreen, styles.container);
   const gameData: TGameState = useAppSelector(selectGameData);
   const { score, tryCount } = gameData;
+
+  useEffect(() => {
+    const isMute = localStorage.getItem('isMute') === 'true';
+    if (!isMute) {
+      audioCtx = createAudioContext(gameOver);
+      audioCtx.audio.play();
+    }
+    return () => {
+      audioCtx?.audioContext?.suspend();
+    };
+  }, []);
 
   return (
     <div className={endScreenClassName}>
