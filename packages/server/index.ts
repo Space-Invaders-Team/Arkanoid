@@ -13,8 +13,10 @@ const IS_DEV = process.env.NODE_ENV === 'development';
 async function createServer() {
   const app = express();
   const port = Number(process.env.SERVER_PORT) || 3001;
+  const distPath = IS_DEV ? '' : path.dirname(require.resolve('client/dist/index.html'));
 
   app.use(cors());
+  app.use('/sw.js', express.static(path.resolve(distPath, 'sw.js')));
 
   const srcPath = path.dirname(require.resolve('client'));
   const vite = IS_DEV
@@ -32,8 +34,6 @@ async function createServer() {
   app.get('/api', (_, res) => {
     res.json('👋 Howdy from the server :)');
   });
-
-  const distPath = IS_DEV ? '' : path.dirname(require.resolve('client/dist/index.html'));
 
   if (!IS_DEV) {
     app.use('/assets', express.static(path.resolve(distPath, 'assets')));

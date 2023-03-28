@@ -23,4 +23,18 @@ export default defineConfig({
       generateScopedName: '[name]__[local]--[hash:base64:5]',
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        app: './index.html',
+        sw: './sw.ts',
+      },
+      output: {
+        entryFileNames: (assetInfo) => (assetInfo.name === 'sw'
+          ? '[name].js'
+          : 'assets/js/[name]-[hash].js')
+        ,
+      },
+    },
+  },
 });
