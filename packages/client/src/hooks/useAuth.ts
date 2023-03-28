@@ -14,7 +14,7 @@ import {
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
-  const [isErrorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const hideMessage = () => {
     setTimeout(() => setErrorMessage(''), TIMEOUT_MESSAGE);
@@ -28,7 +28,12 @@ export const useAuth = () => {
     } catch (errorMessage) {
       if (errorMessage === AUTH_ERROR_MESSAGE_EN) {
         setErrorMessage(AUTH_ERROR_MESSAGE_RU);
-      } else setErrorMessage(errorMessage as string);
+      } else {
+        if (typeof errorMessage === 'string') {
+          setErrorMessage(errorMessage);
+        }
+        return;
+      }
       hideMessage();
     }
   };
@@ -43,7 +48,12 @@ export const useAuth = () => {
         setErrorMessage(CONFLICT_ERROR_EMAIL_RU);
       } else if (errorMessage === CONFLICT_ERROR_LOGIN_EN) {
         setErrorMessage(CONFLICT_ERROR_LOGIN_RU);
-      } else setErrorMessage(errorMessage as string);
+      } else {
+        if (typeof errorMessage === 'string') {
+          setErrorMessage(errorMessage);
+        }
+        return;
+      }
       hideMessage();
     }
   };
@@ -58,5 +68,5 @@ export const useAuth = () => {
     }
   };
 
-  return { onLogin, onRegister, onLogout, isErrorMessage };
+  return { onLogin, onRegister, onLogout, errorMessage };
 };
