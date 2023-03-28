@@ -15,7 +15,7 @@ export function TableRow({ row }: Record<string, TLeaderBoardProps>) {
   const medal = medalMap.get(data.place) ?? '';
 
   return (
-    <tr className={`${styles.tr} ${iam ? styles.currentRow : ''}`}>
+    <tr data-testid="leaderboard-item" className={`${styles.tr} ${iam ? styles.currentRow : ''}`}>
       <td className={`${styles.td} ${styles.td__first}`}><span className={`${styles.medal} ${styles[medal]}`}>{data.place}</span></td>
       <td className={styles.td}>
         <div className={styles.leader}>
