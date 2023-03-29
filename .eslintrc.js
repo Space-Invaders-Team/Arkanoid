@@ -89,7 +89,9 @@ module.exports = {
           "{}": false
         }
       }
-    ]
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "warn",
   },
   ignorePatterns: ['**/*.js', "*/dist/*"],
 }
