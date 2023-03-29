@@ -1,9 +1,15 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Paths } from '../../utils/routeConstants';
+import { useAppSelector } from '../../store/hooks';
+import { selectIsLogged } from '../../store/selectors';
 
-export function ProtectedRoute() {
-  const isLogged = localStorage.getItem('isLogged');
+export function ProtectedRoute({ children }: PropsWithChildren) {
+  const isLogged = useAppSelector(selectIsLogged);
+  const location = useLocation();
+
   return (
-    isLogged ? <Outlet /> : <Navigate to={Paths.HOME} replace />
+    isLogged
+      ? children
+      : <Navigate to={Paths.AUTH} replace state={{ path: location.pathname }} />
   );
 }

@@ -10,6 +10,7 @@ module.exports = {
     'prettier',
     'plugin:@typescript-eslint/recommended',
     'airbnb',
+    'airbnb/hooks',
     'airbnb-typescript',
   ],
   parser: '@typescript-eslint/parser',
@@ -23,18 +24,19 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
-    '@typescript-eslint/ban-ts-comment': 1,
-    "@typescript-eslint/type-annotation-spacing": "warn",
-    "import/prefer-default-export": 0,
-    "import/no-default-export": 1,
     "object-curly-newline": 0,
     "no-plusplus": 0,
     "class-methods-use-this": 0,
-    "react/react-in-jsx-scope": 0,
     "no-underscore-dangle": 0,
+    "no-console": [1, { allow: ["warn", "error"] }],
+    '@typescript-eslint/ban-ts-comment': 1,
+    "@typescript-eslint/type-annotation-spacing": "warn",
+    "react/react-in-jsx-scope": 0,
     "react/button-has-type": 0,
     "react/require-default-props": 0,
     "react/jsx-props-no-spreading": 0,
+    "import/prefer-default-export": 0,
+    "import/no-default-export": 1,
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -87,7 +89,9 @@ module.exports = {
           "{}": false
         }
       }
-    ]
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "warn",
   },
   ignorePatterns: ['**/*.js', "*/dist/*"],
 }

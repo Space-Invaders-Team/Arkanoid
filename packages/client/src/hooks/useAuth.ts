@@ -14,7 +14,7 @@ import {
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
-  const [isErrorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const hideMessage = () => {
     setTimeout(() => setErrorMessage(''), TIMEOUT_MESSAGE);
@@ -23,13 +23,17 @@ export const useAuth = () => {
   const onLogin = async (userData: StringObject) => {
     try {
       await authApi.loginUser(userData);
-      localStorage.setItem('isLogged', 'true');
       dispatch(setIsLogged(true));
       dispatch(getUserData());
     } catch (errorMessage) {
       if (errorMessage === AUTH_ERROR_MESSAGE_EN) {
         setErrorMessage(AUTH_ERROR_MESSAGE_RU);
-      } else setErrorMessage(errorMessage as string);
+      } else {
+        if (typeof errorMessage === 'string') {
+          setErrorMessage(errorMessage);
+        }
+        return;
+      }
       hideMessage();
     }
   };
@@ -37,7 +41,6 @@ export const useAuth = () => {
   const onRegister = async (userData: StringObject) => {
     try {
       await authApi.registerUser(userData);
-      localStorage.setItem('isLogged', 'true');
       dispatch(setIsLogged(true));
       dispatch(getUserData());
     } catch (errorMessage) {
@@ -45,7 +48,12 @@ export const useAuth = () => {
         setErrorMessage(CONFLICT_ERROR_EMAIL_RU);
       } else if (errorMessage === CONFLICT_ERROR_LOGIN_EN) {
         setErrorMessage(CONFLICT_ERROR_LOGIN_RU);
-      } else setErrorMessage(errorMessage as string);
+      } else {
+        if (typeof errorMessage === 'string') {
+          setErrorMessage(errorMessage);
+        }
+        return;
+      }
       hideMessage();
     }
   };
@@ -53,7 +61,6 @@ export const useAuth = () => {
   const onLogout = async () => {
     try {
       await authApi.logoutUser();
-      localStorage.removeItem('isLogged');
       dispatch(clearAuthStore());
     } catch (errorMessage) {
       setErrorMessage(errorMessage as string);
@@ -61,5 +68,5 @@ export const useAuth = () => {
     }
   };
 
-  return { onLogin, onRegister, onLogout, isErrorMessage };
+  return { onLogin, onRegister, onLogout, errorMessage };
 };

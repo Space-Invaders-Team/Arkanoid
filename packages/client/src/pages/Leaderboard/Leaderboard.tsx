@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { TableHead } from './TableHead';
 import { TableRow } from './TableRow';
 import { Loader } from '../../components/Loader';
@@ -17,7 +17,7 @@ export function Leaderboard() {
 
   useEffect(() => {
     fetchLeaders();
-  }, []);
+  }, [fetchLeaders]);
 
   const sortLeaders = (sortField: keyof Omit<TLeaderBoard, 'avatar'>, orders: Order): void => {
     if (sortField !== null) {
@@ -34,27 +34,33 @@ export function Leaderboard() {
   };
 
   return (
-    <main className={styles.leaderboard}>
+    <main className={styles.leaderboard} data-testid="leaderboard">
       <section className={styles.wrapper}>
         <h1 className={styles.title}>Рейтинг игроков</h1>
 
         {isLoading
           ? <Loader />
           : (
-            <table className={styles.table}>
+            <table data-testid="leaderboard-table" className={styles.table}>
               <TableHead sorting={sortLeaders} />
               <tbody>
 
                 {leaders.length !== 0
                   ? leaders.map((leader) => (
-                    <TableRow row={{
-                      data: leader,
-                      key: leader.id + leader.name,
-                      iam: (leader.id === currentPlayerId),
-                    }}
-                    />
+                    <Fragment key={leader.id}>
+                      <TableRow
+                        row={{
+                          data: leader,
+                          iam: (leader.id === currentPlayerId),
+                        }}
+                      />
+                    </Fragment>
                   ))
-                  : <tr><td colSpan={3} align="center">Вы можете быть первым!</td></tr>}
+                  : (
+                    <tr>
+                      <td colSpan={3} align="center">Вы можете быть первым!</td>
+                    </tr>
+                  )}
               </tbody>
             </table>
           )}
