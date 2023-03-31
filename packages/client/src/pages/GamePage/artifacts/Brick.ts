@@ -15,6 +15,8 @@ export class Brick {
     private _isActive: boolean,
     private _x: number,
     private _y: number,
+    private _audio: HTMLAudioElement,
+    private _audioContext: AudioContext,
   ) {
   }
 
@@ -86,6 +88,14 @@ export class Brick {
           this.ball.flipY();
         }
 
+        if (this._audioContext.state === 'suspended') {
+          this._audioContext.resume();
+        }
+
+        const isMute = localStorage.getItem('isMute') === 'true';
+        if (!isMute) {
+          this._audio.play();
+        }
         return true;
       }
     }

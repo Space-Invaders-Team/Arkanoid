@@ -9,7 +9,6 @@
   background-color: var(--game-descr-bg-color);
   border: 4px solid var(--border-color);
   border-radius: 8px;
-  margin-top: auto;
 }
 
 .descrTitle {
@@ -48,5 +47,56 @@
 
   .buttonVisible {
     transform: translateY(0);
+  }
+}
+
+.btnWrapAudio {
+  padding-top: 32px;
+}
+
+.btnAudio {
+  height: 38px;
+  padding: 0;
+  color: var(--game-descr-font-color);
+  background-color: transparent;
+  border: 2px solid var(--game-descr-font-color);
+  border-radius: 5px;
+}
+
+.imgMute {
+  padding: 5px;
+  border-right: 3px solid var(--game-descr-font-color);
+  border-radius: 5px 0 0 5px;
+}
+
+.imgSound {
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+}
+
+[role="switch"][aria-checked="false"] :first-child,
+[role="switch"][aria-checked="true"] :last-child {
+  background-color: var(--game-descr-bg-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btnAudio:hover,
+  .btnAudio:hover .imgMute {
+    border-color: var(--font-accent-color);
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+[role="switch"][aria-checked="true"] :first-child,
+[role="switch"][aria-checked="true"] :last-child,
+[role="switch"][aria-checked="false"] :last-child,
+[role="switch"][aria-checked="false"] :first-child {
+    transition: background-color 0.5s, border-color 0.25s;
+  }
+
+  .btnAudio,
+  .btnAudio:hover {
+    transition: border-color 0.25s;
   }
 }
