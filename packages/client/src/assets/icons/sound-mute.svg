@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24" id="sound-mute-alt" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+<path id="secondary" d="M11,5V19L7,15H4a1,1,0,0,1-1-1V10A1,1,0,0,1,4,9H7Z" style="fill: none; stroke-width: 2;"></path>
+<path id="primary" d="M16,14.5l5-5m-5,0,5,5M7,9H4a1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H7l4,4V5Z" style="fill: none; stroke: rgb(224, 225, 221); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+</svg>

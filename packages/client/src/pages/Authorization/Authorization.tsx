@@ -1,12 +1,13 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Authorization.module.css';
 import { Form } from '../../components/Form';
+import { AuthMessage } from '../../components/AuthMessage';
 import { PageType } from '../../components/Form/typings';
 import { useAuth } from '../../hooks/useAuth';
 import { Paths } from '../../utils/routeConstants';
 
 export function Authorization() {
-  const { onLogin } = useAuth();
+  const { onLogin, errorMessage } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -19,10 +20,11 @@ export function Authorization() {
       <Form
         pageType={PageType.Signin}
         title="Авторизация"
-        button="Войти"
+        button="Вход по логину и паролю"
         text="Еще не зарегистрированы?"
         onSubmitForm={handleLogin}
       />
+      {errorMessage && <AuthMessage message={errorMessage} />}
     </div>
   );
 }

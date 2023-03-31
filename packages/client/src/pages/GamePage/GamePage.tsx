@@ -95,7 +95,6 @@ export function GamePage() {
 
   useEffect(() => {
     setIsRunStartAnimation(true);
-
     if (!gameRef.current) {
       drawGame(canvasRef, gameRef, setGameStatus);
     }
