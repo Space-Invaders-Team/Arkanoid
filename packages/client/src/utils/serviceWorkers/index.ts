@@ -1,1 +1,1 @@
-export { startServiceWorker } from './startServiceWorkers';
+export { registerServiceWorker, unregisterServiceWorker } from './startServiceWorkers';

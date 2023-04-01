@@ -4,33 +4,24 @@ export declare const self: ServiceWorkerGlobalScope;
  * CACHE_NAME - меняем значение константы,
  * если хотим скинуть кеш
  */
-const CACHE_NAME = 'space-invaders-cache-v1';
+const CACHE_NAME = 'space-invaders-cache-v5';
 
-const URLS = [
-  '/',
-  '/src/main.tsx',
-  '/src/index.css',
-  '/assets/icons/close.svg',
-  '/assets/icons/downDouble.svg',
-  '/assets/icons/moon.svg',
-  '/assets/icons/sun.svg',
-  '/assets/img/arkanoid-title.png',
-  '/assets/img/game.png',
-  '/assets/img/listScreen.png',
-  '/assets/img/logo.webp',
-  '/assets/img/space-bg.jpg',
-  '/assets/img/spaceMM.png',
-];
+const URLS = ['/', '/index.html'];
 
-const initCache = () => caches.open(CACHE_NAME)
+const initCache = () => caches
+  .open(CACHE_NAME)
+  // собираем и кешируем статику
   .then((cache) => cache.addAll(URLS))
+  .then(() => {
+    self.skipWaiting(); // для активации кеша сразу, без перезагрузки страницы
+    console.log('sw cache added');
+  })
   .catch((error) => {
     console.log(error);
   });
 
-const tryFetch = (request: Request, time: number): Promise<Response> => {
-  console.log('tryFetch: ', request);
-  return new Promise((resolve, reject) => {
+const tryFetch = (request: Request, time: number): Promise<Response> => new Promise(
+  (resolve, reject) => {
     const timeoutId = setTimeout(reject, time);
     fetch(request).then((res) => {
       clearTimeout(timeoutId);
@@ -40,15 +31,14 @@ const tryFetch = (request: Request, time: number): Promise<Response> => {
       });
       resolve(res);
     }, reject);
-  });
-};
+  },
+);
 
-const getDataFromCache = (request: Request): Response | PromiseLike<Response> => {
-  console.log('getDataFromCache: ');
-  return caches.open(CACHE_NAME).then((cache) => cache.match(request)
+const getDataFromCache = (request: Request): Response | PromiseLike<Response> => caches
+  .open(CACHE_NAME)
+  .then((cache) => cache.match(request)
     .then((result) => result)
     .catch((error) => error));
-};
 
 self.addEventListener('install', (e: ExtendableEvent) => {
   console.log('sw installed, initCache called');
@@ -70,5 +60,14 @@ self.addEventListener('activate', (e: ExtendableEvent) => {
 });
 
 self.addEventListener('fetch', (e: FetchEvent) => {
+  // Исключаем POST-запросы, т.к. SW их не кешируют
+  if (e.request.method === 'POST') {
+    return;
+  }
+
+  // Исключаем запросы chrome-extension://
+  if (!e.request.url.startsWith('http')) {
+    return;
+  }
   e.respondWith(tryFetch(e.request, 500).catch(() => getDataFromCache(e.request)));
 });
