@@ -93,6 +93,7 @@ export class GameCore {
   };
 
   private startGame = (event: KeyboardEvent | MouseEvent) => {
+    console.log('startGame');
     const isSpacebarPressed = event instanceof KeyboardEvent && event.key === SPACEBAR_KEY;
     this._isMute = localStorage.getItem('isMute') === 'true';
 
@@ -243,5 +244,11 @@ export class GameCore {
     if (![GameStatus.WIN, GameStatus.LOSE].includes(this._status)) {
       this._raf = requestAnimationFrame(this.draw);
     }
+  };
+
+  public removeEventListeners = () => {
+    document.removeEventListener('keydown', this.startGame);
+    document.removeEventListener('keydown', this._paddle.keyHandler, false);
+    document.removeEventListener('keyup', this._paddle.keyHandler, false);
   };
 }

@@ -11,6 +11,7 @@ export const toggleFullScreen = (fullscreenchanged: any) => {
       document.addEventListener('fullscreenchange', fullscreenchanged);
     } else if (document.exitFullscreen) {
       document.exitFullscreen();
+      document.removeEventListener('fullscreenchange', fullscreenchanged);
     }
   }
 };

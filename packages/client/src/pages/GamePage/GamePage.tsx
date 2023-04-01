@@ -106,6 +106,18 @@ export function GamePage() {
     }
   }, [gameStatus, sentResults]);
 
+  useEffect(() => {
+    const cleanListeners = () => {
+      /**
+       * При размонтировании компонента вызываем метод, удаляющий обработчики на     document
+       */
+      if (gameRef.current) {
+        gameRef.current.removeEventListeners();
+      }
+    };
+    return cleanListeners;
+  }, []);
+
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
   const fullscreenchanged = () => {

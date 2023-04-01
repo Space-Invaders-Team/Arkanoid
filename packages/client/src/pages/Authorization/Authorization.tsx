@@ -4,7 +4,7 @@ import { Form } from '../../components/Form';
 import { AuthMessage } from '../../components/AuthMessage';
 import { PageType } from '../../components/Form/typings';
 import { useAuth } from '../../hooks/useAuth';
-import { Paths } from '../../utils/routeConstants';
+// import { Paths } from '../../utils/routeConstants';
 
 export function Authorization() {
   const { onLogin, errorMessage } = useAuth();
@@ -12,7 +12,9 @@ export function Authorization() {
   const { state } = useLocation();
 
   const handleLogin = (userData: StringObject) => {
-    onLogin(userData).then(() => navigate(state?.path || Paths.HOME));
+    // TODO: Разобраться с выводом ошибок и редиректом после авторизации
+    // onLogin(userData).then(() => navigate(state?.path || Paths.HOME));
+    onLogin(userData).then(() => navigate(state?.path));
   };
 
   return (

@@ -17,7 +17,11 @@ export const useAuth = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const hideMessage = () => {
-    setTimeout(() => setErrorMessage(''), TIMEOUT_MESSAGE);
+    const timeout = setTimeout(() => setErrorMessage(''), TIMEOUT_MESSAGE);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   };
 
   const onLogin = async (userData: StringObject) => {
