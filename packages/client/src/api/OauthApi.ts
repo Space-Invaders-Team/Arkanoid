@@ -25,8 +25,8 @@ class OauthApi {
     return this._handlingResponse(res);
   }
 
-  async getServiceId() {
-    const res = await fetch(`${this._baseUrl}/yandex/service-id`, {
+  async getServiceId(data: StringObject) {
+    const res = await fetch(`${this._baseUrl}/yandex/service-id?redirect_uri=${data.redirect_uri}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
