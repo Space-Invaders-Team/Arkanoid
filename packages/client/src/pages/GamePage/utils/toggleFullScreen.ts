@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const toggleFullScreen = (fullscreenchanged: any) => {
+export const toggleFullScreen = () => {
   const btn = document.getElementById('fullscreenBtn');
   const game = document.getElementById('gameWrap');
 
@@ -8,10 +8,8 @@ export const toggleFullScreen = (fullscreenchanged: any) => {
 
     if (!document.fullscreenElement) {
       game.requestFullscreen();
-      document.addEventListener('fullscreenchange', fullscreenchanged);
     } else if (document.exitFullscreen) {
       document.exitFullscreen();
-      document.removeEventListener('fullscreenchange', fullscreenchanged);
     }
   }
 };

@@ -4,8 +4,10 @@ import { setupStore } from '../../store';
 
 export function App({ children }: PropsWithChildren) {
   return (
-    <Provider store={setupStore}>
-      {children}
-    </Provider>
+    <React.StrictMode>
+      <Provider store={setupStore}>
+        {children}
+      </Provider>
+    </React.StrictMode>
   );
 }

@@ -106,18 +106,6 @@ export function GamePage() {
     }
   }, [gameStatus, sentResults]);
 
-  useEffect(() => {
-    const cleanListeners = () => {
-      /**
-       * При размонтировании компонента вызываем метод, удаляющий обработчики на     document
-       */
-      if (gameRef.current) {
-        gameRef.current.removeEventListeners();
-      }
-    };
-    return cleanListeners;
-  }, []);
-
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
   const fullscreenchanged = () => {
@@ -130,6 +118,22 @@ export function GamePage() {
       setIsFullScreen(false);
     }
   };
+
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', fullscreenchanged);
+
+    const cleanListeners = () => {
+      /**
+       * При размонтировании компонента вызываем метод, удаляющий обработчики на document
+       */
+      if (gameRef.current) {
+        document.removeEventListener('fullscreenchange', fullscreenchanged);
+        gameRef.current.removeEventListeners();
+        gameRef.current = null;
+      }
+    };
+    return cleanListeners;
+  }, []);
 
   return (
     <main className={styles.container}>
@@ -145,7 +149,7 @@ export function GamePage() {
         <div className={styles.btnWrap}>
           <Button
             id="fullscreenBtn"
-            onClick={() => toggleFullScreen(fullscreenchanged)}
+            onClick={() => toggleFullScreen()}
             shape="icon"
             mode="secondary"
           >
