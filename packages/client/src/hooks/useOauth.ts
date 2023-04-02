@@ -11,8 +11,9 @@ export const useOauth = () => {
 
   const getServiceId = async () => {
     try {
-      const response = await oauthApi.getServiceId();
+      const response = await oauthApi.getServiceId({ redirect_uri: redirectUri });
       const data = await response.json();
+      console.log(data);
       dispatch(setServiceId(data.service_id));
     } catch (error) {
       console.log(error);
