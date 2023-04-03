@@ -93,7 +93,6 @@ export class GameCore {
   };
 
   private startGame = (event: KeyboardEvent | MouseEvent) => {
-    console.log('startGame');
     const isSpacebarPressed = event instanceof KeyboardEvent && event.key === SPACEBAR_KEY;
     this._isMute = localStorage.getItem('isMute') === 'true';
 
