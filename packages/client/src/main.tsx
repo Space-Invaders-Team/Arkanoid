@@ -1,22 +1,26 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import '../static/vendor/normalize.css';
 import './styles/fonts.css';
 import './styles/properties.css';
 import './index.css';
-import { browserRoutes } from './router/router';
-import { App } from './components/App';
-import { registerServiceWorker, unregisterServiceWorker } from './utils/serviceWorkers/startServiceWorkers';
+import { routes } from './router/router';
+import { setupStore } from './store';
+import { registerServiceWorker, unregisterServiceWorker } from './utils/serviceWorkers';
 
-const router = createBrowserRouter(browserRoutes);
+const router = createBrowserRouter(routes);
+const store = setupStore();
 
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   (
-    <App>
-      <RouterProvider router={router} />
-    </App>
+    <StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </StrictMode>
   ),
 );
 
