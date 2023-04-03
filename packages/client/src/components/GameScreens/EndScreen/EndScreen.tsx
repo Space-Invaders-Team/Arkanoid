@@ -12,6 +12,8 @@ import { selectGameData } from '../../../store/selectors';
 import { TGameState } from '../../../store/typings';
 import gameOver from '../../../assets/sounds/game-over.mp3';
 import { createAudioContext } from '../../../pages/GamePage/utils/audio';
+import loseVideo from '../../../assets/lose.mp4';
+import winVideo from '../../../assets/win.mp4';
 
 let audioCtx: { audioContext: AudioContext; audio: HTMLAudioElement; };
 
@@ -21,8 +23,8 @@ const titleMap = new Map<GameStatus, string>([
 ]);
 
 const videoMap = new Map<GameStatus, string>([
-  [GameStatus.WIN, '/win.mp4'],
-  [GameStatus.LOSE, '/lose.mp4'],
+  [GameStatus.WIN, winVideo],
+  [GameStatus.LOSE, loseVideo],
 ]);
 
 export function EndScreen({ status, onClickPrimaryBtn }: Props) {

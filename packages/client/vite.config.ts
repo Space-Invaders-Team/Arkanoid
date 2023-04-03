@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
 import dotenv from 'dotenv';
+import { resolve } from 'path';
 
 dotenv.config();
 
@@ -35,6 +36,11 @@ export default defineConfig({
           : 'assets/js/[name]-[hash].js')
         ,
       },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'static'),
     },
   },
 });

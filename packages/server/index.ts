@@ -14,12 +14,12 @@ const IS_DEV = process.env.NODE_ENV === 'development';
 async function createServer() {
   const app = express();
   const port = Number(process.env.SERVER_PORT) || 3001;
-  const distPath = IS_DEV ? '' : path.dirname(require.resolve('client/dist/index.html'));
+  const distPath = IS_DEV ? '' : path.dirname(require.resolve('../client/dist/index.html'));
 
   app.use(cors());
   app.use('/sw.js', express.static(path.resolve(distPath, 'sw.js')));
 
-  const srcPath = path.dirname(require.resolve('client'));
+  const srcPath = path.dirname(require.resolve('../client'));
   const vite = IS_DEV
     ? await createViteServer({
       server: { middlewareMode: true },
@@ -60,7 +60,7 @@ async function createServer() {
       // 3. Load the server entry. ssrLoadModule automatically transforms
       //    ESM source code to be usable in Node.js! There is no bundling
       //    required, and provides efficient invalidation similar to HMR.
-      const ssrClientPath = IS_DEV ? '' : require.resolve('client/ssr-dist/ssr.cjs');
+      const ssrClientPath = IS_DEV ? '' : require.resolve('../client/ssr-dist/ssr.cjs');
       const { render } = (IS_DEV && vite)
         ? (await vite.ssrLoadModule(path.resolve(srcPath, 'ssr.tsx')))
         : (await import(ssrClientPath));
