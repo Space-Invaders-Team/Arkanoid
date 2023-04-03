@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import '../App/matchMedia.mock'; // Must be imported before the tested file
+import '../../../mocks/matchMedia.mock'; // Must be imported before the tested file
 import { ButtonTheme } from './ButtonTheme';
 
 describe('ButtonTheme component tests', () => {

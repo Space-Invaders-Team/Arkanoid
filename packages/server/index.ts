@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer as createViteServer } from 'vite';
+import { escapeHtml } from './utils/escapeHtml';
 
 dotenv.config();
 
@@ -67,10 +68,13 @@ async function createServer() {
       // 4. render the app HTML. This assumes entry-server.js's exported
       //     `render` function calls appropriate framework SSR APIs,
       //    e.g. ReactDOMServer.renderToString()
-      const appHtml = await render(url);
+      const [initialState, appHtml] = await render(req);
+      const initialStateSerialized = escapeHtml(JSON.stringify(initialState));
 
       // 5. Inject the app-rendered HTML into the template.
-      const html = template.replace('<!--ssr-outlet-->', appHtml);
+      const html = template
+        .replace('<!--ssr-outlet-->', appHtml)
+        .replace('<!--store-data-->', initialStateSerialized);
 
       // 6. Send the rendered HTML back.
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);

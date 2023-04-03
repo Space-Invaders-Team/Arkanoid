@@ -1,2 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention,no-underscore-dangle
-declare const __SERVER_PORT__: number;
+import { setupStore } from './store';
+
+declare global {
+  interface Window {
+    __INITIAL_STATE__?: typeof setupStore;
+  }
+}
