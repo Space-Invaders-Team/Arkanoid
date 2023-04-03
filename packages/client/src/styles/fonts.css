@@ -4,8 +4,8 @@
   font-weight: 300;
   src:
     local("Jura-Light"),
-    url("../../static/fonts/Jura/Jura-Light.woff2") format("woff2"),
-    url("../../static/fonts/Jura/Jura-Light.woff") format("woff");
+    url("@/fonts/Jura/Jura-Light.woff2") format("woff2"),
+    url("@/fonts/Jura/Jura-Light.woff") format("woff");
   font-display: swap;
 }
 
@@ -15,8 +15,8 @@
   font-weight: 500;
   src:
     local("Jura-Medium"),
-    url("../../static/fonts/Jura/Jura-Medium.woff2") format("woff2"),
-    url("../../static/fonts/Jura/Jura-Medium.woff") format("woff");
+    url("@/fonts/Jura/Jura-Medium.woff2") format("woff2"),
+    url("@/fonts/Jura/Jura-Medium.woff") format("woff");
   font-display: swap;
 }
 
@@ -26,7 +26,7 @@
   font-weight: 700;
   src:
     local("Jura-Bold"),
-    url("../../static/fonts/Jura/Jura-Bold.woff2") format("woff2"),
-    url("../../static/fonts/Jura/Jura-Bold.woff") format("woff");
+    url("@/fonts/Jura/Jura-Bold.woff2") format("woff2"),
+    url("@/fonts/Jura/Jura-Bold.woff") format("woff");
   font-display: swap;
 }
