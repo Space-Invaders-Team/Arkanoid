@@ -244,4 +244,10 @@ export class GameCore {
       this._raf = requestAnimationFrame(this.draw);
     }
   };
+
+  public removeEventListeners = () => {
+    document.removeEventListener('keydown', this.startGame);
+    document.removeEventListener('keydown', this._paddle.keyHandler, false);
+    document.removeEventListener('keyup', this._paddle.keyHandler, false);
+  };
 }
