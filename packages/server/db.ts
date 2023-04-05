@@ -15,6 +15,7 @@ export const createClientAndConnect = async (): Promise<Client | null> => {
     await client.connect();
 
     const res = await client.query('SELECT NOW()');
+    // eslint-disable-next-line no-console
     console.log('  ➜ 🎸 Connected to the database at:', res?.rows?.[0].now);
     client.end();
 

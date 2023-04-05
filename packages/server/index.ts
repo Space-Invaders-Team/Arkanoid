@@ -5,8 +5,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer as createViteServer } from 'vite';
-import { createClientAndConnect } from './db';
 import { escapeHtml } from './utils/escapeHtml';
+import { createPostgresConnect } from './database';
 
 dotenv.config();
 
@@ -95,4 +95,8 @@ async function createServer() {
 
 createServer();
 
-createClientAndConnect();
+// with node-postgres
+// createClientAndConnect();
+
+// with ORM Sequelize
+createPostgresConnect();
