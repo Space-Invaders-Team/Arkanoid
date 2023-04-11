@@ -119,6 +119,22 @@ export function GamePage() {
     }
   };
 
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', fullscreenchanged);
+
+    const cleanListeners = () => {
+      /**
+       * При размонтировании компонента вызываем метод, удаляющий обработчики на document
+       */
+      if (gameRef.current) {
+        document.removeEventListener('fullscreenchange', fullscreenchanged);
+        gameRef.current.removeEventListeners();
+        gameRef.current = null;
+      }
+    };
+    return cleanListeners;
+  }, []);
+
   return (
     <main className={styles.container}>
       <section className={styles.field} id="gameWrap">
@@ -133,7 +149,7 @@ export function GamePage() {
         <div className={styles.btnWrap}>
           <Button
             id="fullscreenBtn"
-            onClick={() => toggleFullScreen(fullscreenchanged)}
+            onClick={() => toggleFullScreen()}
             shape="icon"
             mode="secondary"
           >
