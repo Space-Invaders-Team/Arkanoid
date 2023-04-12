@@ -15,9 +15,11 @@ services:
         environment:
           - CLIENT_PORT=${CLIENT_PORT}
           - SERVER_PORT=${SERVER_PORT}
+        networks:
+          - arkNet
     server:
         container_name: prakticum-server
-        image: prackicum-server
+        image: prakticum-server
         build:
             context: .
             dockerfile: Dockerfile.server
@@ -28,9 +30,33 @@ services:
             - "${SERVER_PORT}:${SERVER_PORT}"
         environment:
           SERVER_PORT: ${SERVER_PORT}
+        env_file:
+          - .env
+        depends_on:
+          postgres:
+            condition: service_healthy
+        networks:
+          - arkNet
+
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4:6.19
+        restart: always
+        environment:
+          PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+          PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+          PGADMIN_LISTEN_PORT: 80
+        ports:
+          - 8080:80
+        volumes:
+          - pgadmin-data:/var/lib/pgadmin
+        depends_on:
+          - postgres
+        networks:
+          - arkNet
 
     postgres:
-      image: postgres:14     
+      image: postgres:14
       ports:
         - "${POSTGRES_PORT}:${POSTGRES_PORT}"
       environment:
@@ -39,4 +65,18 @@ services:
         POSTGRES_DB: ${POSTGRES_DB}
       volumes:
         - ./tmp/pgdata:/var/lib/postgresql/data
+      networks:
+        - arkNet
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+volumes:
+    pgadmin-data:
+
+networks:
+    arkNet:
+        driver: bridge
 

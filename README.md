@@ -10,7 +10,7 @@
 ### Как добавить зависимости?
 В этом проекте используется `monorepo` на основе [`lerna`](https://github.com/lerna/lerna)
 
-Чтобы добавить зависимость для клиента 
+Чтобы добавить зависимость для клиента
 ```yarn lerna add {your_dep} --scope client```
 
 Для сервера
@@ -65,12 +65,29 @@
 
 ## Production окружение в докере
 Перед первым запуском выполните `node init.js`
+('.env.sample' будет скопирован в '.env', поэтому если нужно сохраните данные из .env локально)
 
+`docker compose up` - запустит сервисы:
 
-`docker compose up` - запустит три сервиса
-1. nginx, раздающий клиентскую статику (client)
-2. node, ваш сервер (server)
+1. prakticum-client -  client без SSR
+2. prakticum-server - ваш сервер (server)
 3. postgres, вашу базу данных (postgres)
+4. pgadmin - для администрирования БД (в pgadmin при первом подключении нужно зарегистрировать сервер)
 
 Если вам понадобится только один сервис, просто уточните какой в команде
 `docker compose up {sevice_name}`, например `docker compose up server`
+## Работа с базой данных
+а)Для работы с БД, используем Sequelize.
+(Подключение к БД находится здесь packages\server\database.ts)
+
+б) запустить Docker
+в) Для запуска контейнеров через docker-compose используются следующие команды:
+`docker compose build` — собрать проект
+`docker compose up` — запустить проект
+`docker compose down` — остановить проект
+`docker compose logs -f [service name]` — посмотреть логи сервиса
+`docker compose ps` — вывести список контейнеров
+# Для девелопмента можно работать так:
+а) запустить postgres-контейнер в Докере `docker compose up postgres`
+б) изменить в '.env' : `POSTGRES_HOST=localhost`
+в) yarn dev
