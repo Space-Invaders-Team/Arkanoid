@@ -15,7 +15,7 @@ const IS_DEV = process.env.NODE_ENV === 'development';
 
 async function createServer() {
   const app = express();
-  const port = Number(process.env.SERVER_PORT) || 3001;
+  const port = Number(process.env.SERVER_PORT) || 9000;
   const distPath = IS_DEV ? '' : path.dirname(require.resolve('../client/dist/index.html'));
 
   app.use(cors());
