@@ -22,7 +22,8 @@ export class ForumController {
           [
             Sequelize.literal(`
               (SELECT COUNT(*)
-               FROM messages WHERE messages.forum_id = "Forum"."id")`),
+               FROM messages
+               WHERE messages.forum_id = "Forum"."id")`),
             'messagesCount',
           ],
         ],

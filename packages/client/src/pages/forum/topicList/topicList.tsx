@@ -1,39 +1,55 @@
-import { useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useParams } from 'react-router-dom';
 import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Input';
 import { LinkRow } from '../../../components/LinkRow';
 import { ButtonBack } from '../ButtonBack';
-import { topicData } from './data';
 import styles from './TopicList.module.css';
-import { TTopic } from './typings';
+import { TTopic, TTopicNew } from './typings';
+import { forumAPI } from '../../../api/ForumAPI/ForumAPI';
+import { topicAPI } from '../../../api/ForumAPI/TopicAPI';
+import { dateFormat } from '../../../utils/helpers';
 
 export function TopicList() {
-  const [topics, setTopics] = useState<TTopic[]>(topicData);
+  const [topics, setTopics] = useState<TTopic[]>([]);
   const [topicTitle, setTopicTitle] = useState<string>('');
-  const [isDisabledBtn, setDisabledBtn] = useState<boolean>(false);
+  const [isDisabledBtn, setDisabledBtn] = useState<boolean>(true);
+  const [forum, setForum] = useState({
+    name: '',
+  });
+
+  // берём id активного форума из url
+  const params = useParams();
+  const forumId = Number(params.id);
+
+  useEffect(() => {
+    forumAPI.getForum(forumId).then((response) => setForum(response));
+    topicAPI.getAllTopics(forumId).then((response) => setTopics(response));
+  }, [forumId]);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target: EventTarget & HTMLInputElement = e.currentTarget;
-    const isDisabledButton = target.value.length > 80;
+    const isDisabledButton = target.value.length === 0 || target.value.length > 80;
     if (isDisabledButton) {
       target.classList.add(styles.error);
     } else {
       target.classList.remove(styles.error);
     }
     setDisabledBtn(isDisabledButton);
-    setTopicTitle(e.currentTarget.value);
+    setTopicTitle(target.value);
   };
 
-  const addTopic = () => {
-    const newTopic: TTopic = {
-      id: `${topicTitle + new Date()}`,
+  const addTopic = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newTopic: TTopicNew = {
       name: topicTitle,
-      countAnswer: 0,
-      lastMessageTime: `${new Date().toLocaleString()}`,
+      forum_id: forumId,
     };
-    setTopics((prevValue) => [newTopic, ...prevValue]);
-    setTopicTitle('');
+
+    topicAPI.create(newTopic)
+      .then((response) => setTopics((prevValue) => [response, ...prevValue]))
+      .then(() => setTopicTitle(''));
   };
 
   const buttonClassNames = classNames(
@@ -47,9 +63,15 @@ export function TopicList() {
         <span className={styles.backBtn}>
           <ButtonBack />
         </span>
-        <h1 className={styles.title}>Название форума</h1>
+        <h1 className={styles.title}>
+          Форум:
+          {' '}
+          {forum.name}
+        </h1>
+        {!topics.length && <h2 className={styles.subtitle}>В данном форуме ещё нет тем</h2>}
       </header>
       <section className={styles.wrapper}>
+        {!!topics.length && (
         <table className={styles.table}>
           <thead>
             <tr>
@@ -64,30 +86,37 @@ export function TopicList() {
                 <LinkRow
                   rowData={{
                     cell1: item.name,
-                    cell2: item.countAnswer,
-                    cell3: item.lastMessageTime,
+                    cell2: item.messagesCount || 0,
+                    cell3: (item.dateLastMessage && dateFormat(item.dateLastMessage)) || 'Ответов нет',
                   }}
-                  key={`${item.name + item.lastMessageTime}`}
+                  key={`${item.name + item.dateLastMessage}`}
                   path={`./topic/${item.id}`}
                 />
               ),
             )}
           </tbody>
         </table>
+        )}
 
         <div className={styles.sidebar}>
           <div className={styles.addTopic}>
-            <Input
-              value={topicTitle}
-              onChange={handleChange}
-              name="name"
-              placeholder="Введите название темы"
-              type="text"
-            />
-            <Button type="button" extraClassName={buttonClassNames} onClick={addTopic}>
-              <span className={styles.add}> + </span>
-              Добавить тему
-            </Button>
+            <form onSubmit={(e) => addTopic(e)}>
+              <Input
+                value={topicTitle}
+                onChange={(e) => handleChange(e)}
+                name="name"
+                placeholder="Введите название темы"
+                type="text"
+              />
+              <Button
+                type="submit"
+                extraClassName={buttonClassNames}
+                disabled={!topicTitle}
+              >
+                <span className={styles.add}> + </span>
+                Добавить тему
+              </Button>
+            </form>
           </div>
         </div>
       </section>

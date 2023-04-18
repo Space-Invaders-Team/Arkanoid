@@ -3,7 +3,7 @@ import styles from './Input.module.css';
 import { TInput } from './typings';
 
 export function Input(props: TInput) {
-  const { classname, placeholder, name, type, onChange } = props;
+  const { classname, placeholder, name, type, onChange, value } = props;
   const classes = classNames(styles.input, classname);
 
   return (
@@ -13,6 +13,7 @@ export function Input(props: TInput) {
       className={classes}
       name={name}
       placeholder={placeholder}
+      value={value}
     />
   );
 }

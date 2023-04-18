@@ -4,6 +4,7 @@ export type TForum = {
 
 export type TTopic = {
   name: string
+  forum_id: number
 };
 
 export type TMessage = {
