@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer as createViteServer } from 'vite';
+import { forumRoutes } from './routes/forum/forumRoutes';
 import { escapeHtml } from './utils/escapeHtml';
 import { createPostgresConnect } from './database';
 
@@ -40,6 +41,9 @@ async function createServer() {
   if (!IS_DEV) {
     app.use('/assets', express.static(path.resolve(distPath, 'assets')));
   }
+
+  // api routes
+  forumRoutes(app);
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;

@@ -77,17 +77,16 @@
 Если вам понадобится только один сервис, просто уточните какой в команде
 `docker compose up {sevice_name}`, например `docker compose up server`
 ## Работа с базой данных
-а)Для работы с БД, используем Sequelize.
+1. Для работы с БД, используем Sequelize.
 (Подключение к БД находится здесь packages\server\database.ts)
-
-б) запустить Docker
-в) Для запуска контейнеров через docker-compose используются следующие команды:
+2. запустить Docker
+3. Для запуска контейнеров через docker-compose используются следующие команды:
 `docker compose build` — собрать проект
 `docker compose up` — запустить проект
 `docker compose down` — остановить проект
 `docker compose logs -f [service name]` — посмотреть логи сервиса
 `docker compose ps` — вывести список контейнеров
-# Для девелопмента можно работать так:
-а) запустить postgres-контейнер в Докере `docker compose up postgres`
-б) изменить в '.env' : `POSTGRES_HOST=localhost`
-в) yarn dev
+## Для девелопмента можно работать так:
+1. запустить postgres-контейнер в Докере `docker compose up postgres`
+2. изменить в '.env' : `POSTGRES_HOST=localhost`
+3. yarn dev
