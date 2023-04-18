@@ -37,16 +37,22 @@ export const routes: RouteObject[] = [
             <Forum />
           </ProtectedRoute>
         ),
-        children: [
-          {
-            path: Paths.TOPICLIST,
-            element: <TopicList />,
-          },
-          {
-            path: Paths.TOPIC,
-            element: <Messages />,
-          },
-        ],
+      },
+      {
+        path: Paths.TOPICLIST,
+        element: (
+          <ProtectedRoute>
+            <TopicList />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: Paths.TOPIC,
+        element: (
+          <ProtectedRoute>
+            <Messages />
+          </ProtectedRoute>
+        ),
       },
       {
         path: Paths.GAME,
