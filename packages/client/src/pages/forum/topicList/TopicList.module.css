@@ -11,6 +11,10 @@
 }
 
 .wrapper {
+  width: 100%;
+}
+
+.tableSection {
   display: flex;
   flex-wrap: wrap;
   gap: 40px 0;
