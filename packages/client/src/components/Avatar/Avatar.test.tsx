@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Avatar } from './Avatar';
+import { BASE_URL_YANDEX } from '../../utils/apiConstans';
 
 describe('Avatar component tests', () => {
   const mockData = { userId: 1, userName: 'TestName' };
@@ -25,6 +26,6 @@ describe('Avatar component tests', () => {
 
     const img = screen.getByTestId('AvatarImg');
 
-    expect(img.getAttribute('src')).toBe(mockPath);
+    expect(img.getAttribute('src')).toBe(`${BASE_URL_YANDEX}/resources${mockPath}`);
   });
 });

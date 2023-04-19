@@ -1,6 +1,6 @@
 export type TAvatar = {
   path?: string;
-  userId: number | undefined;
+  userId?: number;
   userName?: string;
   avatarSize?: string;
 };
