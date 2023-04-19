@@ -1,8 +1,6 @@
 export type TForum = {
-  data: {
-    id: number;
-    name: string;
-  };
-  ratingFieldName: string;
-  teamName: string;
+  id: number;
+  name: string;
+  topicsCount: number;
+  messagesCount: number;
 };

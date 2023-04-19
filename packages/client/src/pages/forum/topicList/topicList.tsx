@@ -7,9 +7,11 @@ import { LinkRow } from '../../../components/LinkRow';
 import { ButtonBack } from '../ButtonBack';
 import styles from './TopicList.module.css';
 import { TTopic, TTopicNew } from './typings';
-import { forumAPI } from '../../../api/ForumAPI/ForumAPI';
 import { topicAPI } from '../../../api/ForumAPI/TopicAPI';
 import { dateFormat } from '../../../utils/helpers';
+import { useActiveForum } from '../../../hooks/useActiveForum';
+import { useTopics } from '../../../hooks/useTopics';
+import { Loader } from '../../../components/Loader';
 
 export function TopicList() {
   const [topics, setTopics] = useState<TTopic[]>([]);
@@ -18,15 +20,17 @@ export function TopicList() {
   const [forum, setForum] = useState({
     name: '',
   });
+  const [fetchActiveForum, isLoadingForum, forumError] = useActiveForum(setForum);
+  const [fetchTopics, isLoadingTopics, topicsError] = useTopics(setTopics);
 
   // берём id активного форума из url
   const params = useParams();
   const forumId = Number(params.id);
 
   useEffect(() => {
-    forumAPI.getForum(forumId).then((response) => setForum(response));
-    topicAPI.getAllTopics(forumId).then((response) => setTopics(response));
-  }, [forumId]);
+    fetchActiveForum(forumId);
+    fetchTopics(forumId);
+  }, [forumId, fetchActiveForum, fetchTopics]);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target: EventTarget & HTMLInputElement = e.currentTarget;
@@ -59,67 +63,74 @@ export function TopicList() {
 
   return (
     <main className={styles.topicList}>
-      <header className={styles.header}>
-        <span className={styles.backBtn}>
-          <ButtonBack />
-        </span>
-        <h1 className={styles.title}>
-          Форум:
-          {' '}
-          {forum.name}
-        </h1>
-        {!topics.length && <h2 className={styles.subtitle}>В данном форуме ещё нет тем</h2>}
-      </header>
-      <section className={styles.wrapper}>
-        {!!topics.length && (
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Темы</th>
-              <th>Ответы</th>
-              <th>Последний ответ</th>
-            </tr>
-          </thead>
-          <tbody>
-            {topics.map(
-              (item) => (
-                <LinkRow
-                  rowData={{
-                    cell1: item.name,
-                    cell2: item.messagesCount || 0,
-                    cell3: (item.dateLastMessage && dateFormat(item.dateLastMessage)) || 'Ответов нет',
-                  }}
-                  key={`${item.name + item.dateLastMessage}`}
-                  path={`./topic/${item.id}`}
-                />
-              ),
-            )}
-          </tbody>
-        </table>
-        )}
+      {isLoadingForum || isLoadingTopics
+        ? <Loader />
+        : (
+          <div className={styles.wrapper}>
+            <header className={styles.header}>
+              <span className={styles.backBtn}>
+                <ButtonBack />
+              </span>
+              <h1 className={styles.title}>
+                Форум:
+                {' '}
+                {forum.name}
+              </h1>
+              {!topics.length && <h2 className={styles.subtitle}>В данном форуме ещё нет тем</h2>}
+            </header>
+            <section className={styles.tableSection}>
+              {!!topics.length && (
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Темы</th>
+                      <th>Ответы</th>
+                      <th>Последний ответ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topics.map(
+                      (item) => (
+                        <LinkRow
+                          rowData={{
+                            cell1: item.name,
+                            cell2: item.messagesCount || 0,
+                            cell3: (item.dateLastMessage && dateFormat(item.dateLastMessage)) || 'Ответов нет',
+                          }}
+                          key={`${item.name + item.dateLastMessage}`}
+                          path={`./topic/${item.id}`}
+                        />
+                      ),
+                    )}
+                  </tbody>
+                </table>
+              )}
 
-        <div className={styles.sidebar}>
-          <div className={styles.addTopic}>
-            <form onSubmit={(e) => addTopic(e)}>
-              <Input
-                value={topicTitle}
-                onChange={(e) => handleChange(e)}
-                name="name"
-                placeholder="Введите название темы"
-                type="text"
-              />
-              <Button
-                type="submit"
-                extraClassName={buttonClassNames}
-                disabled={!topicTitle}
-              >
-                <span className={styles.add}> + </span>
-                Добавить тему
-              </Button>
-            </form>
+              <div className={styles.sidebar}>
+                <div className={styles.addTopic}>
+                  <form onSubmit={(e) => addTopic(e)}>
+                    <Input
+                      value={topicTitle}
+                      onChange={(e) => handleChange(e)}
+                      name="name"
+                      placeholder="Введите название темы"
+                      type="text"
+                    />
+                    <Button
+                      type="submit"
+                      extraClassName={buttonClassNames}
+                      disabled={!topicTitle}
+                    >
+                      <span className={styles.add}> + </span>
+                      Добавить тему
+                    </Button>
+                  </form>
+                </div>
+              </div>
+            </section>
           </div>
-        </div>
-      </section>
+        )}
+      {(forumError || topicsError) && <div>Произошла ошибка при загрузке данных</div>}
     </main>
   );
 }
