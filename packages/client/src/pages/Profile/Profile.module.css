@@ -23,3 +23,16 @@
   border: none;
   border-radius: 10px;
 }
+
+.avatar{
+  position: relative;
+}
+
+.avatarEdit {
+  width: 115px;
+  height: 115px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
