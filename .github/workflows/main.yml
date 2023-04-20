@@ -31,5 +31,5 @@ jobs:
           VITE_APP_HOSTNAME: 51.250.31.16
 
         run: |
-          docker build -f Dockerfile.production -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+          docker build -f Dockerfile.production -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest .
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest
