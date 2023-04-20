@@ -28,7 +28,7 @@ jobs:
           CR_REGISTRY: crp7mv1jop7s53gfkj3c
           CR_REPOSITORY: arkanoid-game
           IMAGE_TAG: ${{ github.sha }}
-          VITE_APP_HOSTNAME: 51.250.31.16
+          VITE_APP_HOSTNAME: ${{ secrets.VITE_APP_HOSTNAME }}
 
         run: |
           docker build -f Dockerfile.production -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest .
