@@ -33,4 +33,4 @@ jobs:
         run: |
           docker build -f Dockerfile.production -t $CR_REPOSITORY .
           docker tag $CR_REPOSITORY:$IMAGE_TAG cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
