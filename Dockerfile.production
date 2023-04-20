@@ -1,0 +1,46 @@
+FROM node:18-alpine as base
+
+WORKDIR /app
+
+FROM base as builder
+
+COPY package.json yarn.lock ./
+
+COPY packages/client/package.json packages/client/
+
+COPY packages/server/package.json packages/server/
+
+RUN yarn --frozen-lock
+
+COPY . .
+
+RUN yarn lerna link
+
+RUN yarn build
+
+FROM node:18-alpine as production
+
+WORKDIR /app
+
+COPY --from=builder /app/packages/client/index.js client/
+
+COPY --from=builder /app/packages/client/package.json client/
+
+COPY --from=builder /app/packages/client/dist client/dist
+
+COPY --from=builder /app/packages/client/ssr-dist client/ssr-dist
+
+COPY --from=builder /app/packages/server/dist server/
+
+COPY --from=builder /app/packages/server/package.json server/
+
+RUN cd client && yarn --production
+
+RUN cd server && yarn --production
+
+EXPOSE 9000
+
+CMD ["node", "server/index.js"]
+
+
+
