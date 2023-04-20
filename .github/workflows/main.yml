@@ -12,40 +12,24 @@ on:
   # Позволяет запускать вручную из GitHub
   workflow_dispatch:
 
-# Определяем процесс (состоит из нескольких последовательных/параллельных джобов)
 jobs:
-  # Но нам хватит одного
   build:
-    # Для построение проекта от вас не требуется сервер или что-либо подобное, 
-		# GitHub выполнит построение, используя собственный runner - такую
-		# общедоступную 'виртуальную машину'
     runs-on: ubuntu-latest
 
-    # Определяем шаги процесса
     steps:
-      # Запускает предварительную проверку 
-			# Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Авторизация в Яндекс.Облаке (здесь ничего не меняем)
       - name: Yandex Cloud CR "Login" Action for GitHub Actions
         uses: yc-actions/yc-cr-login@v0.1-alpha
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-			# Построение образа и отправка его в Container Registry
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
-					# Здесь указываем идентификатор регистра (о нём позднее)
           CR_REGISTRY: crp7mv1jop7s53gfkj3c
-					# Здесь указываем название репозитория (впрочем оно далее не используется)
           CR_REPOSITORY: arkanoid-app
-					# Здесь ничего не меняем (формирует уникальное название для образа)
           IMAGE_TAG: ${{ github.sha }}
-					# Далее указываем все прочие нужные нам перееменные среды
           VITE_APP_HOSTNAME: 51.250.31.16
-				# Всё описание выше было лишь подготовкой
-				# Тем не менее, оставшиеся шаги более не должны вызывать вопросы
+
         run: |
           docker build -f Dockerfile.production -t $CR_REPOSITORY .
           docker tag $CR_REPOSITORY:$IMAGE_TAG cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
