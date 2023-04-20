@@ -16,6 +16,8 @@ COPY . .
 
 RUN yarn lerna link
 
+ARG VITE_APP_HOSTNAME
+
 RUN yarn build
 
 FROM node:18-alpine as production
