@@ -6,6 +6,9 @@ import { ProfileForm } from '../../components/ProfileForm';
 import { Field } from '../../components/ProfileField/Field';
 import { Avatar } from '../../components/Avatar';
 import { userProfileInputFields } from './data';
+import { useAppSelector } from '../../store/hooks';
+import { selectUserData } from '../../store/selectors';
+import { useProfile } from '../../hooks/useProfile';
 
 export function Profile() {
   const userProfile: UserProfileType = {
@@ -49,21 +52,35 @@ export function Profile() {
     [],
   );
 
-  const { firstName } = userProfile;
+  const { updateAvatar } = useProfile();
+  const userData = useAppSelector(selectUserData);
 
   return (
     <div className={styles.container}>
-      <Avatar userId={0} userName={`Аватар ${firstName}`} />
+      <label className={styles.avatar} htmlFor="avatar">
+        <input
+          className={styles.avatarEdit}
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept="image/*"
+          onChange={updateAvatar}
+        />
+        <Avatar
+          path={userData?.avatar}
+          userId={userData?.id}
+          userName={`Аватар ${userData?.display_name}`}
+          avatarSize="big"
+        />
+      </label>
 
-      <ProfileForm handlerSubmit={submitHandler} title={firstName}>
-        <>
-          {userProfileInputFields.map((field) => {
-            const fieldKey = field.id as keyof UserProfileForm;
-            return (
-              <Field key={field.id} {...field} onChange={inputChangeHandler} value={requestBody[fieldKey] || ''} />
-            );
-          })}
-        </>
+      <ProfileForm handlerSubmit={submitHandler} title={userData?.display_name}>
+        {userProfileInputFields.map((field) => {
+          const fieldKey = field.id as keyof UserProfileForm;
+          return (
+            <Field key={field.id} {...field} onChange={inputChangeHandler} value={requestBody[fieldKey] || ''} />
+          );
+        })}
       </ProfileForm>
       <Button type="submit" extraClassName={styles.button} text="Сохранить изменения" />
     </div>

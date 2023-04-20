@@ -107,14 +107,15 @@ exports[`Leaderboard it renders with data and return leader rows 1`] = `
               class="leader"
             >
               <div
-                class="avatar"
+                class="avatarSmall"
                 data-id="1"
                 data-testid="Avatar"
               >
                 <img
                   alt="User1"
+                  class="avatarImg"
                   data-testid="AvatarImg"
-                  src="/ava1.png"
+                  src="https://ya-praktikum.tech/api/v2/resources/ava1.png"
                 />
               </div>
               <span
@@ -154,14 +155,15 @@ exports[`Leaderboard it renders with data and return leader rows 1`] = `
               class="leader"
             >
               <div
-                class="avatar"
+                class="avatarSmall"
                 data-id="2"
                 data-testid="Avatar"
               >
                 <img
                   alt="User2"
+                  class="avatarImg"
                   data-testid="AvatarImg"
-                  src="/ava2.png"
+                  src="https://ya-praktikum.tech/api/v2/resources/ava2.png"
                 />
               </div>
               Вы:

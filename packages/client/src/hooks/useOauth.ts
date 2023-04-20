@@ -13,7 +13,6 @@ export const useOauth = () => {
     try {
       const response = await oauthApi.getServiceId({ redirect_uri: redirectUri });
       const data = await response.json();
-      console.log(data);
       dispatch(setServiceId(data.service_id));
     } catch (error) {
       console.log(error);
@@ -22,10 +21,7 @@ export const useOauth = () => {
 
   const loginWithYandexId = async (code: string) => {
     try {
-      const response = await oauthApi.loginWithYandexId({ code, redirect_uri: redirectUri });
-      if (response.ok) {
-        localStorage.setItem('isLogged', 'true');
-      }
+      await oauthApi.loginWithYandexId({ code, redirect_uri: redirectUri });
     } catch (error) {
       console.log(error);
     }
