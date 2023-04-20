@@ -26,7 +26,7 @@ jobs:
       - name: Build, tag, and push image to Yandex Cloud Container Registry
         env:
           CR_REGISTRY: crp7mv1jop7s53gfkj3c
-          CR_REPOSITORY: arkanoid-app
+          CR_REPOSITORY: arkanoid-game
           IMAGE_TAG: ${{ github.sha }}
           VITE_APP_HOSTNAME: 51.250.31.16
 
