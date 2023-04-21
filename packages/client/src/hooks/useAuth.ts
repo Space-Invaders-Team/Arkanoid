@@ -11,6 +11,8 @@ import {
   CONFLICT_ERROR_LOGIN_EN,
   TIMEOUT_MESSAGE,
 } from '../utils/messageConstants';
+import { userAPI } from '../api/UserAPI/UserAPI';
+import { TUserNew } from '../api/UserAPI/typings';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
@@ -47,6 +49,12 @@ export const useAuth = () => {
       await authApi.registerUser(userData);
       dispatch(setIsLogged(true));
       dispatch(getUserData());
+      const userPostgres: TUserNew = {
+        first_name: userData.first_name,
+        second_name: userData.second_name,
+        email: userData.email,
+      };
+      await userAPI.create(userPostgres);
     } catch (errorMessage) {
       if (errorMessage === CONFLICT_ERROR_EMAIL_EN) {
         setErrorMessage(CONFLICT_ERROR_EMAIL_RU);

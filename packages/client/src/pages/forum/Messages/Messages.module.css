@@ -9,6 +9,10 @@
   background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
 }
 
+.wrapper {
+  width: 100%;
+}
+
 .header {
   position: relative;
   width: 100%;
@@ -33,6 +37,11 @@
   background-color: var(--page-bg-color);
   border: 2px solid var(--border-color);
   border-radius: 4px;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--font-accent-color);
 }
 
 .messageWrap {
@@ -188,6 +197,8 @@
 /* W3C standard
 сейчас только для Firefox */
 .section { /* stylelint-disable-line no-duplicate-selectors */
+  display: flex;
+  flex-direction: column-reverse;
   scrollbar-width: thin;
   scrollbar-color: var(--accent-color) var(--header-text-color);
 }

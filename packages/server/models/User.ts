@@ -1,31 +1,33 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AllowNull, Column, DataType, Model, NotEmpty, PrimaryKey, Table, Unique } from 'sequelize-typescript';
+import { AllowNull, Column, DataType, HasMany, Model, Table, Unique } from 'sequelize-typescript';
 import type { TUser } from './typings';
+// eslint-disable-next-line import/no-cycle
+import { Message } from './Message';
 
 @Table({
   tableName: 'users',
   paranoid: true, // add 'deleted_at'
   })
 export class User extends Model<TUser> {
+  @AllowNull(false)
+  @Column(DataType.STRING)
+    first_name!: string;
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
+    second_name!: string;
+
+  @Column(DataType.STRING)
+    display_name!: string;
+
+  @AllowNull(false)
   @Unique
-  @AllowNull(false)
-  @NotEmpty({ msg: 'Поле не может быть пустым' })
-  @PrimaryKey
-  @Column(DataType.INTEGER)
-    user_id!: number;
-
-  @AllowNull(false)
   @Column(DataType.STRING)
-    user_name!: string;
-
-  @AllowNull(false)
-  @Column(DataType.STRING)
-    user_game_name!: string;
+    email!: string;
 
   @Column
     avatar!: string;
 
-  // TODO
-  // @HasMany(() => Message)
-  //   messages!: Message[];
+  @HasMany(() => Message)
+    messages!: Message[];
 }
