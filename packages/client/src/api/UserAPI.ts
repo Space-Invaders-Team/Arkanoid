@@ -21,6 +21,18 @@ class UserApi {
     });
     return this._handlingResponse(res);
   }
+
+  async updateProfile(data: StringObject) {
+    const res = await fetch(`${this._baseUrl}/profile`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return this._handlingResponse(res);
+  }
 }
 
 export const userApi = new UserApi(`${BASE_URL_YANDEX}/user`);

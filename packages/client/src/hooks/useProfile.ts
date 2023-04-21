@@ -16,5 +16,17 @@ export const useProfile = () => {
       console.log(errorMessage);
     }
   };
-  return { updateAvatar };
+
+  const updateProfile = async (formData: StringObject) => {
+    delete formData.avatar;
+    try {
+      await userApi.updateProfile(formData);
+      console.log('Данные профиля изменены');
+      dispatch(getUserData());
+    } catch (errorMessage) {
+      console.log(errorMessage);
+    }
+  };
+
+  return { updateAvatar, updateProfile };
 };
