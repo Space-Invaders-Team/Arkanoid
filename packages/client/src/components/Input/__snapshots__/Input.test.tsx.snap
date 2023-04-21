@@ -6,5 +6,6 @@ exports[`Input component renders correctly 1`] = `
   name="test"
   placeholder="test placeholder"
   type="text"
+  value=""
 />
 `;
