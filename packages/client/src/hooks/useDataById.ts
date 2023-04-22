@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
+import { TApi } from './typings';
 
 export function useDataById<T>(callback: (a: T) => void): [
-  (api: { getById: (arg0: number) => Promise<T>; }, n: number) => void,
+  (api: TApi<T>, n: number) => void,
   boolean,
   string,
 ] {
@@ -9,7 +10,7 @@ export function useDataById<T>(callback: (a: T) => void): [
   const [error, setError] = useState('');
 
   const fetchDataById = useCallback(
-    (itemAPI: { getById: (arg0: number) => Promise<T>; }, id: number) => {
+    (itemAPI: TApi<T>, id: number) => {
       itemAPI.getById(id)
         .then((response: T) => {
           const item = response;
