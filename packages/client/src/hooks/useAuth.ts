@@ -46,10 +46,13 @@ export const useAuth = () => {
 
   const onRegister = async (userData: StringObject) => {
     try {
-      await authApi.registerUser(userData);
+      const response = await authApi.registerUser(userData);
+      const jsonData = await response.json();
+
       dispatch(setIsLogged(true));
       dispatch(getUserData());
       const userPostgres: TUserNew = {
+        user_id: jsonData.id,
         first_name: userData.first_name,
         second_name: userData.second_name,
         email: userData.email,

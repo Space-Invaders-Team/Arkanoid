@@ -13,14 +13,21 @@ import { topicAPI } from '../../../api/ForumAPI/TopicAPI';
 import { Loader } from '../../../components/Loader';
 import { messageAPI } from '../../../api/ForumAPI/MessageAPI';
 import { dateFormat } from '../../../utils/helpers';
+import { useAppSelector } from '../../../store/hooks';
+import { selectUserData } from '../../../store/selectors';
+
+function makeDisplayName(user: any) {
+  return user?.display_name ? user.display_name
+    : `${user.first_name} ${user.second_name}`;
+}
 
 function ParentMessage(props: { messagesArr: TMessage[], id: number }) {
   const { messagesArr, id } = props;
   const dataMess = messagesArr.find((obj) => obj.id === id);
+
   return (
     <div className={styles.quoteRow}>
-      {/* TODO When user will be in data */}
-      <div className={styles.quotePerson}>TODO Пётр Пяточкин</div>
+      <div className={styles.quotePerson}>{makeDisplayName(dataMess?.user)}</div>
       <div className={styles.subtext}>
         {dataMess?.content}
       </div>
@@ -33,11 +40,23 @@ export function Messages() {
   const [parentMessage, setParentMessage] = useState<TMessage | null>(null);
   const [topic, setTopic] = useState({
     name: '',
+    forum_id: 0,
   });
   const [fetchActiveTopic, isLoadingTopic, topicError] = useDataById<TTopic>(setTopic);
   const [fetchMessages, isLoadingMessages, messagesError] = useDataById<TMessage[]>(setMessages);
   const [newMessageValue, setNewMessageValue] = useState<string>('');
   const [isDisabledBtn, setDisabledBtn] = useState<boolean>(true);
+  const userData = useAppSelector(selectUserData);
+
+  const showAuthor = (user: any) => {
+    let author;
+    if (user?.user_id === userData?.id || user === undefined) {
+      author = 'Вы';
+    } else {
+      author = makeDisplayName(user);
+    }
+    return author;
+  };
 
   // берём id активной темы из url
   const params = useParams();
@@ -74,18 +93,23 @@ export function Messages() {
   // Отправка сообщения
   const onSubmitMessage = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const newMessage: TMessageNew = {
-      content: newMessageValue,
-      topic_id: topicId,
-      forum_id: messages[0].forum_id,
-      parent_id: parentMessage?.id,
-    };
+    let newMessage: TMessageNew;
+    if (userData) {
+      newMessage = {
+        content: newMessageValue,
+        user_id: userData.id,
+        topic_id: topicId,
+        forum_id: topic.forum_id,
+        parent_id: parentMessage?.id,
+      };
 
-    messageAPI.create(newMessage)
-      .then((response) => setMessages((prevValue) => [response, ...prevValue]))
-      .then(() => setNewMessageValue(''));
-
-    setParentMessage(null);
+      messageAPI.create(newMessage)
+        .then(() => fetchMessages(messageAPI, topicId))
+        .then(() => {
+          setNewMessageValue('');
+          setParentMessage(null);
+        });
+    }
   };
 
   const buttonClassNames = classNames(
@@ -117,8 +141,9 @@ export function Messages() {
                   <div key={data.id} className={styles.messageWrap}>
                     <div className={styles.row}>
                       <div className={styles.subtext}>
-                        {/* TODO When user will be in data */}
-                        <span className={styles.messAuthor}>TODO Автор</span>
+                        <span className={styles.messAuthor}>
+                          {showAuthor(data.user)}
+                        </span>
                         <span>{dateFormat(data.createdAt)}</span>
                       </div>
                       <Button
@@ -134,8 +159,14 @@ export function Messages() {
 
                     <div className={styles.row}>
                       <div className={styles.rowItem1}>
-                        {/* TODO src={avatar} When user will be in data */}
-                        <img className={styles.avatar} src={avatar} alt="Avatar" />
+
+                        {/* TODO When avatar will be in PS-database */}
+
+                        <img
+                          className={styles.avatar}
+                          src={data.user?.avatar || avatar}
+                          alt="Avatar"
+                        />
                         <div className={styles.messText}>{data.content}</div>
                       </div>
                       {/* TODO Will be Emoji reactions */}
@@ -149,20 +180,19 @@ export function Messages() {
               <form onSubmit={(e) => onSubmitMessage(e)} className={styles.footer}>
                 <div className={styles.footerWrap}>
                   {parentMessage !== null && (
-                    <div className={styles.replyWrap}>
-                      <div className={styles.sender}>
-                        <span>
-                          {/* TODO When user will be in data */}
-                          TODO Имя Автора
-                        </span>
-                        <button type="button" onClick={handleClickHide} className={styles.closeBtn}>
-                          <img src={close} alt="Close button" />
-                        </button>
-                      </div>
-                      <div className={styles.replyText}>
-                        {parentMessage.content}
-                      </div>
+                  <div className={styles.replyWrap}>
+                    <div className={styles.sender}>
+                      <span>
+                        {showAuthor(parentMessage.user)}
+                      </span>
+                      <button type="button" onClick={handleClickHide} className={styles.closeBtn}>
+                        <img src={close} alt="Close button" />
+                      </button>
                     </div>
+                    <div className={styles.replyText}>
+                      {parentMessage.content}
+                    </div>
+                  </div>
                   )}
                   <textarea
                     name="content"

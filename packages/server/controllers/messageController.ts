@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import { Message } from '../models/Message';
+import { User } from '../models/User';
 
 export class MessageController {
   // список всех сообщений
@@ -9,6 +10,7 @@ export class MessageController {
   ) => {
     const messageList = await Message.findAll({
       where: { topic_id: request.params.id },
+      include: User,
       order: [
         ['createdAt', 'DESC'],
       ],

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AllowNull, Column, DataType, HasMany, Model, Table, Unique } from 'sequelize-typescript';
+import { AllowNull, Column, DataType, HasMany, Model, PrimaryKey, Table, Unique } from 'sequelize-typescript';
 import type { TUser } from './typings';
 // eslint-disable-next-line import/no-cycle
 import { Message } from './Message';
@@ -9,6 +9,11 @@ import { Message } from './Message';
   paranoid: true, // add 'deleted_at'
   })
 export class User extends Model<TUser> {
+  // id from Yandex-BD
+  @PrimaryKey
+  @Column(DataType.INTEGER)
+    user_id!: number;
+
   @AllowNull(false)
   @Column(DataType.STRING)
     first_name!: string;
