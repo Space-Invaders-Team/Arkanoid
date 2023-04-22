@@ -19,9 +19,7 @@ export function Form({
 }: FormProps) {
   const [isValid, setIsValid] = useState(false);
   const serviceId = useAppSelector(selectServiceId);
-  const redirectUri = process.env.NODE_ENV === 'development'
-    ? Paths.REDIRECT_URI_DEV
-    : Paths.REDIRECT_URI_PROD;
+  const redirectUri = import.meta.env?.VITE_APP_HOSTNAME;
 
   const handleValidate = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const form = evt.target.closest('form');

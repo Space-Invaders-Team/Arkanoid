@@ -1,13 +1,10 @@
 import { useAppDispatch } from '../store/hooks';
 import { oauthApi } from '../api/OauthApi';
 import { setServiceId } from '../store/features/oauthSlice';
-import { Paths } from '../utils/routeConstants';
 
 export const useOauth = () => {
   const dispatch = useAppDispatch();
-  const redirectUri = process.env.NODE_ENV === 'development'
-    ? Paths.REDIRECT_URI_DEV
-    : Paths.REDIRECT_URI_PROD;
+  const redirectUri = import.meta.env?.VITE_APP_HOSTNAME;
 
   const getServiceId = async () => {
     try {

@@ -11,8 +11,6 @@ export enum Paths {
   NOT_FOUND = '/*',
   OAUTH_BASE_URL = 'https://oauth.yandex.ru/authorize?response_type=code&client_id=',
   OAUTH_ADD_URL = '&redirect_uri=',
-  REDIRECT_URI_DEV = 'http://localhost:3000',
-  REDIRECT_URI_PROD = 'https://arkanoid-client.vercel.app',
 }
 
 export enum Titles {

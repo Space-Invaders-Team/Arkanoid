@@ -1,0 +1,26 @@
+FROM node:18-alpine
+
+ARG VITE_APP_HOSTNAME
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+COPY packages/client/package.json packages/client/
+
+COPY packages/server/package.json packages/server/
+
+RUN yarn --frozen-lock
+
+COPY . .
+
+RUN yarn lerna link && yarn build
+
+RUN cd packages/client && yarn link &&\
+    cd ../server && yarn link client
+
+WORKDIR /app/packages/server/dist
+
+EXPOSE 9000
+
+CMD ["node", "index.js"]
