@@ -1,6 +1,11 @@
 export type TTopic = {
-  id: string;
+  id: number;
   name: string;
-  countAnswer: number;
-  lastMessageTime: string;
+  messagesCount: number;
+  dateLastMessage: string;
+};
+
+export type TTopicNew = {
+  name: string;
+  forum_id: number;
 };

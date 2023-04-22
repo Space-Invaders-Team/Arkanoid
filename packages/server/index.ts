@@ -5,6 +5,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer as createViteServer } from 'vite';
+import bodyParser from 'body-parser';
+import { topicRoutes } from './routes/forum/topicRoutes';
 import { forumRoutes } from './routes/forum/forumRoutes';
 import { escapeHtml } from './utils/escapeHtml';
 import { createPostgresConnect } from './database';
@@ -42,8 +44,15 @@ async function createServer() {
     app.use('/assets', express.static(path.resolve(distPath, 'assets')));
   }
 
+  // create application/json parser
+  const jsonParser = bodyParser.json();
+
+  // parse application/json
+  app.use(jsonParser);
+
   // api routes
   forumRoutes(app);
+  topicRoutes(app);
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
