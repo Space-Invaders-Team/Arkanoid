@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkRow component tests Correct render 1`] = `
+<tr
+  data-testid="linkRow"
+>
+  <td>
+    first
+  </td>
+  <td>
+    second
+  </td>
+  <td>
+    third
+  </td>
+</tr>
+`;

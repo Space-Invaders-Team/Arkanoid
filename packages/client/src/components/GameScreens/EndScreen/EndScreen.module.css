@@ -1,0 +1,26 @@
+.container {
+  justify-content: center;
+}
+
+.text {
+  margin-top: auto;
+  margin-bottom: 0;
+  font-size: 4em;
+  font-weight: 700;
+  color: var(--game-descr-font-color);
+  line-height: 1;
+}
+
+.score {
+  font-size: 3em;
+  color: var(--accent-color);
+}
+
+.tries {
+  font-size: 1.5em;
+  color: var(--accent-color);
+}
+
+.video {
+  max-width: 50%;
+}

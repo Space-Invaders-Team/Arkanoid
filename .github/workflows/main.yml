@@ -1,0 +1,34 @@
+# Определяем название процесса (просто отображается на странице Actions в GitHub)
+name: Push To Yandex Cloud CR
+
+# Определяем условия запуска процесса
+# Подробнее см. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
+on:
+  # Позволяет запускать при push в main (и при commit и при merge)
+  push:
+    branches:
+      - main
+
+  # Позволяет запускать вручную из GitHub
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Yandex Cloud CR "Login" Action for GitHub Actions
+        uses: yc-actions/yc-cr-login@v0.1-alpha
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
+      - name: Build, tag, and push image to Yandex Cloud Container Registry
+        env:
+          CR_REGISTRY: crp7mv1jop7s53gfkj3c
+          CR_REPOSITORY: arkanoid-game
+          IMAGE_TAG: ${{ github.sha }}
+          VITE_APP_HOSTNAME: ${{ secrets.VITE_APP_HOSTNAME }}
+        run: |
+          docker build -f Dockerfile.production --build-arg VITE_APP_HOSTNAME=$VITE_APP_HOSTNAME -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest .
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest

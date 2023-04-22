@@ -1,6 +1,11 @@
 pre-commit:
-  parallel: true
+  follow: true
   commands:
-    lint:
+    eslint:
       glob: '*.{ts,tsx}'
       run: yarn eslint {staged_files}
+    stylelint:
+      glob: '*.css'
+      run: yarn stylelint {staged_files}
+    tests:
+      run: yarn test

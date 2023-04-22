@@ -1,0 +1,1 @@
+export { IconBack } from './IconBack';

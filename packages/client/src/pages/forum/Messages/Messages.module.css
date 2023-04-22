@@ -1,0 +1,229 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 58px);
+  padding: 50px 20px;
+  background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0;
+  line-height: 46px;
+	color: var(--font-secondary-color);
+  text-align: center;
+}
+
+/* Лента сообщений */
+.section {
+  flex-grow: 1;
+  max-width: 100%;
+  height: 360px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  overflow: auto;
+  background-color: var(--page-bg-color);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.messageWrap {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.rowItem1 {
+  flex-grow: 1;
+  margin-top: 8px;
+}
+
+.subtext {
+  font-size: 12px;
+  color: var(--accent-color);
+}
+
+/* END Лента сообщений */
+
+/* Лента сообщений - блок сообщения */
+.messAuthor {
+  margin-right: 16px;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.avatar {
+  float: left;
+  width: 45px;
+  min-width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.messText {
+  padding-left: 60px;
+}
+
+/* END Лента сообщений - блок сообщения */
+
+/* Лента сообщений - Цитата чужого сообщения */
+.quoteRow {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  max-width: 80%;
+  padding-left: 12px;
+  margin-top: 6px;
+  border-left: 3px solid var(--font-accent-color);
+}
+
+.quotePerson {
+  font-size: 12px;
+  color: var(--alert-text-color);
+}
+
+.quoteRow .subtext {
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* END Лента сообщений - Цитата чужого сообщения */
+
+/* Блок для ввода нового сообщения */
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.footerWrap {
+  width: 60%;
+}
+
+.replyWrap,
+.chatTextarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: var(--font-primary-color);
+  background-color: var(--input-bg-color);
+  border: 2px solid var(--border-color);
+}
+
+.replyWrap {
+  border-radius: 4px 4px 0 0;
+}
+
+.sender {
+  display: flex;
+  justify-content: space-between;
+  color: var(--font-accent-color);
+}
+
+.replyText {
+  overflow: hidden;
+  color: var(--font-secondary-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-top: 1px solid var(--border-color);
+}
+
+.chatTextarea {
+  border-radius: 4px;
+}
+
+/* END Блок для ввода нового сообщения */
+
+/* Кнопки */
+.sendBtn {
+  width: 25%;
+  padding: 12px 16px;
+}
+
+.linkBtn {
+  width: 52px;
+  padding: 0;
+  font-size: 0.75em;
+  color: var(--accent-color);
+  background-color: transparent;
+}
+
+.closeBtn {
+  padding: 0;
+  line-height: 16px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.closeBtn img {
+  opacity: 0.5;
+}
+
+.backBtn {
+  position: absolute;
+}
+
+/* END Кнопки */
+
+/* Скролл */
+
+/* W3C standard
+сейчас только для Firefox */
+.section { /* stylelint-disable-line no-duplicate-selectors */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) var(--header-text-color);
+}
+
+/* для Chrome/Edge/Safari */
+.section::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.section::-webkit-scrollbar-track {
+  background-color: var(--accent-color);
+}
+
+.section::-webkit-scrollbar-thumb {
+  background-color: var(--header-text-color);
+  border: 3px solid var(--accent-color);
+  border-radius: 5px;
+}
+
+/* END Скролл */
+
+@media (hover: hover) and (pointer: fine) {
+	.linkBtn:hover {
+		color: var(--font-accent-color);
+		background-color: transparent;
+	}
+
+  .closeBtn:hover img {
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 998px) {
+  .section,
+  .footer {
+    max-width: 70%;
+  }
+}

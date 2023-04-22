@@ -1,0 +1,1 @@
+export { IconFullscreenExit } from './IconFullscreenExit';

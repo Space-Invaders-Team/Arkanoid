@@ -1,0 +1,99 @@
+.tr {
+	background: var(--table-bg);
+}
+
+.td {
+  padding: 10px 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.td__first {
+  width: 45px;
+  padding-right: 0;
+}
+
+.medal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  font-size: 0.9em;
+  color: var(--font-secondary-color);
+  border-radius: 50%;
+}
+
+.gold {
+  color: white;
+  background: #f6c844;
+}
+
+.silver {
+  color: white;
+  background: #c5d2dd;
+}
+
+.bronze {
+  color: white;
+  background: #e5a666;
+}
+
+.avatar {
+    float: left;
+    width: 45px;
+    min-width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.leader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.points {
+  float: right;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--page-bg-color);
+  background: var(--btn-color);
+  border-radius: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tr:hover td {
+    background: var(--border-color);
+  }
+
+  .tr:hover .name {
+    color: var(--font-accent-color);
+  }
+
+}
+
+.currentRow {
+  background: var(--table-bg);
+  transform: scale(1.03);
+}
+
+.currentRow .td {
+  background: var(--border-color);
+}
+
+.currentRow .name {
+  font-size: 1.3em;
+  color: var(--font-accent-color);
+}
+
+.currentRow .medal {
+  font-size: 1.2em;
+  font-weight: 700;
+}

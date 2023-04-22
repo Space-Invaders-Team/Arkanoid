@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4:6.19
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8080:${PGADMIN_LISTEN_PORT}
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - arkNet
+
+  postgres:
+    image: postgres:14
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    env_file:
+      - .env
+    volumes:
+      - ./tmp/pgdata:/var/lib/postgresql/data
+    networks:
+      - arkNet
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+volumes:
+  pgadmin-data:
+
+networks:
+  arkNet:
+    driver: bridge
+

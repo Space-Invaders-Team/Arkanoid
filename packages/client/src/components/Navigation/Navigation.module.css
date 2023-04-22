@@ -1,0 +1,82 @@
+/* Nav */
+.nav {
+	padding: 12px 20px;
+	color: var(--nav-text-color);
+	letter-spacing: normal;
+	background-color: var(--nav-bg-color);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.navRow {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 20px;
+	column-gap: 30px;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.logo {
+	margin-right: auto;
+	font-size: 24px;
+	color: var(--nav-text-color);
+}
+
+.logo strong {
+	font-weight: 700;
+}
+
+.navList {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 10px;
+	column-gap: 40px;
+	align-items: center;
+	margin: 7px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.navList > li {
+	list-style-type: none;
+}
+
+.navList > li > a {
+	text-decoration: none;
+}
+
+.navListLink {
+	color: var(--nav-text-color);
+}
+
+.linkActive {
+	position: relative;
+}
+
+.linkActive::before {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 2px;
+	content: '';
+	background-color: var(--accent-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.navListLink:hover {
+		opacity: 0.8;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav {
+    transition: background-color 200ms linear;
+  }
+
+	.navListLink {
+		transition: opacity 0.2s ease-in;
+	}
+}
+

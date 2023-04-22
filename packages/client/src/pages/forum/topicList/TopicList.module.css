@@ -1,0 +1,169 @@
+.topicList {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	padding: 20px;
+	font-size: 16px;
+	background-image: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.tableSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 0;
+  width: calc(100% - 30px);
+  max-width: 1500px;
+}
+
+.title {
+  margin: 0;
+  line-height: 46px;
+	color: var(--font-secondary-color);
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 30px;
+	color: var(--font-accent-color);
+  text-align: center;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 24px;
+}
+
+.backBtn {
+  position: absolute;
+}
+
+.table {
+  flex-basis: calc(100% - 430px);
+  flex-grow: 1;
+	width: 100%;
+	font-size: 1em;
+	border-collapse: collapse;
+}
+
+.table tr {
+  cursor: pointer;
+  background: var(--table-bg);
+}
+
+.table td {
+  padding: 15px 20px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table td:first-child {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.table td:last-child {
+  text-align: right;
+}
+
+.table th {
+  padding: 16px 20px;
+  font-size: 1.2em;
+  color: white;
+  text-align: left;
+  background-color: var(--accent-darken-color);
+}
+
+.table th:first-child {
+  border-radius: 10px 0 0;
+}
+
+.table th:last-child {
+  text-align: right;
+  border-radius: 0 10px 0 0;
+}
+
+.button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.add {
+  font-size: 1.5em;
+}
+
+.sidebar {
+  flex-basis: 430px;
+  flex-grow: 1;
+  max-width: 100%;
+  padding-left: 45px;
+}
+
+.topicList input {
+  width: 100%;
+  background-color: var(--border-color);
+  border: 1px solid var(--btn-color);
+}
+
+.topicList label {
+  font-size: 1.3em;
+  color: var(--font-accent-color);
+}
+
+.topicList label::before {
+  position: relative;
+  top: 7px;
+  display: inline-block;
+  height: 20px;
+  font-size: 1.8em;
+  line-height: 0;
+  content: '>';
+  transform: rotateY(60deg);
+}
+
+.addTopic {
+  position: sticky;
+  top: 20px;
+}
+
+.error,
+.error:focus {
+  color: var(--error-text-color);
+  background-color: var(--error-bg-color);
+  border-color: var(--error-bg-color);
+  outline: 2px solid var(--error-bg-color);
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .table tr:hover td {
+      background: var(--border-color);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.topicList * {
+		transition: .3s;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.topicList {
+		font-size: 14px;
+	}
+}

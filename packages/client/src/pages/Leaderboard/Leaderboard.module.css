@@ -1,0 +1,48 @@
+.leaderboard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	padding: 20px;
+	font-size: 16px;
+	background: var(--page-bg-color);
+}
+
+.wrapper {
+	flex-grow: 1;
+	width: 900px;
+	display: flex;
+	max-width: 100%;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 5%;
+}
+
+.table {
+	width: 100%;
+	font-size: 1em;
+	border-collapse: collapse;
+}
+
+.title {
+	font-size: 4em;
+	font-weight: 700;
+	margin-bottom: 0.8em;
+	color: var(--font-secondary-color);
+	text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.leaderboard * {
+		transition: .3s;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.leaderboard {
+		font-size: 12px;
+	}
+}

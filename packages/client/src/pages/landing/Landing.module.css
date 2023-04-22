@@ -1,0 +1,37 @@
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.article {
+  max-width: 70%;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.title {
+  text-align: center;
+}
+
+.cardWrap {
+  display: flex;
+  column-gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  max-width: 30%;
+  padding: 16px;
+  background-image: linear-gradient(to top, var(--font-accent-color), var(--accent-color));
+  border-radius: 8px;
+}
+
+.card > img {
+  max-width: 100%;
+  min-height: 190px;
+  border-radius: 8px;
+}
