@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AllowNull, Column, DataType, Model, NotEmpty, PrimaryKey, Table, Unique } from 'sequelize-typescript';
+import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Index, Model, NotEmpty, PrimaryKey, Table, Unique } from 'sequelize-typescript';
 import type { TUser } from './typings';
+import { Theme } from './Theme';
 
 @Table({
   tableName: 'users',
@@ -14,18 +15,29 @@ export class User extends Model<TUser> {
   @Column(DataType.INTEGER)
     user_id!: number;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.STRING)
     user_name!: string;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.STRING)
     user_game_name!: string;
 
   @Column
+  @AllowNull(true)
+  @Column(DataType.STRING)
     avatar!: string;
 
   // TODO
   // @HasMany(() => Message)
   //   messages!: Message[];
+
+  @Index
+  @AllowNull(true)
+  @ForeignKey(() => Theme)
+  @Column(DataType.INTEGER)
+    theme!: number;
+
+  @BelongsTo(() => Theme, 'theme')
+    themes!: Theme;
 }

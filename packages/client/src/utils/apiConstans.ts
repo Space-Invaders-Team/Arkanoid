@@ -4,3 +4,4 @@ export const TEAM_NAME = 'spaceInvadersTeam';
 export const BASE_URL_API = 'http://localhost:3001/api/v1';
 export const FORUM = '/forums';
 export const TOPIC = '/topics';
+export const THEME_API_URL = '/theme';

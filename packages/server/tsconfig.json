@@ -17,6 +17,7 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "5.0",
     "importsNotUsedAsValues": "error",
     "lib": ["DOM" ,"es2019", "esnext.asynciterable"],
     "types": ["node", "jest"],

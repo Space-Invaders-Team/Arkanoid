@@ -7,7 +7,7 @@
 	min-height: 100vh;
 	padding: 20px;
 	font-size: 16px;
-	background-image: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+	background: var(--page-bg-color);
 }
 
 .wrapper {

@@ -10,6 +10,16 @@ export function RootLayout() {
   const dispatch = useAppDispatch();
   const { loginWithYandexId, getServiceId, getOauthCode } = useOauth();
 
+  const handleLoad = () => {
+    const element = document.body;
+    element.style.opacity = '1';
+  };
+
+  useEffect(() => {
+    window.addEventListener('load', handleLoad);
+    return () => window.removeEventListener('load', handleLoad);
+  }, []);
+
   useEffect(() => {
     const fetch = async () => {
       await getServiceId();

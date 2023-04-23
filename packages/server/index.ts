@@ -8,6 +8,7 @@ import { createServer as createViteServer } from 'vite';
 import bodyParser from 'body-parser';
 import { topicRoutes } from './routes/forum/topicRoutes';
 import { forumRoutes } from './routes/forum/forumRoutes';
+import { themeRoutes } from './routes/theme/themeRoutes';
 import { escapeHtml } from './utils/escapeHtml';
 import { createPostgresConnect } from './database';
 
@@ -53,6 +54,7 @@ async function createServer() {
   // api routes
   forumRoutes(app);
   topicRoutes(app);
+  themeRoutes(app);
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;

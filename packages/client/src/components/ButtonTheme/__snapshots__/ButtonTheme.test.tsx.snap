@@ -2,19 +2,39 @@
 
 exports[`ButtonTheme component tests Correct render 1`] = `
 <button
-  class="darkModeBtn"
+  aria-label="Set theme"
+  class="btn-icon-light btnIcon"
+  data-active="true"
   data-testid="toggleThemeBtn"
+  data-theme-id="1"
+  data-theme-name="light"
+  style="background-image: url(default);"
   type="button"
->
-  <img
-    alt="Light mode"
-    class="darkModeBtnIcon"
-    src="default"
-  />
-  <img
-    alt="Dark mode"
-    class="darkModeBtnIcon"
-    src="default"
-  />
-</button>
+/>
+`;
+
+exports[`ButtonTheme component tests Correct render 2`] = `
+<button
+  aria-label="Set theme"
+  class="btn-icon-dark btnIcon"
+  data-active="false"
+  data-testid="toggleThemeBtn"
+  data-theme-id="2"
+  data-theme-name="dark"
+  style="background-image: url(default);"
+  type="button"
+/>
+`;
+
+exports[`ButtonTheme component tests Correct render 3`] = `
+<button
+  aria-label="Set theme"
+  class="btn-icon-rainbow btnIcon"
+  data-active="false"
+  data-testid="toggleThemeBtn"
+  data-theme-id="3"
+  data-theme-name="rainbow"
+  style="background-image: url(default);"
+  type="button"
+/>
 `;

@@ -11,6 +11,7 @@ import {
   CONFLICT_ERROR_LOGIN_EN,
   TIMEOUT_MESSAGE,
 } from '../utils/messageConstants';
+import { StringObject } from '../typings';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();

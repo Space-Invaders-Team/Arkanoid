@@ -6,7 +6,8 @@
   width: 100%;
   min-height: calc(100vh - 58px);
   padding: 50px 20px;
-  background: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+  background: var(--page-bg-color);
+  filter: var(--filter);
 }
 
 .header {
