@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer as createViteServer } from 'vite';
+import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { expressCspHeader } from 'express-csp-header';
 import { messageRoutes } from './routes/forum/messageRoutes';
@@ -26,6 +27,7 @@ async function createServer() {
 
   app
     .use(cors())
+    .use(helmet())
     .use('/sw.js', express.static(path.resolve(distPath, 'sw.js')));
 
   const vite = IS_DEV
@@ -39,10 +41,6 @@ async function createServer() {
   if (IS_DEV && vite) {
     app.use(vite.middlewares);
   }
-
-  app.get('/api', (_, res) => {
-    res.json('👋 Howdy from the server :)');
-  });
 
   if (!IS_DEV) {
     app.use('/assets', express.static(path.resolve(distPath, 'assets')));
