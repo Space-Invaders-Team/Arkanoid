@@ -6,11 +6,12 @@ import * as path from 'path';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer as createViteServer } from 'vite';
 import bodyParser from 'body-parser';
+import { expressCspHeader } from 'express-csp-header';
 import { messageRoutes } from './routes/forum/messageRoutes';
 import { topicRoutes } from './routes/forum/topicRoutes';
 import { forumRoutes } from './routes/forum/forumRoutes';
 import { userRoutes } from './routes/userRoutes';
-import { escapeHtml } from './utils/escapeHtml';
+import { escapeHtml, getCspDirectives } from './utils';
 import { createPostgresConnect } from './database';
 
 dotenv.config();
@@ -21,11 +22,12 @@ async function createServer() {
   const app = express();
   const port = Number(process.env.SERVER_PORT) || 9000;
   const distPath = IS_DEV ? '' : path.dirname(require.resolve('client/dist/index.html'));
-
-  app.use(cors());
-  app.use('/sw.js', express.static(path.resolve(distPath, 'sw.js')));
-
   const srcPath = path.dirname(require.resolve('client'));
+
+  app
+    .use(cors())
+    .use('/sw.js', express.static(path.resolve(distPath, 'sw.js')));
+
   const vite = IS_DEV
     ? await createViteServer({
       server: { middlewareMode: true },
@@ -58,7 +60,7 @@ async function createServer() {
   messageRoutes(app);
   userRoutes(app);
 
-  app.use('*', async (req, res, next) => {
+  app.use('*', expressCspHeader({ directives: getCspDirectives() }), async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
@@ -92,7 +94,8 @@ async function createServer() {
       // 5. Inject the app-rendered HTML into the template.
       const html = template
         .replace('<!--ssr-outlet-->', appHtml)
-        .replace('<!--store-data-->', initialStateSerialized);
+        .replace('<!--store-data-->', initialStateSerialized)
+        .replace(/<script/g, `<script nonce="${req.nonce}"`);
 
       // 6. Send the rendered HTML back.
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);

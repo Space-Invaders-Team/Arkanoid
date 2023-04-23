@@ -1,11 +1,7 @@
 import { renderToString } from 'react-dom/server';
 import React from 'react';
 import type * as express from 'express';
-import {
-  createStaticHandler,
-  createStaticRouter,
-  StaticRouterProvider,
-} from 'react-router-dom/server.js';
+import { createStaticHandler, createStaticRouter, StaticRouterProvider } from 'react-router-dom/server.js';
 import { Provider } from 'react-redux';
 import { routes } from './src/router/router';
 import { setupStore } from './src/store';
@@ -69,7 +65,6 @@ export async function render(req: express.Request) {
       <StaticRouterProvider
         router={router}
         context={context}
-        nonce="the-nonce"
       />
     </Provider>
   ));
