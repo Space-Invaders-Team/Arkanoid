@@ -5,7 +5,7 @@ import checker from 'vite-plugin-checker';
 import dotenv from 'dotenv';
 import { resolve } from 'path';
 
-dotenv.config();
+dotenv.config({ path: '../../.env' });
 
 // https://vitejs.dev/config/
 // eslint-disable-next-line import/no-default-export

@@ -3,6 +3,7 @@ export type TTopic = {
   name: string;
   messagesCount: number;
   dateLastMessage: string;
+  forum_id: number;
 };
 
 export type TTopicNew = {

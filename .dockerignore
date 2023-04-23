@@ -1,0 +1,7 @@
+Dockerfile.*
+node_modules
+**/.*
+!.env.sample
+dist
+ssr-dist
+tmp

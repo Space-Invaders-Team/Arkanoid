@@ -2,6 +2,9 @@
 import { defineConfig } from 'vite';
 import * as path from 'path';
 import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '../../.env' });
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({

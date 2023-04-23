@@ -1,36 +1,40 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Index, Model, NotEmpty, PrimaryKey, Table, Unique } from 'sequelize-typescript';
+import { AllowNull, BelongsTo, Column, DataType, HasMany, ForeignKey, Index, Model, PrimaryKey, Table, Unique } from 'sequelize-typescript';
 import type { TUser } from './typings';
 import { Theme } from './Theme';
+// eslint-disable-next-line import/no-cycle
+import { Message } from './Message';
 
 @Table({
   tableName: 'users',
   paranoid: true, // add 'deleted_at'
   })
 export class User extends Model<TUser> {
-  @Unique
-  @AllowNull(false)
-  @NotEmpty({ msg: 'Поле не может быть пустым' })
+  // id from Yandex-BD
   @PrimaryKey
   @Column(DataType.INTEGER)
     user_id!: number;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-    user_name!: string;
+    first_name!: string;
+
+  @AllowNull(false)
+  @Column(DataType.STRING)
+    second_name!: string;
+
+  @Column(DataType.STRING)
+    display_name!: string;
 
   @AllowNull(true)
+  @Unique
   @Column(DataType.STRING)
-    user_game_name!: string;
+    email!: string;
 
   @Column
   @AllowNull(true)
   @Column(DataType.STRING)
     avatar!: string;
-
-  // TODO
-  // @HasMany(() => Message)
-  //   messages!: Message[];
 
   @Index
   @AllowNull(true)
@@ -40,4 +44,7 @@ export class User extends Model<TUser> {
 
   @BelongsTo(() => Theme, 'theme')
     themes!: Theme;
+
+  @HasMany(() => Message)
+    messages!: Message[];
 }
