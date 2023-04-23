@@ -21,7 +21,7 @@
 	padding: 0 15px 40px;
 	margin-top: 60px;
 	border-radius: 6px;
-	color: var(--table-bg);
+	color: var(--maintitle-color);
 }
 
 .headerTitle {
@@ -29,7 +29,7 @@
 	font-size: 8em;
 	font-weight: 700;
 	line-height: 1.4;
-	text-shadow: 0 4px 10px var(--font-accent-color), -4px 7px 0 var(--btn-color), -7px 10px 0 var(--accent-color);
+	text-shadow: 0 4px 5px var(--font-accent-color), -4px 7px 0 var(--btn-color), -7px 10px 0 var(--accent-color);
 	text-transform: uppercase;
 	transform: scaleX(1.4);
 }

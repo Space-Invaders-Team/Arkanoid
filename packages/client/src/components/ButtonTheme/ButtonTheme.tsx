@@ -36,7 +36,7 @@ export function ButtonTheme() {
 
   useEffect(() => {
     // говорят, в SSR local storage не алё
-    const themeFromLS = isSSR() ? null : localStorage.getItem('user-theme');
+    const themeFromLS = localStorage.getItem('user-theme');
 
     /**
      * Пытаемся достать тему из LS, при этом не получив всяких undefined

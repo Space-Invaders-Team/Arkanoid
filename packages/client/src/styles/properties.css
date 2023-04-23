@@ -28,8 +28,9 @@
   --alert-bg-color: var(--light, #c7ffdb) var(--dark, #007c00) var(--rainbow, #c7ffdb);
   --error-text-color: var(--light, #b10000) var(--dark, #ffefef) var(--rainbow, #b10000);
   --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000) var(--rainbow, #ffd2d2);
+  --maintitle-color: var(--light, #fafaff) var(--dark, #7b7ad4) var(--rainbow, #1400ff);
   --filter: var(--light, none) var(--dark, none) var(--rainbow, invert(1));
-  --filter-bg: var(--light, none) var(--dark, none) var(--rainbow, invert(1));
+  --filter-bg: var(--light, brightness(0.7)) var(--dark, brightness(0.5) opacity(0.7)) var(--rainbow, brightness(0.6) opacity(0.8));
 
   /* Свойства */
   --font-family: "Jura", "Arial", sans-serif;
