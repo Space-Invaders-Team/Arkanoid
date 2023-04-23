@@ -9,9 +9,11 @@ import styles from './TopicList.module.css';
 import { TTopic, TTopicNew } from './typings';
 import { topicAPI } from '../../../api/ForumAPI/TopicAPI';
 import { dateFormat } from '../../../utils/helpers';
-import { useActiveForum } from '../../../hooks/useActiveForum';
+import { useDataById } from '../../../hooks/useDataById';
 import { useTopics } from '../../../hooks/useTopics';
 import { Loader } from '../../../components/Loader';
+import { TForum } from '../typings';
+import { forumAPI } from '../../../api/ForumAPI/ForumAPI';
 
 export function TopicList() {
   const [topics, setTopics] = useState<TTopic[]>([]);
@@ -20,7 +22,7 @@ export function TopicList() {
   const [forum, setForum] = useState({
     name: '',
   });
-  const [fetchActiveForum, isLoadingForum, forumError] = useActiveForum(setForum);
+  const [fetchActiveForum, isLoadingForum, forumError] = useDataById<TForum>(setForum);
   const [fetchTopics, isLoadingTopics, topicsError] = useTopics(setTopics);
 
   // берём id активного форума из url
@@ -28,7 +30,7 @@ export function TopicList() {
   const forumId = Number(params.id);
 
   useEffect(() => {
-    fetchActiveForum(forumId);
+    fetchActiveForum(forumAPI, forumId);
     fetchTopics(forumId);
   }, [forumId, fetchActiveForum, fetchTopics]);
 
@@ -76,7 +78,7 @@ export function TopicList() {
                 {' '}
                 {forum.name}
               </h1>
-              {!topics.length && <h2 className={styles.subtitle}>В данном форуме ещё нет тем</h2>}
+              {!topics.length && <h2 className={styles.subtitle}>В этом форуме ещё нет тем</h2>}
             </header>
             <section className={styles.tableSection}>
               {!!topics.length && (

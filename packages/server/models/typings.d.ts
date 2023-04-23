@@ -9,11 +9,14 @@ export type TTopic = {
 
 export type TMessage = {
   text: string
-  forumId: number
+  forum_id: number
+  topic_id: number
 };
 
 export type TUser = {
-  user_id: number
-  user_name: string
-  user_game_name: string
+  first_name: string
+  second_name: string
+  display_name: string
+  email: string
+  avatar?: string
 };
