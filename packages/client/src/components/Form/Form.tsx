@@ -17,6 +17,8 @@ export function Form({
   pageType,
   onSubmitForm,
   userData,
+  btnId,
+  isOpen,
 }: FormProps) {
   const [isValid, setIsValid] = useState(false);
   const serviceId = useAppSelector(selectServiceId);
@@ -44,17 +46,25 @@ export function Form({
 
   return (
     <form
-      className={classNames(styles.form, { [styles.formProfile]: pageType === PageType.Profile })}
+      className={classNames(
+        styles.form,
+        { [styles.formProfile]: pageType === PageType.Profile },
+        { [styles.formPassword]: pageType === PageType.Password },
+      )}
       onSubmit={handleSubmit}
       noValidate
     >
       <h1 className={styles.title}>{title}</h1>
       <fieldset
         className={
-          classNames(styles.fieldset, { [styles.fieldsetTwoColumns]: pageType !== PageType.Signin })
+          classNames(
+            styles.fieldset,
+            { [styles.fieldsetTwoColumns]:
+              pageType !== PageType.Signin && pageType !== PageType.Password },
+          )
         }
       >
-        {pageType !== PageType.Signin && (
+        {pageType !== PageType.Signin && pageType !== PageType.Password && (
           <>
             <Input
               {...inputData.firstName}
@@ -70,13 +80,15 @@ export function Form({
             />
           </>
         )}
-        <Input
-          {...inputData.login}
-          pageType={pageType}
-          handleValidate={handleValidate}
-          inputValue={pageType === PageType.Profile ? userData && userData.login : ''}
-        />
-        {pageType !== PageType.Signin && (
+        {pageType !== PageType.Password && (
+          <Input
+            {...inputData.login}
+            pageType={pageType}
+            handleValidate={handleValidate}
+            inputValue={pageType === PageType.Profile ? userData && userData.login : ''}
+          />
+        )}
+        {pageType !== PageType.Signin && pageType !== PageType.Password && (
           <Input
             {...inputData.email}
             pageType={pageType}
@@ -84,11 +96,27 @@ export function Form({
             inputValue={pageType === PageType.Profile ? userData && userData.email : ''}
           />
         )}
-        {pageType !== PageType.Profile && (
+        {pageType !== PageType.Profile && pageType !== PageType.Password && (
           <Input
             {...inputData.password}
             pageType={pageType}
             handleValidate={handleValidate}
+          />
+        )}
+        {pageType === PageType.Password && (
+          <Input
+            {...inputData.passwordOld}
+            pageType={pageType}
+            handleValidate={handleValidate}
+            isOpen={isOpen}
+          />
+        )}
+        {pageType === PageType.Password && (
+          <Input
+            {...inputData.passwordNew}
+            pageType={pageType}
+            handleValidate={handleValidate}
+            isOpen={isOpen}
           />
         )}
         {pageType === PageType.Profile && (
@@ -99,7 +127,7 @@ export function Form({
             inputValue={pageType === PageType.Profile ? userData && userData.display_name : ''}
           />
         )}
-        {pageType !== PageType.Signin && (
+        {pageType !== PageType.Signin && pageType !== PageType.Password && (
           <Input
             {...inputData.phone}
             pageType={pageType}
@@ -109,25 +137,27 @@ export function Form({
         )}
       </fieldset>
       <Button
-        id="btn-login"
+        id={btnId}
         type="submit"
         extraClassName={classNames(styles.button, { [styles.buttonDisabled]: !isValid })}
         disabled={!isValid}
       >
         {button}
       </Button>
-      <p className={styles.linkWrapper}>
-        {pageType !== PageType.Profile && text}
-        {pageType === PageType.Signup && <Link className={styles.link} to={Paths.AUTH}>Войти</Link>}
-        {
-          pageType === PageType.Signin
-          && <Link className={styles.link} to={Paths.REGISTER}>Регистрация</Link>
-        }
-        {
-          pageType === PageType.Profile
-          && <Link className={styles.link} to={Paths.PROFILE}>{text}</Link>
-        }
-      </p>
+      {pageType !== PageType.Profile && pageType !== PageType.Password
+        && (
+          <p className={styles.linkWrapper}>
+            {text}
+            {
+              pageType === PageType.Signup
+              && <Link className={styles.link} to={Paths.AUTH}>Войти</Link>
+            }
+            {
+              pageType === PageType.Signin
+              && <Link className={styles.link} to={Paths.REGISTER}>Регистрация</Link>
+            }
+          </p>
+        )}
       {pageType === PageType.Signin
         && (
           <Button

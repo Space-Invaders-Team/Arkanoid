@@ -44,3 +44,9 @@
     transition: var(--button-transition-properties) var(--button-transition-durations) var(--button-transition-functions) var(--button-transition-delays);
   }
 }
+
+@media (max-width: 460px) {
+  .button {
+    padding: 14px 32px;
+  }
+}
