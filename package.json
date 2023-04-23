@@ -27,7 +27,6 @@
     "lerna": "5.4.3"
   },
   "dependencies": {
-    "react-scroll-parallax": "^3.4.2",
     "yarn": "1.22.19"
   }
 }

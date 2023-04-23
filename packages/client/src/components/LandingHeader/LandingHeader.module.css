@@ -12,16 +12,16 @@
 	background-size: cover;
 	filter: var(--filter);
 	position: relative;
-    z-index: 1;
+  z-index: 1;
 }
 
 .headerWrapper {
-    max-width: 100%;
-    height: fit-content;
-    padding: 0 15px 40px;
-    margin-top: 60px;
-    border-radius: 6px;
-    color: var(--table-bg);
+	max-width: 100%;
+	height: fit-content;
+	padding: 0 15px 40px;
+	margin-top: 60px;
+	border-radius: 6px;
+	color: var(--table-bg);
 }
 
 .headerTitle {

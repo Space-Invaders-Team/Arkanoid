@@ -32,8 +32,6 @@ export const setActiveUserTheme = async (req: Request, res: Response) => {
 export const getUserTheme = async (req: Request, res: Response) => {
   const { userId } = req.params;
 
-  console.log(userId);
-
   try {
     User.findOne({
       where: { user_id: userId },

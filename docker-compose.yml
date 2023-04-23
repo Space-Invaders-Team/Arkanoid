@@ -64,7 +64,7 @@ services:
         POSTGRES_USER: ${POSTGRES_USER}
         POSTGRES_DB: ${POSTGRES_DB}
       volumes:
-        - pgdata:/var/lib/postgresql/data
+        - ./tmp/pgdata:/var/lib/postgresql/data
       networks:
         - arkNet
       healthcheck:
@@ -75,8 +75,6 @@ services:
 
 volumes:
     pgadmin-data:
-    pgdata:
-      external: true
 
 networks:
     arkNet:
