@@ -28,7 +28,7 @@ export function ButtonTheme() {
 
   // ищем нужный атрибут по id и добавляем к документу (для применения стилей)
   const setThemeInDocument = useCallback((id: number) => {
-    const currentTheme = THEMES.find((theme) => theme.theme_id === id);
+    const currentTheme = THEMES.find((item) => item.theme_id === id);
     const currentThemeName: string = currentTheme
       ? currentTheme.theme_name : defaultTheme.theme_name;
     document.documentElement.setAttribute('data-theme', currentThemeName);
