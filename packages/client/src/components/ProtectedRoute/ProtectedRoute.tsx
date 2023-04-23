@@ -2,6 +2,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { Paths } from '../../utils/routeConstants';
 import { useAppSelector } from '../../store/hooks';
 import { selectAuthStatus, selectIsLogged } from '../../store/selectors';
+import { Loader } from '../Loader';
 
 export function ProtectedRoute({ children }: PropsWithChildren) {
   const isLogged = useAppSelector(selectIsLogged);
@@ -9,7 +10,7 @@ export function ProtectedRoute({ children }: PropsWithChildren) {
   const status = useAppSelector(selectAuthStatus);
 
   if (status === 'loading') {
-    return null;
+    return <Loader />;
   }
 
   return (
