@@ -9,9 +9,10 @@ export function Input({
   pageType,
   errorMessage,
   handleValidate,
+  inputValue,
   ...inputProps
 }: InputProps) {
-  const [inputValues, setInputValue] = useState('');
+  const [inputValues, setInputValue] = useState(inputValue);
   const [inputError, setInputError] = useState('');
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {

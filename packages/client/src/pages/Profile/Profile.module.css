@@ -7,9 +7,8 @@
   align-items: center;
   justify-content: center;
   min-width: 100%;
-  min-height: 100vh;
   padding: 0;
-  margin-top: 10vh;
+  margin-top: 100px;
 }
 
 .button {
@@ -35,4 +34,16 @@
   left: 0;
   top: 0;
   opacity: 0;
+}
+
+@media (max-width: 793px) {
+  .container {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 425px) {
+  .container {
+    margin-top: 200px;
+  }
 }

@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { Input } from './Input';
 import { Button } from '../Button';
 import { FormProps, PageType } from './typings';
-import * as formConstants from '../../utils/formConstants';
 import styles from './Form.module.css';
 import { Paths } from '../../utils/routeConstants';
 import { useAppSelector } from '../../store/hooks';
 import { selectServiceId } from '../../store/selectors';
+import { inputData } from '../../utils/formData';
 
 export function Form({
   title,
@@ -16,6 +16,7 @@ export function Form({
   text,
   pageType,
   onSubmitForm,
+  userData,
 }: FormProps) {
   const [isValid, setIsValid] = useState(false);
   const serviceId = useAppSelector(selectServiceId);
@@ -43,92 +44,67 @@ export function Form({
 
   return (
     <form
-      className={styles.form}
+      className={classNames(styles.form, { [styles.formProfile]: pageType === PageType.Profile })}
       onSubmit={handleSubmit}
       noValidate
     >
       <h1 className={styles.title}>{title}</h1>
       <fieldset
         className={
-          classNames(styles.fieldset, { [styles.fieldsetTwoColumns]: pageType === PageType.Signup })
+          classNames(styles.fieldset, { [styles.fieldsetTwoColumns]: pageType !== PageType.Signin })
         }
       >
-        {pageType === PageType.Signup && (
+        {pageType !== PageType.Signin && (
           <>
             <Input
-              title="First Name"
-              inputName="first_name"
-              placeholder="Имя"
-              type="text"
+              {...inputData.firstName}
               pageType={pageType}
-              required
-              pattern={formConstants.namePattern}
-              errorMessage={formConstants.nameInputError}
               handleValidate={handleValidate}
+              inputValue={pageType === PageType.Profile ? userData && userData.first_name : ''}
             />
             <Input
-              title="Second Name"
-              inputName="second_name"
-              placeholder="Фамилия"
-              type="text"
+              {...inputData.secondName}
               pageType={pageType}
-              required
-              pattern={formConstants.namePattern}
-              errorMessage={formConstants.nameInputError}
               handleValidate={handleValidate}
+              inputValue={pageType === PageType.Profile ? userData && userData.second_name : ''}
             />
           </>
         )}
         <Input
-          title="Login"
-          inputName="login"
-          placeholder="Логин"
-          type="text"
+          {...inputData.login}
           pageType={pageType}
-          required
-          minLength={3}
-          maxLength={20}
-          pattern={formConstants.loginPattern}
-          errorMessage={formConstants.loginInputError}
           handleValidate={handleValidate}
+          inputValue={pageType === PageType.Profile ? userData && userData.login : ''}
         />
-        {pageType === PageType.Signup && (
+        {pageType !== PageType.Signin && (
           <Input
-            title="E-mail"
-            inputName="email"
-            placeholder="E-mail"
-            type="e-mail"
+            {...inputData.email}
             pageType={pageType}
-            required
-            pattern={formConstants.emailPattern}
-            errorMessage={formConstants.emailInputError}
+            handleValidate={handleValidate}
+            inputValue={pageType === PageType.Profile ? userData && userData.email : ''}
+          />
+        )}
+        {pageType !== PageType.Profile && (
+          <Input
+            {...inputData.password}
+            pageType={pageType}
             handleValidate={handleValidate}
           />
         )}
-        <Input
-          title="Password"
-          inputName="password"
-          placeholder="Пароль"
-          type="password"
-          pageType={pageType}
-          required
-          minLength={8}
-          maxLength={40}
-          pattern={formConstants.passwordPattern}
-          errorMessage={formConstants.passwordInputError}
-          handleValidate={handleValidate}
-        />
-        {pageType === PageType.Signup && (
+        {pageType === PageType.Profile && (
           <Input
-            title="Phone"
-            inputName="phone"
-            placeholder="Телефон"
-            type="phone"
+            {...inputData.displayName}
             pageType={pageType}
-            required
-            pattern={formConstants.phonePattern}
-            errorMessage={formConstants.phoneInputError}
             handleValidate={handleValidate}
+            inputValue={pageType === PageType.Profile ? userData && userData.display_name : ''}
+          />
+        )}
+        {pageType !== PageType.Signin && (
+          <Input
+            {...inputData.phone}
+            pageType={pageType}
+            handleValidate={handleValidate}
+            inputValue={pageType === PageType.Profile ? userData && userData.phone : ''}
           />
         )}
       </fieldset>
@@ -141,10 +117,16 @@ export function Form({
         {button}
       </Button>
       <p className={styles.linkWrapper}>
-        {text}
-        {pageType === PageType.Signup
-          ? <Link className={styles.link} to={Paths.AUTH}>Войти</Link>
-          : <Link className={styles.link} to={Paths.REGISTER}>Регистрация</Link>}
+        {pageType !== PageType.Profile && text}
+        {pageType === PageType.Signup && <Link className={styles.link} to={Paths.AUTH}>Войти</Link>}
+        {
+          pageType === PageType.Signin
+          && <Link className={styles.link} to={Paths.REGISTER}>Регистрация</Link>
+        }
+        {
+          pageType === PageType.Profile
+          && <Link className={styles.link} to={Paths.PROFILE}>{text}</Link>
+        }
       </p>
       {pageType === PageType.Signin
         && (

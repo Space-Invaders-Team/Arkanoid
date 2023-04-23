@@ -5,9 +5,10 @@ export type InputProps = {
   title: string;
   pageType: string;
   errorMessage: string;
-  required: boolean;
+  required?: boolean;
   minLength?: number;
   maxLength?: number;
-  pattern: string;
+  pattern?: string;
   handleValidate: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  inputValue?: string | null;
 };
