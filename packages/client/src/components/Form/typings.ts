@@ -1,3 +1,4 @@
+import { StringObject } from '../../typings';
 import { UserData } from '../../store/typings';
 
 export type FormProps = {
