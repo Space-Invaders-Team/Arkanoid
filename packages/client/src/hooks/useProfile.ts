@@ -1,11 +1,15 @@
 import { ChangeEvent } from 'react';
 import { userApi } from '../api/UserAPI';
-import { useAppDispatch } from '../store/hooks';
+import { userAPI as userDbAPI } from '../api/UserAPI/UserAPI';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getUserData } from '../store/features/authSlice';
 import { StringObject } from '../typings';
+import { selectUserData } from '../store/selectors';
 
 export const useProfile = () => {
   const dispatch = useAppDispatch();
+  const userData = useAppSelector(selectUserData);
+
   const updateAvatar = async (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files?.length) return;
     const formData = new FormData();
@@ -13,6 +17,11 @@ export const useProfile = () => {
     try {
       await userApi.updateAvatar(formData);
       dispatch(getUserData());
+
+      if (userData) {
+        const avatarNew = { avatar: userData.avatar };
+        await userDbAPI.update(userData.id, avatarNew);
+      }
     } catch (errorMessage) {
       console.log(errorMessage);
     }

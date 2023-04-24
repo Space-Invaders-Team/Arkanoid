@@ -15,6 +15,7 @@ import { messageAPI } from '../../../api/ForumAPI/MessageAPI';
 import { dateFormat } from '../../../utils/helpers';
 import { useAppSelector } from '../../../store/hooks';
 import { selectUserData } from '../../../store/selectors';
+import { BASE_URL_YANDEX } from '../../../utils/apiConstans';
 
 function makeDisplayName(user: any) {
   return user?.display_name ? user.display_name
@@ -57,6 +58,11 @@ export function Messages() {
     }
     return author;
   };
+
+  function putAvatar(avatarData: string) {
+    const avatarUrl = avatarData ? `${BASE_URL_YANDEX}/resources/${avatarData}` : avatar;
+    return avatarUrl;
+  }
 
   // берём id активной темы из url
   const params = useParams();
@@ -164,7 +170,7 @@ export function Messages() {
 
                         <img
                           className={styles.avatar}
-                          src={data.user?.avatar || avatar}
+                          src={putAvatar(data.user?.avatar)}
                           alt="Avatar"
                         />
                         <div className={styles.messText}>{data.content}</div>
