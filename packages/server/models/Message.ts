@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Index, Model, NotEmpty, Table } from 'sequelize-typescript';
+import { AllowNull, BelongsTo, Column, DataType, Default, ForeignKey, Index, Model, NotEmpty, Table } from 'sequelize-typescript';
 import type { TMessage } from './typings';
 import { Topic } from './Topic';
 import { Forum } from './Forum';
@@ -37,6 +37,16 @@ export class Message extends Model<TMessage> {
   @ForeignKey(() => Message)
   @Column(DataType.INTEGER)
     parent_id!: number;
+
+  @Default(0)
+  @AllowNull(true)
+  @Column(DataType.INTEGER)
+    likeCount!: number;
+
+  @Default(0)
+  @AllowNull(true)
+  @Column(DataType.INTEGER)
+    dislikeCount!: number;
 
   @BelongsTo(() => Topic, 'topic_id')
     topic!: Topic;
