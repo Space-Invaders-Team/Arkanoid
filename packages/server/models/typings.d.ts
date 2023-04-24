@@ -14,9 +14,17 @@ export type TMessage = {
 };
 
 export type TUser = {
-  first_name: string
-  second_name: string
-  display_name: string
-  email: string
+  user_id: number
+  first_name?: string
+  second_name?: string
+  display_name?: string
+  email?: string
   avatar?: string
+  theme?: number
+};
+
+export type TTheme = {
+  theme_id: number
+  theme_name: string
+  theme_icon: string
 };

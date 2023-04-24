@@ -1,42 +1,37 @@
-
-/* Dark mode btn */
-
-.darkModeBtn {
+.toggleThemeBtn {
 	position: relative;
 	display: flex;
 	justify-content: space-between;
-	order: 9;
-	width: 51px;
-	height: 26px;
-	padding: 4px;
-	background-color: #272727;
 	border-radius: 50px;
+	padding: 5px;
+	background: var(--accent-color);
+	gap: 12px;
 }
 
-.darkModeBtn::before {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: block;
-	width: 24px;
-	height: 24px;
-	content: '';
-	background-color: #fff;
+.btnIcon {
+	width: 22px;
+	height: 22px;
+	border: 0;
+	background-repeat: no-repeat;
+	background-position: center;
 	border-radius: 50%;
+	opacity: 0.3;
+	cursor: pointer;
+	background-color: transparent;
+	background-size: 80%;
 }
 
-.darkModeBtnActive::before {
-	left: 26px;
-}
-
-.darkModeBtnIcon {
-	position: relative;
-	z-index: 9;
+.btnIcon[data-active="true"] {
+	opacity: 1;
+	background-color: white;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .darkModeBtn::before {
-    transition: left 0.2s ease-in;
-  }
-}
+	.btnIcon {
+		transition: .4s;
+	}
 
+	.btnIcon[data-active="true"] {
+		transform: scale(1.2);
+	}
+}

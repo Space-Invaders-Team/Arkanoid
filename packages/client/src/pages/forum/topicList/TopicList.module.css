@@ -7,7 +7,7 @@
 	min-height: 100vh;
 	padding: 20px;
 	font-size: 16px;
-	background-image: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+	background: var(--page-bg-color);
 }
 
 .wrapper {
@@ -20,6 +20,7 @@
   gap: 40px 0;
   width: calc(100% - 30px);
   max-width: 1500px;
+  margin: 0 auto;
 }
 
 .title {

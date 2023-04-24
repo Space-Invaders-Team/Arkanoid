@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { Paths } from '../../utils/routeConstants';
 import { useAppSelector } from '../../store/hooks';
+import { PropsWithChildren } from '../../typings';
 import { selectAuthStatus, selectIsLogged } from '../../store/selectors';
 import { Loader } from '../Loader';
 

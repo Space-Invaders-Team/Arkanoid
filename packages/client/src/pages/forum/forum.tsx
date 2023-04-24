@@ -4,6 +4,7 @@ import styles from './Forum.module.css';
 import { TForum } from './typings';
 import { useForums } from '../../hooks/useForums';
 import { Loader } from '../../components/Loader';
+import { Titles } from '../../utils/routeConstants';
 
 export function Forum() {
   const [forumList, setForumList] = useState<TForum[]>([]);
@@ -15,6 +16,7 @@ export function Forum() {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>{Titles.FORUM}</h1>
       {isLoading
         ? <Loader />
         : (

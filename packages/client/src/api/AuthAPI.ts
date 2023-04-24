@@ -1,3 +1,4 @@
+import { StringObject } from '../typings';
 import { BASE_URL_YANDEX } from '../utils/apiConstans';
 
 class AuthApi {

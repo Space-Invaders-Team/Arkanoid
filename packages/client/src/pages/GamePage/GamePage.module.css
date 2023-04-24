@@ -6,7 +6,6 @@
   height: calc(100vh - 58px); /* - высота навбара */
   padding: 32px 0;
   background-color: var(--page-bg-color);
-  background-image: url("../../assets/img/space-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -25,7 +24,7 @@
   background-position: center;
   background-size: contain;
   background-blend-mode: var(--arkanoid-title-blend-mode);
-  border: 1px solid var(--border-color);
+  border: 5px solid var(--border-color);
   border-radius: 12px;
 }
 
