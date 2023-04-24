@@ -8,6 +8,7 @@ import { Order, TLeaderBoard } from './typings';
 import { UserData } from '../../store/typings';
 import { selectUserData } from '../../store/selectors';
 import { useAppSelector } from '../../store/hooks';
+import { Titles } from '../../utils/routeConstants';
 
 export function Leaderboard() {
   const [leaders, setLeaders] = useState<TLeaderBoard[]>([]);
@@ -36,7 +37,7 @@ export function Leaderboard() {
   return (
     <main className={styles.leaderboard} data-testid="leaderboard">
       <section className={styles.wrapper}>
-        <h1 className={styles.title}>Рейтинг игроков</h1>
+        <h1 className={styles.title}>{Titles.LEADERBOARD}</h1>
 
         {isLoading
           ? <Loader />

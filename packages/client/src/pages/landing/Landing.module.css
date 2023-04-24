@@ -1,6 +1,18 @@
 .section {
-  padding-top: 40px;
+  padding-top: 10%;
   padding-bottom: 40px;
+  z-index: 1;
+  position: relative;
+  background-image: url("../../assets/img/planet.webp");
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-position: 39% 0%;
+  color: var(--page-bg-color);
+  filter: drop-shadow(9px -20px 35px black);
+}
+
+.parallax {
+  background-size: 400px;
 }
 
 .article {
@@ -10,10 +22,16 @@
   line-height: 1.4;
   text-align: center;
   letter-spacing: 0.02em;
+  color: white;
+}
+
+.article p {
+  font-size: 1.5em;
 }
 
 .title {
   text-align: center;
+  font-size: 4em;
 }
 
 .cardWrap {
@@ -26,12 +44,13 @@
 .card {
   max-width: 30%;
   padding: 16px;
-  background-image: linear-gradient(to top, var(--font-accent-color), var(--accent-color));
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .card > img {
-  max-width: 100%;
-  min-height: 190px;
+  height: 255px;
   border-radius: 8px;
+  width: auto;
+  object-fit: cover;
 }

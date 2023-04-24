@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AllowNull, Column, DataType, HasMany, Model, PrimaryKey, Table, Unique } from 'sequelize-typescript';
+import { AllowNull, BelongsTo, Column, DataType, HasMany, ForeignKey, Index, Model, PrimaryKey, Table, Unique } from 'sequelize-typescript';
 import type { TUser } from './typings';
+import { Theme } from './Theme';
 // eslint-disable-next-line import/no-cycle
 import { Message } from './Message';
 
@@ -14,7 +15,7 @@ export class User extends Model<TUser> {
   @Column(DataType.INTEGER)
     user_id!: number;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.STRING)
     first_name!: string;
 
@@ -25,13 +26,24 @@ export class User extends Model<TUser> {
   @Column(DataType.STRING)
     display_name!: string;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Unique
   @Column(DataType.STRING)
     email!: string;
 
   @Column
+  @AllowNull(true)
+  @Column(DataType.STRING)
     avatar!: string;
+
+  @Index
+  @AllowNull(true)
+  @ForeignKey(() => Theme)
+  @Column(DataType.INTEGER)
+    theme!: number;
+
+  @BelongsTo(() => Theme, 'theme')
+    themes!: Theme;
 
   @HasMany(() => Message)
     messages!: Message[];

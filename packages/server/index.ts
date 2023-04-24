@@ -10,6 +10,7 @@ import { expressCspHeader } from 'express-csp-header';
 import { messageRoutes } from './routes/forum/messageRoutes';
 import { topicRoutes } from './routes/forum/topicRoutes';
 import { forumRoutes } from './routes/forum/forumRoutes';
+import { themeRoutes } from './routes/theme/themeRoutes';
 import { userRoutes } from './routes/userRoutes';
 import { escapeHtml, getCspDirectives } from './utils';
 import { createPostgresConnect } from './database';
@@ -57,6 +58,7 @@ async function createServer() {
   // api routes
   forumRoutes(app);
   topicRoutes(app);
+  themeRoutes(app);
   messageRoutes(app);
   userRoutes(app);
 
