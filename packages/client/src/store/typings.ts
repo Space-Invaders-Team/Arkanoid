@@ -1,3 +1,5 @@
+import { StringObject } from '../typings';
+
 export type UserData = {
   id: number;
   first_name: string;

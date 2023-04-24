@@ -21,7 +21,7 @@ class ForumAPI {
     return this._handlingResponse(response);
   }
 
-  async getForum(id: number) {
+  async getById(id: number) {
     const response: Response = await fetch(`${this._baseUrl}/${id}`, {
       method: 'GET',
       credentials: 'include',

@@ -1,3 +1,4 @@
+import { StringObject } from '../typings';
 import { BASE_URL_YANDEX } from '../utils/apiConstans';
 
 class UserApi {
@@ -18,6 +19,18 @@ class UserApi {
       method: 'PUT',
       credentials: 'include',
       body: data,
+    });
+    return this._handlingResponse(res);
+  }
+
+  async updateProfile(data: StringObject) {
+    const res = await fetch(`${this._baseUrl}/profile`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     });
     return this._handlingResponse(res);
   }

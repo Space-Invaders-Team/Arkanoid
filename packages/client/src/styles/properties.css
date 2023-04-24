@@ -3,35 +3,38 @@
   --ON: initial; /* stylelint-disable-line custom-property-pattern */
 
   /* Цвета */
-  --page-bg-color: var(--light, #f0effb) var(--dark, #0D1B2A);
-  --nav-bg-color: var(--light, #e1e3f6) var(--dark, #25313f);
-  --input-bg-color: var(--light, #D2D5DD) var(--dark, #0D1B2A);
-  --font-primary-color: var(--light, #1E201D) var(--dark, #E0E1DD);
-  --font-secondary-color: var(--light, #2D2F45) var(--dark, #778DA9);
-  --border-color: var(--light, #e1e3f6) var(--dark, #304864);
-  --accent-color: var(--light, #999AC6) var(--dark, #415A77);
-  --accent-darken-color: var(--light, #9474b6) var(--dark, #434177);
-  --secondary-color: var(--light, #b6b574) var(--dark, #417577);
-  --btn-color: var(--light, #7475B6) var(--dark, #415A77);
-  --btn-hover-color: var(--light, #8E8FC6) var(--dark, #304864);
+  --page-bg-color: var(--light, #f0effb) var(--dark, #0D1B2A) var(--rainbow, #98ff53);
+  --nav-bg-color: var(--light, #e1e3f6) var(--dark, #25313f) var(--rainbow, #f31111);
+  --input-bg-color: var(--light, #D2D5DD) var(--dark, #0D1B2A) var(--rainbow, #ffe854);
+  --font-primary-color: var(--light, #1E201D) var(--dark, #E0E1DD) var(--rainbow, #1a0099);
+  --font-secondary-color: var(--light, #2D2F45) var(--dark, #778DA9) var(--rainbow, #a000ae);
+  --border-color: var(--light, #e1e3f6) var(--dark, #304864) var(--rainbow, #ff0);
+  --accent-color: var(--light, #999AC6) var(--dark, #415A77) var(--rainbow, #ffc455);
+  --accent-darken-color: var(--light, #9474b6) var(--dark, #434177) var(--rainbow, #ff6200);
+  --secondary-color: var(--light, #b6b574) var(--dark, #417577) var(--rainbow, #4ba43d);
+  --btn-color: var(--light, #7475B6) var(--dark, #2e195a) var(--rainbow, #9e22eb);
+  --btn-hover-color: var(--light, #8E8FC6) var(--dark, #42277d) var(--rainbow, #b970ec);
   --btn-secondary-color: transparent;
-  --btn-secondary-hover-color: var(--light, #999ac6) var(--dark, #1b263b);
-  --nav-text-color: var(--light, #0d1b2a) var(--dark, #e8ebe4);
-  --header-text-color: var(--light, #b8bacf) var(--dark, #e8ebe4);
-  --game-bg-color: var(--light, #999ac6) var(--dark, #1b263b);
-  --game-descr-bg-color: var(--light, #7475b6) var(--dark, #415a77);
+  --btn-secondary-hover-color: var(--light, #999ac6) var(--dark, #1b263b) var(--rainbow, #00b0bd);
+  --nav-text-color: var(--light, #0d1b2a) var(--dark, #e8ebe4) var(--rainbow, #fff949);
+  --header-text-color: var(--light, #b8bacf) var(--dark, #e8ebe4) var(--rainbow, #00b0bd);
+  --game-bg-color: var(--light, #999ac6) var(--dark, #1b263b) var(--rainbow, #00b0bd);
+  --game-descr-bg-color: var(--light, #7475b6) var(--dark, #415a77) var(--rainbow, #00b0bd);
   --game-descr-font-color: #e0e1dd;
-  --overlay-color: rgb(0 0 0 / 85%);
-  --table-bg: var(--light, #fafaff) var(--dark, #1B263B);
-  --font-accent-color: var(--light, #505197) var(--dark, #9e9fd4);
-  --alert-text-color: var(--light, #050) var(--dark, #c7ffdb);
-  --alert-bg-color: var(--light, #c7ffdb) var(--dark, #007c00);
-  --error-text-color: var(--light, #b10000) var(--dark, #ffefef);
-  --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000);
+  --overlay-color: var(--light, rgb(50 41 75 / 79%)) var(--dark, rgb(0 0 0 / 75%)) var(--rainbow, rgb(176 255 0 / 65%));
+  --table-bg: var(--light, #fafaff) var(--dark, #1B263B) var(--rainbow, #00c811);
+  --font-accent-color: var(--light, #505197) var(--dark, #9e9fd4) var(--rainbow, #f80080);
+  --alert-text-color: var(--light, #050) var(--dark, #c7ffdb) var(--rainbow, #050);
+  --alert-bg-color: var(--light, #c7ffdb) var(--dark, #007c00) var(--rainbow, #c7ffdb);
+  --error-text-color: var(--light, #b10000) var(--dark, #ffefef) var(--rainbow, #b10000);
+  --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000) var(--rainbow, #ffd2d2);
+  --maintitle-color: var(--light, #fafaff) var(--dark, #7b7ad4) var(--rainbow, #1400ff);
+  --filter: var(--light, none) var(--dark, none) var(--rainbow, invert(1));
+  --filter-bg: var(--light, brightness(0.7)) var(--dark, brightness(0.5) opacity(0.7)) var(--rainbow, brightness(0.6) opacity(0.8));
 
   /* Свойства */
   --font-family: "Jura", "Arial", sans-serif;
-  --arkanoid-title-blend-mode: var(--light, screen) var(--dark, saturation);
+  --arkanoid-title-blend-mode: var(--light, screen) var(--dark, saturation) var(--rainbow, lighten);
   --button-transition-properties: color, background-color, border-color;
   --button-transition-durations: 250ms, 250ms, 250ms;
   --button-transition-delays: 0ms, 0ms, 0ms;
@@ -41,9 +44,17 @@
 html[data-theme='light'] {
   --light: var(--ON); /* stylelint-disable-line custom-property-pattern */
   --dark: var(--OFF); /* stylelint-disable-line custom-property-pattern */
+  --rainbow: var(--OFF); /* stylelint-disable-line custom-property-pattern */
 }
 
 html[data-theme='dark'] {
   --light: var(--OFF); /* stylelint-disable-line custom-property-pattern */
   --dark: var(--ON); /* stylelint-disable-line custom-property-pattern */
+  --rainbow: var(--OFF); /* stylelint-disable-line custom-property-pattern */
+}
+
+html[data-theme='rainbow'] {
+  --light: var(--OFF); /* stylelint-disable-line custom-property-pattern */
+  --dark: var(--OFF); /* stylelint-disable-line custom-property-pattern */
+  --rainbow: var(--ON); /* stylelint-disable-line custom-property-pattern */
 }

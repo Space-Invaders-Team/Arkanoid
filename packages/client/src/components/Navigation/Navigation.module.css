@@ -1,10 +1,12 @@
 /* Nav */
 .nav {
-	padding: 12px 20px;
-	color: var(--nav-text-color);
-	letter-spacing: normal;
-	background-color: var(--nav-bg-color);
-	border-bottom: 1px solid var(--border-color);
+    padding: 20px;
+    color: var(--nav-text-color);
+    letter-spacing: normal;
+    background-color: var(--nav-bg-color);
+    position: sticky;
+	top: 0;
+    z-index: 2;
 }
 
 .navRow {

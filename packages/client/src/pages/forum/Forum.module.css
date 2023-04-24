@@ -1,28 +1,30 @@
 .container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    min-height: 100vh;
-    padding: 50px;
-    background-image: linear-gradient(to top, var(--page-bg-color), var(--accent-color));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 50px;
+  background: var(--page-bg-color);
+  margin-top: 5%;
 }
+
+.container .title {
+  font-size: 4em;
+  font-weight: 700;
+  margin-bottom: 0.8em;
+  color: var(--font-secondary-color);
+  text-align: center;
+}
+
 
 .table {
   width: 75%;
   border-collapse: collapse;
 }
 
-.table tr:nth-child(1) {
-  background-color: var(--btn-color);
-}
-
-.table tr:nth-child(2) {
-  background-color: var(--accent-darken-color);
-}
-
-.table tr:nth-child(3) {
-  background-color: var(--secondary-color);
+.table tr {
+  background-color: var(--table-bg);
 }
 
 .table th, .table td {
@@ -31,8 +33,8 @@
 
 .table th {
   height: 50px;
-  color: var(--accent-color);
-  background-color: var(--font-secondary-color);
+  background-color: var(--accent-color);
+  color: white;
 }
 
 .table th:first-child {
@@ -44,13 +46,16 @@
 }
 
 .table td {
-  height: 70px;
+  height: auto;
   text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 15px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .table tbody tr:hover {
     cursor: pointer;
     opacity: 0.9;
+    background: var(--border-color);
   }
 }

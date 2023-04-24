@@ -1,26 +1,45 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { Provider } from 'react-redux';
+import { AnyAction, configureStore, Store } from '@reduxjs/toolkit';
+import { rootReducer } from '../../store/store';
 import '../../../mocks/matchMedia.mock'; // Must be imported before the tested file
 import { ButtonTheme } from './ButtonTheme';
 
 describe('ButtonTheme component tests', () => {
-  test('Correct render', () => {
-    render(<ButtonTheme />);
-    const component = screen.getByTestId('toggleThemeBtn');
-
-    expect(component).toBeInTheDocument();
-    expect(component).toMatchSnapshot();
+  let store: Store<unknown, AnyAction>;
+  beforeEach(() => {
+    store = configureStore({ reducer: rootReducer });
   });
 
-  test('Change className onClick', () => {
-    render(<ButtonTheme />);
-    const component = screen.getByTestId('toggleThemeBtn');
-    const classListBeforeClick = component.classList.length;
+  test('Correct render', () => {
+    render(
+      <Provider store={store}>
+        <ButtonTheme />
+      </Provider>,
+    );
+    const buttons = screen.getAllByTestId('toggleThemeBtn');
 
-    fireEvent.click(component);
+    buttons.forEach((button) => {
+      expect(button).toBeInTheDocument();
+      expect(button).toMatchSnapshot();
+    });
+  });
 
-    const classListAfterClick = component.classList.length;
+  test('Change dataset onClick', () => {
+    render(
+      <Provider store={store}>
+        <ButtonTheme />
+      </Provider>,
+    );
+    const buttons = screen.getAllByTestId('toggleThemeBtn');
 
-    expect(classListBeforeClick).not.toBe(classListAfterClick);
+    buttons.forEach((button) => {
+      fireEvent.click(button);
+
+      const datasetAfterClick = button.dataset.active;
+
+      expect(datasetAfterClick).toBe('true');
+    });
   });
 });
