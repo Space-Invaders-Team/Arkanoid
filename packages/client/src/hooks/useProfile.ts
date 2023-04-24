@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react';
 import { userApi } from '../api/UserAPI';
 import { useAppDispatch } from '../store/hooks';
 import { getUserData } from '../store/features/authSlice';
+import { StringObject } from '../typings';
 
 export const useProfile = () => {
   const dispatch = useAppDispatch();
