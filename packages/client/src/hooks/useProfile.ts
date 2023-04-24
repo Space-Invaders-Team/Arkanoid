@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ChangeEvent } from 'react';
 import { userApi } from '../api/UserAPI';
 import { userAPI as userDbAPI } from '../api/UserAPI/UserAPI';
@@ -33,6 +34,9 @@ export const useProfile = () => {
       await userApi.updateProfile(formData);
       console.log('Данные профиля изменены');
       dispatch(getUserData());
+      if (userData) {
+        await userDbAPI.update(userData.id, formData);
+      }
     } catch (errorMessage) {
       console.log(errorMessage);
     }

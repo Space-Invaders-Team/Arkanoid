@@ -17,6 +17,7 @@ import { useAppSelector } from '../../../store/hooks';
 import { selectUserData } from '../../../store/selectors';
 import { BASE_URL_YANDEX } from '../../../utils/apiConstans';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function makeDisplayName(user: any) {
   return user?.display_name ? user.display_name
     : `${user.first_name} ${user.second_name}`;
@@ -49,6 +50,7 @@ export function Messages() {
   const [isDisabledBtn, setDisabledBtn] = useState<boolean>(true);
   const userData = useAppSelector(selectUserData);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showAuthor = (user: any) => {
     let author;
     if (user?.user_id === userData?.id || user === undefined) {
