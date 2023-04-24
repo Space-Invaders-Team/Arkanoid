@@ -1,4 +1,4 @@
-type StringObject = {
+export type StringObject = {
   [key: string]: string;
 };
 

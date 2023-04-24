@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react';
 import { userApi } from '../api/UserAPI';
 import { useAppDispatch } from '../store/hooks';
 import { getUserData } from '../store/features/authSlice';
+import { StringObject } from '../typings';
 
 export const useProfile = () => {
   const dispatch = useAppDispatch();
@@ -16,5 +17,17 @@ export const useProfile = () => {
       console.log(errorMessage);
     }
   };
-  return { updateAvatar };
+
+  const updateProfile = async (formData: StringObject) => {
+    delete formData.avatar;
+    try {
+      await userApi.updateProfile(formData);
+      console.log('Данные профиля изменены');
+      dispatch(getUserData());
+    } catch (errorMessage) {
+      console.log(errorMessage);
+    }
+  };
+
+  return { updateAvatar, updateProfile };
 };
