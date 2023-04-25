@@ -45,8 +45,9 @@
 }
 
 .messageWrap {
-  padding: 12px;
+  padding: 15px 30px;
   border-bottom: 1px solid var(--border-color);
+  background: var(--message-bg)
 }
 
 .row {
@@ -124,6 +125,7 @@
 
 .footerWrap {
   width: 60%;
+  margin-top: 40px;
 }
 
 .replyWrap,
@@ -132,7 +134,7 @@
   padding: 12px 16px;
   font-size: 16px;
   color: var(--font-primary-color);
-  background-color: var(--input-bg-color);
+  background-color: var(--message-bg);
   border: 2px solid var(--border-color);
 }
 
@@ -221,7 +223,44 @@
 
 /* END Скролл */
 
+.reactions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.8em;
+  line-height: 2;
+}
+
+.reactions .likeBtn {
+  width: 32px;
+  height: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-left: 20px;
+  background: transparent;
+  transition: .4s;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.dislike {
+  transform: rotate(180deg);
+}
+
+.dislike svg {
+  transform: translateY(-5px);
+}
+
 @media (hover: hover) and (pointer: fine) {
+  .likeBtn:hover svg path{
+    fill: var(--like-accent);
+  }
+
 	.linkBtn:hover {
 		color: var(--font-accent-color);
 		background-color: transparent;
@@ -230,11 +269,16 @@
   .closeBtn:hover img {
     opacity: 1;
   }
+
+  .reactions button:hover {
+    background-color: transparent;
+  }
 }
 
 @media only screen and (min-width: 998px) {
   .section,
   .footer {
     max-width: 70%;
+    margin: 0 auto
   }
 }

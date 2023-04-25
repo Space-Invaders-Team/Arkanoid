@@ -15,7 +15,7 @@ export class User extends Model<TUser> {
   @Column(DataType.INTEGER)
     user_id!: number;
 
-  @AllowNull(true)
+  @AllowNull(false)
   @Column(DataType.STRING)
     first_name!: string;
 
@@ -26,7 +26,7 @@ export class User extends Model<TUser> {
   @Column(DataType.STRING)
     display_name!: string;
 
-  @AllowNull(true)
+  @AllowNull(false)
   @Unique
   @Column(DataType.STRING)
     email!: string;
