@@ -6,6 +6,8 @@ export type TMessage = {
   forum_id: number
   parent_id?: number
   user?: any
+  likeCount?: number
+  dislikeCount?: number
 };
 
 export type TMessageNew = {
@@ -15,4 +17,9 @@ export type TMessageNew = {
   forum_id: number
   parent_id?: number
   author?: string
+};
+
+export type TLike = {
+  userId: number
+  messageId: number
 };
