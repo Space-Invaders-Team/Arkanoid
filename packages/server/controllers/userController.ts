@@ -19,4 +19,16 @@ export class UserController {
       }
     }
   };
+
+  public static update = async (
+    request: Request,
+    response: Response,
+  ) => {
+    const user = await User.findByPk(request.params.id);
+
+    if (user) {
+      const result = await user.update(request.body);
+      response.json(result);
+    } else console.log('User is not found!');
+  };
 }

@@ -7,7 +7,9 @@ export const messageRoutes = (app: Router) => {
 
   messageRouter
     .get('/topic/:id', MessageController.index)
-    .post('/', MessageController.create);
+    .post('/', MessageController.create)
+    .post('/like', MessageController.addLike)
+    .post('/dislike', MessageController.addDislike);
 
   app.use('/api/v1/messages', messageRouter);
 };

@@ -8,17 +8,20 @@ export type TTopic = {
 };
 
 export type TMessage = {
+  id: number
   text: string
   forum_id: number
   topic_id: number
+  likeCount: number
+  dislikeCount: number
 };
 
 export type TUser = {
   user_id: number
-  first_name?: string
-  second_name?: string
+  first_name: string
+  second_name: string
   display_name?: string
-  email?: string
+  email: string
   avatar?: string
   theme?: number
 };

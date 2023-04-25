@@ -21,6 +21,19 @@ class UserAPI {
     });
     return this._handlingResponse(response);
   }
+
+  async update(id: number, data: any) {
+    const res = await fetch(`${this._baseUrl}/${id}`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    return this._handlingResponse(res);
+  }
 }
 
 export const userAPI = new UserAPI(`${BASE_URL_API}${USER}`);

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { Button } from '../../../components/Button';
 import styles from './Messages.module.css';
-import { TMessage, TMessageNew } from './typings';
+import { TLike, TMessage, TMessageNew } from './typings';
 import { ButtonBack } from '../ButtonBack';
 import close from '../../../assets/icons/close.svg';
 import avatar from '../../../assets/img/logo.webp';
@@ -15,7 +15,10 @@ import { messageAPI } from '../../../api/ForumAPI/MessageAPI';
 import { dateFormat } from '../../../utils/helpers';
 import { useAppSelector } from '../../../store/hooks';
 import { selectUserData } from '../../../store/selectors';
+import { BASE_URL_YANDEX } from '../../../utils/apiConstans';
+import { IconLike } from '../../../components/Icons/IconLike';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function makeDisplayName(user: any) {
   return user?.display_name ? user.display_name
     : `${user.first_name} ${user.second_name}`;
@@ -37,6 +40,7 @@ function ParentMessage(props: { messagesArr: TMessage[], id: number }) {
 
 export function Messages() {
   const [messages, setMessages] = useState<TMessage[]>([]);
+  const [likeClicks, setlikeClicks] = useState<number>(0);
   const [parentMessage, setParentMessage] = useState<TMessage | null>(null);
   const [topic, setTopic] = useState({
     name: '',
@@ -48,6 +52,7 @@ export function Messages() {
   const [isDisabledBtn, setDisabledBtn] = useState<boolean>(true);
   const userData = useAppSelector(selectUserData);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showAuthor = (user: any) => {
     let author;
     if (user?.user_id === userData?.id || user === undefined) {
@@ -58,6 +63,11 @@ export function Messages() {
     return author;
   };
 
+  function putAvatar(avatarData: string) {
+    const avatarUrl = avatarData ? `${BASE_URL_YANDEX}/resources/${avatarData}` : avatar;
+    return avatarUrl;
+  }
+
   // берём id активной темы из url
   const params = useParams();
   const topicId = Number(params.id);
@@ -65,12 +75,46 @@ export function Messages() {
   useEffect(() => {
     fetchActiveTopic(topicAPI, topicId);
     fetchMessages(messageAPI, topicId);
-  }, [topicId, fetchActiveTopic, fetchMessages]);
+  }, [topicId, fetchActiveTopic, fetchMessages, likeClicks]);
 
   // Добавление сообщения, на которое отвечает юзер
   const handleClickReply = (id: number): void => {
     const mess: TMessage | null = messages.find((obj) => obj.id === id) || null;
     setParentMessage(mess);
+  };
+
+  // Лайк
+  const handleClickLike = (e: React.SyntheticEvent<EventTarget>, id: number) => {
+    const userId: number | undefined = userData?.id;
+
+    if (userId) {
+      const likeData: TLike = {
+        userId: Number(userId),
+        messageId: Number(id),
+      };
+
+      messageAPI.like(likeData)
+        .then(() => {
+          setlikeClicks(likeClicks + 1);
+        });
+    }
+  };
+
+  // Дизлайк
+  const handleClickDisLike = (e: React.SyntheticEvent<EventTarget>, id: number) => {
+    const userId: number | undefined = userData?.id;
+
+    if (userId) {
+      const likeData: TLike = {
+        userId: Number(userId),
+        messageId: Number(id),
+      };
+
+      messageAPI.dislike(likeData)
+        .then(() => {
+          setlikeClicks(likeClicks + 1);
+        });
+    }
   };
 
   const handleClickHide = (): void => {
@@ -164,14 +208,36 @@ export function Messages() {
 
                         <img
                           className={styles.avatar}
-                          src={data.user?.avatar || avatar}
+                          src={putAvatar(data.user?.avatar)}
                           alt="Avatar"
                         />
                         <div className={styles.messText}>{data.content}</div>
                       </div>
-                      {/* TODO Will be Emoji reactions */}
-                      {/* <div>Emoji</div> */}
                     </div>
+
+                    <div className={styles.reactions}>
+                      <button
+                        className={classNames(styles.likeBtn, styles.like)}
+                        onClick={(e) => handleClickLike(e, data.id)}
+                      >
+                        <IconLike />
+                      </button>
+                      (
+                      {data.likeCount}
+                      )
+
+                      <button
+                        className={classNames(styles.likeBtn, styles.dislike)}
+                        onClick={(e) => handleClickDisLike(e, data.id)}
+                      >
+                        <IconLike />
+                      </button>
+                      (
+                      {data.dislikeCount}
+                      )
+
+                    </div>
+
                   </div>
                 ),
               ) : <h2 className={styles.subtitle}>В этой теме ещё нет сообщений</h2>}

@@ -29,6 +29,8 @@
   --error-text-color: var(--light, #b10000) var(--dark, #ffefef) var(--rainbow, #b10000);
   --error-bg-color: var(--light, #ffd2d2) var(--dark, #a90000) var(--rainbow, #ffd2d2);
   --maintitle-color: var(--light, #fafaff) var(--dark, #7b7ad4) var(--rainbow, #1400ff);
+  --like-accent: var(--light, #5007b2) var(--dark, #a186c4) var(--rainbow, invert(1));
+  --message-bg: var(--light, #fafaff) var(--dark, #030b17) var(--rainbow, #559d2b);
   --filter: var(--light, none) var(--dark, none) var(--rainbow, invert(1));
   --filter-bg: var(--light, brightness(0.7)) var(--dark, brightness(0.5) opacity(0.7)) var(--rainbow, brightness(0.6) opacity(0.8));
 
