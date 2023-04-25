@@ -35,7 +35,6 @@ export function ButtonTheme() {
   }, [defaultTheme]);
 
   useEffect(() => {
-    // говорят, в SSR local storage не алё
     const themeFromLS = localStorage.getItem('user-theme');
 
     /**

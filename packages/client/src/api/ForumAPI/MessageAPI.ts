@@ -1,4 +1,4 @@
-import { TMessageNew } from '../../pages/forum/Messages/typings';
+import { TLike, TMessageNew } from '../../pages/forum/Messages/typings';
 import { BASE_URL_API, MESSAGE } from '../../utils/apiConstans';
 
 class MessageAPI {
@@ -24,6 +24,30 @@ class MessageAPI {
 
   async create(data: TMessageNew) {
     const response: Response = await fetch(`${this._baseUrl}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return this._handlingResponse(response);
+  }
+
+  async like(data: TLike) {
+    const response: Response = await fetch(`${this._baseUrl}/like`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return this._handlingResponse(response);
+  }
+
+  async dislike(data: TLike) {
+    const response: Response = await fetch(`${this._baseUrl}/dislike`, {
       method: 'POST',
       credentials: 'include',
       headers: {
