@@ -4,7 +4,7 @@
 
   /* Цвета */
   --page-bg-color: var(--light, #f0effb) var(--dark, #0D1B2A) var(--rainbow, #98ff53);
-  --nav-bg-color: var(--light, #e1e3f6) var(--dark, #25313f) var(--rainbow, #f31111);
+  --nav-bg-color: var(--light, #e1e3f6) var(--dark, #25313f) var(--rainbow, #e0f311);
   --input-bg-color: var(--light, #D2D5DD) var(--dark, #0D1B2A) var(--rainbow, #ffe854);
   --font-primary-color: var(--light, #1E201D) var(--dark, #E0E1DD) var(--rainbow, #1a0099);
   --font-secondary-color: var(--light, #2D2F45) var(--dark, #778DA9) var(--rainbow, #a000ae);
@@ -16,7 +16,7 @@
   --btn-hover-color: var(--light, #8E8FC6) var(--dark, #42277d) var(--rainbow, #b970ec);
   --btn-secondary-color: transparent;
   --btn-secondary-hover-color: var(--light, #999ac6) var(--dark, #1b263b) var(--rainbow, #00b0bd);
-  --nav-text-color: var(--light, #0d1b2a) var(--dark, #e8ebe4) var(--rainbow, #fff949);
+  --nav-text-color: var(--light, #0d1b2a) var(--dark, #e8ebe4) var(--rainbow, #ff4949);
   --header-text-color: var(--light, #b8bacf) var(--dark, #e8ebe4) var(--rainbow, #00b0bd);
   --game-bg-color: var(--light, #999ac6) var(--dark, #1b263b) var(--rainbow, #00b0bd);
   --game-descr-bg-color: var(--light, #7475b6) var(--dark, #415a77) var(--rainbow, #00b0bd);
