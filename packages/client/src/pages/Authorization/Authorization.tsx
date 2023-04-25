@@ -24,6 +24,7 @@ export function Authorization() {
   return (
     <div className={styles.container}>
       <Form
+        btnId="btn-auth"
         pageType={PageType.Signin}
         title="Авторизация"
         button="Вход по логину и паролю"

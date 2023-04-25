@@ -11,4 +11,5 @@ export type InputProps = {
   pattern?: string;
   handleValidate: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   inputValue?: string | null;
+  isOpen?: boolean;
 };

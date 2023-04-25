@@ -10,6 +10,7 @@ export function Registration() {
   return (
     <div className={styles.container}>
       <Form
+        btnId="btn-reg"
         pageType={PageType.Signup}
         title="Регистрация"
         button="Зарегистрироваться"

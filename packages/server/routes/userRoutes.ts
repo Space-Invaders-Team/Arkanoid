@@ -6,7 +6,8 @@ export const userRoutes = (app: Router) => {
   const userRouter: Router = Router();
 
   userRouter
-    .post('/', UserController.create);
+    .post('/', UserController.create)
+    .put('/:id', UserController.update);
 
   app.use('/api/v1/users', userRouter);
 };
