@@ -15,8 +15,10 @@ import { messageAPI } from '../../../api/ForumAPI/MessageAPI';
 import { dateFormat } from '../../../utils/helpers';
 import { useAppSelector } from '../../../store/hooks';
 import { selectUserData } from '../../../store/selectors';
+import { BASE_URL_YANDEX } from '../../../utils/apiConstans';
 import { IconLike } from '../../../components/Icons/IconLike';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function makeDisplayName(user: any) {
   return user?.display_name ? user.display_name
     : `${user.first_name} ${user.second_name}`;
@@ -50,6 +52,7 @@ export function Messages() {
   const [isDisabledBtn, setDisabledBtn] = useState<boolean>(true);
   const userData = useAppSelector(selectUserData);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showAuthor = (user: any) => {
     let author;
     if (user?.user_id === userData?.id || user === undefined) {
@@ -59,6 +62,11 @@ export function Messages() {
     }
     return author;
   };
+
+  function putAvatar(avatarData: string) {
+    const avatarUrl = avatarData ? `${BASE_URL_YANDEX}/resources/${avatarData}` : avatar;
+    return avatarUrl;
+  }
 
   // берём id активной темы из url
   const params = useParams();
@@ -200,7 +208,7 @@ export function Messages() {
 
                         <img
                           className={styles.avatar}
-                          src={data.user?.avatar || avatar}
+                          src={putAvatar(data.user?.avatar)}
                           alt="Avatar"
                         />
                         <div className={styles.messText}>{data.content}</div>
