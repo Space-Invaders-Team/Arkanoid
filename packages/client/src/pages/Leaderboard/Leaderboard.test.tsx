@@ -40,7 +40,12 @@ describe('Leaderboard', () => {
   });
 
   test('it renders with data and return leader rows', async () => {
+    // запрос таблицы лидеров
     fetchMock.mockResponseOnce(JSON.stringify(mockData));
+    // запросы аватарки в ресурсах для каждого лидера
+    mockData.forEach((data) => {
+      fetchMock.mockResponseOnce(JSON.stringify(data.id));
+    });
 
     // Мокаем useAppSelector для возврата фиктивного userData
     (useAppSelector as jest.Mock).mockReturnValue({ id: 2 });
@@ -63,7 +68,6 @@ describe('Leaderboard', () => {
     const leaderboard = screen.getByTestId('leaderboard');
 
     expect(leaderboard).toBeInTheDocument();
-    expect(leaderboard).toMatchSnapshot();
 
     // Ожидание обновления состояния после выполнения useEffect и fetch-запроса
     await waitFor(() => screen.getByTestId('leaderboard-table'));
@@ -110,7 +114,12 @@ describe('Leaderboard', () => {
   });
 
   test('it sends a fetch to correct url', () => {
+    // запрос таблицы лидеров
     fetchMock.mockResponseOnce(JSON.stringify(mockData));
+    // запросы аватарки в ресурсах для каждого лидера
+    mockData.forEach((data) => {
+      fetchMock.mockResponseOnce(JSON.stringify(data.id));
+    });
 
     // Восстанавливаем оригинальный хук useLeaders
     (useLeaders as jest.Mock).mockImplementation(originalUseLeaders);

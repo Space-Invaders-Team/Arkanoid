@@ -31,4 +31,21 @@ export class UserController {
       response.json(result);
     } else console.log('User is not found!');
   };
+
+  public static get = async (
+    request: Request,
+    response: Response,
+  ) => {
+    try {
+      const userId = request.params.id;
+      const user = await User.findByPk(userId);
+      if (user) {
+        response.json(user);
+      } else {
+        response.json({ error: `User ${userId} is not found in DB!` });
+      }
+    } catch (error) {
+      response.json({ error });
+    }
+  };
 }
