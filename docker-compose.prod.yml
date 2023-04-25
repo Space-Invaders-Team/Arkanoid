@@ -8,7 +8,8 @@ services:
       dockerfile: Dockerfile.production
     restart: always
     environment:
-      VIRTUAL_HOST: localhost
+      LETSENCRYPT_HOST: ${VITE_APP_HOSTNAME}
+      VIRTUAL_HOST: ${VITE_APP_HOSTNAME}
       VIRTUAL_PORT: ${SERVER_PORT}
     depends_on:
       postgres:
@@ -59,13 +60,37 @@ services:
     restart: always
     ports:
       - "80:80"
+      - "443:443"
     volumes:
+      - certs:/etc/nginx/certs:ro
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - arkNet
 
+  acme-companion:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-acme
+    restart: always
+    environment:
+      - DEFAULT_EMAIL=mail@${VITE_APP_HOSTNAME}
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+
 volumes:
   pgadmin-data:
+  volumes:
+  conf:
+  vhost:
+  html:
+  certs:
+  acme:
 
 networks:
   arkNet:

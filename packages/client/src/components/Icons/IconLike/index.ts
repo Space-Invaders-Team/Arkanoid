@@ -1,0 +1,1 @@
+export { IconLike } from './IconLike';

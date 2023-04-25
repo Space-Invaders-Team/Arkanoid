@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { InputProps } from './typings';
 import styles from './Input.module.css';
+import { PageType } from '../typings';
 
 export function Input({
   inputName,
@@ -10,10 +11,18 @@ export function Input({
   errorMessage,
   handleValidate,
   inputValue,
+  isOpen,
   ...inputProps
 }: InputProps) {
   const [inputValues, setInputValue] = useState(inputValue);
   const [inputError, setInputError] = useState('');
+
+  useEffect(() => {
+    if (isOpen !== undefined) {
+      setInputValue('');
+      setInputError('');
+    }
+  }, [isOpen]);
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = evt;
@@ -29,7 +38,13 @@ export function Input({
 
   return (
     <div
-      className={classNames(styles.field, { [styles.fieldTwoColumns]: pageType !== 'signin' })}
+      className={
+        classNames(
+          styles.field,
+          { [styles.fieldTwoColumns]:
+            pageType !== PageType.Signin && pageType !== PageType.Password },
+        )
+      }
     >
       <label htmlFor={inputName} className={styles.label}>{title}</label>
       <input
