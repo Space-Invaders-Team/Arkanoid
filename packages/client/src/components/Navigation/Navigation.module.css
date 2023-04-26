@@ -9,6 +9,10 @@
     z-index: 2;
 }
 
+.toggleNav {
+	display: none;
+}
+
 .navRow {
 	display: flex;
 	flex-wrap: wrap;
@@ -77,8 +81,48 @@
     transition: background-color 200ms linear;
   }
 
+  .navList {
+		transition: .4s;
+	}
+
 	.navListLink {
 		transition: opacity 0.2s ease-in;
 	}
 }
 
+@media screen and (max-width: 767px) {
+	.nav {
+		background-color: transparent;
+	}
+
+	.navList {
+		position: fixed;
+    top: 0;
+    background: var(--border-color);
+    width: auto;
+    margin: 0;
+    padding: 30px 20px;
+    flex-direction: column;
+    left: -300px;
+    border-radius: 0 50% 134% 30%;
+    box-shadow: 2px -3px 0 5px var(--accent-darken-color), 6px -6px 0 11px var(--font-secondary-color);
+		align-items: flex-start;
+		font-size: 1.8em;
+	}
+
+	.navList[data-open="true"] {
+		left: 0;
+	}
+
+	.toggleNav {
+		position: absolute;
+		right: -75px;
+		top: 20px;
+		display: block;
+		background: transparent;
+		border: 0;
+		appearance: none;
+		padding: 0;
+		outline: none;
+	}
+}
