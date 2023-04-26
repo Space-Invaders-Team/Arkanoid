@@ -28,7 +28,7 @@ async function createServer() {
 
   app
     .use(cors())
-    .use(helmet())
+    .use(helmet({ crossOriginEmbedderPolicy: false }))
     .use('/sw.js', express.static(path.resolve(distPath, 'sw.js')));
 
   const vite = IS_DEV
