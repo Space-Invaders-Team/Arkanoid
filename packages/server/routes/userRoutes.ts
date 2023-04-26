@@ -6,6 +6,7 @@ export const userRoutes = (app: Router) => {
   const userRouter: Router = Router();
 
   userRouter
+    .get('/:id', UserController.get)
     .post('/', UserController.create)
     .put('/:id', UserController.update);
 
