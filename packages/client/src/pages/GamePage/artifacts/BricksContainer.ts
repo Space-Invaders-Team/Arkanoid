@@ -25,7 +25,7 @@ export class BricksContainer {
     private readonly increaseScore: () => void,
     private readonly increaseLevel: () => void,
   ) {
-    const level = LEVELS[levelNumber];
+    const level = LEVELS.get(levelNumber);
     const { audio, audioContext } = createAudioContext(brickSound);
 
     if (Array.isArray(level) && Array.isArray(level[0])) {

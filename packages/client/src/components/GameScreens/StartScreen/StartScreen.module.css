@@ -31,6 +31,29 @@
   opacity: 1;
 }
 
+.levelChoice {
+  margin-top: auto;
+  font-size: 28px;
+  color: var(--game-descr-font-color);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.levelWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.changeLevelBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 26px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .descrWrapper {
     transition: transform var(--descr-duration) cubic-bezier(0.47, 1.64, 0.41, 0.8) var(--descr-delay);
@@ -46,6 +69,15 @@
   }
 
   .buttonVisible {
+    transform: translateY(0);
+  }
+
+  .levelChoice {
+    transform: translateY(100vh);
+    transition: transform var(--descr-duration) cubic-bezier(0.47, 1.64, 0.41, 0.8) var(--descr-delay);
+  }
+
+  .levelChoiceVisible {
     transform: translateY(0);
   }
 }
@@ -88,10 +120,10 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-[role="switch"][aria-checked="true"] :first-child,
-[role="switch"][aria-checked="true"] :last-child,
-[role="switch"][aria-checked="false"] :last-child,
-[role="switch"][aria-checked="false"] :first-child {
+  [role="switch"][aria-checked="true"] :first-child,
+  [role="switch"][aria-checked="true"] :last-child,
+  [role="switch"][aria-checked="false"] :last-child,
+  [role="switch"][aria-checked="false"] :first-child {
     transition: background-color 0.5s, border-color 0.25s;
   }
 

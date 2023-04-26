@@ -14,10 +14,12 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectUserData } from '../../store/selectors';
 import { UserData } from '../../store/typings';
 import { increaseTryCount, setScore } from '../../store/features/gameSlice';
+import { LEVELS } from './utils/levels';
 
 export function GamePage() {
   const gameRef = useRef<GameCore | null>(null);
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.ONBOARDING);
+  const [gameLevel, setGameLevel] = useState(1);
   const userData: UserData | null = useAppSelector(selectUserData);
   const dispatch = useAppDispatch();
 
@@ -69,12 +71,34 @@ export function GamePage() {
   );
 
   const [isRunStartAnimation, setIsRunStartAnimation] = useState<boolean>(false);
+
+  const handleChangeLevel = (operator: 1 | -1) => {
+    setGameLevel((prevState) => {
+      if (
+        (prevState === 1 && operator === -1)
+        || (prevState === LEVELS.size && operator === 1)
+      ) {
+        return prevState;
+      }
+
+      return prevState + operator;
+    });
+  };
+
+  useEffect(() => {
+    if (gameRef.current) {
+      gameRef.current?.setLevel(gameLevel);
+    }
+  }, [gameLevel]);
+
   const screenMap = new Map<GameStatus, ReactNode>([
     [
       GameStatus.ONBOARDING,
       <StartScreen
         isRunStartAnimation={isRunStartAnimation}
         onClick={handleClickStart}
+        level={gameLevel}
+        onChangeLevel={handleChangeLevel}
       />,
     ],
     [
@@ -156,7 +180,6 @@ export function GamePage() {
             {isFullScreen ? <IconFullscreenExit /> : <IconFullscreen />}
           </Button>
         </div>
-
       </section>
     </main>
   );
