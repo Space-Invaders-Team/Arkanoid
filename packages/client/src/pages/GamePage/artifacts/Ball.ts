@@ -1,11 +1,13 @@
+import ball from '../../../assets/img/ball.svg';
+
 export class Ball {
   private readonly _radius: number;
-
-  private readonly _color = '#0095dd';
 
   private readonly _speed = 6;
 
   private readonly _initialY: number;
+
+  private readonly _image = new Image();
 
   private _y: number;
 
@@ -20,6 +22,7 @@ export class Ball {
     this._radius = Math.min(10, canvasHeight * 0.01);
     this._y = canvasHeight - this._radius - paddleOffset;
     this._initialY = this._y;
+    this._image.src = ball;
   }
 
   public set angle(value: number) {
@@ -39,10 +42,18 @@ export class Ball {
   }
 
   public draw() {
+    this.ctx.save();
     this.ctx.beginPath();
     this.ctx.arc(this._x, this._y, this._radius, 0, Math.PI * 2);
-    this.ctx.fillStyle = this._color;
-    this.ctx.fill();
+    this.ctx.clip();
+    this.ctx.drawImage(
+      this._image,
+      this._x - this.radius,
+      this._y - this.radius,
+      this._radius * 2,
+      this._radius * 2,
+    );
+    this.ctx.restore();
     this.ctx.closePath();
   }
 

@@ -1,11 +1,12 @@
 import { Ball } from './Ball';
+import brick from '../../../assets/img/brick.svg';
 
 export class Brick {
   public static readonly width = 80;
 
   public static readonly height = 30;
 
-  private readonly _color = '#0095dd';
+  private readonly _image = new Image();
 
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
@@ -18,6 +19,7 @@ export class Brick {
     private _audio: HTMLAudioElement,
     private _audioContext: AudioContext,
   ) {
+    this._image.src = brick;
   }
 
   public get isActive(): boolean {
@@ -65,11 +67,7 @@ export class Brick {
   }
 
   public draw() {
-    this.ctx.beginPath();
-    this.ctx.rect(this._x, this._y, this._width, this._height);
-    this.ctx.fillStyle = this._color;
-    this.ctx.fill();
-    this.ctx.closePath();
+    this.ctx.drawImage(this._image, this._x, this._y, this._width, this._height);
   }
 
   public isDetectedCollision() {

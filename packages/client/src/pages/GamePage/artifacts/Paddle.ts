@@ -1,9 +1,12 @@
+import paddle1 from '../../../assets/img/paddle1.svg';
+import paddle2 from '../../../assets/img/paddle2.svg';
+import paddle3 from '../../../assets/img/paddle3.svg';
+import { getRandomNumInRange } from '../../../utils/helpers';
+
 export class Paddle {
   private readonly _width: number;
 
   private readonly _height: number;
-
-  private readonly _color = '#0095DD';
 
   private readonly _bottomOffset = 10;
 
@@ -17,11 +20,20 @@ export class Paddle {
 
   private readonly _y: number;
 
+  private readonly _image1 = new Image();
+
+  private readonly _image2 = new Image();
+
+  private readonly _image3 = new Image();
+
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
     private readonly canvasWidth: number,
     private readonly canvasHeight: number,
   ) {
+    this._image1.src = paddle1;
+    this._image2.src = paddle2;
+    this._image3.src = paddle3;
     this._width = Math.min(200, canvasWidth * 0.1);
     this._height = Math.min(15, canvasHeight * 0.02);
     this._x = (canvasWidth - this._width) / 2;
@@ -51,11 +63,9 @@ export class Paddle {
   }
 
   public draw() {
-    this.ctx.beginPath();
-    this.ctx.rect(this._x, this._y, this._width, this._height);
-    this.ctx.fillStyle = this._color;
-    this.ctx.fill();
-    this.ctx.closePath();
+    const randomIndex = getRandomNumInRange(0, 2);
+    const image = [this._image1, this._image2, this._image3][randomIndex];
+    this.ctx.drawImage(image, this._x, this._y, this._width, this._height);
   }
 
   public moveByMouse(mouseX: number) {
