@@ -204,13 +204,14 @@ export function Messages() {
                     <div className={styles.row}>
                       <div className={styles.rowItem1}>
 
-                        {/* TODO When avatar will be in PS-database */}
+                        <div className={styles.avatar}>
+                          <img
+                            className={styles.avatarImg}
+                            src={putAvatar(data.user?.avatar)}
+                            alt="Avatar"
+                          />
+                        </div>
 
-                        <img
-                          className={styles.avatar}
-                          src={putAvatar(data.user?.avatar)}
-                          alt="Avatar"
-                        />
                         <div className={styles.messText}>{data.content}</div>
                       </div>
                     </div>
