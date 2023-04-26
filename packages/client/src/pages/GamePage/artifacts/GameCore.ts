@@ -52,6 +52,15 @@ export class GameCore {
     canvas.addEventListener('mouseout', this.toggleCursor);
   }
 
+  public get level(): number {
+    return this._level;
+  }
+
+  public setLevel(value: number) {
+    this._level = value;
+    this._bricks = this.generateBricks();
+  }
+
   public get status(): GameStatus {
     return this._status;
   }
@@ -81,7 +90,7 @@ export class GameCore {
       this._raf = null;
     }
 
-    if (this._level === LEVELS.length) {
+    if (this._level === LEVELS.size) {
       this.onChangeStatus(GameStatus.WIN);
 
       return;
@@ -101,7 +110,9 @@ export class GameCore {
       && this._status !== GameStatus.RUNNING
     ) {
       this._status = GameStatus.RUNNING;
-      if (!this._isMute) { this._wallAudio.play(); }
+      if (!this._isMute) {
+        this._wallAudio.play();
+      }
     }
   };
 
@@ -196,13 +207,17 @@ export class GameCore {
 
     if (ball.x > canvasRightEdgeX || ball.x < ball.radius) {
       ball.flipX();
-      if (!this._isMute) { this._wallAudio.play(); }
+      if (!this._isMute) {
+        this._wallAudio.play();
+      }
     }
 
     const canvasBottomEdgeY = canvas.height - ball.radius - paddle.heightWithOffset;
 
     if (ball.y < ball.radius) {
-      if (!this._isMute) { this._wallAudio.play(); }
+      if (!this._isMute) {
+        this._wallAudio.play();
+      }
       ball.flipY();
     } else if (ball.y > canvasBottomEdgeY) {
       const isBallIntoPaddle = (
@@ -216,12 +231,16 @@ export class GameCore {
         );
         const shiftCoef = shift / 2 + 0.5;
         ball.angle = -(shiftCoef * (Math.PI / 2) + Math.PI / 4);
-        if (!this._isMute) { this._wallAudio.play(); }
+        if (!this._isMute) {
+          this._wallAudio.play();
+        }
       } else {
         this._lives--;
         this._status = GameStatus.PREPARING;
         ball.flipY();
-        if (this._lives !== 0 && !this._isMute) { this._fallAudio.play(); }
+        if (this._lives !== 0 && !this._isMute) {
+          this._fallAudio.play();
+        }
 
         if (this._lives <= 0) {
           this.changeUIStatus(GameStatus.LOSE);
