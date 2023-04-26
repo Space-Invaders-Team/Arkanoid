@@ -34,6 +34,18 @@ class UserAPI {
 
     return this._handlingResponse(res);
   }
+
+  async get(id: number) {
+    const res = await fetch(`${this._baseUrl}/${id}`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return this._handlingResponse(res);
+  }
 }
 
 export const userAPI = new UserAPI(`${BASE_URL_API}${USER}`);
