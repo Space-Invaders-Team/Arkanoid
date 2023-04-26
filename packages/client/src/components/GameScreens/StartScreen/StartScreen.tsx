@@ -1,17 +1,18 @@
 import classNames from 'classnames';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Button } from '../../Button';
 import commonStyles from '../GameScreens.module.css';
 import styles from './StartScreen.module.css';
 import type { Props } from './typings';
 import startAudio from '../../../assets/sounds/start.mp3';
+import excellent from '../../../assets/sounds/excellent.mp3';
 import sound from '../../../assets/icons/sound.svg';
 import mute from '../../../assets/icons/sound-mute.svg';
 import { createAudioContext } from '../../../pages/GamePage/utils/audio';
 
 let audioCtx: { audioContext: AudioContext; audio: HTMLAudioElement; };
 
-export function StartScreen({ isRunStartAnimation, onClick }: Props) {
+export function StartScreen({ isRunStartAnimation, onClick, level, onChangeLevel }: Props) {
   const startScreenClassName = classNames(commonStyles.dummyScreen, styles.container);
   const descrWrapperClassName = classNames(
     styles.descrWrapper,
@@ -23,6 +24,14 @@ export function StartScreen({ isRunStartAnimation, onClick }: Props) {
     { [styles.buttonVisible]: isRunStartAnimation },
   );
   const [isMute, setIsMute] = useState(true);
+  const [cheatBuffer, setCheatBuffer] = useState<string[]>([]);
+  const [isShowLevelChoice, setIsShowLevelChoice] = useState(false);
+  const cheatTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+
+  const levelChoiceClassName = classNames(
+    styles.levelChoice,
+    { [styles.levelChoiceVisible]: isShowLevelChoice },
+  );
 
   const toggleAudio = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     event.preventDefault();
@@ -40,6 +49,32 @@ export function StartScreen({ isRunStartAnimation, onClick }: Props) {
     }
   };
 
+  const handleCheatInput = ({ key }: KeyboardEvent) => {
+    clearTimeout(cheatTimeoutRef.current);
+
+    setCheatBuffer((prevState) => prevState.concat(key.toLowerCase()));
+
+    cheatTimeoutRef.current = setTimeout(() => {
+      setCheatBuffer([]);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    if (cheatBuffer.join(' ') === 'a c arrowup b arrowup b a arrowdown') {
+      setIsShowLevelChoice(true);
+      audioCtx = createAudioContext(excellent);
+      audioCtx.audio.play();
+    }
+  }, [cheatBuffer]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleCheatInput);
+
+    return () => {
+      document.removeEventListener('keydown', handleCheatInput);
+    };
+  }, []);
+
   useEffect(() => {
     localStorage.setItem('isMute', JSON.stringify(isMute));
   }, [isMute]);
@@ -53,7 +88,9 @@ export function StartScreen({ isRunStartAnimation, onClick }: Props) {
       <div className={styles.btnWrapAudio}>
         <button
           role="switch"
-          onClick={(e) => { toggleAudio(e); }}
+          onClick={(e) => {
+            toggleAudio(e);
+          }}
           data-playing="false"
           aria-checked="false"
           id="audioPower"
@@ -63,7 +100,6 @@ export function StartScreen({ isRunStartAnimation, onClick }: Props) {
           <img src={sound} alt="Sound" className={styles.imgSound} />
         </button>
       </div>
-
       <article className={descrWrapperClassName}>
         <h2 className={styles.descrTitle}>Как играть:</h2>
         <p className={styles.descrText}>
@@ -73,6 +109,14 @@ export function StartScreen({ isRunStartAnimation, onClick }: Props) {
           мыши или пробел.
         </p>
       </article>
+      <div className={levelChoiceClassName}>
+        <span>Выбор уровня</span>
+        <div className={styles.levelWrapper}>
+          <button onClick={() => onChangeLevel(1)} className={styles.changeLevelBtn}>△</button>
+          {level}
+          <button onClick={() => onChangeLevel(-1)} className={styles.changeLevelBtn}>▽</button>
+        </div>
+      </div>
       <Button extraClassName={startButtonClassName} onClick={onClick}>
         Начать игру
       </Button>
