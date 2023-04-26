@@ -3,6 +3,7 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 import styles from './Landing.module.css';
 import image1 from '../../assets/img/game.png';
 import image2 from '../../assets/img/listScreen.png';
+import parallaxImg from '../../assets/img/pattern.jpg';
 import { LandingHeader } from '../../components/LandingHeader';
 import { Loader } from '../../components/Loader';
 
@@ -14,7 +15,7 @@ export function Landing() {
     image.onload = () => {
       setIsImageLoaded(true);
     };
-    image.src = '/src/assets/img/pattern.jpg'; // замените на путь к вашему фоновому изображению
+    image.src = parallaxImg; // замените на путь к вашему фоновому изображению
   }, []);
 
   return (
@@ -30,7 +31,7 @@ export function Landing() {
             <ParallaxBanner
               layers={[
                 {
-                  image: '/src/assets/img/pattern.jpg',
+                  image: parallaxImg,
                   speed: -20,
                 },
               ]}
@@ -47,9 +48,14 @@ export function Landing() {
               <article className={styles.article}>
                 <h2 className={styles.title}>Описание игры:</h2>
                 <p className={styles.descrText}>
-                  Игра арканоид являет собой классику жанра среди игровой серии аркады. В вашем
-                  распоряжении шарик и платформа, которая запускает или отбивает шарик. Цель игры
-                  уничтожить все блоки и сохранить все доступные жизни. За прохождение уровней игрок
+                  Игра арканоид являет собой классику жанра среди игровой серии аркады.
+                  <br />
+                  В вашем распоряжении шарик и платформа, которая запускает или отбивает шарик.
+                  <br />
+                  Цель игры -
+                  уничтожить все блоки и сохранить все доступные жизни.
+                  <br />
+                  За прохождение уровней игрок
                   будет получать очки награды, которые фиксируются в таблице рекордов.
                 </p>
               </article>
