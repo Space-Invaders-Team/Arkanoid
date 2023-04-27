@@ -3,7 +3,7 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 import styles from './Landing.module.css';
 import image1 from '../../assets/img/game.png';
 import image2 from '../../assets/img/listScreen.png';
-import parallaxImg from '../../assets/img/pattern.jpg';
+import parallaxImg from '../../assets/img/pattern.webp';
 import { LandingHeader } from '../../components/LandingHeader';
 import { Loader } from '../../components/Loader';
 

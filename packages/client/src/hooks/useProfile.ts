@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { ChangeEvent } from 'react';
 import { profileApi } from '../api/ProfileAPI';
-import { userAPI as userDbAPI } from '../api/UserAPI/UserAPI';
+import { userAPI } from '../api/UserAPI/UserAPI';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 import { getUserData } from '../store/features/authSlice';
@@ -17,13 +17,12 @@ export const useProfile = () => {
     const formData = new FormData();
     formData.append('avatar', event.target.files[0]);
     try {
-      await profileApi.updateAvatar(formData);
+      await profileApi.updateAvatar(formData)
+        .then((resp) => resp.json())
+        .then(async (json) => {
+          await userAPI.update(json.id, { avatar: json.avatar });
+        });
       dispatch(getUserData());
-
-      if (userData) {
-        const avatarNew = { avatar: userData.avatar };
-        await userDbAPI.update(userData.id, avatarNew);
-      }
     } catch (errorMessage) {
       console.log(errorMessage);
     }
@@ -36,7 +35,7 @@ export const useProfile = () => {
       console.log('Данные профиля изменены');
       dispatch(getUserData());
       if (userData) {
-        await userDbAPI.update(userData.id, formData);
+        await userAPI.update(userData.id, formData);
       }
     } catch (errorMessage) {
       console.log(errorMessage);
